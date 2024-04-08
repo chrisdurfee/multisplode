@@ -1,0 +1,161 @@
+.prompt-panel{ 
+	display:none; 
+	position:absolute;
+	background:rgba(255,255,255,.15);  
+	width:70%; 
+	max-height:500px; 
+	top: 6%;
+    bottom: 6%; 
+	left:0px; 
+	right:0px; 
+	margin:auto; 
+	z-index:30; 
+	border-radius:25px; 
+	box-shadow:none; 
+	overflow:hidden; 
+	-webkit-animation: floatUpZBounce 1s ease-in-out;
+	animation: floatUpZBounce 1s ease-in-out;
+	
+	-webkit-backface-visibility: hidden; 
+	backface-visibility: hidden;
+	will-change: transform, opacity; 
+} 
+.prompt-panel .header-button-container{ 
+	position:absolute; 
+	width:100%; 
+	z-index:2;   
+} 
+.prompt-panel .header-button-container .bttn{ 
+	float:right; 
+	width:75px; 
+	height:60px; 
+	margin:0px; 
+	background:none; 
+} 
+.prompt-panel .header-button-container .bttn:hover{ 
+	background:rgba(255,255,255,.2); 
+	box-shadow:none;  
+} 
+.prompt-panel .header-button-container .bttn:active{ 
+	background:rgba(0,0,0,.2); 
+}
+.prompt-panel .touch-slider {
+	display: table;
+    width: 100%;
+    height: 100%; 
+}
+.prompt-panel section .content{ 
+	padding: 20px 16%; 
+	color:#FFF; 
+} 
+.prompt-panel section header{ 
+	margin:5% 0px 0px; 
+} 
+.prompt-panel h2{  
+	font-size:20px; 
+	margin:0px; 
+	margin-top:10px; 
+	font-weight:normal; 
+} 
+.prompt-panel p{  
+	opacity:.5;   
+}
+.prompt-panel img, 
+.prompt-panel object{ 
+	display:block; 
+	width:85%; 
+	max-width:100%; 
+	height:auto; 
+	margin:20px auto;  
+} 
+.prompt-panel .crumb-container {
+    position:absolute; 
+	width:100%; 
+    bottom:2%; 
+    margin:0px; 
+}
+.prompt-panel .number-crumb-container {
+    display: table;
+    height: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 11px; 
+	-webkit-backface-visibility:hidden; 
+} 
+.prompt-panel .step-container{ 
+	display:table; 
+    min-height: 0px;
+    width: 300%; 
+	height:100%;  
+} 
+.prompt-panel .step-container .step{ 
+	display:table-cell; 
+	min-height: 0px;
+    width: 31%;  
+	height:100%; 
+} 
+.prompt-panel .step-container .step object{ 
+	visibility:hidden; 
+	opacity:0; 
+	-webkit-transition:opacity .5s .4s; 
+	-moz-transition:opacity .5s .4s; 
+	transition:opacity .5s .4s; 
+}
+.prompt-panel.active .step.active object{ 
+	visibility:visible; 
+	opacity:1; 
+}
+.prompt-panel .number-crumb-container .option {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    margin: 2px 6px;
+    float: left;
+    cursor: pointer;
+	-webkit-transform: none; 
+	transform: none; 
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+	transition: all .2s ease-in;
+} 
+.prompt-panel .number-crumb-container .selected {
+    background: #FF4881;
+} 
+.prompt-panel .touch-slider .step, 
+.prompt-panel .number-crumb-container{  
+	display:none; 
+}
+.prompt-panel.active .touch-slider .step{  
+	display:table-cell;  
+	-webkit-animation:fadeIn 1s; 
+	-moz-animation:fadeIn 1s; 
+	animation:fadeIn 1s; 
+	will-change:opacity;
+    vertical-align: middle;
+} 
+.prompt-panel.active .number-crumb-container{  
+	display:table; 
+	-webkit-animation:fadeIn .5s; 
+	-moz-animation:fadeIn .5s; 
+	animation:fadeIn .5s; 
+	will-change:opacity;
+}
+.prompt-shadow{ 
+	position:absolute; 
+	top:0px; 
+	bottom:0px; 
+	left:0px; 
+	right:0px; 
+	background:rgba(0,0,0, .1); 
+	z-index:25; 
+} 
+.prompt-panel h2{ 
+	font-size:16px;
+	letter-spacing: 0px; 
+} 
+.prompt-panel p{ 
+	font-size:14px;   
+}

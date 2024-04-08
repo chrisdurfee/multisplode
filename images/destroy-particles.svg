@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 -20 380 150" style="enable-background:new 0 -20 380 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#93488B;}
+	.st1{fill:#CFFF9E;}
+	.st2{fill:#26CFCE;}
+	.st3{opacity:0.35;fill:#B52B85;}
+	.st4{fill:#B52B85;}
+	.st5{opacity:0.5;fill:#FFFFFF;}
+	.st6{fill:#FFFFFF;}
+	@keyframes pulseScale {
+		0% { 
+			transform:scale(.2,.2); 
+		} 
+		
+		100% {
+			transform:scale(1.2,1.2); 
+		}
+	}
+	.pulseScale {
+		-webkit-animation: pulseScale 2s infinite; 
+		animation: pulseScale 2s infinite; 
+		transform-origin: center; 
+    	transform-box: fill-box; 
+	} 
+	@-webkit-keyframes pulseScaleShockwave {
+		0% { 
+			-webkit-transform:scale(0,0);   
+		} 
+		
+		59% { 
+			-webkit-transform:scale(0,0);   
+		} 
+		
+		100% {
+			-webkit-transform:scale(1.3,1.3); 
+			opacity:0; 
+		}
+	} 
+	@keyframes pulseScaleShockwave {
+		0% { 
+			transform:scale(0,0); 
+		}  
+		
+		59% { 
+			transform:scale(0,0); 
+		}
+		
+		100% {
+			transform:scale(1.3,1.3); 
+		}
+	}
+	.pulseScaleShockwave {
+		-webkit-animation: pulseScaleShockwave 2s infinite; 
+		animation: pulseScaleShockwave 2s infinite; 
+		transform-origin: center; 
+    	transform-box: fill-box; 
+	}
+</style>
+	<circle class="st0" cx="61.451" cy="14.923" r="12.667"/>
+	<circle class="st1" cx="11.633" cy="101.355" r="10.901"/>
+	<circle class="st2" cx="295.081" cy="88.759" r="9.787"/>
+<g>
+	<circle class="st3 pulseScaleShockwave" cx="128.772" cy="90.76" r="30.684"/>
+	<circle class="st3 pulseScaleShockwave" cx="129.204" cy="90.863" r="24.093"/>
+	<circle class="st4" cx="128.875" cy="90.863" r="15.245"/>
+</g>
+<g>
+	<circle class="st5 pulseScale" cx="174.103" cy="57.429" r="36.015"/>
+	<circle class="st6 pulseScale" cx="174.224" cy="57.55" r="17.894"/>
+	<circle class="st5 pulseScale" cx="174.609" cy="57.55" r="28.279"/>
+</g>
+</svg>
