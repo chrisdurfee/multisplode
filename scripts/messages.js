@@ -1,40 +1,40 @@
 "use strict";
 
-/* 
-	messages 
-	
-	this will create, store, track, and remove 
-	messages. 
+/*
+	messages
+
+	this will create, store, track, and remove
+	messages.
 */
-var Messages = 
-{ 
-	options: [], 
-	
+var Messages =
+{
+	options: [],
+
 	messages: {
-		awful: [], 
-		bad: [], 
-		good: [], 
+		awful: [],
+		bad: [],
+		good: [],
 		close: [],
-		great: [] 
-	}, 
-	
-	reset: function() 
-	{ 
-		this.options = []; 
-	}, 
-	
-	setupMessages: function() 
-	{ 
-		var messages = this.messages; 
-		var createMessage = function(type, title, text) 
-		{ 
-			var message = { 
-				title: title, 
-				text: text 
-			}; 
-			messages[type].push(message); 
-		}; 
-		
+		great: []
+	},
+
+	reset: function()
+	{
+		this.options = [];
+	},
+
+	setupMessages: function()
+	{
+		var messages = this.messages;
+		var createMessage = function(type, title, text)
+		{
+			var message = {
+				title: title,
+				text: text
+			};
+			messages[type].push(message);
+		};
+
 		createMessage(
 			'awful',
 			'Whaaaa?',
@@ -170,62 +170,62 @@ var Messages =
 			'You are',
 			'King of the world!'
 		);
-	}, 
-	
-	getRandomMessage: function(type) 
-	{ 
-		var messages = this.messages[type]; 
-		if(messages) 
-		{ 
-			var maxLength = messages.length; 
-			var number = math.round(Math.random() * (maxLength - 1)); 
-			var message = messages[number]; 
+	},
+
+	getRandomMessage: function(type)
+	{
+		var messages = this.messages[type];
+		if(messages)
+		{
+			var maxLength = messages.length;
+			var number = math.round(Math.random() * (maxLength - 1));
+			var message = messages[number];
 			if(message)
-			{ 
+			{
 				this.add(type, message.title, message.text);
 			}
-		} 
-	}, 
-	
-	getAll:function() 
-	{ 
-		return this.options; 
+		}
 	},
-	
+
+	getAll:function()
+	{
+		return this.options;
+	},
+
 	add: function(type, title, text)
-	{ 
-		var self = this; 
+	{
+		var self = this;
 		var flash = new FlashPanel(type, title, text, function()
-		{ 
-			self.remove(flash); 
-		}); 
-		flash.setup();  
-		this.options.push(flash); 
-		return flash; 
-	}, 
-	
-	removeAll: function() 
-	{ 
+		{
+			self.remove(flash);
+		});
+		flash.setup();
+		this.options.push(flash);
+		return flash;
+	},
+
+	removeAll: function()
+	{
 		var options = this.options;
-		var maxLength = options.length; 
-		if(maxLength) 
-		{ 
-			for(var i = 0; i < maxLength; i++) 
-			{ 
-				var option = options[i]; 
-				this.remove(option); 
-			} 
+		var maxLength = options.length;
+		if(maxLength)
+		{
+			for(var i = 0; i < maxLength; i++)
+			{
+				var option = options[i];
+				this.remove(option);
+			}
 		}
-	}, 
-	
+	},
+
 	remove: function(option)
-	{ 
-		var options = this.options, 
-		index = options.indexOf(option); 
-		if(index > -1) 
-		{ 
-			option.remove(); 
-			options.splice(index, 1); 
+	{
+		var options = this.options,
+		index = options.indexOf(option);
+		if(index > -1)
+		{
+			option.remove();
+			options.splice(index, 1);
 		}
-	} 
-}; 
+	}
+};

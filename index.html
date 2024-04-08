@@ -1,87 +1,87 @@
 <!DOCTYPE html>
-<!-- this will add egde supportin local file --> 
+<!-- this will add egde supportin local file -->
 <!-- saved from url=(0016)http://localhost -->
 <html>
   <head>
-    <title></title> 
-    <!-- view to lock mobile from zooming --> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"> 
+    <title></title>
+    <!-- view to lock mobile from zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#111D5D">
-    <meta name="mobile-web-app-capable" content="yes"> 
-    <link rel="stylesheet" type="text/css" href="css/multisplode.css"> 
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" type="text/css" href="css/multisplode.css">
     <link rel="stylesheet" type="text/css" href="css/import-file.css">
-    <link rel="stylesheet" type="text/css" href="css/animation.css"> 
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+    <link rel="shortcut icon" href="favicon.ico">
     <base href="./">
   </head>
-  <body> 
+  <body>
   	<!-- game container -->
-  	<main id="game_container" class="main-game-container"> 
+  	<main id="game_container" class="main-game-container">
 		<div id="main_container" class="main-container">
-			
-			<div id="home_panel" class="main-home-panel loading overlay-panel"> 
-				<div class="background background-stars"></div> 
+
+			<div id="home_panel" class="main-home-panel loading overlay-panel">
+				<div class="background background-stars"></div>
 				<div class="panel-top-button-container">
 					<div class="bttn circle settings" onclick="game.toggleSettings();">
 						<div class="content"></div>
 					</div>
 				</div>
-				<article id="main-home-menu" class="home-base-panel loading"> 
+				<article id="main-home-menu" class="home-base-panel loading">
 					<div class="row logo-container">
 						<div class="background background-mask"></div>
-						<div class="game-name-container"> 
-							<img src="images/multisplode.svg"> 
-						</div> 
-					</div> 
+						<div class="game-name-container">
+							<img src="images/multisplode.svg">
+						</div>
+					</div>
 					<div class="row menu-container">
-						<section class="col main-menu-container clear"> 
-							<div class="game-menu-container">  
-								<div class="main-nav-container"> 
-									<nav> 
-										<ul class="clear">  
+						<section class="col main-menu-container clear">
+							<div class="game-menu-container">
+								<div class="main-nav-container">
+									<nav>
+										<ul class="clear">
 											<li>
 												<button type="button" class="bttn main-play title-text" onclick="game.startGame();">Play</button>
 											</li>
-										</ul> 
-									</nav> 
-								</div> 
-							</div> 
-						</section> 
-					</div> 
-				</article> 
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</section>
+					</div>
+				</article>
 			</div>
 
-			<div id="play-container" class="play-container loading"> 
-				<div class="play-panel"> 
+			<div id="play-container" class="play-container loading">
+				<div class="play-panel">
 					<!--Canvas -->
 					<div class="fade-layer">
 						<canvas id="portal" class="main-canvas"></canvas>
-					</div> 
+					</div>
 				</div>
 
 				<div id="control_panel" class="play-level-container">
 					<!--Action guide -->
-					<div id="action_guide" class="level-guide fadeIn"> 
-						<article class="options-container"> 
-							<div class="top-container"> 
+					<div id="action_guide" class="level-guide fadeIn">
+						<article class="options-container">
+							<div class="top-container">
 								<section class="option-group">
 									<div class="bttn circle bttn-pause" onclick="game.pause();">
 										<div class="content">
-											<span></span> 
+											<span></span>
 											<span></span>
 										</div>
-									</div> 
-								</section> 
+									</div>
+								</section>
 
 								<section class="option-group level-number">
-									<div id="levelNumber" class="value title-text"></div> 
-									<div class="label title-text">Level</div> 
-								</section> 
-							</div> 
+									<div id="levelNumber" class="value title-text"></div>
+									<div class="label title-text">Level</div>
+								</section>
+							</div>
 
-							<div class="lower-container"> 
+							<div class="lower-container">
 								<section class="option-group level-progress">
-									<div id="levelProgress" class="value progress title-text"> 
+									<div id="levelProgress" class="value progress title-text">
 										<div id="levelMinimum" class="progress-number value title-text"></div>
 										<!--<object id="level-progress-image" type="image/svg+xml" data="images/progress-icon.svg">
 										</object>-->
@@ -92,32 +92,32 @@
 										  <path class="progress-bg" d="M74.7 21L62.2 8.5C50.9-2.8 32.3-2.8 21 8.5L8.5 21c-11.3 11.3-11.3 29.9 0 41.2L21 74.7C32.3 86 50.9 86 62.2 74.7l12.5-12.5C86 50.9 86 32.3 74.7 21zm-3.3 39.1L60.1 71.4c-10.2 10.2-26.9 10.2-37.1 0L11.8 60.1C1.6 49.9 1.6 33.2 11.8 23L23 11.8c10.2-10.2 26.9-10.2 37.1 0L71.4 23c10.2 10.2 10.2 26.9 0 37.1z"/>
 										  <path id="progress-line" class="progress" d="M60.82 72.582c-10.606 10.605-27.968 10.605-38.572 0L10.603 60.834c-10.605-10.605-10.605-27.967 0-38.57l11.644-11.645C32.852.013 50.214.013 60.817 10.62l11.75 11.643c10.604 10.605 10.604 27.967 0 38.57l-11.748 11.75"/>
 										</svg>
-									</div> 
-									<div class="label title-text">Progress</div> 
-								</section> 
+									</div>
+									<div class="label title-text">Progress</div>
+								</section>
 
 								<section class="option-group level-touches">
 									<div id="levelTouches" class="value touch-container title-text">
 										<div class="touch-icon inactive circle"></div>
-										<div class="touch-icon circle"></div> 
 										<div class="touch-icon circle"></div>
-									</div> 
-									<div class="label title-text">Touches</div> 
-								</section> 
+										<div class="touch-icon circle"></div>
+									</div>
+									<div class="label title-text">Touches</div>
+								</section>
 							</div>
 						</article>
-					</div> 
+					</div>
 
 					<!--fps -->
-					<div id="fps" class="fps"></div> 
+					<div id="fps" class="fps"></div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="overlay-container">
-			
-			<article id="level_panel" class="control-sub-panel level-select-container overlay-panel"> 
-            	<section class="home-sub-panel level-select-panel"> 
+
+			<article id="level_panel" class="control-sub-panel level-select-container overlay-panel">
+            	<section class="home-sub-panel level-select-panel">
                 	<div class="panel-top-button-container floatUpZBounce">
                         <div class="bttn circle close" onclick="game.toggleLevelSelect();">
                             <div class="content">
@@ -126,19 +126,19 @@
                         </div>
                     </div>
                 	<header id="level-select-nav-container" class="title-container">
-  
-                    </header> 
+
+                    </header>
                     <div class="main-step-container">
-                    	<article id="level-select-step-panel" class="touch-slider step-container"> 
-                            <section id="level_select_panel" class="step select-panel"> 
+                    	<article id="level-select-step-panel" class="touch-slider step-container">
+                            <section id="level_select_panel" class="step select-panel">
                             </section>
                         </article>
                     </div>
-                </section> 
-            </article> 
-            
-            <article id="settings_panel" class="control-sub-panel settings-container overlay-panel"> 
-            	<section class="home-sub-panel settings-panel"> 
+                </section>
+            </article>
+
+            <article id="settings_panel" class="control-sub-panel settings-container overlay-panel">
+            	<section class="home-sub-panel settings-panel">
                 	<div class="panel-top-button-container floatUpZBounce">
                         <div class="bttn circle close" onclick="game.toggleSettings();">
                             <div class="content">
@@ -147,29 +147,29 @@
                         </div>
                     </div>
                 	<header id="settings-nav-container" class="title-container">
-  
-                    </header> 
+
+                    </header>
                     <div class="main-step-container">
-                    	<article id="settings-step-panel" class="touch-slider step-container"> 
-                            <section class="step"> 
-                                <div class="content settings-sub-panel audio-container"> 
+                    	<article id="settings-step-panel" class="touch-slider step-container">
+                            <section class="step">
+                                <div class="content settings-sub-panel audio-container">
  									<header class="title-text">Audio</header>
                                     <div class="row">
                                     	<label class="title">Music</label>
                                         <div id="music-toggle" class="value-container">
-                                        	
+
                                         </div>
                                     </div>
                                     <div class="row">
                                     	<label class="title">Sound fx</label>
                                         <div id="sound-fx-toggle" class="value-container">
-                                        	
+
                                         </div>
                                     </div>
                                 </div>
-                            </section> 
-                            <section class="step"> 
-                                <div class="content settings-sub-panel audio-container"> 
+                            </section>
+                            <section class="step">
+                                <div class="content settings-sub-panel audio-container">
  									<header class="title-text">Video</header>
                                     <div class="row">
                                     	<label class="title">Graphics</label>
@@ -181,8 +181,8 @@
                                     </div>
                                 </div>
                             </section>
-                            <section class="step"> 
-                                <div class="content settings-sub-panel about-container"> 
+                            <section class="step">
+                                <div class="content settings-sub-panel about-container">
  									<header class="title-text">Credits</header>
                                     <div class="row">
                                     	<label class="title">Programming</label>
@@ -206,273 +206,273 @@
                             </section>
                         </article>
                     </div>
-                </section> 
+                </section>
             </article>
-			
-			<div id="pause_panel" class="control-sub-panel pause-container overlay-panel"> 
-				<div class="pause-panel floatDownZ"> 
+
+			<div id="pause_panel" class="control-sub-panel pause-container overlay-panel">
+				<div class="pause-panel floatDownZ">
 					 <div class="play circle" onclick="game.play();">
 						<div class="content"></div>
 					 </div>
 				</div>
-				<article class="options-container fadeIn"> 
-					<section class="option-group"> 
+				<article class="options-container fadeIn">
+					<section class="option-group">
 						<div class="bttn circle bttn-home" onclick="game.showHomeMenu();">
 							<div class="content"></div>
-						</div> 
+						</div>
 						<div class="label title-text">Home</div>
-					</section> 
+					</section>
 
-					<section class="option-group"> 
+					<section class="option-group">
 						<div class="bttn circle bttn-levels" onclick="game.toggleLevelSelect();">
 							<div class="content"></div>
-						</div> 
+						</div>
 						<div class="label title-text">Levels</div>
-					</section> 
+					</section>
 
-					<section class="option-group"> 
+					<section class="option-group">
 						<div class="bttn circle bttn-retry" onclick="game.retryLevel();">
 							<div class="content"></div>
-						</div> 
+						</div>
 						<div class="label title-text">Retry</div>
 					</section>
 				</article>
 			</div>
-			
-			<!--Level Summary --> 
-			<div id="levelSummary" class="level-summary-container overlay-panel floatDownZ"> 
+
+			<!--Level Summary -->
+			<div id="levelSummary" class="level-summary-container overlay-panel floatDownZ">
 				<div class="panel-top-button-container">
 					<div class="bttn circle bttn-home" onclick="game.showHomeMenu();">
 						<div class="content"></div>
 					</div>
 				</div>
-				<article class="summary-col-container"> 
-					<section id="summary-ad-banner-container" class="col marketing-container"> 
+				<article class="summary-col-container">
+					<section id="summary-ad-banner-container" class="col marketing-container">
 
-					</section> 
-					<section class="col data-container"> 
+					</section>
+					<section class="col data-container">
 						<div class="level-summary">
 							<div class="row">
-								<div class="level-number-container pullDown"> 
-									<div id="summaryLevelNumber" class="level-number title-text"></div> 
-									<div class="level-label title-text">Level</div> 
-								</div> 
+								<div class="level-number-container pullDown">
+									<div id="summaryLevelNumber" class="level-number title-text"></div>
+									<div class="level-label title-text">Level</div>
+								</div>
 
-								<div id="summaryLevelStatus" class="level-status title-enhance"></div> 
+								<div id="summaryLevelStatus" class="level-status title-enhance"></div>
 								<div id="destroyedSummary" class="destroyed-summary">
 									<div class="destroyed">
 										<div class="label title-text">Particle Total</div>
-										<div id="summaryLevelParticles" class="value">0</div> 
-										<div class="label title-text">Destroyed</div> 
-										<div id="summaryLevelDestroyed" class="value">0</div>		
+										<div id="summaryLevelParticles" class="value">0</div>
+										<div class="label title-text">Destroyed</div>
+										<div id="summaryLevelDestroyed" class="value">0</div>
 									</div>
-								</div> 
-							</div> 
+								</div>
+							</div>
 
-							<div class="row"> 
-								<div class="score-container"> 
-									<div class="score-panel"> 
+							<div class="row">
+								<div class="score-container">
+									<div class="score-panel">
 										<div class="col">
 											<div class="data underline">
-												<div id="summaryLevelMinium" class="value title-text"></div> 
-												<div class="label title-enhance">Minimum</div> 
-											</div> 
+												<div id="summaryLevelMinium" class="value title-text"></div>
+												<div class="label title-enhance">Minimum</div>
+											</div>
 										</div>
 
 										<div class="col">
-											<div class="data circle level-score"> 
-												<div class="content"> 
-													<div id="summaryLevelPoints" class="value title-text"></div> 
-													<div class="label title-enhance">Level Score</div> 
-												</div> 
-											</div> 
+											<div class="data circle level-score">
+												<div class="content">
+													<div id="summaryLevelPoints" class="value title-text"></div>
+													<div class="label title-enhance">Level Score</div>
+												</div>
+											</div>
 										</div>
 
 										<div class="col">
 											<div class="data high-score underline">
-												<div id="summaryHighScorePoints" class="value title-text"></div> 
-												<div class="label title-enhance">Highest Score</div>                              
+												<div id="summaryHighScorePoints" class="value title-text"></div>
+												<div class="label title-enhance">Highest Score</div>
 											</div>
 										</div>
 									</div>
-								</div> 
-							</div> 
+								</div>
+							</div>
 
-							<div class="row summary-button-container"> 
-								<div class="summary-buttons"> 
+							<div class="row summary-button-container">
+								<div class="summary-buttons">
 									<div class="col">
-										<section class="option-group" id="previous_level"> 
+										<section class="option-group" id="previous_level">
 											<div class="bttn circle bttn-prev" onclick="game.previousLevel();">
 												<div class="content"></div>
-											</div> 
+											</div>
 											<div class="label title-text">Previous</div>
-										</section> 
-									</div> 
-
-									<div class="col">
-										<section class="option-group" id="retry_level"> 
-											<div class="bttn circle bttn-retry" onclick="game.retryLevel();">
-												<div class="content"></div>
-											</div> 
-											<div class="label title-text">Retry</div>
-										</section> 
+										</section>
 									</div>
 
 									<div class="col">
-										<section class="option-group" id="next_level"> 
+										<section class="option-group" id="retry_level">
+											<div class="bttn circle bttn-retry" onclick="game.retryLevel();">
+												<div class="content"></div>
+											</div>
+											<div class="label title-text">Retry</div>
+										</section>
+									</div>
+
+									<div class="col">
+										<section class="option-group" id="next_level">
 											<div class="bttn circle bttn-next" onclick="game.nextLevel();">
 												<div class="content"></div>
-											</div> 
+											</div>
 											<div class="label title-text">Next</div>
-										</section> 
-									</div> 
-								</div> 
+										</section>
+									</div>
+								</div>
 							</div>
 						</div>
-					</section> 
+					</section>
 				</article>
 
 			</div>
 		</div>
-        
-        <div id="startup-panel" class="prompt-panel startup-panel"> 
-        	<article id="startup-step-panel" class="touch-slider step-container"> 
-            	<section id="prompt-1a" class="step"> 
-                	<div class="content"> 
-                         
+
+        <div id="startup-panel" class="prompt-panel startup-panel">
+        	<article id="startup-step-panel" class="touch-slider step-container">
+            	<section id="prompt-1a" class="step">
+                	<div class="content">
+
                         <object type="image/svg+xml" data="images/destroy-particles.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Destroy The Particles</h2>
                         </header>
-                        <p>Touch the screen to create an explosion. Particles that hit explosions will also explode creating chains.</p> 
+                        <p>Touch the screen to create an explosion. Particles that hit explosions will also explode creating chains.</p>
                     </div>
-                </section> 
-                <section id="prompt-1b" class="step"> 
-                	<div class="content"> 
+                </section>
+                <section id="prompt-1b" class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/complete-challenge.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Complete The Challenge</h2>
                         </header>
-                        <p>Beat the level minimum to continue. As the levels go on the explosions will get smaller increasing the difficulty.</p> 
+                        <p>Beat the level minimum to continue. As the levels go on the explosions will get smaller increasing the difficulty.</p>
                     </div>
-                </section> 
-                <section id="prompt-1c" class="step"> 
-                	<div class="content"> 
+                </section>
+                <section id="prompt-1c" class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/unlock-explosions.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Unlock Multiple Explosions</h2>
                         </header>
-                        <p>As the levels progress they will require more than just one explosion to complete the challenge.</p> 
-                    </div> 
-                </section> 
-            </article>  
-        </div> 
-        
-        <div id="gravity-field-panel" class="prompt-panel">  
-        	<article id="gravity-field-step-panel" class="touch-slider">  
-                <section class="step"> 
-                	<div class="content"> 
+                        <p>As the levels progress they will require more than just one explosion to complete the challenge.</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <div id="gravity-field-panel" class="prompt-panel">
+        	<article id="gravity-field-step-panel" class="touch-slider">
+                <section class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/gravity-field.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Gravity Doesn't Suck</h2>
                         </header>
-                        <p>You can now use gravity to your advantage. Gravity fields attract particles and lock them into orbit until the gravity field becomes too weak and the particles are released.</p> 
+                        <p>You can now use gravity to your advantage. Gravity fields attract particles and lock them into orbit until the gravity field becomes too weak and the particles are released.</p>
                     </div>
-                </section>  
-            </article>  
+                </section>
+            </article>
         </div>
-        
-        <div id="add-two-panel" class="prompt-panel startup-panel">  
-        	<article id="add-two-step-panel" class="touch-slider">  
-                <section id="prompt-2a" class="step"> 
-                	<div class="content"> 
+
+        <div id="add-two-panel" class="prompt-panel startup-panel">
+        	<article id="add-two-step-panel" class="touch-slider">
+                <section id="prompt-2a" class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/double-trouble.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Double The Trouble</h2>
                         </header>
-                        <p>You can now use two explosions at anytime to maximize the destruction.</p> 
+                        <p>You can now use two explosions at anytime to maximize the destruction.</p>
                     </div>
-                </section>  
-            </article>  
-        </div> 
-        
-        <div id="add-three-panel" class="prompt-panel startup-panel">  
-        	<article id="add-three-step-panel" class="touch-slider">  
-                <section id="prompt-3a" class="step"> 
-                	<div class="content"> 
+                </section>
+            </article>
+        </div>
+
+        <div id="add-three-panel" class="prompt-panel startup-panel">
+        	<article id="add-three-step-panel" class="touch-slider">
+                <section id="prompt-3a" class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/three-more.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Three Is More Fun</h2>
                         </header>
-                        <p>You can now use three explosions at anytime to maximize the destruction.</p> 
+                        <p>You can now use three explosions at anytime to maximize the destruction.</p>
                     </div>
-                </section>  
-            </article>  
-        </div> 
-        
-        <div id="add-four-panel" class="prompt-panel startup-panel">  
-        	<article id="add-four-step-panel" class="touch-slider">  
-                <section id="prompt-4a" class="step"> 
-                	<div class="content"> 
+                </section>
+            </article>
+        </div>
+
+        <div id="add-four-panel" class="prompt-panel startup-panel">
+        	<article id="add-four-step-panel" class="touch-slider">
+                <section id="prompt-4a" class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/four-more.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Four Is More</h2>
                         </header>
-                        <p>You can now use four explosions at anytime to maximize the destruction.</p> 
+                        <p>You can now use four explosions at anytime to maximize the destruction.</p>
                     </div>
-                </section>  
-            </article>  
-        </div> 
-        
-        <div id="pulse-particle-panel" class="prompt-panel startup-panel">  
-        	<article id="pulse-particle-step-panel" class="touch-slider"> 
-            	<section class="step"> 
-                	<div class="content"> 
+                </section>
+            </article>
+        </div>
+
+        <div id="pulse-particle-panel" class="prompt-panel startup-panel">
+        	<article id="pulse-particle-step-panel" class="touch-slider">
+            	<section class="step">
+                	<div class="content">
                     	<object type="image/svg+xml" data="images/complete-challenge.svg">
                         </object>
-                        <header> 
+                        <header>
                             <h2 class="title-enhance">Pulse Particles</h2>
                         </header>
-                        <p>The pulse particle is pure white and packs a punch. It causes 1.5X destruction and double the points.</p> 
+                        <p>The pulse particle is pure white and packs a punch. It causes 1.5X destruction and double the points.</p>
                     </div>
-                </section> 
-            </article>  
+                </section>
+            </article>
         </div>
         <audio id="sound_fx" class="sound" src="sound/music/play-loop.mp3" loop></audio>
-    </main> 
-    <script> 
-		"use strict";  
-		
-	</script> 
+    </main>
+    <script>
+		"use strict";
+
+	</script>
 	<script src="cordova.js"></script>
 	<script src="scripts/math_class.js"></script>
-	<script src="scripts/utilities.js"></script> 
+	<script src="scripts/utilities.js"></script>
 	<script src="scripts/ui.js"></script>
-	<script src="scripts/particles.js"></script> 
-	<script src="scripts/level/level.js"></script> 
-	<script src="scripts/level/level-controller.js"></script> 
-	<script src="scripts/level/random-level-controller.js"></script> 
-	<script src="scripts/level/level-pack.js"></script> 
-	<script src="scripts/level/random-level-pack.js"></script> 
+	<script src="scripts/particles.js"></script>
+	<script src="scripts/level/level.js"></script>
+	<script src="scripts/level/level-controller.js"></script>
+	<script src="scripts/level/random-level-controller.js"></script>
+	<script src="scripts/level/level-pack.js"></script>
+	<script src="scripts/level/random-level-pack.js"></script>
 	<script src="scripts/level/levels.js"></script>
-	<script src="scripts/data.js"></script> 
+	<script src="scripts/data.js"></script>
 	<script src="scripts/messages.js"></script>
 	<script src="scripts/flash.js"></script>
-	<script src="scripts/points.js"></script> 
-	<script src="scripts/devices.js"></script> 
-	<script src="scripts/sparks.js"></script> 
-	<script src="scripts/sounds.js"></script> 
+	<script src="scripts/points.js"></script>
+	<script src="scripts/devices.js"></script>
+	<script src="scripts/sparks.js"></script>
+	<script src="scripts/sounds.js"></script>
 	<script src="scripts/toggle.js"></script>
 	<script src="scripts/ads.js"></script>
 	<script src="scripts/settings.js"></script>
-	<script src="scripts/touch-slider.js"></script> 
+	<script src="scripts/touch-slider.js"></script>
 	<script src="scripts/nav-slider.js"></script>
 	<script src="scripts/control-panel.js"></script>
 	<script src="scripts/prompts.js"></script>
@@ -480,41 +480,41 @@
 	<script src="scripts/buffer.js"></script>
 	<script src="scripts/cache.js"></script>
 	<script src="scripts/music.js"></script>
-	<script src="scripts/stage.js"></script> 
-	<script src="scripts/game.js"></script> 
+	<script src="scripts/stage.js"></script>
+	<script src="scripts/game.js"></script>
 	<script>
-		
+
 		"use strict";
-		
-		var game; 
-		
+
+		var game;
+
 		var setupGame = function()
-		{ 
-			var width = 774, 
-			height = 493; 
-			
-			game = new Game(width, height, document.getElementById('portal')); 
-			game.setup(); 
-		}; 
-		
-		/* this will check to setup our app by the current 
-		operating mode. if the app is installed or in browser */ 
+		{
+			var width = 774,
+			height = 493;
+
+			game = new Game(width, height, document.getElementById('portal'));
+			game.setup();
+		};
+
+		/* this will check to setup our app by the current
+		operating mode. if the app is installed or in browser */
 		if(window.cordova)
-		{ 
-			/* installed */ 
-			document.addEventListener('deviceready', function() 
+		{
+			/* installed */
+			document.addEventListener('deviceready', function()
 			{
-				setupGame();  
-			}); 
+				setupGame();
+			});
 		}
-		else 
-		{ 
-			/* browser */ 
-			window.onload = function() 
-			{ 
-				setupGame();   
+		else
+		{
+			/* browser */
+			window.onload = function()
+			{
+				setupGame();
 			};
-		}  
+		}
 	</script>
   </body>
 </html>
