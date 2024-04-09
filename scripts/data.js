@@ -1,52 +1,87 @@
-"use strict";
 
-var Data =
+/**
+ * This will check if local storage is supported.
+ *
+ * @returns {boolean}
+ */
+const checkSupport = () => (typeof window.localStorage !== 'undefined');
+
+/**
+ * @type {boolean} isSupported
+ */
+const isSupported = checkSupport();
+
+/**
+ * Data
+ *
+ * This module provides a simple interface to the browser's local storage.
+ *
+ * @type {object} Data
+ */
+export const Data =
 {
+	/**
+	 * @property {object|null} storage
+	 */
 	storage: null,
 
-	setup: function()
+	/**
+	 * This will setup our data module.
+	 *
+	 * @return {void}
+	 */
+	setup()
 	{
-		this.supported = this.checkSupport();
-		if(this.supported === true)
+		if (isSupported === true)
 		{
 			this.storage = window.localStorage;
 		}
 	},
 
-	supported: false,
-
-	checkSupport: function()
+	/**
+	 * This will get a value from local storage.
+	 *
+	 * @param {string} key
+	 * @return {*}
+	 */
+	get(key)
 	{
-		if(typeof window.localStorage !== 'undefined')
+		if (supported === false)
 		{
-			return true;
+			return null;
 		}
-		return false;
-	},
 
-	get: function(key)
-	{
-		if(this.supported === true)
+		const value = this.storage.getItem(key);
+		if (typeof value !== 'undefined')
 		{
-			var value = this.storage.getItem(key);
-			if(typeof value !== 'undefined')
-			{
-				return JSON.parse(value);
-			}
-		}
-		return null;
-	},
-
-	set: function(key, value)
-	{
-		if(this.supported === true)
-		{
-			value = JSON.stringify(value);
-			this.storage.setItem(key, value);
+			return JSON.parse(value);
 		}
 	},
 
-	clear: function()
+	/**
+	 * This will set a value in local storage.
+	 *
+	 * @param {string} key
+	 * @param {*} value
+	 * @return {void}
+	 */
+	set(key, value)
+	{
+		if (supported !== true)
+		{
+			return;
+		}
+
+		value = JSON.stringify(value);
+		this.storage.setItem(key, value);
+	},
+
+	/**
+	 * This will clear local storage.
+	 *
+	 * @return {void}
+	 */
+	clear()
 	{
 		if(this.supported === true)
 		{

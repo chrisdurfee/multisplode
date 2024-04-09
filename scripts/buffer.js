@@ -1,32 +1,56 @@
-"use strict";
-
-var Buffer = Class.extend(
+/**
+ * Buffer
+ *
+ * This class will create a buffer canvas.
+ *
+ * @class Buffer
+ */
+export class Buffer
 {
-	constructor: function()
+	/**
+	 * This will store our buffer canvas and context.
+	 *
+	 * @constructor
+	 */
+	constructor()
 	{
 		/* this will store our buffer canvas and context */
 		this.canvas = null;
 		this.ctx = null;
-	},
+	}
 
-	/* this will create our canvas and resize it
-	to match the game canvas */
-	setup: function()
+	/**
+	 * This will setup our buffer canvas.
+	 *
+	 * @return {void}
+	 */
+	setup()
 	{
 		this.createBufferCanvas();
-	},
+	}
 
-	createBufferCanvas: function()
+	/**
+	 * This will create our buffer canvas.
+	 *
+	 * @return {void}
+	 */
+	createBufferCanvas()
 	{
 		this.canvas = document.createElement("canvas");
 		this.ctx = this.canvas.getContext("2d");
 		this.resize();
-	},
+	}
 
-	resize: function(size)
+	/**
+	 * This will resize our buffer canvas.
+	 *
+	 * @param {object} size
+	 * @return {void}
+	 */
+	resize(size)
 	{
-		var canvas = this.canvas;
+		const canvas = this.canvas;
 		canvas.width = size.width;
 		canvas.height = size.height;
 	}
-});
+}
