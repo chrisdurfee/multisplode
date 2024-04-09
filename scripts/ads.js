@@ -1,28 +1,26 @@
 "use strict";
 
-var AdService = function(iosId, iosIntl, andId, andIntl)
+var AdService = Class.extend(
 {
-	var publisherIds =
+	constructor: function(iosId, iosIntl, andId, andIntl)
 	{
-		ios:
+		var publisherIds =
 		{
-			banner: iosId,
-			interstitial: iosIntl
-		},
-		android:
-		{
-			banner: andId,
-			interstitial: andIntl
-		}
-	};
+			ios:
+			{
+				banner: iosId,
+				interstitial: iosIntl
+			},
+			android:
+			{
+				banner: andId,
+				interstitial: andIntl
+			}
+		};
 
-	this.publisher = (/(android)/i.test(navigator.userAgent)) ? publisherIds.android : publisherIds.ios;
-	this.adMob = null;
-};
-
-Class.extend(
-{
-	constructor: AdService,
+		this.publisher = (/(android)/i.test(navigator.userAgent)) ? publisherIds.android : publisherIds.ios;
+		this.adMob = null;
+	},
 
 	setup: function()
 	{

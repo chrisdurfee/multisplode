@@ -27,8 +27,35 @@ var Spark = function(x, y, color)
 	this.setupParticles();
 };
 
-Spark.prototype =
+var Spark = Class.extend(
 {
+	constructor: function(x, y, color)
+	{
+		var count = 20;
+		switch(Settings.graphics)
+		{
+			case 'low':
+				count = 12;
+				break;
+			case 'high':
+				count = 30;
+				break;
+		}
+		this.particleNumber = count;
+
+		this.x = x;
+		this.y = y;
+		this.color = color;
+
+		this.radius = 0;
+		this.maxRadius = 30;
+		this.speed = 20;
+
+		this.particles = [];
+		this.removed = [];
+		this.setupParticles();
+	},
+
 	setupParticles: function()
 	{
 		var particleNumber = this.particleNumber,
@@ -88,24 +115,22 @@ Spark.prototype =
 			}
 		}
 	}
-};
+});
 
-var SparkParticle = function(x, y, angle, color, maxRadius, speed)
+var SparkParticle = Class.extend(
 {
-	this.position = { x: x, y: y};
-	this.angle = angle;
-	this.size = math.randomFromTo(4, 10);
-	this.maxSize = this.size;
-	this.fillColor = color;
-	this.stroke = color;
-	this.type = '';
-	this.speed = math.randomFromTo( 1, 5);
-	this.cachePath();
-};
-
-SparkParticle.prototype =
-{
-	constructor: SparkParticle,
+	constructor: function(x, y, angle, color, maxRadius, speed)
+	{
+		this.position = { x: x, y: y};
+		this.angle = angle;
+		this.size = math.randomFromTo(4, 10);
+		this.maxSize = this.size;
+		this.fillColor = color;
+		this.stroke = color;
+		this.type = '';
+		this.speed = math.randomFromTo( 1, 5);
+		this.cachePath();
+	},
 
 	updatePosition: function()
 	{
@@ -162,7 +187,7 @@ SparkParticle.prototype =
 		ctx.drawImage(this.cache, -this.half, -this.half);
 		ctx.restore();
 	}
-};
+});
 
 var Sparks =
 {

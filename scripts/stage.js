@@ -2,34 +2,32 @@
 
 var requestFrame = null;
 
-var Stage = function(targetWidth, targetHeight, container)
+var Stage = Class.extend(
 {
-	this.targetSize = { width: targetWidth, height: targetHeight };
-	this.size = { width: 0, height: 0 };
+	constructor: function(targetWidth, targetHeight, container)
+	{
+		this.targetSize = { width: targetWidth, height: targetHeight };
+		this.size = { width: 0, height: 0 };
 
-	/* this will store all thedata about our game canvas
-	to make accessing it faster than selecting through dom */
-	this.canvas = null;
-	this.context = null;
+		/* this will store all thedata about our game canvas
+		to make accessing it faster than selecting through dom */
+		this.canvas = null;
+		this.context = null;
 
-	this.levelController = null;
+		this.levelController = null;
 
-	/* this will track the positions of mouse */
-	this.mouse = { x: 0, y: 0, status: 'up' };
+		/* this will track the positions of mouse */
+		this.mouse = { x: 0, y: 0, status: 'up' };
 
-	/* this will store the animation timer id */
-	this.animationId = false;
+		/* this will store the animation timer id */
+		this.animationId = false;
 
-	/* this is our buffer object that will be used
-	in the animation loop to increase performance */
-	this.buffer = null;
-	this.fps = 60;
-	this.container = container;
-};
-
-Class.extend(
-{
-	constructor: Stage,
+		/* this is our buffer object that will be used
+		in the animation loop to increase performance */
+		this.buffer = null;
+		this.fps = 60;
+		this.container = container;
+	},
 
 	setup: function()
 	{

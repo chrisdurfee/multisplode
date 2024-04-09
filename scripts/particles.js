@@ -52,19 +52,17 @@ var Particles =
 	}
 };
 
-var Particle = function(customSettings)
+var Particle = Class.extend(
 {
-	this.init(Particle);
-	this.type = 'particle';
-	this.value = 10;
-	this.multiplier = 1;
+	constructor: function(customSettings)
+	{
+		this.init(Particle);
+		this.type = 'particle';
+		this.value = 10;
+		this.multiplier = 1;
 
-	this.setup(customSettings);
-};
-
-Class.extend(
-{
-	constructor: Particle,
+		this.setup(customSettings);
+	},
 
 	init: function(constructor)
 	{
@@ -252,28 +250,26 @@ Class.extend(
 	}
 });
 
-var PulseParticle = function(customSettings)
+var PulseParticle = Particle.extend(
 {
-	this.init(PulseParticle);
-	this.type = 'pulse';
-	this.value = 20;
-	this.multiplier = 1.5;
-
-	var color = '#FFF';
-	if(!customSettings)
+	constructor: function(customSettings)
 	{
-		customSettings = {};
-	}
+		this.init(PulseParticle);
+		this.type = 'pulse';
+		this.value = 20;
+		this.multiplier = 1.5;
 
-	customSettings.size = 8;
-	customSettings.fillColor = color;
+		var color = '#FFF';
+		if(!customSettings)
+		{
+			customSettings = {};
+		}
 
-	this.setup(customSettings);
-};
+		customSettings.size = 8;
+		customSettings.fillColor = color;
 
-Particle.extend(
-{
-	constructor: PulseParticle,
+		this.setup(customSettings);
+	},
 
 	cachePath: function()
 	{

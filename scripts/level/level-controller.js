@@ -1,13 +1,11 @@
 "use strict";
 
-var LevelController = function(level)
+var LevelController = Class.extend(
 {
-	this.level = level;
-};
-
-Class.extend(
-{
-	constructor: LevelController,
+	constructor: function(level)
+	{
+		this.level = level;
+	},
 
 	setupLevel: function(cancelPrompts)
 	{

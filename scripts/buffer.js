@@ -1,23 +1,13 @@
 "use strict";
 
-/*
-	buffer
-
-	this will setup a buffer object that can mirror our
-	game canvas and allow the game to render to an offscreen
-	canvas that can later push all rendered data to our
-	onscreen canvas
-*/
-var Buffer = function()
+var Buffer = Class.extend(
 {
-	/* this will store our buffer canvas and context */
-	this.canvas = null;
-	this.ctx = null;
-};
-
-Class.extend(
-{
-	constructor: Buffer,
+	constructor: function()
+	{
+		/* this will store our buffer canvas and context */
+		this.canvas = null;
+		this.ctx = null;
+	},
 
 	/* this will create our canvas and resize it
 	to match the game canvas */

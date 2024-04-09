@@ -1,25 +1,23 @@
 "use strict";
 
-var NavSlider = function(callBackFn, container)
+var NavSlider = Class.extend(
 {
-	this.viewNumber = null;
-	this.optionsArray = [];
-	this.selection = null;
-	this.index = 0;
+	constructor: function(callBackFn, container)
+	{
+		this.viewNumber = null;
+		this.optionsArray = [];
+		this.selection = null;
+		this.index = 0;
 
-	this.moveX = 0;
-	this.startX = 0;
-	this.contact = false;
+		this.moveX = 0;
+		this.startX = 0;
+		this.contact = false;
 
-	this.callBackFn = callBackFn;
-	this.navContainer = null;
-	this.container = this.getContainer(container);
-	this.getParentWidth();
-};
-
-Class.extend(
-{
-	constructor: NavSlider,
+		this.callBackFn = callBackFn;
+		this.navContainer = null;
+		this.container = this.getContainer(container);
+		this.getParentWidth();
+	},
 
 	setup: function(options)
 	{

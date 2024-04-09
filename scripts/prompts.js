@@ -85,18 +85,16 @@ var Prompts =
 	}
 };
 
-var Prompt = function(id, container, activateCallBack, deactivateCallBack)
+var Prompt = Class.extend(
 {
-	this.id = id;
-	this.activateCallBack = activateCallBack || false;
-	this.deactivateCallBack = deactivateCallBack || false;
+	constructor: function(id, container, activateCallBack, deactivateCallBack)
+	{
+		this.id = id;
+		this.activateCallBack = activateCallBack || false;
+		this.deactivateCallBack = deactivateCallBack || false;
 
-	this.container = this.getContainer(container);
-};
-
-Class.extend(
-{
-	constructor: Prompt,
+		this.container = this.getContainer(container);
+	},
 
 	setup: function()
 	{

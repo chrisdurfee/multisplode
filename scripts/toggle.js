@@ -1,22 +1,20 @@
 "use strict";
 
-var Toggle = function(checked, callBack, container)
-{
-	/* this will setup to have mutliple instances of the
-	panel in one project without issue */
-	this.number = (typeof Toggle.number === 'undefined')? Toggle.number = 0 : (++Toggle.number);
-	this.id = 'toggle_' + this.number;
-
-	this.checked = checked || false;
-	this.callBack = callBack;
-
-	this.container = container;
-};
-
-Toggle.prototype =
+var Toggle = Class.extend(
 {
 	/* we want to reset the constructor */
-	constructor: Toggle,
+	constructor: function(checked, callBack, container)
+	{
+		/* this will setup to have mutliple instances of the
+		panel in one project without issue */
+		this.number = (typeof Toggle.number === 'undefined')? Toggle.number = 0 : (++Toggle.number);
+		this.id = 'toggle_' + this.number;
+
+		this.checked = checked || false;
+		this.callBack = callBack;
+
+		this.container = container;
+	},
 
 	create: function(type, id, className, html, container, prepend)
 	{
@@ -90,4 +88,4 @@ Toggle.prototype =
 	{
 		this.createPanel();
 	}
-};
+});

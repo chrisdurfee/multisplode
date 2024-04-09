@@ -1,12 +1,5 @@
 "use strict";
 
-/*
-	levels
-
-	this is the level controller for all levels. this will
-	setup and load all levels and settings. this will store
-	the level options and the current selectedlevel
-*/
 var Levels =
 {
 	/* this will store the current level and the

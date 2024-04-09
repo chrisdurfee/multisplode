@@ -1,13 +1,11 @@
 "use strict";
 
-var Game = function(width, height, container)
+var Game = Class.extend(
 {
-	this.stage = new Stage(width, height, container);
-};
-
-Class.extend(
-{
-	constructor: Game,
+	constructor: function(width, height, container)
+	{
+		this.stage = new Stage(width, height, container);
+	},
 
 	setup: function()
 	{

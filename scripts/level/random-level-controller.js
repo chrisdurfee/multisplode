@@ -1,13 +1,11 @@
 "use strict";
 
-var RandomLevelController = function(level)
+var RandomLevelController = LevelController.extend(
 {
-	LevelController.call(this, level);
-};
-
-LevelController.extend(
-{
-	constructor: RandomLevelController,
+	constructor: function(level)
+	{
+		LevelController.call(this, level);
+	},
 
 	draw: function(ctx, stage)
 	{

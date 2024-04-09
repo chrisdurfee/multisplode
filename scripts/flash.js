@@ -1,39 +1,26 @@
 "use strict";
 
-/*
-	FlashPanel
-
-	this will create a panel that will display a message
-	on the screen and then remove itself after its done.
-
-	@param (string) title = the panel title
-	@param (string) description = the panel description
-	@param (int) duration = the flash duration in mircoseconds
-	@param (function) callback = the callback functon
-*/
-var FlashPanel = function(type, title, description, callback, duration, container)
+var FlashPanel = Class.extend(
 {
-	/* this will setup to have mutliple instances of the
-	panel in one project without issue */
-	this.number = (typeof FlashPanel.number === 'undefined')? FlashPanel.number = 0 : (++FlashPanel.number);
-	this.id = 'flash_panel_' + this.number;
+	constructor: function(type, title, description, callback, duration, container)
+	{
+		/* this will setup to have mutliple instances of the
+		panel in one project without issue */
+		this.number = (typeof FlashPanel.number === 'undefined')? FlashPanel.number = 0 : (++FlashPanel.number);
+		this.id = 'flash_panel_' + this.number;
 
-	/* this will save the title and description */
-	this.type = type || '';
-	this.title = title;
-	this.description = description;
-	this.duration = (typeof duration === 'number')? duration : 4000;
-	this.timer = null;
+		/* this will save the title and description */
+		this.type = type || '';
+		this.title = title;
+		this.description = description;
+		this.duration = (typeof duration === 'number')? duration : 4000;
+		this.timer = null;
 
-	this.container = container || document.getElementById('game_container');
+		this.container = container || document.getElementById('game_container');
 
-	/* this will save the callback and args */
-	this.callback = callback;
-};
-
-Class.extend(
-{
-	constructor: FlashPanel,
+		/* this will save the callback and args */
+		this.callback = callback;
+	},
 
 	setup: function()
 	{

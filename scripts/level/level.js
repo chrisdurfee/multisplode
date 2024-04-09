@@ -1,57 +1,38 @@
 "use strict";
 
-/*
-	level
-
-	this will create a new level object.
-	@param (int) levelNumber = the number of the level
-	@param (int) devices = the device types and limits
-	@param (int) minimumNumber = the minimum number particles
-	to destroy to move on
-	@param (int) afterTouchNumber = the minimum before the
-	after touch is active
-	@param (int) quantity = thenumber of particles to create
-	@param (int) waveScale = the speed the blast waves grow
-	during the level
-	@param (int) maxWaveSize = the biggest size a blast wave
-	can become during the level
-	@param [(bool)] locked = if the level is locked from player
-*/
-var Level = function(tmpLevel, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
+var Level = Class.extend(
 {
-	this.number = tmpLevel;
-	this.touch = 0;
+	constructor: function(tmpLevel, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
+	{
+		this.number = tmpLevel;
+		this.touch = 0;
 
-	this.devices = [];
-	this.touchLimit = 0;
-	this.setupDevices(devices);
-	this.minimum = minimumNumber;
+		this.devices = [];
+		this.touchLimit = 0;
+		this.setupDevices(devices);
+		this.minimum = minimumNumber;
 
-	this.scorePoints = 0;
-	this.scoreNumber = 0;
+		this.scorePoints = 0;
+		this.scoreNumber = 0;
 
-	this.afterTouch = afterTouchNumber;
-	this.afterTouchReady = 'no';
+		this.afterTouch = afterTouchNumber;
+		this.afterTouchReady = 'no';
 
-	this.particles = null;
-	this.setupParticleCount(quantity);
-	this.waveScale = waveScale;
-	this.waveMaxSize = waveMaxSize;
+		this.particles = null;
+		this.setupParticleCount(quantity);
+		this.waveScale = waveScale;
+		this.waveMaxSize = waveMaxSize;
 
-	this.highScorePoints = 0;
-	this.highScoreNumber = 0;
+		this.highScorePoints = 0;
+		this.highScoreNumber = 0;
 
-	this.promptId = promptId;
-	this.levelClass = levelClass;
+		this.promptId = promptId;
+		this.levelClass = levelClass;
 
-	this.bestTime = '';
+		this.bestTime = '';
 
-	this.locked = true;
-};
-
-Class.extend(
-{
-	constructor: Level,
+		this.locked = true;
+	},
 
 	setup: function()
 	{

@@ -1,14 +1,12 @@
 "use strict";
 
-var ControlPanel = function()
+var ControlPanel = Class.extend(
 {
-	this.nav = null;
-	this.touch = null;
-};
-
-Class.extend(
-{
-	constructor: ControlPanel,
+	constructor: function()
+	{
+		this.nav = null;
+		this.touch = null;
+	},
 
 	setup: function(touchContainer, slideClass, navContainer, optionsArray)
 	{

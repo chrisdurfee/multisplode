@@ -1,29 +1,27 @@
 "use strict";
 
-var TouchSlider = function(container, slidesClass, callBackFn)
+var TouchSlider = Class.extend(
 {
-	this.viewNumber = null;
-	this.slides = [];
-	this.index = 0;
-	this.slideWidth = null;
+	constructor: function(container, slidesClass, callBackFn)
+	{
+		this.viewNumber = null;
+		this.slides = [];
+		this.index = 0;
+		this.slideWidth = null;
 
-	this.minimum = 72;
-	this.moveX = 0;
-	this.startX = 0;
-	this.moveY = 0;
-	this.startY = 0;
-	this.contact = false;
-	this.callBackFn = callBackFn;
-	this.preventTouch = false;
-	this.preventScroll = false;
+		this.minimum = 72;
+		this.moveX = 0;
+		this.startX = 0;
+		this.moveY = 0;
+		this.startY = 0;
+		this.contact = false;
+		this.callBackFn = callBackFn;
+		this.preventTouch = false;
+		this.preventScroll = false;
 
-	this.container = this.getContainer(container);
-	this.slidesClass = slidesClass || '.slides';
-};
-
-TouchSlider.prototype =
-{
-	constructor: TouchSlider,
+		this.container = this.getContainer(container);
+		this.slidesClass = slidesClass || '.slides';
+	},
 
 	setup: function()
 	{
@@ -523,4 +521,4 @@ TouchSlider.prototype =
 		this.canMove = null;
 		this.preventTouch = false;
 	}
-};
+});

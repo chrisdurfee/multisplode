@@ -1,15 +1,13 @@
 "use strict";
 
-var Music = function(audioId, songFileName)
+var Music = Class.extend(
 {
-	this.eleId = audioId;
-	this.element = null;
-	this.song = songFileName;
-};
-
-Class.extend(
-{
-	constructor: Music,
+	constructor: function(audioId, songFileName)
+	{
+		this.eleId = audioId;
+		this.element = null;
+		this.song = songFileName;
+	},
 
 	getElement: function()
 	{

@@ -1,31 +1,29 @@
 "use strict";
 
-var UI =
+const UI =
 {
 	title: 'Multisplode',
 
-	setup: function()
+	setup()
 	{
 		this.setupTitle();
 	},
 
-	setupTitle: function()
+	setupTitle()
 	{
 		document.title = this.title;
 	},
 
-	setupProgress: function()
+	setupProgress()
 	{
-		var doc = document;
-		var svgContainer = doc.getElementById("level-progress-image");
-		var getElement = function()
+		const doc = document;
+		const svgContainer = doc.getElementById("level-progress-image");
+		const getElement = () =>
 		{
 			return doc.getElementById('progress-line');
-			/*var svgDoc = svgContainer.contentDocument;
+			/*let svgDoc = svgContainer.contentDocument;
 			return svgDoc.getElementById('progress-line');*/
 		};
-
-		var parent = this;
 
 		this.progress =
 		{
@@ -38,21 +36,21 @@ var UI =
 
 			/* this will setup the progress svg element and set
 			the transition style on the elmement */
-			setup: function()
+			setup()
 			{
-				var element = this.element = getElement();
+				let element = this.element = getElement();
 				if(element)
 				{
-					var length = this.length = element.getTotalLength();
+					let length = this.length = element.getTotalLength();
 					element.style.strokeDasharray = length + ' ' + length;
 					this.changeStrokeOffset(length);
 				}
 				this.reset();
 			},
 
-			modifyTransition: function(time)
+			modifyTransition(time)
 			{
-				var element = this.element,
+				let element = this.element,
 				style = element.style;
 				style.transition =
 					style.WebkitTransition = 'stroke-dashoffset ' + time + 'ms linear';
@@ -61,32 +59,32 @@ var UI =
 			/* this will update the element to show the
 			current progress by adding the current stroke
 			offset length as the progress. */
-			update: function(number, total)
+			update(number, total)
 			{
 				/* this will get the progress and convert
 				 it to be a decimal */
-				var progress = ((number / total * 100) / 100);
+				let progress = ((number / total * 100) / 100);
 				progress = (progress < 1)? progress.toFixed(2) : 1;
 				if((progress === 1 && this.progress !== progress) || progress !== this.progress)
 				{
-					var length = this.length;
+					let length = this.length;
 					/* we want to the progress bar to grow clockwise
 					so we want to subtract the progress percent from the length */
-					var strokeOffset = length - (length * progress);
+					let strokeOffset = length - (length * progress);
 					this.changeStrokeOffset(strokeOffset);
 					this.progress = progress;
 				}
 			},
 
-			changeStrokeOffset: function(number)
+			changeStrokeOffset(number)
 			{
 				this.element.style.strokeDashoffset = number;
 			},
 
 			/* this will reset the progress svg */
-			reset: function()
+			reset()
 			{
-				var length = this.length;
+				let length = this.length;
 				this.progress = null;
 				this.changeStrokeOffset(length);
 
@@ -96,7 +94,7 @@ var UI =
 				this.changeStrokeOffset(length);
 			},
 
-			stop: function()
+			stop()
 			{
 				/* this will remove the transition to go back
 				to the start without animating */
@@ -105,13 +103,13 @@ var UI =
 		};
 
 		/* we want to delay the setup to load the svg */
-		var callBack = this.progress.setup;
+		let callBack = this.progress.setup;
 		svgContainer.onload = callBack;
 
 		this.progress.setup();
 	},
 
-	setupTouches: function()
+	setupTouches()
 	{
 		this.touches =
 		{
@@ -120,18 +118,18 @@ var UI =
 
 			container: null,
 
-			setup: function()
+			setup()
 			{
 				this.container = document.getElementById('levelTouches');
 			},
 
-			add: function(type, container)
+			add(type, container)
 			{
 				type = type || 'Shockwave';
-				var element = document.createElement('div');
+				let element = document.createElement('div');
 				element.className = 'touch-icon circle ' + type.toLowerCase();
 
-				var options = this.options;
+				let options = this.options;
 				options[options.length] = {
 					element: element,
 					type: type,
@@ -140,7 +138,7 @@ var UI =
 				container.insertBefore(element, container.firstChild);
 			},
 
-			setupTouches: function(level)
+			setupTouches(level)
 			{
 				this.reset();
 				this.current = level.touchLimit - 1;
@@ -148,13 +146,13 @@ var UI =
 				/* we want to add all the new elements to a
 				document fragment then add the fragment to
 				the container */
-				var frag = document.createDocumentFragment();
+				let frag = document.createDocumentFragment();
 
-				var devices = level.devices;
-				for(var prop in devices)
+				let devices = level.devices;
+				for(let prop in devices)
 				{
-					var count = devices[prop];
-					for(var i = 0; i < count; i++)
+					let count = devices[prop];
+					for(let i = 0; i < count; i++)
 					{
 						this.add(prop, frag);
 					}
@@ -163,15 +161,15 @@ var UI =
 				this.container.appendChild(frag);
 			},
 
-			select: function()
+			select()
 			{
-				var selected = false;
+				let selected = false;
 				if(this.current >= 0)
 				{
-					var options = this.options,
+					let options = this.options,
 					length = options.length;
 
-					var option = options[this.current];
+					let option = options[this.current];
 					if(option.selected === false)
 					{
 						selected = option;
@@ -183,7 +181,7 @@ var UI =
 				return selected;
 			},
 
-			reset: function()
+			reset()
 			{
 				this.container.innerHTML = '';
 				this.options = [];
@@ -194,7 +192,7 @@ var UI =
 		this.touches.setup();
 	},
 
-	resetLevelUi: function(level)
+	resetLevelUi(level)
 	{
 		Messages.removeAll();
 
@@ -211,9 +209,9 @@ var UI =
 
 	levelNumberElement: null,
 
-	updateLevelNumber: function(number)
+	updateLevelNumber(number)
 	{
-		var levelNumber = this.levelNumberElement;
+		let levelNumber = this.levelNumberElement;
 		/* this will setup  the control panel ui
 		to show the level settings */
 		if(levelNumber !== null)
@@ -229,9 +227,9 @@ var UI =
 
 	playContainerElement: null,
 
-	updatePlayContainerClass: function(level)
+	updatePlayContainerClass(level)
 	{
-		var defaultClass = 'play-container';
+		let defaultClass = 'play-container';
 		if(this.playContainerElement === null)
 		{
 			this.playContainerElement = document.getElementById('play-container');
@@ -241,27 +239,27 @@ var UI =
 
 	levelMinElement: document.getElementById('levelMinimum'),
 
-	updateLevelMin: function(number)
+	updateLevelMin(number)
 	{
 		this.levelMinElement.textContent = number;
 	},
 
 	/* this will update the control panel ui with the
 	current data. */
-	updatePlayUi: function(level)
+	updatePlayUi(level)
 	{
 		this.progress.update(level.scoreNumber, level.minimum);
 	},
 
-	updateTouchUi: function()
+	updateTouchUi()
 	{
 		return this.touches.select();
 	},
 
-	updateSummary: function(level)
+	updateSummary(level)
 	{
 		//summary information
-		var doc = document;
+		let doc = document;
 		doc.getElementById('summaryLevelNumber').textContent = level.number;
 		doc.getElementById('summaryLevelParticles').textContent = level.quantity;
 		doc.getElementById('summaryLevelMinium').textContent = level.minimum;
@@ -270,7 +268,7 @@ var UI =
 		doc.getElementById('summaryHighScorePoints').textContent = level.highScorePoints;
 
 		//enable or diable previous
-		var previousButton = doc.getElementById('previous_level');
+		let previousButton = doc.getElementById('previous_level');
 		if(level.number > 1)
 		{
 			previousButton.classList.remove('hidden');
@@ -280,10 +278,10 @@ var UI =
 			previousButton.classList.add('hidden');
 		}
 
-		var levels = Levels;
-		var levelStatus = doc.getElementById('summaryLevelStatus');
-		var destroyedSummary = doc.getElementById('destroyedSummary');
-		var destroyedClassList = destroyedSummary.classList;
+		let levels = Levels;
+		let levelStatus = doc.getElementById('summaryLevelStatus');
+		let destroyedSummary = doc.getElementById('destroyedSummary');
+		let destroyedClassList = destroyedSummary.classList;
 		if(level.scoreNumber >= level.minimum)
 		{
 			levelStatus.textContent = 'Congrats, You Passed';
@@ -301,10 +299,10 @@ var UI =
 		}
 
 		//enable or disable next
-		var buttonNext = doc.getElementById('next_level');
+		let buttonNext = doc.getElementById('next_level');
 		if(buttonNext)
 		{
-			var buttonNextClassList = buttonNext.classList;
+			let buttonNextClassList = buttonNext.classList;
 			if(level.number < levels.activeLevels.length)
 			{
 				if(levels.isNextLevelLocked() === false)

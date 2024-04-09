@@ -60,29 +60,27 @@ var Points =
 	}
 };
 
-var Point = function(tmpX, tmpY, value)
+var Point = Class.extend(
 {
-	this.number = (typeof Point.number === 'undefined')? Point.number = 0 : (++Point.number);
-	this.id = this.number;
+	constructor: function(tmpX, tmpY, value)
+	{
+		this.number = (typeof Point.number === 'undefined')? Point.number = 0 : (++Point.number);
+		this.id = this.number;
 
-	this.position = { x: tmpX, y: tmpY };
-	this.size = 20;
+		this.position = { x: tmpX, y: tmpY };
+		this.size = 20;
 
-	this.fillColor = '#FFFFFF';
-	this.opacity = 1;
-	this.text = '+' + value;
-	this.value = value;
-	this.distance = 0;
-	this.maxDistance = 3;
+		this.fillColor = '#FFFFFF';
+		this.opacity = 1;
+		this.text = '+' + value;
+		this.value = value;
+		this.distance = 0;
+		this.maxDistance = 3;
 
-	this.speed = .06;
+		this.speed = .06;
 
-	this.cachePath();
-};
-
-Class.extend(
-{
-	constructor: Point,
+		this.cachePath();
+	},
 
 	move: function()
 	{

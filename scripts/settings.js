@@ -122,15 +122,13 @@ var Settings =
 	}
 };
 
-var Iterator = function(options)
+var Iterator = Class.extend(
 {
-	this.options = options;
-	this.selection = null;
-};
-
-Iterator.prototype =
-{
-	constructor: Iterator,
+	constructor: function(options)
+	{
+		this.options = options;
+		this.selection = null;
+	},
 
 	get: function(index)
 	{
@@ -177,4 +175,4 @@ Iterator.prototype =
 		}
 		return option;
 	}
-};
+});

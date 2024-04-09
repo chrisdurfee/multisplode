@@ -79,25 +79,23 @@ var Devices =
 	}
 };
 
-var Device = function(tmpX, tmpY, color, multiplier)
+var Device = Class.extend(
 {
-	this.init(Device);
+	constructor: function(tmpX, tmpY, color, multiplier)
+	{
+		this.init(Device);
 
-	this.position = { x: math.round(tmpX), y: math.round(tmpY) };
-	this.size = 0;
-	this.fillColor = color;
-	this.audio = 'sound/collisions/collision-1a.mp3';
-	this.multiplier = multiplier || 1;
+		this.position = { x: math.round(tmpX), y: math.round(tmpY) };
+		this.size = 0;
+		this.fillColor = color;
+		this.audio = 'sound/collisions/collision-1a.mp3';
+		this.multiplier = multiplier || 1;
 
-	this.type = 'device';
-	this.explosive = false;
+		this.type = 'device';
+		this.explosive = false;
 
-	this.cachePath();
-};
-
-Class.extend(
-{
-	constructor: Device,
+		this.cachePath();
+	},
 
 	init: function(constructor)
 	{
@@ -164,37 +162,35 @@ Class.extend(
 	}
 });
 
-var ShockWave = function(tmpX, tmpY, color, multiplier)
+var ShockWave = Device.extend(
 {
-	this.init(ShockWave);
+	constructor: function(tmpX, tmpY, color, multiplier)
+	{
+		this.init(ShockWave);
 
-	this.position = { x: math.round(tmpX), y: math.round(tmpY) };
-	this.size = 0;
-	this.fillColor = color;
+		this.position = { x: math.round(tmpX), y: math.round(tmpY) };
+		this.size = 0;
+		this.fillColor = color;
 
-	/*var files =
-	[
-		'collision-1a.mp3',
-		'collision-1b.mp3',
-		'collision-1c.mp3',
-		'collision-1d.mp3'
-	];
-	var file = files[math.round(Math.random() * files.length - 1)];*/
-	this.audio = 'sound/collisions/collision-1a.mp3';
-	this.multiplier = multiplier || 1;
+		/*var files =
+		[
+			'collision-1a.mp3',
+			'collision-1b.mp3',
+			'collision-1c.mp3',
+			'collision-1d.mp3'
+		];
+		var file = files[math.round(Math.random() * files.length - 1)];*/
+		this.audio = 'sound/collisions/collision-1a.mp3';
+		this.multiplier = multiplier || 1;
 
-	this.type = 'shockWave';
-	this.explosive = true;
+		this.type = 'shockWave';
+		this.explosive = true;
 
-	/* this will get the current wave scale and cache
-	the rate */
-	this.getWaveScale();
-	this.cachePath();
-};
-
-Device.extend(
-{
-	constructor: ShockWave,
+		/* this will get the current wave scale and cache
+		the rate */
+		this.getWaveScale();
+		this.cachePath();
+	},
 
 	/*increase shock wave size*/
 	updateSize: function()
@@ -275,33 +271,31 @@ Device.extend(
 	}
 });
 
-var GravityField = function(tmpX, tmpY, color, multiplier)
+var GravityField = Device.extend(
 {
-	this.init(GravityField);
+	constructor: function(tmpX, tmpY, color, multiplier)
+	{
+		this.init(GravityField);
 
-	this.position = { x: math.round(tmpX), y: math.round(tmpY) };
-	this.size = 0;
-	this.fillColor = color;
-	this.audio = 'sound/collisions/collision-1a.mp3';
-	this.multiplier = multiplier || 1;
+		this.position = { x: math.round(tmpX), y: math.round(tmpY) };
+		this.size = 0;
+		this.fillColor = color;
+		this.audio = 'sound/collisions/collision-1a.mp3';
+		this.multiplier = multiplier || 1;
 
-	this.gravity = (1 * this.multiplier);
-	this.startTime = null;
-	this.time = 8000;
-	this.delta = 0;
+		this.gravity = (1 * this.multiplier);
+		this.startTime = null;
+		this.time = 8000;
+		this.delta = 0;
 
-	this.type = 'gravityField';
-	this.explosive = false;
+		this.type = 'gravityField';
+		this.explosive = false;
 
-	/* this will get the size and cache
-	the rate */
-	this.getMaxSize();
-	this.cachePath();
-};
-
-Device.extend(
-{
-	constructor: GravityField,
+		/* this will get the size and cache
+		the rate */
+		this.getMaxSize();
+		this.cachePath();
+	},
 
 	checkToRemove: function()
 	{

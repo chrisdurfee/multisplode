@@ -151,18 +151,16 @@ var StateEngine =
 	}
 };
 
-var State = function()
+var State = Class.extend(
 {
-	this.id = 'state';
-	this.label = 'label';
-	this.panel = '';
+	constructor: function()
+	{
+		this.id = 'state';
+		this.label = 'label';
+		this.panel = '';
 
-	this.includes = [];
-};
-
-Class.extend(
-{
-	constructor: State,
+		this.includes = [];
+	},
 
 	getPanel: function()
 	{
@@ -198,19 +196,17 @@ Class.extend(
 	}
 });
 
-var HomeState = function()
+var HomeState = State.extend(
 {
-	this.id = 'menu';
-	this.label = 'Menu';
-	this.panel = 'home_panel';
+	constructor: function()
+	{
+		this.id = 'menu';
+		this.label = 'Menu';
+		this.panel = 'home_panel';
 
-	this.includes = [];
-	this.setup();
-};
-
-State.extend(
-{
-	constructor: HomeState,
+		this.includes = [];
+		this.setup();
+	},
 
 	setup: function()
 	{
@@ -258,22 +254,20 @@ State.extend(
 	}
 });
 
-var LevelSelectState = function()
+var LevelSelectState = State.extend(
 {
-	this.id = 'level-select';
-	this.label = 'Level Select';
-	this.panel = 'level_panel';
-	this.timerLevel = null;
+	constructor: function()
+	{
+		this.id = 'level-select';
+		this.label = 'Level Select';
+		this.panel = 'level_panel';
+		this.timerLevel = null;
 
-	this.includes = ['menu'];
+		this.includes = ['menu'];
 
-	this.control = null;
-	this.setup();
-};
-
-State.extend(
-{
-	constructor: LevelSelectState,
+		this.control = null;
+		this.setup();
+	},
 
 	setup: function()
 	{
@@ -360,23 +354,21 @@ State.extend(
 	}
 });
 
-var SettingsState = function()
+var SettingsState = LevelSelectState.extend(
 {
-	this.id = 'settings';
-	this.label = 'Settings';
-	this.panel = 'settings_panel';
-	this.timerLevel = null;
-	this.touch = null;
-	this.includes = ['menu'];
+	constructor: function()
+	{
+		this.id = 'settings';
+		this.label = 'Settings';
+		this.panel = 'settings_panel';
+		this.timerLevel = null;
+		this.touch = null;
+		this.includes = ['menu'];
 
-	this.control = null;
+		this.control = null;
 
-	this.setup();
-};
-
-LevelSelectState.extend(
-{
-	constructor: SettingsState,
+		this.setup();
+	},
 
 	setup: function()
 	{
@@ -444,20 +436,18 @@ LevelSelectState.extend(
 	}
 });
 
-var PlayState = function()
+var PlayState = State.extend(
 {
-	this.id = 'play';
-	this.label = 'Play';
-	this.panel = 'play-container';
-	this.type = 'flex';
+	constructor: function()
+	{
+		this.id = 'play';
+		this.label = 'Play';
+		this.panel = 'play-container';
+		this.type = 'flex';
 
-	this.includes = [];
-	this.setup();
-};
-
-State.extend(
-{
-	constructor: PlayState,
+		this.includes = [];
+		this.setup();
+	},
 
 	setup: function()
 	{
@@ -481,19 +471,17 @@ State.extend(
 	}
 });
 
-var PauseState = function()
+var PauseState = State.extend(
 {
-	this.id = 'pause';
-	this.label = 'Pause';
-	this.panel = 'pause_panel';
-	this.type = 'flex';
+	constructor: function()
+	{
+		this.id = 'pause';
+		this.label = 'Pause';
+		this.panel = 'pause_panel';
+		this.type = 'flex';
 
-	this.includes = ['play'];
-};
-
-State.extend(
-{
-	constructor: PauseState,
+		this.includes = ['play'];
+	},
 
 	activate: function()
 	{
@@ -510,26 +498,24 @@ State.extend(
 	}
 });
 
-var LevelSummaryState = function()
+var LevelSummaryState = State.extend(
 {
-	this.id = 'level-summary';
-	this.label = 'Level summary';
-	this.panel = 'levelSummary';
-
-	this.ads = true;
-	this.instAdCount = 0;
-
-	this.includes = [];
-	this.setup();
-	/*if(this.ads === true)
+	constructor: function()
 	{
-		this.setupBannerAd();
-	}*/
-};
+		this.id = 'level-summary';
+		this.label = 'Level summary';
+		this.panel = 'levelSummary';
 
-State.extend(
-{
-	constructor: LevelSummaryState,
+		this.ads = true;
+		this.instAdCount = 0;
+
+		this.includes = [];
+		this.setup();
+		/*if(this.ads === true)
+		{
+			this.setupBannerAd();
+		}*/
+	},
 
 	setup: function()
 	{
