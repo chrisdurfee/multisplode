@@ -1,4 +1,4 @@
-import { Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
+import { Article, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
 import { Page } from './page.js';
 
 /**
@@ -13,9 +13,9 @@ export const HomePage = () => (
 		Section({ class: 'main-home-panel loading overlay-panel' }, [
 			Div({ class: 'background background-stars' }),
 			Div({ class: 'panel-top-button-container'}, [
-				Button({ class: 'bttn circle settings', click: () => game.toggleSettings() }, [
-					Div({ class: 'content' })
-				])
+				// Button({ class: 'bttn circle settings', click: () => game.toggleSettings() }, [
+				// 	Div({ class: 'content' })
+				// ])
 			]),
 			Article({ class: 'main-home-menu' }, [
 				Div({ class: 'row logo-container' }, [
@@ -31,7 +31,7 @@ export const HomePage = () => (
 								Nav([
 									Ul({ class: 'clear' }, [
 										Li([
-											Button({ type: 'button', class: 'bttn main-play title-text', click: () => game.startGame() }, 'Play')
+											//Button({ type: 'button', class: 'bttn main-play title-text', click: () => game.startGame() }, 'Play')
 										])
 									])
 								])

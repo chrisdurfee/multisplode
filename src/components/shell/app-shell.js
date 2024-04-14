@@ -11,11 +11,7 @@ import { Routes } from './routes.js';
  */
 const AppContainer = Atom((props, children) =>
 {
-	return Main({
-		class: 'main-game-container',
-		...props,
-		children
-	});
+	return Main({ class: 'main-game-container', ...props }, children);
 });
 
 /**
