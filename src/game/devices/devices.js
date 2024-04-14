@@ -44,7 +44,7 @@ export const Devices =
 	/**
 	 * This will get the number of explosives.
 	 *
-	 * @return {number}
+	 * @returns {number}
 	 */
 	explosives: 0,
 

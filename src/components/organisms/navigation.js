@@ -5,7 +5,7 @@ import { NavLink } from '@base-framework/base';
  * This will create the navigation link.
  *
  * @param {object} props
- * @return {object}
+ * @returns {object}
  */
 const Link = (props) => (
 	Li([

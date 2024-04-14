@@ -27,7 +27,7 @@ var Particles =
 	to the object pool.
 	@param (string) type
 	@param (object) settings
-	@return (object) the new particle */
+	@returns (object) the new particle */
 	add: function(type, settings)
 	{
 		type = type || 'Particle';
@@ -232,7 +232,7 @@ var Particle = Class.extend(
 	device.
 	@param (object) particle = the particle
 	@param (object) device
-	@return (bool) true or false if collided */
+	@returns (bool) true or false if collided */
 	hasCollided: function(device)
 	{
 		var position = this.position;

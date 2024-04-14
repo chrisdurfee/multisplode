@@ -8,7 +8,7 @@ import { PlayPage } from '../pages/play-page.js';
  * @param {string} uri
  * @param {function} component
  * @param {string} [title]
- * @return {object}
+ * @returns {object}
  */
 const Route = (uri, component, title) =>
 {
@@ -22,7 +22,7 @@ const Route = (uri, component, title) =>
 /**
  * This will get the routes.
  *
- * @return {array}
+ * @returns {array}
  */
 export const Routes = () => [
 	Route('/', HomePage(), 'Home'),

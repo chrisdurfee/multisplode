@@ -22,7 +22,7 @@ export class Buffer
 	/**
 	 * This will setup our buffer canvas.
 	 *
-	 * @return {void}
+	 * @returns {void}
 	 */
 	setup()
 	{
@@ -32,7 +32,7 @@ export class Buffer
 	/**
 	 * This will create our buffer canvas.
 	 *
-	 * @return {void}
+	 * @returns {void}
 	 */
 	createBufferCanvas()
 	{
@@ -45,7 +45,7 @@ export class Buffer
 	 * This will resize our buffer canvas.
 	 *
 	 * @param {object} size
-	 * @return {void}
+	 * @returns {void}
 	 */
 	resize(size)
 	{

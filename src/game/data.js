@@ -28,7 +28,7 @@ export const Data =
 	/**
 	 * This will setup our data module.
 	 *
-	 * @return {void}
+	 * @returns {void}
 	 */
 	setup()
 	{
@@ -42,7 +42,7 @@ export const Data =
 	 * This will get a value from local storage.
 	 *
 	 * @param {string} key
-	 * @return {*}
+	 * @returns {*}
 	 */
 	get(key)
 	{
@@ -63,7 +63,7 @@ export const Data =
 	 *
 	 * @param {string} key
 	 * @param {*} value
-	 * @return {void}
+	 * @returns {void}
 	 */
 	set(key, value)
 	{
@@ -79,7 +79,7 @@ export const Data =
 	/**
 	 * This will clear local storage.
 	 *
-	 * @return {void}
+	 * @returns {void}
 	 */
 	clear()
 	{

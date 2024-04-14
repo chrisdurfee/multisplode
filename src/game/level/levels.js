@@ -56,7 +56,7 @@ var Levels =
 	},
 
 	/* this will get the first unlocked level
-	@return (object) the level */
+	@returns (object) the level */
 	getFirstUnlockedLevels: function()
 	{
 		var activeLevels = this.activeLevels,

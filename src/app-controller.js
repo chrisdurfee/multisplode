@@ -34,7 +34,7 @@ export class AppController
 	 * This will setup the router.
 	 *
 	 * @protected
-	 * @return {void}
+	 * @returns {void}
 	 */
 	setupRouter()
 	{
@@ -49,7 +49,7 @@ export class AppController
 	 * @param {string} uri
 	 * @param {object} [data]
 	 * @param {boolean} [replace=false]
-	 * @return {void}
+	 * @returns {void}
 	 */
 	navigate(uri, data, replace)
 	{
@@ -60,7 +60,7 @@ export class AppController
 	 * This will setup the app shell.
 	 *
 	 * @protected
-	 * @return {void}
+	 * @returns {void}
 	 */
 	setupAppShell()
 	{

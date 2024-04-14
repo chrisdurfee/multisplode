@@ -34,7 +34,7 @@ multisplode.thread =
 
 	supported: false,
 	/* this will check if workers are supported.
-	@return (bool) true or false */
+	@returns (bool) true or false */
 	checkSupport: function()
 	{
 		if(typeof(Worker) !== "undefined")

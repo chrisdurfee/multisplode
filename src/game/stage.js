@@ -194,7 +194,7 @@ var Stage = Class.extend(
 	},
 
 	/* this will get the size of the game container.
-	@return (object) the height and width of the container */
+	@returns (object) the height and width of the container */
 	getContainerSize: function()
 	{
 		var size =

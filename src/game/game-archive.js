@@ -343,7 +343,7 @@ multisplode.game =
 	},
 
 	/* this will get the size of the game container.
-	@return (object) the height and width of the container */
+	@returns (object) the height and width of the container */
 	getContainerSize: function()
 	{
 		var size =
@@ -616,7 +616,7 @@ multisplode.game =
 	wave.
 	@param (object) particle = the particle
 	@param (object) wave
-	@return (bool) true or false if collided */
+	@returns (bool) true or false if collided */
 	checkDistance: function(particle, wave)
 	{
 		var S = particle.position.x - wave.position.x,

@@ -7,7 +7,7 @@ import { Routes } from './routes.js';
  *
  * @param {object} props
  * @param {array} children
- * @return {object}
+ * @returns {object}
  */
 const AppContainer = Atom((props, children) =>
 {
@@ -19,7 +19,7 @@ const AppContainer = Atom((props, children) =>
  *
  * @param {object} props
  * @param {array} children
- * @return {object}
+ * @returns {object}
  */
 const ActivePanelContainer = Atom((props, children) =>
 {
