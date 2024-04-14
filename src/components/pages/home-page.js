@@ -10,7 +10,7 @@ import { Page } from './page.js';
  */
 export const HomePage = () => (
 	new Page([
-		Section({ class: 'main-home-panel loading overlay-panel' }, [
+		Section({ class: 'main-home-panel overlay-panel' }, [
 			Div({ class: 'background background-stars' }),
 			Div({ class: 'panel-top-button-container'}, [
 				Button({ class: 'bttn circle settings', click: () => game.toggleSettings() }, [
