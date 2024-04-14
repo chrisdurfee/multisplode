@@ -15,7 +15,7 @@
 	right: 0px;
 	padding: 0px;
 	display: block;
-	overflow: visible; 
+	overflow: visible;
 	-webkit-transform: translateZ(0);
 	z-index: 1;
 }
@@ -65,10 +65,10 @@
 	width: 250px;
 	height: 50px;
 	line-height: 50px;
-	float: left; 
+	float: left;
 }
 .settings-container .about-container .row .value-container {
-	opacity: .7; 
+	opacity: .7;
 }
 .settings-container .settings-sub-panel .row button.value-button {
 	display: block;
@@ -103,10 +103,10 @@
 	background-color: #FF4881;
 }
 .settings-container .settings-sub-panel .row button.value-button.arrow.prev {
-	background-image: url(../images/prev-icon.svg);
+	background-image: url(..public/images/prev-icon.svg);
 }
 .settings-container .settings-sub-panel .row button.value-button.arrow.next {
-	background-image: url(../images/next-icon.svg);
+	background-image: url(..public/images/next-icon.svg);
 }
 .settings-container .settings-sub-panel.audio-container .row {
 	min-height: 60px;

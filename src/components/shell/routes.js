@@ -25,7 +25,7 @@ const Route = (uri, component, title) =>
  * @return {array}
  */
 export const Routes = () => [
-	Route('/', HomePage(), 'EXPLORE'),
+	Route('/', HomePage(), 'Home'),
 	Route('/play', PlayPage(), 'Play'),
 	Route('/level-summary', LevelSummaryPage(), 'Level Summary')
 ];
