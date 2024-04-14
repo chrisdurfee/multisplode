@@ -70,8 +70,7 @@ export class TouchSlider extends Component
      */
     render()
     {
-        return Article({ class: 'touch-slider step-container', ...this.getEvents() }, [
-			Div({ map: [this.items, Step] }),
+        return Article({ class: 'touch-slider step-container', ...this.getEvents(), map: [this.items, Step] }, [
 			CrumbContainer({ map: [this.items, Crumb] })
 		]);
     }
