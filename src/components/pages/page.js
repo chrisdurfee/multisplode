@@ -1,4 +1,3 @@
-import { Main } from '@base-framework/atoms';
 import { Component } from '@base-framework/base';
 
 /**
@@ -17,7 +16,7 @@ export class Page extends Component
 	 */
 	render()
 	{
-		return Main(this.class, this.children);
+		return this.children[0];
 	}
 
 	/**

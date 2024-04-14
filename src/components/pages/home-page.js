@@ -1,5 +1,4 @@
-import { Article, Button, Div, H1 } from '@base-framework/atoms';
-import { MainSection, Video } from '../atoms/atoms.js';
+import { Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
 import { Page } from './page.js';
 
 /**
@@ -11,19 +10,35 @@ import { Page } from './page.js';
  */
 export const HomePage = () => (
 	new Page([
-		MainSection({ class: 'home-panel' }, [
-			Div({ class: 'video-container' }, [
-				Video({
-					class: 'video',
-					src: '/life/videos/life-trailer-2.mp4#t=0.26,214"></source>'
-				})
+		Section({ class: 'main-home-panel loading overlay-panel' }, [
+			Div({ class: 'background background-stars' }),
+			Div({ class: 'panel-top-button-container'}, [
+				Button({ class: 'bttn circle settings', click: () => game.toggleSettings() }, [
+					Div({ class: 'content' })
+				])
 			]),
-			Article({ class: 'headline-panel' }, [
-				H1({
-					innerHTML: 'Now Playing<br><span>In Theatres</span>',
-					class: 'headline'
-				}),
-				Button({ class: 'bttn' }, 'Watch Trailer')
+			Article({ class: 'main-home-menu' }, [
+				Div({ class: 'row logo-container' }, [
+					Div({ class: 'background background-mask' }),
+					Div({ class: 'game-name-container' }, [
+						Img({ src: 'images/multisplode.svg' })
+					])
+				]),
+				Div({ class: 'row menu-container' }, [
+					Section({ class: 'col main-menu-container clear' }, [
+						Div({ class: 'game-menu-container' }, [
+							Div({ class: 'main-nav-container' }, [
+								Nav([
+									Ul({ class: 'clear' }, [
+										Li([
+											Button({ type: 'button', class: 'bttn main-play title-text', click: () => game.startGame() }, 'Play')
+										])
+									])
+								])
+							])
+						])
+					])
+				])
 			])
 		])
 	])

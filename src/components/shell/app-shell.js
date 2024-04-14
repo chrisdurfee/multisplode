@@ -1,6 +1,4 @@
-import { Div } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
-import { HeaderPanel } from './header-panel.js';
 import { Routes } from './routes.js';
 
 /**
@@ -12,11 +10,11 @@ import { Routes } from './routes.js';
  */
 const AppContainer = Atom((props, children) =>
 {
-	return {
-		class: 'main-container',
+	return Main({
+		class: 'main-game-container',
 		...props,
 		children
-	};
+	});
 });
 
 /**
@@ -29,7 +27,7 @@ const AppContainer = Atom((props, children) =>
 const ActivePanelContainer = Atom((props, children) =>
 {
 	return {
-		class: 'main-body-container',
+		class: 'main-container',
 		...props,
 		children
 	};
@@ -44,13 +42,10 @@ const ActivePanelContainer = Atom((props, children) =>
  */
 export const AppShell = () => (
 	AppContainer([
-		Div({ class: 'header-container' }, [
-			new HeaderPanel({ cache: 'header' })
-		]),
 		ActivePanelContainer({
 			cache: 'mainBody',
-			class: 'main-body-container',
 			switch: Routes()
-		})
+		}),
+		Div( { class: 'overlay-container' })
 	])
 );
