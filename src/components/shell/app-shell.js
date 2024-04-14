@@ -1,5 +1,6 @@
 import { Audio, Div, Main } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
+import { SettingsPage } from '../pages/settings-page.js';
 import { Routes } from './routes.js';
 
 /**
@@ -43,7 +44,12 @@ export const AppShell = () => (
 			cache: 'mainBody',
 			switch: Routes()
 		}),
-		Div( { class: 'overlay-container' }),
+		Div({ class: 'overlay-container', route: [
+			{
+				uri: '/home/settings',
+				component: SettingsPage()
+			}
+		] }),
 		Audio({ id: 'sound_fx', cache: 'soundFx', class: 'sound', src: 'sound/music/play-loop.mp3', loop: true })
 	])
 );

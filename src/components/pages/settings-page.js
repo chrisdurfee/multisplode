@@ -1,4 +1,4 @@
-import { Article, Button, Div, Header, Label, Section, Span } from "../atoms/atoms.js";
+import { A, Article, Button, Div, Header, Label, Section, Span } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 /**
@@ -13,7 +13,7 @@ export const SettingsPage = () => (
 		Article({ class: 'control-sub-panel settings-container overlay-panel' }, [
 			Section({ class: 'home-sub-panel settings-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [
-					Button({ class: 'bttn circle close', click: () => game.toggleSettings() }, [
+					A({ class: 'bttn circle close', href: '/home' }, [
 						Div({ class: 'content' }, [
 							Span(),
 							Span()
