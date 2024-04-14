@@ -1,110 +1,107 @@
-.level-summary-container{ 
-	display:none; 
-	top:0px; 
-	bottom:0px;  
-	right:0px;   
-	margin:0px auto; 
-	z-index:10; 
-	-webkit-transform:translateZ(0); 
-	transform:translateZ(0); 
-	-webkit-backface-visibility: hidden; 
+.level-summary-container{
+	display:none;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	margin:0px auto;
+	z-index:10;
+	-webkit-transform:translateZ(0);
+	transform:translateZ(0);
+	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-} 
-.summary-col-container{ 
+}
+.summary-col-container{
 	display: table;
-    position: relative; 
-	width:100%; 
-	height:100%; 
-} 
-.summary-col-container .col{ 
-	display: table-cell;  
-} 
-.summary-col-container .marketing-container{ 
-	display: none; 
+    position: relative;
+	width:100%;
+	height:100%;
+}
+.summary-col-container .col{
+	display: table-cell;
+}
+.summary-col-container .marketing-container{
+	display: none;
 	position: relative;
-	background:rgba(255,255,255,.2); 
-	width:20%;  
-} 
-.level-summary{ 
+	background:rgba(255,255,255,.2);
+	width:20%;
+}
+.level-summary{
 	display: table;
-    width: 100%; 
-	max-width:80%; 
-	height:100%; 
-	min-height:100%;  
-	margin:0 auto; 
-	-webkit-transform:translateZ(0); 
-	transform:translateZ(0); 
-} 
-.level-summary .row{  
-    display: table-row;  
-} 
-.level-summary .row:nth-child(2){  
-	display: table-row; 
-} 
-.level-summary .row:nth-child(3){  
-	height:100px;   
+    width: 100%;
+	max-width:80%;
+	height:100%;
+	min-height:100%;
+	margin:0 auto;
+	-webkit-transform:translateZ(0);
+	transform:translateZ(0);
 }
-.level-summary .col{  
-	  
+.level-summary .row{
+    display: table-row;
 }
-.level-summary-container .level-number-container{ 
-    margin:0px 25px 10px;  
-	color:#D3D3D3; 
-} 
-.level-summary-container .level-number-container > div{ 
-	width:100%; 
-	float:none; 
-	clear: both; 
-	text-align: center; 
-	opacity: .6; 
-} 
-.level-summary-container .level-number-container .level-label{ 
+.level-summary .row:nth-child(2){
+	display: table-row;
+}
+.level-summary .row:nth-child(3){
+	height:100px;
+}
+.level-summary-container .level-number-container{
+    margin:0px 25px 10px;
+	color:#D3D3D3;
+}
+.level-summary-container .level-number-container > div{
+	width:100%;
+	float:none;
+	clear: both;
+	text-align: center;
+	opacity: .6;
+}
+.level-summary-container .level-number-container .level-label{
 	font-size: 1vw;
     position: relative;
     letter-spacing: 3px;
     margin: 1px 0px;
-    text-transform: uppercase; 
-} 
-.level-summary-container .level-number-container .level-number{  
+    text-transform: uppercase;
+}
+.level-summary-container .level-number-container .level-number{
 	line-height: 4vw;
     padding: 0px;
     margin: 3% 0px 0px;
-    font-size: 2.8vw;  
-} 
-.level-summary-container .level-status{ 
-	text-align:center; 
-	margin:2% 0px; 
-	font-size:1.6vw; 
-	padding: 5px 0px; 
-	color:#FFF;  
-	-webkit-animation: dropInBounce 1s ease-in-out; 
+    font-size: 2.8vw;
+}
+.level-summary-container .level-status{
+	text-align:center;
+	margin:2% 0px;
+	font-size:1.6vw;
+	padding: 5px 0px;
+	color:#FFF;
+	-webkit-animation: dropInBounce 1s ease-in-out;
 	-moz-animation: dropInBounce 1s ease-in-out;
 	animation: dropInBounce 1s ease-in-out;
-} 
-.level-summary .destroyed-summary{ 
-	border-radius:15px; 
-} 
-.level-summary .destroyed-summary .destroyed{ 
+}
+.level-summary .destroyed-summary{
+	border-radius:15px;
+}
+.level-summary .destroyed-summary .destroyed{
 	display: flex;
     max-width: 70%;
     height: 45px;
     margin: 0 auto;
-} 
-.level-summary .destroyed-summary .destroyed > div{ 
-	color:#FFF; 
-	position:relative; 
+}
+.level-summary .destroyed-summary .destroyed > div{
+	color:#FFF;
+	position:relative;
 	display: flex;
-	flex-grow:1; 
-    align-items: center; 
-	justify-content: flex-end; 
-	letter-spacing:3px; 
-	text-align:right; 
-} 
-.level-summary .destroyed-summary .destroyed .value{ 
-	padding-left:2%; 
+	flex-grow:1;
+    align-items: center;
+	justify-content: flex-end;
+	letter-spacing:3px;
+	text-align:right;
+}
+.level-summary .destroyed-summary .destroyed .value{
+	padding-left:2%;
 	text-align: left;
     justify-content: flex-start;
-	opacity:.5; 
+	opacity:.5;
 }
 .level-summary .destroyed-summary .destroyed :nth-child(2):after {
     content: '';
@@ -115,66 +112,66 @@
     background: rgba(255,255,255,.5);
     right: 0px;
 }
-.level-summary .destroyed-summary.pass{  
-	background: #28c394;  
-} 
-.level-summary .destroyed-summary.fail{  
-	background:#FF4881;  
-} 
-.level-summary .score-container{ 
+.level-summary .destroyed-summary.pass{
+	background: #28c394;
+}
+.level-summary .destroyed-summary.fail{
+	background:#FF4881;
+}
+.level-summary .score-container{
 	display: flex;
     flex-grow: 1;
     justify-content: center;
-    align-items: center; 
-    margin: 5% 0px; 
+    align-items: center;
+    margin: 5% 0px;
 	display: table;
     width: 100%;
-} 
-.level-summary .score-panel{ 
+}
+.level-summary .score-panel{
 	display: -webkit-box;
-    display: flex; 
-	flex-grow: 1; 
-	color:#FFF; 
-	flex-direction:row; 
+    display: flex;
+	flex-grow: 1;
+	color:#FFF;
+	flex-direction:row;
 	display: table-row;
     text-align: center;
     vertical-align: middle;
-} 
-.level-summary .score-panel .data{  
-	flex-grow: 1; 
-} 
-.level-summary .score-panel .data.level-score{   
+}
+.level-summary .score-panel .data{
+	flex-grow: 1;
+}
+.level-summary .score-panel .data.level-score{
     height: 0px;
     flex-grow: 0;
     padding: 0px;
 	margin: auto;
-} 
-.level-summary .score-panel .data.level-score .content{   
-	flex-direction: column; 
-} 
-.level-summary .score-panel .data > div{  
-	text-align:center; 
-} 
-.level-summary .score-panel .col{ 
+}
+.level-summary .score-panel .data.level-score .content{
+	flex-direction: column;
+}
+.level-summary .score-panel .data > div{
+	text-align:center;
+}
+.level-summary .score-panel .col{
 	display: -webkit-box;
     display: flex;
 	flex-grow: 1;
     justify-content: center;
-    align-items: center; 
-	width: 33.333%; 
+    align-items: center;
+	width: 33.333%;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-} 
+}
 .level-summary .score-panel .data .value {
-	position:relative; 
-    font-size: 4.6vw; 
-	letter-spacing: 3px; 
-} 
+	position:relative;
+    font-size: 4.6vw;
+	letter-spacing: 3px;
+}
 .level-summary .score-panel .data .label {
     font-size: .8vw;
     letter-spacing: 2px;
-} 
+}
 .level-summary .score-panel .data.underline .value:after {
     position: absolute;
     content: '';
@@ -186,74 +183,74 @@
     margin: auto;
     border-radius: 4px;
     background: #FFF;
-} 
+}
 .level-summary .score-panel .data.underline .value {
     padding-bottom:5%;
 }
-.level-summary .score-panel .data.underline .label { 
-	padding-top:8%; 
+.level-summary .score-panel .data.underline .label {
+	padding-top:8%;
     font-size: .8vw;
     letter-spacing: 2px;
 }
-.level-summary .summary-button-container .option-group{ 
-	position:relative; 
-	margin:0px; 
-	text-align:center; 
-	color:#FFF;  
-} 
-.level-summary .summary-button-container .option-group .value{ 
-	letter-spacing:0px; 
-	font-size:24px; 
-	min-height:45px; 
+.level-summary .summary-button-container .option-group{
+	position:relative;
+	margin:0px;
+	text-align:center;
+	color:#FFF;
 }
-.level-summary .summary-button-container .option-group .label{ 
-	display:none; 
-	letter-spacing:2px; 
-	color:#D3D3D3; 
-	font-size:10px; 
-    margin-top: -13px; 
-}  
-.summary-button-container{ 
-	position:relative;  
-	height:auto;  
-	min-height:60px; 
-	bottom:0px;  
-	padding:0px 15px; 
-	margin:0px; 
-	-moz-box-sizing:border-box; 
-	box-sizing:border-box; 
-	display:-webkit-box; 
-	display:flex; 
-} 
-.level-summary .summary-buttons{ 
-	display:flex; 
-	max-width:75%; 
-	margin:0px auto; 
-	flex-grow:1; 
-} 
-.level-summary .summary-buttons .col{ 
-	display:flex; 
-	justify-content: center; 
-	width:33.333%; 
-} 
+.level-summary .summary-button-container .option-group .value{
+	letter-spacing:0px;
+	font-size:24px;
+	min-height:45px;
+}
+.level-summary .summary-button-container .option-group .label{
+	display:none;
+	letter-spacing:2px;
+	color:#D3D3D3;
+	font-size:10px;
+    margin-top: -13px;
+}
+.summary-button-container{
+	position:relative;
+	height:auto;
+	min-height:60px;
+	bottom:0px;
+	padding:0px 15px;
+	margin:0px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	display:-webkit-box;
+	display:flex;
+}
+.level-summary .summary-buttons{
+	display:flex;
+	max-width:75%;
+	margin:0px auto;
+	flex-grow:1;
+}
+.level-summary .summary-buttons .col{
+	display:flex;
+	justify-content: center;
+	width:33.333%;
+}
 .level-summary .summary-buttons .option-group .label {
     margin-top: 13px;
 }
-.summary-button-container .bttn{ 
-	float:none;  
+.summary-button-container .bttn{
+	float:none;
 }
-.level-summary-container .options-container .option.bttn-home{ 
+.level-summary-container .options-container .option.bttn-home{
 	width: 75px;
-    background-size: 56% !important; 
-} 
-@media screen and (max-width:880px) 
-{ 
+    background-size: 56% !important;
+}
+@media screen and (max-width:880px)
+{
 	.level-summary-container .summary-container {
 		top: 40px;
 		bottom: 40px;
-	} 
-	.level-summary .row:nth-child(3){  
-		height:70px;   
+	}
+	.level-summary .row:nth-child(3){
+		height:70px;
 	}
 	.level-summary-container .level-number-container .level-label {
 		font-size: 1.6vw;
@@ -266,26 +263,26 @@
 		max-width: 70%;
 		height: 30px;
 		margin: 0 auto;
-	} 
+	}
 	.level-summary .destroyed-summary .destroyed > div {
-		font-size:14px; 
+		font-size:14px;
 		letter-spacing:2px;
-	} 
-	.level-summary .score-panel .data .label, 
+	}
+	.level-summary .score-panel .data .label,
 	.level-summary .score-panel .data.underline .label {
 		font-size: 1vw;
 		letter-spacing: 2px;
 	}
-	.level-summary .score-panel .level-score .value{   
+	.level-summary .score-panel .level-score .value{
 		margin-bottom: 5%;
 	}
-	.level-summary .score-panel .level-score .label{   
+	.level-summary .score-panel .level-score .label{
 		margin-bottom: 11%;
 	}
 	.level-summary .destroyed-summary .destroyed :nth-child(2):after {
 		width: 1px;
 	}
-	
+
 	.level-summary .destroyed-summary .label.title-text {
 		width: 27%;
 	}

@@ -49,23 +49,23 @@
     margin-top: -13px;
 }
 .bttn.bttn-home .content{
-	background:url(..public/images/home-icon.svg) no-repeat center;
+	background:url(../../../public/images/home-icon.svg) no-repeat center;
 	background-size:40%;
 }
 .bttn.bttn-levels .content{
-	background:url(..public/images/levels-icon.svg) no-repeat center;
+	background:url(../../../public/images/levels-icon.svg) no-repeat center;
 	background-size:40%;
 }
 .bttn.bttn-prev .content{
-	background:url(..public/images/prev-icon.svg) no-repeat center;
+	background:url(../../../public/images/prev-icon.svg) no-repeat center;
 	background-size:40%;
 }
 .bttn.bttn-retry .content{
-	background:url(..public/images/retry-icon.svg) no-repeat center;
+	background:url(../../../public/images/retry-icon.svg) no-repeat center;
 	background-size:40%;
 }
 .bttn.bttn-next .content{
-	background:url(..public/images/next-icon.svg) no-repeat center;
+	background:url(../../../public/images/next-icon.svg) no-repeat center;
 	background-size:40%;
 }
 .options-container .bttn-pause span {

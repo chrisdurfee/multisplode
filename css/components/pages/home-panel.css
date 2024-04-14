@@ -83,7 +83,7 @@
     left: -50%;
     opacity: 1;
     z-index: 0;
-    background: url(..public/images/home-stars-bg.svg) repeat center;
+    background: url(../../../public/images/home-stars-bg.svg) repeat center;
     background-size: 50%;
     -webkit-animation: rotate 340s 1.4s infinite linear;
     animation: rotate 340s 1.4s infinite linear;
@@ -96,7 +96,7 @@
 	animation-play-state: running;
 }
 .main-home-panel .background-mask{
-    background: url(..public/images/home-devices.svg) no-repeat;
+    background: url(../../../public/images/home-devices.svg) no-repeat;
     overflow: visible;
     background-size: 87%;
     background-position: center 100%;
