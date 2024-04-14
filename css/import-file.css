@@ -2,7 +2,7 @@
 
 @import url('multisplode.css');
 @import url('./components/atoms/buttons.css');
-@import url('./components/atoms/flash-panel.css');
+@import url('./components/organisms/flash-panel.css');
 
 @import url('./components/pages/home-panel.css');
 @import url('./components/pages/level-select-container.css');

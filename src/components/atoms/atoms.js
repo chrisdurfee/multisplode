@@ -1,6 +1,6 @@
-import { A, Br, Button, H1, H2, Header, P, Span } from '@base-framework/atoms';
+import { A, Article, Br, Button, H1, H2, Header, P, Section, Span } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
-export { A, Br, Button, H1, H2, Header, P, Span };
+export { A, Article, Br, Button, H1, H2, Header, P, Section, Span };
 
 /**
  * This will create a video element.

@@ -1,7 +1,6 @@
-import { CastPage } from '../pages/cast-page.js';
 import { HomePage } from '../pages/home-page.js';
-import { GalleryPage } from '../pages/level-page.js';
-import { SynopsisPage } from '../pages/play-page.js';
+import { LevelSummaryPage } from '../pages/level-summary-page.js';
+import { PlayPage } from '../pages/play-page.js';
 
 /**
  * This will create a route object.
@@ -27,7 +26,6 @@ const Route = (uri, component, title) =>
  */
 export const Routes = () => [
 	Route('/', HomePage(), 'EXPLORE'),
-	Route('/synopsis/:id?', SynopsisPage(), 'SYNOPSIS'),
-	Route('/cast/:id?', CastPage(), 'CAST'),
-	Route('/gallery/:id?', GalleryPage(), 'GALLERY'),
+	Route('/play', PlayPage(), 'Play'),
+	Route('/level-summary', LevelSummaryPage(), 'Level Summary')
 ];
