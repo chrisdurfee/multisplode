@@ -46,6 +46,7 @@ export const AppShell = () => (
 			cache: 'mainBody',
 			switch: Routes()
 		}),
-		Div( { class: 'overlay-container' })
+		Div( { class: 'overlay-container' }),
+		Audio({ id: 'sound_fx', cache: 'soundFx', class: 'sound', src: 'sound/music/play-loop.mp3', loop: true })
 	])
 );

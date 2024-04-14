@@ -2,23 +2,23 @@ import { Acticle, Div, H2, Header, Section } from '@base-framework/atoms';
 import { Page } from '../pages/page.js';
 
 /**
- * AddThreePage
+ * AddFourPage
  *
- * This will create the add three page.
+ * This will create the add four page.
  *
  * @returns {object}
  */
-export const AddThreePage = () => (
+export const AddFourPage = () => (
 	new Page([
 		Div({ class: 'prompt-panel startup-panel' }, [
-			Acticle({ class: 'touch-slider', id: 'add-three-step-panel' }, [
+			Acticle({ class: 'touch-slider', id: 'add-four-step-panel' }, [
 				Section({ class: 'step' }, [
 					Div({ class: 'content' }, [
-						Object({ data: 'images/three-more.svg', type: 'image/svg+xml' }),
+						Object({ data: 'images/four-more.svg', type: 'image/svg+xml' }),
 						Header({ class: 'title-enhance' }, [
-							H2('Three Is More Fun')
+							H2('Four Is More')
 						]),
-						Div('You can now use three explosions at anytime to maximize the destruction.')
+						Div('You can now use four explosions at anytime to maximize the destruction.')
 					])
 				])
 			])

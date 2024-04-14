@@ -1,4 +1,4 @@
-import { Div } from '@base-framework/atoms';
+import { Acticle, Div, H2, Header } from '@base-framework/atoms';
 import { Page } from '../pages/page.js';
 
 /**
@@ -11,7 +11,7 @@ import { Page } from '../pages/page.js';
 export const AddTwoPage = () => (
 	new Page([
 		Div({ class: 'prompt-panel startup-panel' }, [
-			Div({ class: 'touch-slider', id: 'gravity-field-step-panel' }, [
+			Acticle({ class: 'touch-slider', id: 'gravity-field-step-panel' }, [
 				Div({ class: 'step', id: 'prompt-1a' }, [
 					Div({ class: 'content' }, [
 						Object({ data: 'images/gravity-field.svg', type: 'image/svg+xml' }),

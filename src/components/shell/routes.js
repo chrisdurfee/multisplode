@@ -1,7 +1,7 @@
 import { CastPage } from '../pages/cast-page.js';
-import { GalleryPage } from '../pages/gallery-page.js';
 import { HomePage } from '../pages/home-page.js';
-import { SynopsisPage } from '../pages/synopsis-page.js';
+import { GalleryPage } from '../pages/level-page.js';
+import { SynopsisPage } from '../pages/play-page.js';
 
 /**
  * This will create a route object.
