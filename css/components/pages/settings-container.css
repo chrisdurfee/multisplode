@@ -5,6 +5,7 @@
 	width: 100%;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
+	backdrop-filter: blur(10px);
 }
 .settings-container .main-step-container {
 	position: absolute;

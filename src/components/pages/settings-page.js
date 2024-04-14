@@ -10,7 +10,7 @@ import { Page } from "./page.js";
  */
 export const SettingsPage = () => (
 	new Page([
-		Article({ class: 'control-sub-panel settings-container overlay-panel' }, [
+		Article({ class: 'control-sub-panel settings-container overlay-panel open' }, [
 			Section({ class: 'home-sub-panel settings-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [
 					A({ class: 'bttn circle close', href: '/home' }, [
