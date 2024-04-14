@@ -121,6 +121,7 @@ ul li,
 .bttn.circle {
 	width: 38px;
 	height: 38px;
+	display: flex;
 }
 .bttn.close span {
 	width: 25px;

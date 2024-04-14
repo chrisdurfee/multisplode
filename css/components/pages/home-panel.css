@@ -99,7 +99,7 @@
 	will-change: transform, -webkit-transform;
 }
 
-.main-home-panel.active .background.background-stars:before {
+.main-home-panel .background.background-stars:before {
 	-webkit-animation-play-state: running;
 	animation-play-state: running;
 }
@@ -165,10 +165,6 @@
 	height: 100%;
 	align-items: center;
 	justify-content: center;
-}
-
-.main-home-panel.active {
-	width: 100%;
 }
 
 .game-menu-container {
