@@ -16,7 +16,6 @@
 	padding: 0px;
 	display: block;
 	overflow: visible;
-	-webkit-transform: translateZ(0);
 	z-index: 1;
 }
 .settings-container .step-container .step {
@@ -103,10 +102,10 @@
 	background-color: #FF4881;
 }
 .settings-container .settings-sub-panel .row button.value-button.arrow.prev {
-	background-image: url(..public/images/prev-icon.svg);
+	background-image: url(../../../images/prev-icon.svg);
 }
 .settings-container .settings-sub-panel .row button.value-button.arrow.next {
-	background-image: url(..public/images/next-icon.svg);
+	background-image: url(../../../images/next-icon.svg);
 }
 .settings-container .settings-sub-panel.audio-container .row {
 	min-height: 60px;

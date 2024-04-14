@@ -84,7 +84,7 @@ svg{
 	left:0px;
 	right:0px;
 	margin:auto;
-	background:url(..public/images/play-icon.svg) no-repeat 25px;
+	background:url(..images/play-icon.svg) no-repeat 25px;
 	background-size:39%;
 }
 .play:hover{
@@ -128,7 +128,6 @@ svg{
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    user-drag: none;
     user-select: none;
 	pointer-events:none;
 }
@@ -173,7 +172,6 @@ svg{
 	-webkit-transform: rotateZ(45deg);
 	-moz-transform: rotateZ(45deg);
 	transform: rotateZ(45deg);
-	-webkit-backface-visibility:hidden;
 }
 .circle .content{
 	-webkit-transform: rotateZ(-45deg);
@@ -290,7 +288,6 @@ svg{
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     overflow: visible;
-    -webkit-transform: translateZ(0);
     z-index: 1;
 }
 .control-sub-panel .step-container {
@@ -312,7 +309,6 @@ svg{
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    user-drag: none;
     user-select: none;
     pointer-events: all;
 }

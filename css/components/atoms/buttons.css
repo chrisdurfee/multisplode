@@ -74,7 +74,7 @@ ul li,
 	box-shadow:none;
 }
 .bttn.settings .content{
-	background:url(..public/images/settings-icon.svg) no-repeat center;
+	background:url(../../../images/settings-icon.svg) no-repeat center;
 	background-size:58%;
 }
 .bttn-home{
