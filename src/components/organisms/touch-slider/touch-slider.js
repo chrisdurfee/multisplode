@@ -1,4 +1,4 @@
-import { Article, Section } from "@base-framework/atoms";
+import { Article, Div, Section } from "@base-framework/atoms";
 import { Atom, Component } from "@base-framework/base";
 import { Swipe } from "./swipe";
 
@@ -17,6 +17,27 @@ const STEP_CLASS_NAME = 'step';
 const Step = Atom((props, children) => Section({ ...props, class: STEP_CLASS_NAME }, children));
 
 /**
+ * This will create the crumb.
+ *
+ * @param {object} props
+ * @returns {object}
+ */
+const Crumb = Atom((props) => Div({ ...props, class: 'option' }));
+
+/**
+ * This will create the crumb container.
+ *
+ * @param {object} props
+ * @param {array} children
+ * @returns {object}
+ */
+const CrumbContainer = Atom((props, children) => (
+	Div({class: 'crumb-container' }, [
+		Div({ ...props, class: 'number-crumb-container' }, children)
+	])
+));
+
+/**
  * TouchSlider
  *
  * This will create the touch slider.
@@ -32,7 +53,10 @@ export class TouchSlider extends Component
      */
     render()
     {
-        return Article({ class: 'touch-slider step-container', map: [this.items, Step] });
+        return Article({ class: 'touch-slider step-container' }, [
+			Div({ map: [this.items, Step] }),
+			CrumbContainer({ map: [this.items, Crumb] })
+		]);
     }
 
 	/**
