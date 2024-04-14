@@ -1,4 +1,4 @@
-.main-home-panel{
+.main-home-panel {
 	width: 100%;
 	z-index: 10;
 	margin: 0px;
@@ -19,8 +19,9 @@
 	backface-visibility: hidden;
 	will-change: opacity, transform;
 }
+
 .main-home-panel:after,
-.main-home-panel:before{
+.main-home-panel:before {
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
@@ -31,25 +32,29 @@
 	transition: transform 1s ease;
 	transform: scale(1, 1);
 }
+
 .main-home-panel.loading:after,
-.main-home-panel.loading:before{
+.main-home-panel.loading:before {
 	transform: scale(0, 1);
 }
-.main-home-panel:after{
+
+.main-home-panel:after {
 	transform-origin: left;
 	left: 0px;
 	width: 300px;
-	background: -webkit-linear-gradient(-10deg, rgba(255,72,129,.5) 0%,rgba(255,72,129,0) 48%,rgba(255,72,129,0) 100%);
-	background: linear-gradient(-264deg, rgba(255,72,129,.5) 0%,rgba(255,72,129,0) 48%,rgba(255,72,129,0) 100%);
+	background: -webkit-linear-gradient(-10deg, rgba(255, 72, 129, .5) 0%, rgba(255, 72, 129, 0) 48%, rgba(255, 72, 129, 0) 100%);
+	background: linear-gradient(-264deg, rgba(255, 72, 129, .5) 0%, rgba(255, 72, 129, 0) 48%, rgba(255, 72, 129, 0) 100%);
 }
-.main-home-panel:before{
+
+.main-home-panel:before {
 	transform-origin: right;
 	right: 0px;
 	width: 300px;
-    background: -webkit-linear-gradient(-45deg, rgba(33,248,182,0) 0%,rgba(33,248,182,0) 80%,rgba(33,248,182,0.33) 93%,rgba(33,248,182,0.5) 100%);
-    background: linear-gradient(135deg, rgba(33,248,182,0) 0%,rgba(33,248,182,0) 72%,rgba(33,248,182,0.23) 93%,rgba(33,248,182,0.3) 100%);
+	background: -webkit-linear-gradient(-45deg, rgba(33, 248, 182, 0) 0%, rgba(33, 248, 182, 0) 80%, rgba(33, 248, 182, 0.33) 93%, rgba(33, 248, 182, 0.5) 100%);
+	background: linear-gradient(135deg, rgba(33, 248, 182, 0) 0%, rgba(33, 248, 182, 0) 72%, rgba(33, 248, 182, 0.23) 93%, rgba(33, 248, 182, 0.3) 100%);
 }
-.main-home-panel .background{
+
+.main-home-panel .background {
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
@@ -60,10 +65,12 @@
 	-webkit-transition: opacity .8s ease;
 	transition: opacity .8s ease;
 }
+
 .main-home-panel.loading .background {
 	opacity: 0;
 }
-.main-home-panel .background-stars{
+
+.main-home-panel .background-stars {
 	-webkit-transition: opacity .8s ease;
 	transition: all .8s ease;
 
@@ -73,117 +80,135 @@
 	backface-visibility: hidden;
 	will-change: opacity, transform;
 }
+
 .main-home-panel .background.background-stars:before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    opacity: 1;
-    z-index: 0;
-    background: url(../../../images/home-stars-bg.svg) repeat center;
-    background-size: 50%;
-    -webkit-animation: rotate 340s 1.4s infinite linear;
-    animation: rotate 340s 1.4s infinite linear;
+	content: "";
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	top: -50%;
+	left: -50%;
+	opacity: 1;
+	z-index: 0;
+	background: url(../../../images/home-stars-bg.svg) repeat center;
+	background-size: 50%;
+	-webkit-animation: rotate 340s 1.4s infinite linear;
+	animation: rotate 340s 1.4s infinite linear;
 	-webkit-animation-play-state: paused;
 	animation-play-state: paused;
 	will-change: transform, -webkit-transform;
 }
+
 .main-home-panel.active .background.background-stars:before {
-    -webkit-animation-play-state: running;
+	-webkit-animation-play-state: running;
 	animation-play-state: running;
 }
-.main-home-panel .background-mask{
-    background: url(../../../images/home-devices.svg) no-repeat;
-    overflow: visible;
-    background-size: 87%;
-    background-position: center 100%;
+
+.main-home-panel .background-mask {
+	background: url(../../../images/home-devices.svg) no-repeat;
+	overflow: visible;
+	background-size: 87%;
+	background-position: center 100%;
 	opacity: 0;
-    animation: fadeIn .6s ease-in-out .8s forwards;
+	animation: fadeIn .6s ease-in-out .8s forwards;
 }
-.main-home-panel .panel-top-button-container{
+
+.main-home-panel .panel-top-button-container {
 	display: block;
 	opacity: 1;
 	-webkit-transition: opacity .3s ease .4s;
 	transition: opacity .3s ease .4s;
 }
-.main-home-panel.loading .panel-top-button-container{
-	opacity:0;
+
+.main-home-panel.loading .panel-top-button-container {
+	opacity: 0;
 }
-.home-base-panel{
+
+.home-base-panel {
 	position: relative;
 	display: flex;
 	width: 69%;
 	height: 100%;
 	align-items: center;
 	flex-direction: column;
-    justify-content: center;
+	justify-content: center;
 	margin: 0px auto;
 	z-index: 1;
 }
-.home-base-panel.loading{
+
+.home-base-panel.loading {
 	display: none;
 }
-.home-base-panel > .row{
+
+.home-base-panel>.row {
 	display: flex;
 	width: 100%;
 	align-items: center;
 	flex-grow: 1;
 	flex-direction: column;
-    justify-content: center;
+	justify-content: center;
 	position: relative;
 }
-.home-base-panel .row.logo-container{
+
+.home-base-panel .row.logo-container {
 	flex-grow: 3;
 }
-.home-base-panel .row.menu-container{
+
+.home-base-panel .row.menu-container {
 	flex-grow: 1.2;
 }
-.home-base-panel > .col{
+
+.home-base-panel>.col {
 	display: flex;
 	flex-grow: 1;
 	position: relative;
 	height: 100%;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 }
-.main-home-panel.active{
-	width:100%;
-}
-.game-menu-container{
+
+.main-home-panel.active {
 	width: 100%;
 }
-.game-name-container{
+
+.game-menu-container {
+	width: 100%;
+}
+
+.game-name-container {
 	position: relative;
-    width: 76%;
-    margin: auto auto 0px;
-	opacity:0;
-	-webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+	width: 76%;
+	margin: auto auto 0px;
+	opacity: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 	will-change: opacity, transform;
 
 	-webkit-animation: floatUpZ .6s ease-in-out forwards;
 	animation: floatUpZ .6s ease-in-out forwards;
 }
-.game-name-container img{
+
+.game-name-container img {
 	width: 100%;
 	height: auto;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-.main-menu-container{
-	position:relative;
+
+.main-menu-container {
+	position: relative;
 	flex-grow: 1;
-    width: 100%;
-    max-width: 90%;
-	padding-top:1px;
-	padding-bottom:0px;
+	width: 100%;
+	max-width: 90%;
+	padding-top: 1px;
+	padding-bottom: 0px;
 }
-.main-nav-container{
-	margin:0px 20px;
+
+.main-nav-container {
+	margin: 0px 20px;
 }
-.main-nav-container ul{
+
+.main-nav-container ul {
 	padding: 0px;
 	margin: 0px 0px 20px;
 	list-style: none;
@@ -193,55 +218,62 @@
 	-webkit-animation: fadeIn .3s ease-in-out .8s forwards;
 	animation: fadeIn .3s ease-in-out .8s forwards;
 }
-.main-nav-container ul li{
-    float: none;
-    margin: 0px 3%;
+
+.main-nav-container ul li {
+	float: none;
+	margin: 0px 3%;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-.main-menu-container .bttn{
+
+.main-menu-container .bttn {
 	width: 160px;
 	margin: 0px auto;
 	height: 50px;
 	font-size: 18px;
-    letter-spacing: 3px;
+	letter-spacing: 3px;
 	float: none;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-.main-menu-container .bttn.main-play{
-    border-radius: 22px;
+
+.main-menu-container .bttn.main-play {
+	border-radius: 22px;
 	background: none;
 	border: 2px solid #FF4881;
-    font-size: 20px;
-    color: #FF4881;
+	font-size: 20px;
+	color: #FF4881;
 }
-.main-menu-container .bttn.main-play:hover{
+
+.main-menu-container .bttn.main-play:hover {
 	background: #FF649C;
 	box-shadow: none;
 	color: #FFF;
 }
-.main-menu-container .bttn.main-play:active{
+
+.main-menu-container .bttn.main-play:active {
 	background: #E5427D;
 	box-shadow: none;
 	color: #FFF;
 }
-@media screen and (max-width:880px)
-{
+
+@media screen and (max-width:880px) {
 	.main-menu-container {
-		max-width:100%;
-	}
-	.main-nav-container ul li{
-		height:45px;
-		line-height:45px;
-		font-size:16px;
-	}
-	.main-menu-container .bttn{
-		height:45px;
-		font-size:16px;
+		max-width: 100%;
 	}
 
-	.main-nav-container ul li{
-		font-size:14px;
+	.main-nav-container ul li {
+		height: 45px;
+		line-height: 45px;
+		font-size: 16px;
+	}
+
+	.main-menu-container .bttn {
+		height: 45px;
+		font-size: 16px;
+	}
+
+	.main-nav-container ul li {
+		font-size: 14px;
 	}
 }
