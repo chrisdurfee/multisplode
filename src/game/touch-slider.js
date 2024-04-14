@@ -1,8 +1,7 @@
-"use strict";
 
-var TouchSlider = Class.extend(
+export class TouchSlider
 {
-	constructor: function(container, slidesClass, callBackFn)
+	constructor(container, slidesClass, callBackFn)
 	{
 		this.viewNumber = null;
 		this.slides = [];
@@ -21,30 +20,30 @@ var TouchSlider = Class.extend(
 
 		this.container = this.getContainer(container);
 		this.slidesClass = slidesClass || '.slides';
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		this.createCrumbContainer();
 		this.getSlides();
 		this.reset();
 		this.setupEvents();
-	},
+	}
 
-	reset: function()
+	reset()
 	{
 		this.moveToSelectedSlide(this.slides[0]);
-	},
+	}
 
-	remove: function()
+	remove()
 	{
 		this.slides = [];
 		this.viewNumber = null;
 		this.slideWidth = null;
 		this.removeEvents();
-	},
+	}
 
-	getContainer: function(container)
+	getContainer(container)
 	{
 		if(container && typeof container === 'object')
 		{
@@ -52,57 +51,57 @@ var TouchSlider = Class.extend(
 		}
 		else
 		{
-			var element = document.querySelector(container);
+			let element = document.querySelector(container);
 			if(element)
 			{
 				return element;
 			}
 		}
 		return false;
-	},
+	}
 
-	createCrumbContainer: function()
+	createCrumbContainer()
 	{
-		var container = this.container;
+		let container = this.container;
 		if(container)
 		{
 
-			var frag = document.createDocumentFragment();
+			let frag = document.createDocumentFragment();
 
-			var obj = document.createElement('div');
+			let obj = document.createElement('div');
 			obj.className = 'crumb-container';
 			frag.appendChild(obj);
 
-			var child = this.crumbContainer = document.createElement('div');
+			let child = this.crumbContainer = document.createElement('div');
 			child.className = 'number-crumb-container';
 			obj.appendChild(child);
 
 			Utilities.append(container.parentNode, frag);
 		}
-	},
+	}
 
-	addCrumb: function(element)
+	addCrumb(element)
 	{
-		var crumb = document.createElement('div');
+		let crumb = document.createElement('div');
 		crumb.className = 'option';
 
 		crumb.onclick = Utilities.createCallBack(this, this.moveToSelectedElement, [element]);
 
 		this.crumbContainer.appendChild(crumb);
 		return crumb;
-	},
+	}
 
-	setupEvents: function()
+	setupEvents()
 	{
-		var container = this.container;
+		let container = this.container;
 
 		/* this will bind our object to our callback methods */
-		var start = this.start.bind(this),
+		let start = this.start.bind(this),
 		end = this.end.bind(this),
 		move = this.move.bind(this),
 		resize = this.getSlideWidth.bind(this);
 
-		this.addEvents = function()
+		this.addEvents = () =>
 		{
 			container.addEventListener('touchstart', start);
 			container.addEventListener('mousedown', start, true);
@@ -117,7 +116,7 @@ var TouchSlider = Class.extend(
 			window.addEventListener('resize', resize);
 		};
 
-		this.removeEvents = function()
+		this.removeEvents = () =>
 		{
 			container.removeEventListener('touchstart', start);
 			container.removeEventListener('mousedown', start);
@@ -133,20 +132,20 @@ var TouchSlider = Class.extend(
 		};
 
 		this.addEvents();
-	},
+	}
 
-	getSlides: function()
+	getSlides()
 	{
-		var slides = this.container.querySelectorAll(this.slidesClass);
+		let slides = this.container.querySelectorAll(this.slidesClass);
 		if(slides)
 		{
 			/* this will convert the node list to an array
 			and save the slide to the slides array */
 			slides = [].slice.call(slides);
 
-			for(var i = 0, length = slides.length; i < length; i++)
+			for(let i = 0, length = slides.length; i < length; i++)
 			{
-				var slide = slides[i];
+				let slide = slides[i];
 				if(slide)
 				{
 					slide = this.addSlide(slide);
@@ -154,11 +153,11 @@ var TouchSlider = Class.extend(
 			}
 			this.getSlideWidth();
 		}
-	},
+	}
 
-	addSlide: function(element)
+	addSlide(element)
 	{
-		var crumb = this.addCrumb(element);
+		let crumb = this.addCrumb(element);
 		this.slides.push({
 			number: this.slides.length,
 			element: element,
@@ -166,26 +165,26 @@ var TouchSlider = Class.extend(
 			selected: false
 		});
 
-		var self = this;
-		element.addEventListener('scroll', function()
+		let self = this;
+		element.addEventListener('scroll', () =>
 		{
 			self.preventTouch = true;
 		}, true);
-	},
+	}
 
-	moveToSelectedElement: function(element)
+	moveToSelectedElement(element)
 	{
 		if(element)
 		{
-			var slide = this.getSlideByElement(element);
+			let slide = this.getSlideByElement(element);
 			if(slide)
 			{
 				this.moveToSelectedSlide(slide);
 			}
 		}
-	},
+	}
 
-	moveToSelectedSlide: function(slide)
+	moveToSelectedSlide(slide)
 	{
 		if(slide)
 		{
@@ -193,7 +192,7 @@ var TouchSlider = Class.extend(
 			find the offset of the selected slide to
 			move the container to the child */
 			this.getSlideWidth();
-			var offset = this.slideWidth * slide.number;
+			let offset = this.slideWidth * slide.number;
 			this.moveContainer('-' + offset);
 
 			/* we want to override the index to show the
@@ -201,18 +200,18 @@ var TouchSlider = Class.extend(
 			this.index = slide.number;
 			this.selectSlide(slide);
 		}
-	},
+	}
 
-	moveToSelectedIndex: function(index)
+	moveToSelectedIndex(index)
 	{
-		var slide = this.slides[index];
+		let slide = this.slides[index];
 		if(slide)
 		{
 			/* this will get the current slide width and
 			find the offset of the selected slide to
 			move the container to the child */
 			this.getSlideWidth();
-			var offset = this.slideWidth * slide.number;
+			let offset = this.slideWidth * slide.number;
 			this.moveContainer('-' + offset);
 
 			/* we want to override the index to show the
@@ -220,46 +219,46 @@ var TouchSlider = Class.extend(
 			this.index = slide.number;
 			this.selectSlide(slide, true);
 		}
-	},
+	}
 
-	selectSlideByIndex: function(index)
+	selectSlideByIndex(index)
 	{
-		var slides = this.slides;
-		for(var i = 0, length = slides.length; i < length; i++)
+		let slides = this.slides;
+		for(let i = 0, length = slides.length; i < length; i++)
 		{
-			var option = slides[i];
+			let option = slides[i];
 			if(i === index)
 			{
 				this.selectSlide(option);
 			}
 		}
 		return false;
-	},
+	}
 
-	getSlideByElement: function(element)
+	getSlideByElement(element)
 	{
-		var slides = this.slides;
-		for(var i = 0, length = slides.length; i < length; i++)
+		let slides = this.slides;
+		for(let i = 0, length = slides.length; i < length; i++)
 		{
-			var option = slides[i];
+			let option = slides[i];
 			if(option.element === element)
 			{
 				return option;
 			}
 		}
 		return false;
-	},
+	}
 
-	selectPrimarySlide: function()
+	selectPrimarySlide()
 	{
-		var slide = this.slides[0];
+		let slide = this.slides[0];
 		if(slide)
 		{
 			this.selectSlide(slide);
 		}
-	},
+	}
 
-	selectSlide: function(slide, cancelCallBack)
+	selectSlide(slide, cancelCallBack)
 	{
 		if(slide)
 		{
@@ -272,14 +271,14 @@ var TouchSlider = Class.extend(
 				this.callBackFn(slide.number);
 			}
 		}
-	},
+	}
 
-	updateSelectSlide: function(slide)
+	updateSelectSlide(slide)
 	{
-		var slides = this.slides;
-		for(var i = 0, length = slides.length; i < length; i++)
+		let slides = this.slides;
+		for(let i = 0, length = slides.length; i < length; i++)
 		{
-			var option = slides[i],
+			let option = slides[i],
 			crumb = option.crumb;
 			if(option !== slide)
 			{
@@ -292,30 +291,30 @@ var TouchSlider = Class.extend(
 				crumb.className = option.selected === true? 'option circle selected' : 'option circle';
 			}
 		}
-	},
+	}
 
-	getSlideWidth: function()
+	getSlideWidth()
 	{
-		var slides = this.slides;
+		let slides = this.slides;
 		if(slides)
 		{
-			var width;
+			let width;
 			if(this.viewNumber === null)
 			{
-				var element = slides[0].element;
+				let element = slides[0].element;
 				width = element.offsetWidth;
 			}
 			else
 			{
-				var parentWidth = this.container.offsetWidth;
+				let parentWidth = this.container.offsetWidth;
 				/* we need to get the width each slide should be
 				by the number of slides in view */
 				width = this.slideWidth = (parentWidth / this.viewNumber);
 
-				var slide;
+				let slide;
 				/* we need to set the width of each slide to match the
 				view number of the parent container */
-				for(var i = 0, maxLength = slides.length; i < maxLength; i++)
+				for(let i = 0, maxLength = slides.length; i < maxLength; i++)
 				{
 					slide = slides[i];
 					if(slide)
@@ -330,21 +329,21 @@ var TouchSlider = Class.extend(
 			}
 			this.slideWidth = width;
 		}
-	},
+	}
 
-	getEventPosition: function(e)
+	getEventPosition(e)
 	{
-		var position = {
+		let position = {
 			x: 0,
 			y: 0
 		};
 
 		if(e)
 		{
-			var touches = e.touches;
+			let touches = e.touches;
 			if(touches)
 			{
-				var touch = touches[0];
+				let touch = touches[0];
 				position.x = touch.pageX;
 				position.y = touch.pageY;
 			}
@@ -355,30 +354,30 @@ var TouchSlider = Class.extend(
 			}
 		}
 		return position;
-	},
+	}
 
-	calculateAngle: function()
+	calculateAngle()
 	{
-		var positionX = this.startX - this.moveX,
+		let positionX = this.startX - this.moveX,
 		positionY = this.moveY - this.startY;
 
 		/* we need to get the distance */
-		//var z = Math.round(Math.sqrt(Math.pow(positionX, 2) + Math.pow(positionY, 2)));
+		//let z = Math.round(Math.sqrt(Math.pow(positionX, 2) + Math.pow(positionY, 2)));
 		//angle in radians
-		var r = Math.atan2(positionY, positionX);
+		let r = Math.atan2(positionY, positionX);
 
 		//angle in degrees
-		var swipeAngle = Math.round(r * 180 / Math.PI);
+		let swipeAngle = Math.round(r * 180 / Math.PI);
 		if (swipeAngle < 0)
 		{
 			swipeAngle =  360 - Math.abs(swipeAngle);
 		}
 		return swipeAngle;
-	},
+	}
 
-	getSwipeDirection: function(angle)
+	getSwipeDirection(angle)
 	{
-		var direction;
+		let direction;
 		if(angle <= 45 && angle >= 0)
 		{
 			direction = 'left';
@@ -400,31 +399,31 @@ var TouchSlider = Class.extend(
 			direction = 'up';
 		}
 		return direction;
-	},
+	}
 
-	isLeftRight: function()
+	isLeftRight()
 	{
-		var angle = this.calculateAngle();
-		var direction = this.getSwipeDirection(angle);
+		let angle = this.calculateAngle();
+		let direction = this.getSwipeDirection(angle);
 		if(direction === 'left' || direction === 'right')
 		{
 			return true;
 		}
 		return false;
-	},
+	}
 
-	canMove: null,
+	canMove = null;
 
-	shouldMove: function()
+	shouldMove()
 	{
 		if(this.canMove === null)
 		{
 			this.canMove = this.isLeftRight()? true : false;
 		}
 		return this.canMove;
-	},
+	}
 
-	start: function(e)
+	start(e)
 	{
 		if(this.preventTouch === false)
 		{
@@ -433,14 +432,14 @@ var TouchSlider = Class.extend(
 			this.getSlideWidth();
 			this.contact = true;
 
-			var pos = this.getEventPosition(e);
+			let pos = this.getEventPosition(e);
 			this.startX = pos.x;
 			this.startY = pos.y;
 			this.move(e);
 		}
-	},
+	}
 
-	move: function(e)
+	move(e)
 	{
 		if(this.preventTouch === false)
 		{
@@ -451,12 +450,12 @@ var TouchSlider = Class.extend(
 				return false;
 			}
 
-			var pos = this.getEventPosition(e);
-			var posX = pos.x;
+			let pos = this.getEventPosition(e);
+			let posX = pos.x;
 			this.moveX = this.index * this.slideWidth + (this.startX - posX);
 			this.moveY = pos.y;
 
-			var distance = Math.abs(this.moveX);
+			let distance = Math.abs(this.moveX);
 			if(distance <= this.minimum)
 			{
 				return false;
@@ -472,14 +471,14 @@ var TouchSlider = Class.extend(
 			this.moveX = (this.moveX * -1);
 			this.moveContainer(this.moveX);
 		}
-	},
+	}
 
-	moveContainer: function(number)
+	moveContainer(number)
 	{
 		this.container.style.transform = 'translate3d(' + number + 'px,0,0)';
-	},
+	}
 
-	end: function(e)
+	end(e)
 	{
 		/* we need to block any mouseout events if the mouse
 		is not down */
@@ -490,14 +489,10 @@ var TouchSlider = Class.extend(
 
 			/* this is to check if the panel is being moved in
 			the negative direction */
-			if(this.moveX > 0)
-			{
-
-			}
-			else
+			if(this.moveX <= 0)
 			{
 				// Calculate the distance swiped.
-				var absMove = Math.abs(this.index * this.slideWidth - this.moveX);
+				let absMove = Math.abs(this.index * this.slideWidth - this.moveX);
 				/* convert to positive number */
 				this.moveX = Math.abs(this.moveX);
 
@@ -521,4 +516,4 @@ var TouchSlider = Class.extend(
 		this.canMove = null;
 		this.preventTouch = false;
 	}
-});
+}
