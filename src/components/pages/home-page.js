@@ -17,7 +17,7 @@ export const HomePage = () => (
 					Div({ class: 'content' })
 				])
 			]),
-			Article({ class: 'main-home-menu' }, [
+			Article({ class: 'home-base-panel' }, [
 				Div({ class: 'row logo-container' }, [
 					Div({ class: 'background background-mask' }),
 					Div({ class: 'game-name-container' }, [
