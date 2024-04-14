@@ -1,6 +1,6 @@
 import { Article, Div, Section } from "@base-framework/atoms";
 import { Atom, Component } from "@base-framework/base";
-import { Swipe } from "./swipe";
+import { Swipe } from "./swipe.js";
 
 /**
  * @type {string} STEP_CLASS_NAME
@@ -11,9 +11,10 @@ const STEP_CLASS_NAME = 'step';
  * This will create the step.
  *
  * @param {object} props
+ * @param {number} index
  * @returns {object}
  */
-const Step = Atom((props) => Section({ ...props, class: STEP_CLASS_NAME }));
+const Step = (props, index) => Section({class: STEP_CLASS_NAME }, [ props ]);
 
 /**
  * This will create the crumb.
@@ -70,7 +71,8 @@ export class TouchSlider extends Component
      */
     render()
     {
-        return Article({ class: 'touch-slider step-container', ...this.getEvents(), map: [this.items, Step] }, [
+        return Article({ class: 'touch-slider step-container' }, [
+			Div({ cache: 'slider', class: 'step-slider-container', ...this.getEvents(), map: [this.items, Step] }),
 			CrumbContainer({ map: [this.items, Crumb] })
 		]);
     }
@@ -126,7 +128,7 @@ export class TouchSlider extends Component
 	 */
     getSteps()
 	{
-		let items = this.panel.querySelectorAll('.' + STEP_CLASS_NAME);
+		let items = this.slider.querySelectorAll('.' + STEP_CLASS_NAME);
 		if (!items)
 		{
 			return [];
@@ -343,7 +345,7 @@ export class TouchSlider extends Component
 		}
 		else
 		{
-			const parentWidth = this.panel.offsetWidth;
+			const parentWidth = this.slider.offsetWidth;
 			/* we need to get the width each step should be
 			by the number of steps in view */
 			width = this.stepWidth = (parentWidth / this.viewNumber);
@@ -398,10 +400,10 @@ export class TouchSlider extends Component
 	{
 		if (this.preventTouch === false)
 		{
-			return;
+			//return;
 		}
 
-        this.panel.classList.add('active');
+        this.slider.classList.add('active');
 
         this.getStepWidth();
         this.contact = true;
@@ -462,7 +464,7 @@ export class TouchSlider extends Component
 	 */
 	moveContainer(number)
 	{
-		this.panel.style.transform = 'translate3d(' + number + 'px,0,0)';
+		this.slider.style.transform = 'translate3d(' + number + 'px,0,0)';
 	}
 
 	/**
@@ -477,7 +479,7 @@ export class TouchSlider extends Component
 		is not down */
 		if (this.contact === true)
 		{
-			this.panel.classList.remove('active');
+			this.slider.classList.remove('active');
 			this.contact = false;
 
 			/* this is to check if the panel is being moved in

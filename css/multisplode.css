@@ -116,19 +116,25 @@ svg{
 	pointer-events: all;
 }
 
-.touch-slider {
-    -webkit-transition: transform 0.3s ease-out;
+.touch-slider .step-slider-container {
+	display: table;
+    min-height: 0px;
+    width: 300%;
+    height: 100%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+	-webkit-transition: transform 0.3s ease-out;
     -moz-transition: transform 0.3s ease-out;
     transition: transform 0.3s ease-out;
 	cursor: move;
 	will-change: opacity, transform;
 }
-.touch-slider.active {
+.touch-slider .step-slider-container.active {
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
 }
-.touch-slider * {
+.touch-slider .step-slider-container * {
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
@@ -295,21 +301,13 @@ svg{
     overflow: visible;
     z-index: 1;
 }
-.control-sub-panel .step-container {
-    display: table;
-    min-height: 0px;
-    width: 300%;
-    height: 100%;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
 .control-sub-panel .step-container .step {
     display: table-cell;
     min-height: 0px;
     width: 31%;
     height: 100%;
 }
-.control-sub-panel .touch-slider * {
+.control-sub-panel .touch-slider .step-slider-container * {
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;

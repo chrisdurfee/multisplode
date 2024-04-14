@@ -99,7 +99,7 @@ export class Swipe
 	 *
 	 * @returns {boolean}
 	 */
-	isLeftRight()
+	static isLeftRight()
 	{
 		const angle = this.calculateAngle();
 		const direction = this.getSwipeDirection(angle);
