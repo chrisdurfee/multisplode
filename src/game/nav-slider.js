@@ -1,8 +1,7 @@
-"use strict";
 
-var NavSlider = Class.extend(
+export class NavSlider extends Class
 {
-	constructor: function(callBackFn, container)
+	constructor(callBackFn, container)
 	{
 		this.viewNumber = null;
 		this.optionsArray = [];
@@ -17,29 +16,29 @@ var NavSlider = Class.extend(
 		this.navContainer = null;
 		this.container = this.getContainer(container);
 		this.getParentWidth();
-	},
+	}
 
-	setup: function(options)
+	setup(options)
 	{
 		this.createOptionContainer();
 		this.setupOptions(options);
 		this.reset();
 		this.setupEvents();
-	},
+	}
 
-	reset: function()
+	reset()
 	{
 		this.moveToSelectedOption(this.optionsArray[0]);
-	},
+	}
 
-	remove: function()
+	remove()
 	{
 		this.optionsArray = [];
 		this.viewNumber = null;
 		this.removeEvents();
-	},
+	}
 
-	getContainer: function(container)
+	getContainer(container)
 	{
 		if(container && typeof container === 'object')
 		{
@@ -47,46 +46,46 @@ var NavSlider = Class.extend(
 		}
 		else
 		{
-			var element = document.querySelector(container);
+			let element = document.querySelector(container);
 			if(element)
 			{
 				return element;
 			}
 		}
 		return false;
-	},
+	}
 
-	getParentWidth: function()
+	getParentWidth()
 	{
 		if(this.container)
 		{
-			var rect = this.container.getBoundingClientRect();
+			let rect = this.container.getBoundingClientRect();
 			this.parentWidth = rect.width;
 		}
-	},
+	}
 
-	createOptionContainer: function()
+	createOptionContainer()
 	{
-		var container = this.container;
+		let container = this.container;
 		if(container)
 		{
-			var obj = this.navContainer = document.createElement('ul');
+			let obj = this.navContainer = document.createElement('ul');
 			obj.className = 'option-container';
 			container.appendChild(obj);
 		}
-	},
+	}
 
-	setupEvents: function()
+	setupEvents()
 	{
-		var container = this.navContainer;
+		let container = this.navContainer;
 
 		/* this will bind our object to our callback methods */
-		var start = this.start.bind(this),
+		let start = this.start.bind(this),
 		end = this.end.bind(this),
 		move = this.move.bind(this),
 		resize = this.resize.bind(this);
 
-		this.addEvents = function()
+		this.addEvents = () =>
 		{
 			container.addEventListener('touchstart', start);
 			container.addEventListener('mousedown', start);
@@ -101,7 +100,7 @@ var NavSlider = Class.extend(
 			window.addEventListener('resize', resize);
 		};
 
-		this.removeEvents = function()
+		this.removeEvents = () =>
 		{
 			container.removeEventListener('touchstart', start);
 			container.removeEventListener('mousedown', start);
@@ -117,15 +116,15 @@ var NavSlider = Class.extend(
 		};
 
 		this.addEvents();
-	},
+	}
 
-	setupOptions: function(options)
+	setupOptions(options)
 	{
 		if(options)
 		{
-			for(var i = 0, length = options.length; i < length; i++)
+			for(let i = 0, length = options.length; i < length; i++)
 			{
-				var option = options[i];
+				let option = options[i];
 				if(option)
 				{
 					option = this.addOption(option);
@@ -133,11 +132,11 @@ var NavSlider = Class.extend(
 			}
 			this.resize();
 		}
-	},
+	}
 
-	addOption: function(label)
+	addOption(label)
 	{
-		var element = document.createElement('li');
+		let element = document.createElement('li');
 		element.className = 'option title-text';
 		element.textContent = label;
 		element.onclick = Utilities.createCallBack(this, this.moveToSelectedElement, [element]);
@@ -149,77 +148,77 @@ var NavSlider = Class.extend(
 			element: element,
 			selected: false
 		});
-	},
+	}
 
-	moveToSelectedElement: function(element)
+	moveToSelectedElement(element)
 	{
 		if(element)
 		{
-			var option = this.getOptionByElement(element);
+			let option = this.getOptionByElement(element);
 			if(option)
 			{
 				this.moveToSelectedOption(option);
 			}
 		}
-	},
+	}
 
-	moveToSelectedOption: function(option)
+	moveToSelectedOption(option)
 	{
 		if(option)
 		{
 			this.selectOption(option);
 			this.moveToElement(option.element);
 		}
-	},
+	}
 
-	moveToSelectedIndex: function(index)
+	moveToSelectedIndex(index)
 	{
-		var option = this.optionsArray[index];
+		let option = this.optionsArray[index];
 		if(option)
 		{
 			this.selectOption(option, true);
 			this.moveToElement(option.element);
 		}
-	},
+	}
 
-	selectOptionByIndex: function(index)
+	selectOptionByIndex(index)
 	{
-		var options = this.optionsArray;
-		for(var i = 0, length = options.length; i < length; i++)
+		let options = this.optionsArray;
+		for(let i = 0, length = options.length; i < length; i++)
 		{
-			var option = options[i];
+			let option = options[i];
 			if(i === index)
 			{
 				this.selectOption(option);
 			}
 		}
 		return false;
-	},
+	}
 
-	getOptionByElement: function(element)
+	getOptionByElement(element)
 	{
-		var options = this.optionsArray;
-		for(var i = 0, length = options.length; i < length; i++)
+		let options = this.optionsArray;
+		for(let i = 0, length = options.length; i < length; i++)
 		{
-			var option = options[i];
+			let option = options[i];
 			if(option.element === element)
 			{
 				return option;
 			}
 		}
 		return false;
-	},
+	}
 
-	selectPrimaryOption: function()
+	selectPrimaryOption()
 	{
-		var option = this.optionsArray[0];
+		let option = this.optionsArray[0];
 		if(option)
 		{
 			this.selectOption(option);
 		}
-	},
+	}
 
-	selectOption: function(option, cancelCallBack)
+	selectOption(option, cancelCallBack)
 	{
 		if(option)
 		{
@@ -233,14 +232,14 @@ var NavSlider = Class.extend(
 				this.callBackFn(option.number);
 			}
 		}
-	},
+	}
 
-	updateSelectOption: function(selection)
+	updateSelectOption(selection)
 	{
-		var options = this.optionsArray;
-		for(var i = 0, length = options.length; i < length; i++)
+		let options = this.optionsArray;
+		for(let i = 0, length = options.length; i < length; i++)
 		{
-			var option = options[i],
+			let option = options[i],
 			crumb = option.crumb;
 			if(option !== selection)
 			{
@@ -248,20 +247,20 @@ var NavSlider = Class.extend(
 				option.selected = false;
 			}
 		}
-	},
+	}
 
-	resize: function()
+	resize()
 	{
 		this.getParentWidth();
 		if(this.selection)
 		{
 			this.moveToElement(this.selection.element);
 		}
-	},
+	}
 
-	getEventX: function(e)
+	getEventX(e)
 	{
-		var x = 0;
+		let x = 0;
 		if(e)
 		{
 			if(e.touches)
@@ -274,9 +273,9 @@ var NavSlider = Class.extend(
 			}
 		}
 		return x;
-	},
+	}
 
-	start: function(e)
+	start(e)
 	{
 		this.container.classList.add('active');
 		this.getParentWidth();
@@ -284,9 +283,9 @@ var NavSlider = Class.extend(
 		this.contact = true;
 		this.startX = this.getEventX(e) - this.posX;
 		this.move(e);
-	},
+	}
 
-	move: function(e)
+	move(e)
 	{
 		/* this will check to ignor if the movement by mouse
 		is not mousedown also */
@@ -295,7 +294,7 @@ var NavSlider = Class.extend(
 			return false;
 		}
 
-		var posX = this.getEventX(e);
+		let posX = this.getEventX(e);
 		this.moveX = (this.startX - posX);
 
 		/* this will reversethe direction to scroll in the direction
@@ -303,47 +302,47 @@ var NavSlider = Class.extend(
 		this.moveX = (this.moveX * -1);
 		this.moveContainer(this.moveX);
 		this.checkSelectedElement();
-	},
+	}
 
-	posX: 0,
-	moveContainer: function(number)
+	posX = 0;
+	moveContainer(number)
 	{
 		this.posX = number;
 		this.navContainer.style.transform = 'translate3d(' + number + 'px,0,0)';
-	},
+	}
 
-	checkSelectedElement: function()
+	checkSelectedElement()
 	{
-		var center = this.parentWidth / 2;
-		var options = this.optionsArray;
-		var offset = 0;
-		for(var i = 0, length = options.length; i < length; i++)
+		let center = this.parentWidth / 2;
+		let options = this.optionsArray;
+		let offset = 0;
+		for(let i = 0, length = options.length; i < length; i++)
 		{
-			var option = options[i];
+			let option = options[i];
 			if(option)
 			{
-				var selected = this.contains(option.element, center, 10);
+				let selected = this.contains(option.element, center, 10);
 				if(selected === true)
 				{
 					this.selectOption(option);
 				}
 			}
 		}
-	},
+	}
 
-	moveToElement: function(element)
+	moveToElement(element)
 	{
-		var center = this.parentWidth / 2;
-		var element = this.selection.element;
-		var rect = element.getBoundingClientRect();
-		var offset = center - element.offsetLeft - (rect.width / 2);
+		let center = this.parentWidth / 2;
+		let element = this.selection.element;
+		let rect = element.getBoundingClientRect();
+		let offset = center - element.offsetLeft - (rect.width / 2);
 		this.moveContainer(offset);
-	},
+	}
 
-	getElementOffset: function(element)
+	getElementOffset(element)
 	{
-		var rect = element.getBoundingClientRect();
-		/*var pX =  this.posX + element.offsetLeft,
+		let rect = element.getBoundingClientRect();
+		/*let pX =  this.posX + element.offsetLeft,
 		pY = element.offsetTop,
 		width = rect.width,
 		height = rect.height;*/
@@ -354,15 +353,15 @@ var NavSlider = Class.extend(
 			width: rect.width,
 			height: rect.height
 		};
-	},
+	}
 
-	contains: function(element, x, y)
+	contains(element, x, y)
 	{
-		var offset = this.getElementOffset(element);
+		let offset = this.getElementOffset(element);
 		return (offset.x <= x) && (offset.x + offset.width >= x) && (offset.y <= y) && (offset.y + offset.height >= y);
-	},
+	}
 
-	end: function(e)
+	end(e)
 	{
 		/* we need to block any mouseout events if the mouse
 		is not down */
@@ -371,9 +370,9 @@ var NavSlider = Class.extend(
 			this.container.classList.remove('active');
 			this.contact = false;
 
-			var center = this.parentWidth / 2;
-			var element = this.selection.element;
+			let center = this.parentWidth / 2;
+			let element = this.selection.element;
 			this.moveToElement(element);
 		}
 	}
-});
+}

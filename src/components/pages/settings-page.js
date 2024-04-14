@@ -1,5 +1,19 @@
 import { A, Article, Button, Div, Header, Label, Section, Span } from "@base-framework/atoms";
-import { Page } from "./page.js";
+import { ControlPage } from "../organisms/touch-slider/control-page.js";
+import { TouchSlider } from "../organisms/touch-slider/touch-slider.js";
+
+/**
+ * This will select by step.
+ * @param {number} index
+ * @returns {void}
+ */
+function selectByStep(index)
+{
+	if (this.nav)
+	{
+		this.nav.moveToSelectedIndex(index);
+	}
+}
 
 /**
  * SettingsPage
@@ -9,7 +23,7 @@ import { Page } from "./page.js";
  * @returns {object}
  */
 export const SettingsPage = () => (
-	new Page([
+	new ControlPage([
 		Article({ class: 'control-sub-panel settings-container overlay-panel open' }, [
 			Section({ class: 'home-sub-panel settings-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [
@@ -20,10 +34,12 @@ export const SettingsPage = () => (
 						])
 					])
 				]),
-				Header({ id: 'settings-nav-container', class: 'title-container' }),
+				Header({ class: 'title-container' }),
 				Div({ class: 'main-step-container' }, [
-					Article({ id: 'settings-step-panel', class: 'touch-slider step-container' }, [
-						Section({ class: 'step' }, [
+					new TouchSlider({
+						cache: 'touch',
+						callBackFn: selectByStep,
+						items: [
 							Div({ class: 'content settings-sub-panel audio-container' }, [
 								Header({ class: 'title-text' }, 'Audio'),
 								Div({ class: 'row' }, [
@@ -34,9 +50,7 @@ export const SettingsPage = () => (
 									Label({ class: 'title' }, 'Sound fx'),
 									Div({ id: 'sound-fx-toggle', class: 'value-container' })
 								])
-							])
-						]),
-						Section({ class: 'step' }, [
+							]),
 							Div({ class: 'content settings-sub-panel audio-container' }, [
 								Header({ class: 'title-text' }, 'Video'),
 								Div({ class: 'row' }, [
@@ -47,9 +61,7 @@ export const SettingsPage = () => (
 										Button({ id: 'graphics-next', type: 'button', class: 'value-button arrow next' })
 									])
 								])
-							])
-						]),
-						Section({ class: 'step' }, [
+							]),
 							Div({ class: 'content settings-sub-panel about-container' }, [
 								Header({ class: 'title-text' }, 'Credits'),
 								Div({ class: 'row' }, [
@@ -65,8 +77,8 @@ export const SettingsPage = () => (
 									Div({ class: 'value-container' }, 'Chris Durfee')
 								])
 							])
-						])
-					])
+						]
+					})
 				])
 			])
 		])

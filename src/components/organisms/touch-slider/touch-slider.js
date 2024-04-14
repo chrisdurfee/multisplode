@@ -11,18 +11,18 @@ const STEP_CLASS_NAME = 'step';
  * This will create the step.
  *
  * @param {object} props
- * @param {array} children
  * @returns {object}
  */
-const Step = Atom((props, children) => Section({ ...props, class: STEP_CLASS_NAME }, children));
+const Step = Atom((props) => Section({ ...props, class: STEP_CLASS_NAME }));
 
 /**
  * This will create the crumb.
  *
  * @param {object} props
+ * @param {number} index
  * @returns {object}
  */
-const Crumb = Atom((props) => Div({ ...props, class: 'option' }));
+const Crumb = (props, index) => Div({ ...props, class: 'option', cick: (e, parent) => parent.moveToSelectedIndex(index) });
 
 /**
  * This will create the crumb container.
@@ -46,6 +46,23 @@ const CrumbContainer = Atom((props, children) => (
  */
 export class TouchSlider extends Component
 {
+	onCreated()
+	{
+		this.viewNumber = null;
+		this.steps = [];
+		this.index = 0;
+		this.stepWidth = null;
+
+		this.minimum = 72;
+		this.moveX = 0;
+		this.startX = 0;
+		this.moveY = 0;
+		this.startY = 0;
+		this.contact = false;
+		this.preventTouch = false;
+		this.preventScroll = false;
+	}
+
     /**
      * This will render the touch slider.
      *
@@ -53,11 +70,44 @@ export class TouchSlider extends Component
      */
     render()
     {
-        return Article({ class: 'touch-slider step-container' }, [
+        return Article({ class: 'touch-slider step-container', ...this.getEvents() }, [
 			Div({ map: [this.items, Step] }),
 			CrumbContainer({ map: [this.items, Crumb] })
 		]);
     }
+
+	/**
+	 * This will get the events.
+	 *
+	 * @returns {object}
+	 */
+	getEvents()
+	{
+		const start = this.start.bind(this),
+		move = this.move.bind(this),
+		end = this.end.bind(this);
+
+		return {
+			touchstart: start,
+			mousedown: start,
+
+			touchmove: move,
+			mousemove: move,
+
+			touchend: end,
+			mouseup: end,
+			mouseout: end
+		};
+	}
+
+	setupEvents()
+	{
+		const resize = this.getStepWidth.bind(this);
+
+		return [
+			['resize', window, resize],
+		];
+	}
 
 	/**
 	 * This will create the touch slider.
@@ -77,7 +127,7 @@ export class TouchSlider extends Component
 	 */
     getSteps()
 	{
-		let items = this.panel.querySelectorAll(STEP_CLASS_NAME);
+		let items = this.panel.querySelectorAll('.' + STEP_CLASS_NAME);
 		if (!items)
 		{
 			return [];
@@ -289,12 +339,12 @@ export class TouchSlider extends Component
 		let width;
 		if (this.viewNumber === null)
 		{
-			const element = steps[0].element;
+			const element = steps[0].ele;
 			width = element.offsetWidth;
 		}
 		else
 		{
-			const parentWidth = this.container.offsetWidth;
+			const parentWidth = this.panel.offsetWidth;
 			/* we need to get the width each step should be
 			by the number of steps in view */
 			width = this.stepWidth = (parentWidth / this.viewNumber);
@@ -428,7 +478,7 @@ export class TouchSlider extends Component
 		is not down */
 		if (this.contact === true)
 		{
-			this.container.classList.remove('active');
+			this.panel.classList.remove('active');
 			this.contact = false;
 
 			/* this is to check if the panel is being moved in
