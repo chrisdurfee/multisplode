@@ -8,7 +8,7 @@ import { Component } from "@base-framework/base";
  * @param {number} index
  * @returns {object}
  */
-const Link = (props, index) => Li({ class: 'option title-text', click: (e, parent) => parent.moveToSelectedIndex(index) }, props);
+const Link = (props, index) => Li({ class: 'option title-text', click: (e, parent) => parent.moveToSelectedElement(e.target) }, props);
 
 /**
  * NavSlider
