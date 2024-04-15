@@ -51,7 +51,7 @@ export const SettingsPage = () => (
 						])
 					])
 				]),
-				new NavSlider({ callBackFn: selectByLink, items: ['audio', 'video', 'about'] }),
+				new NavSlider({ cache: 'nav', callBackFn: selectByLink, items: ['audio', 'video', 'about'] }),
 				Div({ class: 'main-step-container' }, [
 					new TouchSlider({
 						cache: 'touch',

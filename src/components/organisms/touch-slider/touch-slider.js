@@ -283,7 +283,7 @@ export class TouchSlider extends Component
 	 */
 	selectStep(step, cancelCallBack)
 	{
-		if (step)
+		if (!step)
 		{
 			return;
 		}
@@ -293,7 +293,7 @@ export class TouchSlider extends Component
 
 		if (typeof this.callBackFn === 'function' && cancelCallBack !== true)
 		{
-			this.callBackFn(step.number);
+			this.callBackFn(step.index);
 		}
 	}
 

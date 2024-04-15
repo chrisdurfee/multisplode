@@ -84,8 +84,8 @@ export class NavSlider extends Component
 	afterSetup()
 	{
         this.getOptions();
-        this.resize();
         this.reset();
+        window.setTimeout(() => this.resize(), 10);
 	}
 
     /**
