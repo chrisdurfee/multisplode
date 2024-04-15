@@ -9,7 +9,7 @@ export class Toggle extends Component
         return Div( { class: 'data-toggle-panel' }, [
             Checkbox({ id: checkboxId, cache: 'checkbox', class: 'toggle', change: this.change.bind(this), checked: this.checked }),
             Label({ class: 'toggle-bttn', htmlFor: checkboxId })
-        ])
+        ]);
     }
 
     isChecked(e)
