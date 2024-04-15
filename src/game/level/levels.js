@@ -1,6 +1,5 @@
-"use strict";
 
-var Levels =
+export const Levels =
 {
 	/* this will store the current level and the
 	levels options */
@@ -11,43 +10,37 @@ var Levels =
 	packs: [],
 	activePack: null,
 
-	setupActivePack: function()
+	setupActivePack()
 	{
-		var pack;
-		var packs = this.packs;
-		for(var i = 0, length = packs.length; i < length; i++)
+		if (this.packs.length > 0)
 		{
-			pack = packs[i];
-			if(i === 0)
-			{
-				this.activePack = pack;
-				this.activeLevels = pack.setupLevels();
-			}
+			this.activePack = this.packs[0];
+			this.activeLevels = this.activePack.setupLevels();
 		}
 	},
 
-	addLevelPack: function(pack)
+	addLevelPack(pack)
 	{
 		this.packs.push(pack);
 	},
 
 	/* this will setup each of the levels */
-	setup: function()
+	setup()
 	{
 		this.setupActivePack();
 	},
 
 	/* this will select the last played level
 	or first unlocked level */
-	selectPrimaryLevel: function()
+	selectPrimaryLevel()
 	{
-		var level = this.getPrimaryLevel();
+		let level = this.getPrimaryLevel();
 		this.selectLevel(level);
 	},
 
-	getPrimaryLevel: function()
+	getPrimaryLevel()
 	{
-		var lastPlayed = Data.get('lastLevel');
+		let lastPlayed = Data.get('lastLevel');
 		if(lastPlayed)
 		{
 			return this.activeLevels[lastPlayed.number - 1];
@@ -57,13 +50,13 @@ var Levels =
 
 	/* this will get the first unlocked level
 	@returns (object) the level */
-	getFirstUnlockedLevels: function()
+	getFirstUnlockedLevels()
 	{
-		var activeLevels = this.activeLevels,
+		let activeLevels = this.activeLevels,
 		previousLevel = false;
-		for(var i = 0, count = activeLevels.length; i < count; i++)
+		for(let i = 0, count = activeLevels.length; i < count; i++)
 		{
-			var tmpLevel = activeLevels[i];
+			let tmpLevel = activeLevels[i];
 			if(tmpLevel.locked === true)
 			{
 				if(previousLevel)
@@ -80,61 +73,12 @@ var Levels =
 		return activeLevels[0];
 	},
 
-	/* this will setup the level select options. */
-	setupLevelSelect: function()
+	getLevelByNumber(levelNumber)
 	{
-		var container = document.getElementById('level_select_panel'),
-		self = this;
-
-		var createLevelButton = function(levelObj)
+		let activeLevels = this.activeLevels;
+		for(let i = 0, count = activeLevels.length; i < count; i++)
 		{
-			var obj = document.createElement('div');
-			obj.innerHTML = '<div class="content">' + levelObj.number + '</div>';
-			var classList = (levelObj.locked === false)? ' unlocked' : '';
-			if(levelObj === currentLevel)
-			{
-				classList += ' selected';
-			}
-			obj.className = 'bttn option circle fadeIn' + classList;
-			if(levelObj.locked === false)
-			{
-				obj.onclick = function()
-				{
-					self.selectLevel(levelObj);
-				};
-			}
-			return obj;
-		};
-
-		container.innerHTML = '';
-		var levelArray = this.activeLevels,
-		currentLevel = this.getPrimaryLevel();
-
-		var updateLevels = function()
-		{
-			/* we want to add all the new elements to a
-			document fragment then add the fragment to
-			the container */
-			var frag = document.createDocumentFragment();
-
-			for(var i = 0, maxLength = levelArray.length; i < maxLength; i++)
-			{
-				var obj = createLevelButton(levelArray[i]);
-				frag.appendChild(obj);
-			}
-
-			container.appendChild(frag);
-			container.style.display = 'flex';
-		};
-		window.setTimeout(updateLevels, 350);
-	},
-
-	getLevelByNumber: function(levelNumber)
-	{
-		var activeLevels = this.activeLevels;
-		for(var i = 0, count = activeLevels.length; i < count; i++)
-		{
-			var tmpLevel = activeLevels[i];
+			let tmpLevel = activeLevels[i];
 			if(levelNumber === tmpLevel.level)
 			{
 				return tmpLevel;
@@ -143,13 +87,13 @@ var Levels =
 		return false;
 	},
 
-	selectLevel: function(level, cancelPrompts)
+	selectLevel(level, cancelPrompts)
 	{
 		if(level)
 		{
 			this.setupPreviousLevel();
 
-			var activePack = this.activePack;
+			let activePack = this.activePack;
 
 			game.setStageLevelController(activePack.controller);
 
@@ -161,7 +105,7 @@ var Levels =
 		}
 	},
 
-	setupPreviousLevel: function()
+	setupPreviousLevel()
 	{
 		if(this.currentLevel && this.lastSelectedLevel !== this.currentLevel)
 		{
@@ -169,18 +113,18 @@ var Levels =
 		}
 	},
 
-	unlockNextLevel: function()
+	unlockNextLevel()
 	{
-		var nextLevel = this.getNextLevel();
+		let nextLevel = this.getNextLevel();
 		if(nextLevel)
 		{
 			nextLevel.unlock();
 		}
 	},
 
-	isNextLevelLocked: function()
+	isNextLevelLocked()
 	{
-		var nextLevel = this.getNextLevel();
+		let nextLevel = this.getNextLevel();
 		if(nextLevel)
 		{
 			return nextLevel.locked;
@@ -188,7 +132,7 @@ var Levels =
 		return true;
 	},
 
-	retryLevel: function()
+	retryLevel()
 	{
 		if(this.currentLevel)
 		{
@@ -196,39 +140,39 @@ var Levels =
 		}
 	},
 
-	getNextLevel: function()
+	getNextLevel()
 	{
-		var activeLevels = this.activeLevels,
+		let activeLevels = this.activeLevels,
 		index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
-		var nextLevelIndex = (index < activeLevels.length - 1)? ++index : 0;
+		let nextLevelIndex = (index < activeLevels.length - 1)? ++index : 0;
 		return activeLevels[nextLevelIndex];
 	},
 
-	selectNextLevel: function()
+	selectNextLevel()
 	{
-		var nextLevel = this.getNextLevel();
+		let nextLevel = this.getNextLevel();
 		if(nextLevel)
 		{
 			this.selectLevel(nextLevel);
 		}
 	},
 
-	levelSummary: function()
+	levelSummary()
 	{
 		this.activePack.levelSummary();
 	},
 
-	getPreviousLevel: function()
+	getPreviousLevel()
 	{
-		var activeLevels = this.activeLevels,
+		let activeLevels = this.activeLevels,
 		index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
-		var previousLevelIndex = (index > 0)? --index : activeLevels.length - 1;
+		let previousLevelIndex = (index > 0)? --index : activeLevels.length - 1;
 		return activeLevels[previousLevelIndex];
 	},
 
-	selectPreviousLevel: function()
+	selectPreviousLevel()
 	{
-		var previousLevel = this.getPreviousLevel();
+		let previousLevel = this.getPreviousLevel();
 		if(previousLevel)
 		{
 			this.selectLevel(previousLevel);

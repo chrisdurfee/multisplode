@@ -1,5 +1,6 @@
 import { Audio, Div, Main } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
+import { LevelPage } from '../pages/level-page.js';
 import { SettingsPage } from '../pages/settings-page.js';
 import { Routes } from './routes.js';
 
@@ -48,6 +49,10 @@ export const AppShell = () => (
 			{
 				uri: '/home/settings',
 				component: SettingsPage()
+			},
+			{
+				uri: '/home/levels',
+				component: LevelPage()
 			}
 		] }),
 		Audio({ id: 'sound_fx', cache: 'soundFx', class: 'sound', src: 'sound/music/play-loop.mp3', loop: true })

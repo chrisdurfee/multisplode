@@ -3,6 +3,7 @@
 	top:0px;
 	right:0px;
 	width:100%;
+	backdrop-filter: blur(10px);
 }
 .level-select-container .step-container {
     width: 100%;
@@ -18,7 +19,7 @@
     width: 100%;
     height: 100%;
 }
-.level-select-container .select-panel{
+.level-select-container .step {
 	display: flex;
 	-webkit-flex-direction: row;
     flex-direction: row;
@@ -28,7 +29,7 @@
 	overflow-x:hidden;
 	z-index:1;
 }
-.level-select-container .select-panel .option{
+.level-select-container .step .option{
 	position:relative;
 	background:none;
 	width: 10.66%;
@@ -41,30 +42,30 @@
 	color:#FFF;
 	border:1px solid rgba(255,255,255,0.5);
 }
-.level-select-container .select-panel .option .content{
+.level-select-container .step .option .content{
 	background:url(../../../images/lock-icon.svg) no-repeat center;
 	background-size:38%;
 	color:transparent;
 }
-.level-select-container .select-panel .option.unlocked:hover{
+.level-select-container .step .option.unlocked:hover{
 	background:#FF4881;
 }
-.level-select-container .select-panel .option.unlocked .content{
+.level-select-container .step .option.unlocked .content{
 	background:none;
 	color:#FFF;
 }
-.level-select-container .select-panel .option.unlocked:active{
+.level-select-container .step .option.unlocked:active{
 	background:rgba(255,255,255,.3);
 }
-.level-select-container .select-panel .option.unlocked{
+.level-select-container .step .option.unlocked{
 	background:none;
 	border:1px solid #FFF;
 }
-.level-select-container .select-panel .option.selected{
+.level-select-container .step .option.selected{
 	background:#FF4881;
 	color:#FFF;
 }
-.level-select-container .select-panel .option.selected:after{
+.level-select-container .step .option.selected:after{
 	content:'';
 	position:absolute;
 	top:-7px;
