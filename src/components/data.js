@@ -28,7 +28,7 @@ export const Data =
 	/**
 	 * This will setup our data module.
 	 *
-	 * @returns {void}
+	 * @returns {self}
 	 */
 	setup()
 	{
@@ -36,6 +36,8 @@ export const Data =
 		{
 			this.storage = window.localStorage;
 		}
+
+        return this;
 	},
 
 	/**
@@ -88,4 +90,4 @@ export const Data =
 			this.storage.clear();
 		}
 	}
-};
+}.setup();

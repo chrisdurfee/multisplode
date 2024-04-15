@@ -1,5 +1,7 @@
-import { A, Article, Button, Div, Header, Label, Section, Span } from "@base-framework/atoms";
+import { A, Article, Div, Header, Label, Section, Span } from "@base-framework/atoms";
+import { Data } from "../data.js";
 import { NavSlider } from "../organisms/nav-slider/nav-slider.js";
+import { OptionValue } from "../organisms/option-value.js";
 import { Toggle } from "../organisms/toggle.js";
 import { ControlPage } from "../organisms/touch-slider/control-page.js";
 import { TouchSlider } from "../organisms/touch-slider/touch-slider.js";
@@ -32,6 +34,8 @@ function selectByLink(index)
 	}
 }
 
+const audio = Data.get('audio') || false;
+const music = Data.get('music') || false;
 
 /**
  * SettingsPage
@@ -62,14 +66,26 @@ export const SettingsPage = () => (
 								Header({ class: 'title-text' }, 'Audio'),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Music'),
-									Div({ id: 'music-toggle', class: 'value-container' }, [
-										new Toggle()
+									Div({ class: 'value-container' }, [
+										new Toggle({
+											checked: music,
+											callBack: (checked) =>
+											{
+												Data.set('music', checked);
+											}
+										})
 									])
 								]),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Sound fx'),
-									Div({ id: 'sound-fx-toggle', class: 'value-container' }, [
-										new Toggle()
+									Div({ class: 'value-container' }, [
+										new Toggle({
+											checked: audio,
+											callBack: (checked) =>
+											{
+												Data.set('audio', checked);
+											}
+										})
 									])
 								])
 							]),
@@ -77,11 +93,7 @@ export const SettingsPage = () => (
 								Header({ class: 'title-text' }, 'Video'),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Graphics'),
-									Div({ class: 'value-container' }, [
-										Button({ id: 'graphics-previous', type: 'button', class: 'value-button arrow prev' }),
-										Button({ id: 'graphics', type: 'button', class: 'value-button' }),
-										Button({ id: 'graphics-next', type: 'button', class: 'value-button arrow next' })
-									])
+									new OptionValue({ dataProp: 'graphics', options: ['low', 'medium', 'high'] })
 								])
 							]),
 							Div({ class: 'content settings-sub-panel about-container' }, [
