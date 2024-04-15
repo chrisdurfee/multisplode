@@ -1,3 +1,4 @@
+import { Header, Li, Ul } from "@base-framework/atoms";
 import { Component } from "@base-framework/base";
 
 /**
@@ -7,7 +8,7 @@ import { Component } from "@base-framework/base";
  * @param {number} index
  * @returns {object}
  */
-const Step = (props, index) => Section({class: STEP_CLASS_NAME }, [ props ]);
+const Link = (props, index) => Li({class: 'option title-text' }, [ props ]);
 
 /**
  * NavSlider
@@ -37,154 +38,121 @@ export class NavSlider extends Component
      */
     render()
     {
-        return Article({ class: 'touch-slider step-container' }, [
-			Div({ cache: 'slider', class: 'step-slider-container', ...this.getEvents(), map: [this.items, Step] }),
-			CrumbContainer({ map: [this.items, Crumb] })
+        return Header({ class: 'title-container' }, [
+			Ul({ cache: 'navContainer', class: 'option-container', ...this.getEvents(), map: [this.items, Link] })
 		]);
     }
 
-	setup(options)
+    /**
+	 * This will get the events.
+	 *
+	 * @returns {object}
+	 */
+	getEvents()
 	{
-		this.createOptionContainer();
-		this.setupOptions(options);
-		this.reset();
-		this.setupEvents();
-	}
+		const start = this.start.bind(this),
+		move = this.move.bind(this),
+		end = this.end.bind(this);
 
-	reset()
-	{
-		this.moveToSelectedOption(this.optionsArray[0]);
-	}
+		return {
+			touchstart: start,
+			mousedown: start,
 
-	remove()
-	{
-		this.optionsArray = [];
-		this.viewNumber = null;
-		this.removeEvents();
-	}
+			touchmove: move,
+			mousemove: move,
 
-	getContainer(container)
-	{
-		if(container && typeof container === 'object')
-		{
-			return container;
-		}
-		else
-		{
-			let element = document.querySelector(container);
-			if(element)
-			{
-				return element;
-			}
-		}
-		return false;
-	}
-
-	getParentWidth()
-	{
-		if(this.container)
-		{
-			let rect = this.container.getBoundingClientRect();
-			this.parentWidth = rect.width;
-		}
-	}
-
-	createOptionContainer()
-	{
-		let container = this.container;
-		if(container)
-		{
-			let obj = this.navContainer = document.createElement('ul');
-			obj.className = 'option-container';
-			container.appendChild(obj);
-		}
+			touchend: end,
+			mouseup: end,
+			mouseout: end
+		};
 	}
 
 	setupEvents()
 	{
-		let container = this.navContainer;
+		const resize = this.resize.bind(this);
 
-		/* this will bind our object to our callback methods */
-		let start = this.start.bind(this),
-		end = this.end.bind(this),
-		move = this.move.bind(this),
-		resize = this.resize.bind(this);
-
-		this.addEvents = () =>
-		{
-			container.addEventListener('touchstart', start);
-			container.addEventListener('mousedown', start);
-
-			container.addEventListener('touchmove', move);
-			container.addEventListener('mousemove', move);
-
-			container.addEventListener('touchend', end);
-			container.addEventListener('mouseup', end);
-			container.addEventListener('mouseout', end);
-
-			window.addEventListener('resize', resize);
-		};
-
-		this.removeEvents = () =>
-		{
-			container.removeEventListener('touchstart', start);
-			container.removeEventListener('mousedown', start);
-
-			container.removeEventListener('touchmove', move);
-			container.removeEventListener('mousemove', move);
-
-			container.removeEventListener('touchend', end);
-			container.removeEventListener('mouseup', end);
-			container.removeEventListener('mouseout', end);
-
-			window.removeEventListener('resize', resize);
-		};
-
-		this.addEvents();
+		return [
+			['resize', window, resize],
+		];
 	}
 
-	setupOptions(options)
+    /**
+	 * This will create the touch slider.
+	 *
+	 * @returns {void}
+	 */
+	afterSetup()
 	{
-		if(options)
+        this.getOptions();
+        this.resize();
+        this.reset();
+	}
+
+    /**
+	 * This will select the first step.
+	 *
+	 * @returns {void}
+	 */
+	selectPrimaryStep()
+	{
+		const option = this.optionsArray[0];
+		if (option)
 		{
-			for(let i = 0, length = options.length; i < length; i++)
-			{
-				let option = options[i];
-				if(option)
-				{
-					option = this.addOption(option);
-				}
-			}
-			this.resize();
+			this.moveToSelectedOption(option);
 		}
 	}
 
-	addOption(label)
+	reset()
 	{
-		let element = document.createElement('li');
-		element.className = 'option title-text';
-		element.textContent = label;
-		element.onclick = Utilities.createCallBack(this, this.moveToSelectedElement, [element]);
+		this.selectPrimaryStep();
+	}
 
-		this.navContainer.appendChild(element);
+	getParentWidth()
+	{
+		if (this.container)
+		{
+			const rect = this.panel.getBoundingClientRect();
+			this.parentWidth = rect.width;
+		}
+	}
 
-		this.optionsArray.push({
-			number: this.optionsArray.length,
-			element: element,
-			selected: false
-		});
+	/**
+	 * This will get the steps.
+	 *
+	 * @returns {void}
+	 */
+    getOptions()
+	{
+		let items = this.navContainer.querySelectorAll('.option');
+		if (!items)
+		{
+			return [];
+		}
+
+        /* this will convert the node list to an array
+        and save the item to the items array */
+        items = [].slice.call(items);
+        const options = items.map((element, index) => ({
+            element,
+            index
+        }));
+
+        this.optionsArray = options;
+        this.getParentWidth();
 	}
 
 	moveToSelectedElement(element)
 	{
-		if(element)
+        if (!element)
 		{
-			let option = this.getOptionByElement(element);
-			if(option)
-			{
-				this.moveToSelectedOption(option);
-			}
+			return;
 		}
+
+		let option = this.getOptionByElement(element);
+        if (option)
+        {
+            this.moveToSelectedOption(option);
+        }
 	}
 
 	moveToSelectedOption(option)
@@ -302,7 +270,7 @@ export class NavSlider extends Component
 
 	start(e)
 	{
-		this.container.classList.add('active');
+		this.navContainer.classList.add('active');
 		this.getParentWidth();
 
 		this.contact = true;
@@ -358,7 +326,6 @@ export class NavSlider extends Component
 	moveToElement(element)
 	{
 		let center = this.parentWidth / 2;
-		let element = this.selection.element;
 		let rect = element.getBoundingClientRect();
 		let offset = center - element.offsetLeft - (rect.width / 2);
 		this.moveContainer(offset);
