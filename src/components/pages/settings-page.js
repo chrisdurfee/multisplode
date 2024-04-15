@@ -1,19 +1,36 @@
 import { A, Article, Button, Div, Header, Label, Section, Span } from "@base-framework/atoms";
+import { NavSlider } from "../organisms/nav-slider/nav-slider.js";
 import { ControlPage } from "../organisms/touch-slider/control-page.js";
 import { TouchSlider } from "../organisms/touch-slider/touch-slider.js";
 
 /**
  * This will select by step.
+ *
  * @param {number} index
  * @returns {void}
  */
 function selectByStep(index)
 {
-	if (this.nav)
+	if (this.parent.nav)
 	{
-		this.nav.moveToSelectedIndex(index);
+		this.parent.nav.moveToSelectedIndex(index);
 	}
 }
+
+/**
+ * This will select by link.
+ *
+ * @param {number} index
+ * @returns {void}
+ */
+function selectByLink(index)
+{
+	if (this.parent.touch)
+	{
+		this.parent.touch.moveToSelectedIndex(index);
+	}
+}
+
 
 /**
  * SettingsPage
@@ -34,7 +51,7 @@ export const SettingsPage = () => (
 						])
 					])
 				]),
-				Header({ class: 'title-container' }),
+				new NavSlider({ callBackFn: selectByLink, items: ['audio', 'video', 'about'] }),
 				Div({ class: 'main-step-container' }, [
 					new TouchSlider({
 						cache: 'touch',

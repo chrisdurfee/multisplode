@@ -8,7 +8,7 @@ import { Component } from "@base-framework/base";
  * @param {number} index
  * @returns {object}
  */
-const Link = (props, index) => Li({class: 'option title-text' }, [ props ]);
+const Link = (props, index) => Li({ class: 'option title-text', click: (e, parent) => parent.moveToSelectedIndex(index) }, props);
 
 /**
  * NavSlider
@@ -109,7 +109,7 @@ export class NavSlider extends Component
 
 	getParentWidth()
 	{
-		if (this.container)
+		if (this.panel)
 		{
 			const rect = this.panel.getBoundingClientRect();
 			this.parentWidth = rect.width;
@@ -213,18 +213,20 @@ export class NavSlider extends Component
 
 	selectOption(option, cancelCallBack)
 	{
-		if(option)
+		if (!option || option.selected === true)
 		{
-			this.selection = option;
-			option.element.classList.add('selected');
-			option.selected = true;
-			this.updateSelectOption(option);
-
-			if(typeof this.callBackFn === 'function' && cancelCallBack !== true)
-			{
-				this.callBackFn(option.number);
-			}
+			return;
 		}
+
+        this.selection = option;
+        option.element.classList.add('selected');
+        option.selected = true;
+        this.updateSelectOption(option);
+
+        if (typeof this.callBackFn === 'function' && cancelCallBack !== true)
+        {
+            this.callBackFn(option.number);
+        }
 	}
 
 	updateSelectOption(selection)
@@ -359,7 +361,7 @@ export class NavSlider extends Component
 		is not down */
 		if(this.contact === true)
 		{
-			this.container.classList.remove('active');
+			this.navContainer.classList.remove('active');
 			this.contact = false;
 
 			let center = this.parentWidth / 2;
