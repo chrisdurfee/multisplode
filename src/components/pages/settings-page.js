@@ -1,5 +1,6 @@
 import { A, Article, Button, Div, Header, Label, Section, Span } from "@base-framework/atoms";
 import { NavSlider } from "../organisms/nav-slider/nav-slider.js";
+import { Toggle } from "../organisms/toggle.js";
 import { ControlPage } from "../organisms/touch-slider/control-page.js";
 import { TouchSlider } from "../organisms/touch-slider/touch-slider.js";
 
@@ -61,11 +62,15 @@ export const SettingsPage = () => (
 								Header({ class: 'title-text' }, 'Audio'),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Music'),
-									Div({ id: 'music-toggle', class: 'value-container' })
+									Div({ id: 'music-toggle', class: 'value-container' }, [
+										new Toggle()
+									])
 								]),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Sound fx'),
-									Div({ id: 'sound-fx-toggle', class: 'value-container' })
+									Div({ id: 'sound-fx-toggle', class: 'value-container' }, [
+										new Toggle()
+									])
 								])
 							]),
 							Div({ class: 'content settings-sub-panel audio-container' }, [
