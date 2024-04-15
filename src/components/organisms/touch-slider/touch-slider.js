@@ -183,12 +183,12 @@ export class TouchSlider extends Component
 		find the offset of the selected step to
 		move the container to the child */
 		this.getStepWidth();
-		const offset = this.stepWidth * step.number;
+		const offset = this.stepWidth * step.index;
 		this.moveContainer('-' + offset);
 
 		/* we want to override the index to show the
 		current selected step */
-		this.index = step.number;
+		this.index = step.index;
 		this.selectStep(step);
 	}
 
@@ -210,12 +210,12 @@ export class TouchSlider extends Component
 		find the offset of the selected step to
 		move the container to the child */
 		this.getStepWidth();
-		const offset = this.stepWidth * step.number;
+		const offset = this.stepWidth * step.index;
 		this.moveContainer('-' + offset);
 
 		/* we want to override the index to show the
 		current selected step */
-		this.index = step.number;
+		this.index = step.index;
 		this.selectStep(step, true);
 	}
 

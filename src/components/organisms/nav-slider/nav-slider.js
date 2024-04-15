@@ -225,7 +225,7 @@ export class NavSlider extends Component
 
         if (typeof this.callBackFn === 'function' && cancelCallBack !== true)
         {
-            this.callBackFn(option.number);
+            this.callBackFn(option.index);
         }
 	}
 
