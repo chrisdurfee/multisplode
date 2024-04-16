@@ -10,7 +10,7 @@ import { Page } from "./page.js";
  */
 export const PlayPage = () => (
 	new Page([
-		Section({ class: 'play-container loading' }, [
+		Section({ class: 'play-container' }, [
 			Div({ class: 'play-panel' }),
 			Div({ class: 'fade-layer' }, [
 				Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
