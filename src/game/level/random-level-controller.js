@@ -1,15 +1,15 @@
-"use strict";
+import { LevelController } from './level-controller.js';
 
-var RandomLevelController = LevelController.extend(
+export class RandomLevelController extends LevelController
 {
-	constructor: function(level)
+	constructor(level)
 	{
-		LevelController.call(this, level);
-	},
+		super(level);
+	}
 
-	draw: function(ctx, stage)
+	draw(ctx, stage)
 	{
-		var currentLevel = this.level;
+		let currentLevel = this.level;
 
 		//primary explosions
 		Devices.draw(ctx);
@@ -17,26 +17,26 @@ var RandomLevelController = LevelController.extend(
 		Sparks.draw(ctx);
 
 		//particles
-		var particleArray = Particles.getAll();
-		var particleCount = particleArray.length;
-		var particleIndex = particleCount - 1;
+		let particleArray = Particles.getAll();
+		let particleCount = particleArray.length;
+		let particleIndex = particleCount - 1;
 		if(particleCount > 0)
 		{
-			var activeDevices = Devices.getAll();
-			var activeDeviceLength = activeDevices.length;
-			var activeDeviceIndex = activeDeviceLength - 1;
+			let activeDevices = Devices.getAll();
+			let activeDeviceLength = activeDevices.length;
+			let activeDeviceIndex = activeDeviceLength - 1;
 			do
 			{
-				var particle = particleArray[particleIndex];
-				var collided = false;
-				var deviceIndex = activeDeviceIndex;
+				let particle = particleArray[particleIndex];
+				let collided = false;
+				let deviceIndex = activeDeviceIndex;
 				if(activeDeviceLength > 0)
 				{
 					/* this will check each particle to see
 					ifithas collided with a device */
 					do
 					{
-						var device = activeDevices[deviceIndex];
+						let device = activeDevices[deviceIndex];
 						if(particle.hasCollided(device) === true)
 						{
 							collided = true;
@@ -56,7 +56,7 @@ var RandomLevelController = LevelController.extend(
 										currentLevel.afterTouchReady = 'yes';
 									}*/
 
-									var pos = particle.position;
+									let pos = particle.position;
 									/* this will add a new device for the particle
 									that has been destroyed, including sparks from the
 									explosion, and the newpoints from the destruction */
@@ -86,7 +86,7 @@ var RandomLevelController = LevelController.extend(
 		}*/
 
 		//end the level
-		var stop = this.isComplete(particleCount);
+		let stop = this.isComplete(particleCount);
 		if(stop === true)
 		{
 			/* this will stop drawing and go to the summary panel */
@@ -94,4 +94,4 @@ var RandomLevelController = LevelController.extend(
 		}
 		return stop;
 	}
-});
+}

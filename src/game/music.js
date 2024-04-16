@@ -1,29 +1,28 @@
-"use strict";
 
-var Music = Class.extend(
+export class Music
 {
-	constructor: function(audioId, songFileName)
+	constructor(audioId, songFileName)
 	{
 		this.eleId = audioId;
 		this.element = null;
 		this.song = songFileName;
-	},
+	}
 
-	getElement: function()
+	getElement()
 	{
 		if(this.element === null)
 		{
 			this.element = document.getElementById(this.eleId);
 		}
 		return this.element;
-	},
+	}
 
-	change: function(fileName)
+	change(fileName)
 	{
 		if(this.song !== fileName)
 		{
 			this.song = fileName;
-			var music = this.getElement();
+			let music = this.getElement();
 			music.src = 'sound/music/' + fileName;
 
 			if(Settings.music === true)
@@ -31,26 +30,26 @@ var Music = Class.extend(
 				this.start();
 			}
 		}
-	},
+	}
 
-	delay: function()
+	delay()
 	{
 		if(Settings.music === true)
 		{
 			this.start();
 		}
-	},
+	}
 
-	start: function()
+	start()
 	{
-		var music = this.getElement();
+		let music = this.getElement();
 		music.volume = 0.6;
 		music.play();
-	},
+	}
 
-	stop: function()
+	stop()
 	{
-		var music = this.getElement();
+		let music = this.getElement();
 		music.pause();
 	}
-});
+}

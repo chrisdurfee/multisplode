@@ -1,13 +1,13 @@
-"use strict";
 
-var math = {
+export const math =
+{
 
 	/* this will return a random number
 	 within the from and to numbers */
-	randomFromTo: function(start, end, roundNumber)
+	randomFromTo(start, end, roundNumber)
 	{
 		roundNumber = (typeof roundNumber !== 'undefined')? true : roundNumber;
-		var mth = Math;
+		let mth = Math;
 		if(roundNumber)
 		{
 			return mth.floor(mth.random() * (end - start + 1) + start);
@@ -18,12 +18,12 @@ var math = {
 		}
 	},
 
-	checkCircluarCollision: function(aX, aY, aRadius, bX, bY, bRadius)
+	checkCircluarCollision(aX, aY, aRadius, bX, bY, bRadius)
 	{
-		var dX = aX - bX;
-		var dY = aY - bY;
+		let dX = aX - bX;
+		let dY = aY - bY;
 
-		var distance = (dX*dX + dY*dY);
+		let distance = (dX*dX + dY*dY);
 		if(distance <= (aRadius + bRadius) * (aRadius + bRadius))
 		{
 			return true;
@@ -35,16 +35,16 @@ var math = {
 	},
 
 	/* this will get the next position of an orbiting object */
-	getOrbitPosition: function(centerX, centerY, angle, radius)
+	getOrbitPosition(centerX, centerY, angle, radius)
 	{
-		var mth = Math;
+		let mth = Math;
 		return {
 			x: centerX + mth.cos(angle) * radius,
 			y: centerY + mth.sin(angle) * radius
 		};
 	},
 
-	updateOrbitAngle: function(angle, speed, clockWize)
+	updateOrbitAngle(angle, speed, clockWize)
 	{
 		clockWize = (typeof clockWize === 'undefined')? true : clockWize;
 		if(clockWize)
@@ -57,103 +57,86 @@ var math = {
 		}
 	},
 
-	getBezierCurve: function(p0, p1, p2, p3, time)
+	getBezierCurve(p0, p1, p2, p3, time)
 	{
-		var t = time;
+		let t = time;
 
-		var cx = 3 (p1.x - p0.x),
+		let cx = 3 (p1.x - p0.x),
 		bx = 3 (p2.x - p1.x) - cx,
 		ax = p3.x - p0.x - cx - bx,
 		cy = 3 (p1.y - p0.y),
 		by = 3 (p2.y - p1.y),
 		ay = p3.y - p0.y - cy - by;
 
-		var xt = ax * (t * t * t) + bx * (t * t) + cx * t + p0.x;
-		var yt = ay * (t * t * t) + by * (t * t) + cy * t + p0.y;
+		let xt = ax * (t * t * t) + bx * (t * t) + cx * t + p0.x;
+		let yt = ay * (t * t * t) + by * (t * t) + cy * t + p0.y;
 	},
 
-	spiral: function(radius, speed)
+	spiral(radius, speed)
 	{
 		return radius + speed;
 	},
 
 	degreesPI: 180 / Math.PI,
 
-	getDegrees: function(radians)
+	getDegrees(radians)
 	{
-		var degrees = radians * this.degreesPI;
+		let degrees = radians * this.degreesPI;
 		return degrees;
 	},
 
 	radiansPI: Math.PI / 180,
 
-	getRadians: function(degrees)
+	getRadians(degrees)
 	{
-		var radians = degrees * this.radiansPI;
+		let radians = degrees * this.radiansPI;
 		return radians;
 	},
 
-	getSlope: function(aX, aY, bX, bY)
+	getSlope(aX, aY, bX, bY)
 	{
-		var x = aX - bX,
+		let x = aX - bX,
 		y = aY - bY;
 
-		var slope = y / x;
+		let slope = y / x;
 		return slope;
 	},
 
-	getAngle: function(aX, aY, bX, bY)
+	getAngle(aX, aY, bX, bY)
 	{
 		/* this will get our angle */
-		var positionX = aX - bX;
-		var positionY = aY - bY;
+		let positionX = aX - bX;
+		let positionY = aY - bY;
 
 		//angle in radians
-		var radians = Math.atan2(positionY, positionX);
+		let radians = Math.atan2(positionY, positionX);
 		/* angle in degrees */
 		return this.getDegrees(radians);
 	},
 
-	/* this will use a vector to calculate the next postion.
-	@param (int) angle = the anglein degrees
-	@param (mixed) magnitude = the object magnitude */
-	getPositionByAngle: function(angle, magnitude)
+	getPositionByAngle(angle, magnitude)
 	{
-		var mth = Math;
-		var radians = this.getRadians(angle);
+		let mth = Math;
+		let radians = this.getRadians(angle);
 		return {
 			x: mth.cos(radians) * magnitude,
 			y: mth.sin(radians) * magnitude
 		};
 	},
 
-	/* this will get the distance between two points.
-	@param (int) aX = the starting x position
-	@param (int) aY = the starting y position
-	@param (int) bX = the ending x position
-	@param (int) bX = the ending y position */
-	getDistance: function(aX, aY, bX, bY)
+	getDistance(aX, aY, bX, bY)
 	{
-		var dx = aX - bX;
-		var dy = aY - bY;
+		let dx = aX - bX;
+		let dy = aY - bY;
 
-		var distance = Math.sqrt(dx*dx + dy*dy);
+		let distance = Math.sqrt(dx*dx + dy*dy);
 		return distance;
 	},
 
-	/* this will get the next position for an animation
-	by getting the distance between two points and using
-	the speed to tge the next position.
-	@param (int) aX = the starting x position
-	@param (int) aY = the starting y position
-	@param (int) bX = the ending x position
-	@param (int) bX = the ending y position
-	@param (mixed) speed = the object speed
-	*/
-	getNextPosition: function(aX, aY, bX, bY, speed)
+	getNextPosition(aX, aY, bX, bY, speed)
 	{
-		var distance = this.getDistance(aX, aY, bX, bY);
-		var moves = this.getMovementBySpeed(distance, speed);
+		let distance = this.getDistance(aX, aY, bX, bY);
+		let moves = this.getMovementBySpeed(distance, speed);
 
 		return {
 			x: (bX - aX) / moves,
@@ -161,18 +144,18 @@ var math = {
 		};
 	},
 
-	getMovementBySpeed: function(distance, speed)
+	getMovementBySpeed(distance, speed)
 	{
-		var moves = distance / speed;
+		let moves = distance / speed;
 		return moves;
 	},
 
-	round: function(number)
+	round(number)
 	{
 		return ~~ (0.5 + number);
 	},
 
-	floor: function(number)
+	floor(number)
 	{
 		return ~~number;
 	}

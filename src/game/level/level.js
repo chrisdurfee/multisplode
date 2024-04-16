@@ -1,8 +1,7 @@
-"use strict";
 
-var Level = Class.extend(
+export class Level
 {
-	constructor: function(tmpLevel, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
+	constructor(tmpLevel, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
 	{
 		this.number = tmpLevel;
 		this.touch = 0;
@@ -32,9 +31,9 @@ var Level = Class.extend(
 		this.bestTime = '';
 
 		this.locked = true;
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		this.updateFromData();
 		this.reset();
@@ -42,9 +41,9 @@ var Level = Class.extend(
 		{
 			this.unlock();
 		}
-	},
+	}
 
-	setupDevices: function(devices)
+	setupDevices(devices)
 	{
 		if(typeof devices !== 'object')
 		{
@@ -54,10 +53,10 @@ var Level = Class.extend(
 		else
 		{
 			this.touchLimit = 0;
-			for(var i = 0, count = devices.length; i < count; i++)
+			for(let i = 0, count = devices.length; i < count; i++)
 			{
-				var device = devices[i];
-				var type = 'ShockWave';
+				let device = devices[i];
+				let type = 'ShockWave';
 				switch(i)
 				{
 					case 0:
@@ -71,15 +70,15 @@ var Level = Class.extend(
 				this.devices[type] = device;
 			}
 		}
-	},
+	}
 
-	setupParticleCount: function(quantity)
+	setupParticleCount(quantity)
 	{
 		if(typeof quantity === 'object')
 		{
 			this.particles = quantity;
-			var totalCount = 0;
-			for(var type in quantity)
+			let totalCount = 0;
+			for(let type in quantity)
 			{
 				if(quantity.hasOwnProperty(type))
 				{
@@ -92,9 +91,9 @@ var Level = Class.extend(
 		{
 			this.quantity = quantity;
 		}
-	},
+	}
 
-	reset: function()
+	reset()
 	{
 		this.touch = 0;
 		this.scoreNumber = 0;
@@ -107,27 +106,27 @@ var Level = Class.extend(
 		this.isAtLimit = false;
 
 		this.delay = this.originalDelay;
-	},
+	}
 
-	updateTouch: function()
+	updateTouch()
 	{
 		this.touch++;
-		var option = UI.updateTouchUi();
+		let option = UI.updateTouchUi();
 		this.isAtTouchLimit();
 		return option;
-	},
+	}
 
-	isAtLimit: false,
+	isAtLimit = false;
 
-	isAtTouchLimit: function()
+	isAtTouchLimit()
 	{
 		if(this.touch === this.touchLimit)
 		{
 			this.isAtLimit = true;
 		}
-	},
+	}
 
-	updateHighScore: function(number, points)
+	updateHighScore(number, points)
 	{
 		if(number > this.highScoreNumber)
 		{
@@ -139,24 +138,24 @@ var Level = Class.extend(
 			this.highScorePoints = points;
 		}
 		this.saveToData();
-	},
+	}
 
-	updateScore: function(number, points)
+	updateScore(number, points)
 	{
 		this.updatePoints(points);
 		this.updateNumber(number);
 
 		this.updateUiByTimer();
-	},
+	}
 
-	timerUi: null,
-	timerUiDelay: 150,
+	timerUi = null;
+	timerUiDelay = 150;
 
-	updateUiByTimer: function()
+	updateUiByTimer()
 	{
 		if(this.timerUi === null)
 		{
-			var self = this;
+			let self = this;
 			this.timerUi = window.setTimeout(function()
 			{
 				self.updateMinimumUi();
@@ -164,47 +163,47 @@ var Level = Class.extend(
 				self.timerUi = null;
 			}, this.timerUiDelay);
 		}
-	},
+	}
 
-	currentNumber: 0,
+	currentNumber = 0;
 
-	updateMinimumUi: function()
+	updateMinimumUi()
 	{
-		var remaining = (this.minimum - this.scoreNumber);
+		let remaining = (this.minimum - this.scoreNumber);
 		if(remaining !== this.currentNumber)
 		{
 			this.currentNumber = remaining;
 			remaining = (remaining > 0)? remaining : 0;
 			UI.updateLevelMin(remaining);
 		}
-	},
+	}
 
-	updatePoints: function(points)
+	updatePoints(points)
 	{
 		this.scorePoints += points;
-	},
+	}
 
-	updateNumber: function(number)
+	updateNumber(number)
 	{
 		this.scoreNumber += number;
-	},
+	}
 
-	updatePlayUi: function()
+	updatePlayUi()
 	{
 		UI.updatePlayUi(this);
-	},
+	}
 
-	updateBestTime: function(time)
+	updateBestTime(time)
 	{
 		this.bestTime = time;
 		this.saveToData();
-	},
+	}
 
-	dataLabel: 'level-',
+	dataLabel = 'level-';
 
-	updateFromData: function()
+	updateFromData()
 	{
-		var levelData = Data.get(this.dataLabel + this.number);
+		let levelData = Data.get(this.dataLabel + this.number);
 		if(levelData)
 		{
 			this.locked = levelData.locked;
@@ -213,20 +212,20 @@ var Level = Class.extend(
 
 			this.bestTime = levelData.bestTime;
 		}
-	},
+	}
 
-	saveToData: function()
+	saveToData()
 	{
-		var levelData =
+		let levelData =
 		{
 			locked: this.locked,
 			highScorePoints: this.highScorePoints,
 			highScoreNumber: this.highScoreNumber
 		};
 		Data.set(this.dataLabel + this.number, levelData);
-	},
+	}
 
-	unlock: function()
+	unlock()
 	{
 		if(this.locked === true)
 		{
@@ -234,4 +233,4 @@ var Level = Class.extend(
 			this.saveToData();
 		}
 	}
-});
+}

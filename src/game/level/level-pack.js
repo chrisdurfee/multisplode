@@ -1,14 +1,14 @@
-"use strict";
+import { Level } from './level.js';
 
-var LevelPack = Class.extend(
+export class LevelPack
 {
-	constructor: function(controller)
+	constructor(controller)
 	{
 		this.label = '';
 		this.controller = controller;
-	},
+	}
 
-	levels: [
+	levels = [
 		/*the order of the settings are:
 
 			touchLimit,
@@ -22,18 +22,18 @@ var LevelPack = Class.extend(
 
 		//level 1
 		[1,28,40,40,1,65, 'startup-panel', 'first']
-	],
+	];
 
-	setupLevels: function()
+	setupLevels()
 	{
-		var lastLevelPanelClass = '';
+		let lastLevelPanelClass = '';
 
-		var gameLevels = [];
-		var levels = this.levels;
+		let gameLevels = [];
+		let levels = this.levels;
 
-		for(var i = 0, count = levels.length; i < count; i++)
+		for(let i = 0, count = levels.length; i < count; i++)
 		{
-			var settings = levels[i],
+			let settings = levels[i],
 			levelPanelClass = (typeof settings[7] !== 'undefined')? settings[7] : lastLevelPanelClass;
 
 			if(levelPanelClass !== lastLevelPanelClass)
@@ -44,28 +44,28 @@ var LevelPack = Class.extend(
 			gameLevels.push(this.createLevel(i + 1, settings, levelPanelClass));
 		}
 		return gameLevels;
-	},
+	}
 
-	createLevel: function(number, settings, levelPanelClass)
+	createLevel(number, settings, levelPanelClass)
 	{
-		var gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
+		let gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
 		gameLevel.setup();
 		return gameLevel;
-	},
+	}
 
-	changeLevel: function(level)
+	changeLevel(level)
 	{
 		this.controller.changeLevel(level);
-	},
+	}
 
-	setupLevel: function(level, cancelPrompts)
+	setupLevel(level, cancelPrompts)
 	{
 		this.changeLevel(level);
 		this.controller.setupLevel(cancelPrompts);
-	},
+	}
 
-	levelSummary: function()
+	levelSummary()
 	{
 		this.controller.getSummary();
 	}
-});
+}

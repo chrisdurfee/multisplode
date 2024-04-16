@@ -1,15 +1,16 @@
-"use strict";
 
-var RandomLevelPack = LevelPack.extend(
+import { LevelPack } from './level-pack.js';
+import { Level } from './level.js';
+
+export class RandomLevelPack extends LevelPack
 {
-	constructor: function()
+	constructor()
 	{
-		LevelPack.call(this, new RandomLevelController());
-
+		super();
 		this.label = '';
-	},
+	}
 
-	levels: [
+	levels = [
 		/*the order of the settings are:
 
 			touchLimit,
@@ -140,12 +141,12 @@ var RandomLevelPack = LevelPack.extend(
 
 		//level 40
 		[[4,1],44,48,{ Particle: 46, PulseParticle: 2 },1,40,false]
-	],
+	];
 
-	createLevel: function(number, settings, levelPanelClass)
+	createLevel(number, settings, levelPanelClass)
 	{
-		var gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
+		let gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
 		gameLevel.setup();
 		return gameLevel;
 	}
-});
+}

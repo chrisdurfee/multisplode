@@ -4,13 +4,10 @@ export class GravityField extends Device
 {
     constructor(tmpX, tmpY, color, multiplier)
     {
-        this.init(GravityField);
+        super(tmpX, tmpY, color, multiplier);
 
-        this.position = { x: math.round(tmpX), y: math.round(tmpY) };
         this.size = 0;
-        this.fillColor = color;
         this.audio = 'sound/collisions/collision-1a.mp3';
-        this.multiplier = multiplier || 1;
 
         this.gravity = (1 * this.multiplier);
         this.startTime = null;

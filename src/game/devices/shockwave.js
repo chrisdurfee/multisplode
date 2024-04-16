@@ -4,11 +4,9 @@ export class ShockWave extends Device
 {
     constructor(tmpX, tmpY, color, multiplier)
     {
-        this.init(ShockWave);
+        super(tmpX, tmpY, color, multiplier);
 
-        this.position = { x: math.round(tmpX), y: math.round(tmpY) };
         this.size = 0;
-        this.fillColor = color;
 
         /*let files =
         [
@@ -19,7 +17,6 @@ export class ShockWave extends Device
         ];
         let file = files[math.round(Math.random() * files.length - 1)];*/
         this.audio = 'sound/collisions/collision-1a.mp3';
-        this.multiplier = multiplier || 1;
 
         this.type = 'shockWave';
         this.explosive = true;

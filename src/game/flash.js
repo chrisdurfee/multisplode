@@ -1,8 +1,7 @@
-"use strict";
 
-var FlashPanel = Class.extend(
+export class FlashPanel
 {
-	constructor: function(type, title, description, callback, duration, container)
+	constructor(type, title, description, callback, duration, container)
 	{
 		/* this will setup to have mutliple instances of the
 		panel in one project without issue */
@@ -20,17 +19,17 @@ var FlashPanel = Class.extend(
 
 		/* this will save the callback and args */
 		this.callback = callback;
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		this.createPanel();
 		this.startTimer();
-	},
+	}
 
-	create: function(type, id, className, html, parent)
+	create(type, id, className, html, parent)
 	{
-		var element = document.createElement(type);
+		let element = document.createElement(type);
 		element.id = id;
 		element.className = className;
 		if(html)
@@ -44,46 +43,46 @@ var FlashPanel = Class.extend(
 		}
 		parent.appendChild(element);
 		return element;
-	},
+	}
 
 	/* this will create the panel */
-	createPanel: function()
+	createPanel()
 	{
-		var self = this;
-		var frag = document.createDocumentFragment();
-		var panel = this.create('div', this.id, 'flash-panel dropInBounce ' + this.type, '', frag);
-		var buttonContainer = this.create('footer', this.id + '_buttons', 'button-container', '', panel);
+		let self = this;
+		let frag = document.createDocumentFragment();
+		let panel = this.create('div', this.id, 'flash-panel dropInBounce ' + this.type, '', frag);
+		let buttonContainer = this.create('footer', this.id + '_buttons', 'button-container', '', panel);
 
-		var imageContainer = this.create('div', '', 'icon-container', '', panel);
+		let imageContainer = this.create('div', '', 'icon-container', '', panel);
 
-		var titleContainer = this.create('header', this.id + '_title_container', 'title-container', '', panel);
+		let titleContainer = this.create('header', this.id + '_title_container', 'title-container', '', panel);
 		this.create('div', this.id + '_title', 'title left dark', this.title, titleContainer);
 		this.create('div', this.id + '_text', 'description center dark', this.description, titleContainer);
 
-		var button = this.create('button', this.id + '_button_2', 'bttn circle close', '<div class="content"><span></span><span></span></div>', buttonContainer);
-		button.onclick = function()
+		let button = this.create('button', this.id + '_button_2', 'bttn circle close', '<div class="content"><span></span><span></span></div>', buttonContainer);
+		button.onclick = () =>
 		{
 			self.close();
 		};
 
 		Utilities.append(this.container, frag);
-	},
+	}
 
-	remove: function()
+	remove()
 	{
-		var panel = document.getElementById(this.id);
+		let panel = document.getElementById(this.id);
 		if(panel)
 		{
 			panel.parentNode.removeChild(panel);
 		}
-	},
+	}
 
-	close: function()
+	close()
 	{
-		var obj = document.getElementById(this.id);
+		let obj = document.getElementById(this.id);
 		if(obj)
 		{
-			var self = this;
+			let self = this;
 			obj.classList.add('closed');
 			window.setTimeout(function()
 			{
@@ -91,32 +90,32 @@ var FlashPanel = Class.extend(
 			}, 800);
 		}
 		this.stopTimer();
-	},
+	}
 
 	/* this will return true to the callback if
 	supplied and remove the panel*/
-	accept: function()
+	accept()
 	{
 		if(typeof this.callback === 'function')
 		{
 			this.callback.call();
 		}
 		this.close();
-	},
+	}
 
-	startTimer: function()
+	startTimer()
 	{
-		var self = this;
+		let self = this;
 		this.stopTimer();
 
 		this.timer = window.setTimeout(function()
 		{
 			self.close();
 		}, this.duration);
-	},
+	}
 
-	stopTimer: function()
+	stopTimer()
 	{
 		window.clearTimeout(this.timer);
 	}
-});
+}

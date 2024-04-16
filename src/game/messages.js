@@ -1,12 +1,6 @@
-"use strict";
+import { FlashPanel } from './flashPanel.js';
 
-/*
-	messages
-
-	this will create, store, track, and remove
-	messages.
-*/
-var Messages =
+export const Messages =
 {
 	options: [],
 
@@ -18,17 +12,17 @@ var Messages =
 		great: []
 	},
 
-	reset: function()
+	reset()
 	{
 		this.options = [];
 	},
 
-	setupMessages: function()
+	setupMessages()
 	{
-		var messages = this.messages;
-		var createMessage = function(type, title, text)
+		let messages = this.messages;
+		const createMessage = (type, title, text) =>
 		{
-			var message = {
+			let message = {
 				title: title,
 				text: text
 			};
@@ -172,14 +166,14 @@ var Messages =
 		);
 	},
 
-	getRandomMessage: function(type)
+	getRandomMessage(type)
 	{
-		var messages = this.messages[type];
+		let messages = this.messages[type];
 		if(messages)
 		{
-			var maxLength = messages.length;
-			var number = math.round(Math.random() * (maxLength - 1));
-			var message = messages[number];
+			let maxLength = messages.length;
+			let number = math.round(Math.random() * (maxLength - 1));
+			let message = messages[number];
 			if(message)
 			{
 				this.add(type, message.title, message.text);
@@ -192,10 +186,10 @@ var Messages =
 		return this.options;
 	},
 
-	add: function(type, title, text)
+	add(type, title, text)
 	{
-		var self = this;
-		var flash = new FlashPanel(type, title, text, function()
+		let self = this;
+		let flash = new FlashPanel(type, title, text, () =>
 		{
 			self.remove(flash);
 		});
@@ -204,23 +198,23 @@ var Messages =
 		return flash;
 	},
 
-	removeAll: function()
+	removeAll()
 	{
-		var options = this.options;
-		var maxLength = options.length;
+		let options = this.options;
+		let maxLength = options.length;
 		if(maxLength)
 		{
-			for(var i = 0; i < maxLength; i++)
+			for(let i = 0; i < maxLength; i++)
 			{
-				var option = options[i];
+				let option = options[i];
 				this.remove(option);
 			}
 		}
 	},
 
-	remove: function(option)
+	remove(option)
 	{
-		var options = this.options,
+		let options = this.options,
 		index = options.indexOf(option);
 		if(index > -1)
 		{

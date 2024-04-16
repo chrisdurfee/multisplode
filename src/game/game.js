@@ -1,13 +1,14 @@
-"use strict";
 
-var Game = Class.extend(
+import { Stage } from './stage.js';
+
+export class Game
 {
-	constructor: function(width, height, container)
+	constructor(width, height, container)
 	{
 		this.stage = new Stage(width, height, container);
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		this.lockOrientation();
 		this.stage.setup();
@@ -25,57 +26,57 @@ var Game = Class.extend(
 		this.setupUi();
 
 		this.music.delay();
-	},
+	}
 
-	setupMessages: function()
+	setupMessages()
 	{
 		Messages.setupMessages();
 		Prompts.setup();
-	},
+	}
 
-	setupUi: function()
+	setupUi()
 	{
-		var ui = UI;
+		let ui = UI;
 		ui.setupProgress();
 		ui.setupTouches();
-	},
+	}
 
-	setupStateEngine: function()
+	setupStateEngine()
 	{
 		StateEngine.setup();
-	},
+	}
 
-	setupLevelPacks: function()
+	setupLevelPacks()
 	{
-		var pack = new RandomLevelPack();
+		let pack = new RandomLevelPack();
 		Levels.addLevelPack(pack);
-	},
+	}
 
-	setupLevels: function()
+	setupLevels()
 	{
 		this.setupLevelPacks();
 		/* we want to setup the levels and select primary
 		level and show our splash screen */
 		Levels.setup();
-	},
+	}
 
 	/* this will setup the local data system to allow
 	the persistant data to be added and updated */
-	setupPersistentData: function()
+	setupPersistentData()
 	{
 		/* this will setup the local data system to allow
 		the persistant data to be added and updated */
 		Data.setup();
-	},
+	}
 
-	fullscreen: false,
+	fullscreen = false;
 
-	showFullscreen: function()
+	showFullscreen()
 	{
 		if(this.fullscreen === false)
 		{
 			this.fullscreen = true;
-			var element = document.body;
+			let element = document.body;
 			if(element.requestFullscreen)
 			{
 				element.requestFullscreen();
@@ -93,123 +94,126 @@ var Game = Class.extend(
 				element.msRequestFullscreen();
 			}
 		}
-	},
+	}
 
 	/* this will lock the orientation of the device
 	so that the orientation will be fixed */
-	lockOrientation: function()
+	lockOrientation()
 	{
 		if(screen)
 		{
-			var orientation = screen.orientation;
+			let orientation = screen.orientation;
 			if(orientation && typeof orientation.lock === 'function')
 			{
 				try{
 					orientation.lock('landscape').then(
-						function(result)
+						(result) =>
 						{
 
 						},
 
-						function(err)
+						(err) =>
 						{
 
 						}
 					);
 				}
-				catch(e){}
+				catch(e)
+				{
+					console.log(e);
+				}
 			}
 		}
-	},
+	}
 
-	music: new Music('sound_fx', 'play-loop.mp3'),
+	music = new Music('sound_fx', 'play-loop.mp3');
 
 	/* this will show the home menu */
-	showHomeMenu: function()
+	showHomeMenu()
 	{
 		this.changeState('menu');
-	},
+	}
 
-	setStageLevelController: function(controller)
+	setStageLevelController(controller)
 	{
 		this.stage.levelController = controller;
-	},
+	}
 
 	/* this will select the last played level or the
 	first unlocked level and start the game */
-	startGame: function()
+	startGame()
 	{
 		//this.showFullscreen();
 		Levels.selectPrimaryLevel();
-	},
+	}
 
 	/* this will play the game */
-	play: function()
+	play()
 	{
 		this.changeState('play');
-	},
+	}
 
 	/* this will pause the game */
-	pause: function()
+	pause()
 	{
 		this.changeState('pause');
-	},
+	}
 
 	/* this will retry the current level */
-	retryLevel: function()
+	retryLevel()
 	{
 		Levels.retryLevel();
-	},
+	}
 
 	/* this will play the next level */
-	nextLevel: function()
+	nextLevel()
 	{
 		Levels.selectNextLevel();
-	},
+	}
 
 	/* this will play the previous level */
-	previousLevel: function()
+	previousLevel()
 	{
 		Levels.selectPreviousLevel();
-	},
+	}
 
 	/* this will open and close the level
 	select panel */
-	toggleLevelSelect: function()
+	toggleLevelSelect()
 	{
 		this.changeState('level-select');
-	},
+	}
 
 	/* this will open and close the level
 	select panel */
-	toggleSettings: function()
+	toggleSettings()
 	{
 		this.changeState('settings');
-	},
+	}
 
 	/* thisw will setup the level select options */
-	setupLevelSelect: function()
+	setupLevelSelect()
 	{
 		Levels.setupLevelSelect();
-	},
+	}
 
 	/* this will change the state of the game.
 	@param (string) state = the state */
-	changeState: function(state)
+	changeState(state)
 	{
 		StateEngine.change(state);
-	},
+	}
 
 	/* this will reset the current level. */
-	resetCurrentLevel: function()
+	resetCurrentLevel()
 	{
 		Levels.retryLevel();
-	},
+	}
 
 	/* this will show the level summary */
-	levelSummary: function()
+	levelSummary()
 	{
-		var progress = UI.progress;
+		let progress = UI.progress;
 		if(progress)
 		{
 			progress.reset();
@@ -218,29 +222,29 @@ var Game = Class.extend(
 		this.changeState('level-summary');
 
 		Levels.levelSummary();
-	},
+	}
 
-	startDraw: function()
+	startDraw()
 	{
 		this.stage.startDraw();
-	},
+	}
 
-	stopDraw: function()
+	stopDraw()
 	{
 		this.stage.stopDraw();
-	},
+	}
 
-	startStage: function()
+	startStage()
 	{
-		var stage = this.stage;
+		let stage = this.stage;
 		stage.addEvent();
 		stage.startDraw();
-	},
+	}
 
-	stopStage: function()
+	stopStage()
 	{
-		var stage = this.stage;
+		let stage = this.stage;
 		stage.removeEvent();
 		stage.stopDraw();
 	}
-});
+}
