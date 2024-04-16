@@ -11,14 +11,15 @@ import { Page } from "./page.js";
 export const PlayPage = () => (
 	new Page([
 		Section({ class: 'play-container' }, [
-			Div({ class: 'play-panel' }),
-			Div({ class: 'fade-layer' }, [
-				Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
+			Div({ class: 'play-panel' }, [
+				Div({ class: 'fade-layer' }, [
+					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
+				])
 			])
 		]),
 
-		Div({ id: 'control_panel', class: 'play-level-container' }, [
-			Div({ id: 'action_guide', class: 'level-guide fadeIn' }, [
+		Div({ class: 'play-level-container' }, [
+			Div({ class: 'level-guide fadeIn' }, [
 				Article({ class: 'options-container' }, [
 					Div({ class: 'top-container' }, [
 						Section({ class: 'option-group' }, [
