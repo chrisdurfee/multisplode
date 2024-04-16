@@ -1,4 +1,4 @@
-import { Article, Div, Section } from "@base-framework/atoms";
+import { A, Article, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 /**
@@ -10,21 +10,21 @@ import { Page } from "./page.js";
  */
 export const PausePage = () => (
 	new Page([
-		Section({ class: 'control-sub-panel pause-container overlay-panel' }, [
+		Div({ class: 'control-sub-panel pause-container overlay-panel' }, [
 			Div({ class: 'pause-panel floatDownZ' }, [
-				Div({ class: 'play circle', click: () => game.togglePause() }, [
+				A({ class: 'play circle', href: '/play' }, [
 					Div({ class: 'content' })
 				]),
 			]),
 			Article({ class: 'options-container fadeIn' }, [
 				Section({ class: 'option-group' }, [
-					Div({ class: 'bttn circle bttn-home', click: () => game.showHomeMenu() }, [
+					A({ class: 'bttn circle bttn-home', href: '/home' }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Home')
 				]),
 				Section({ class: 'option-group' }, [
-					Div({ class: 'bttn circle bttn-levels', click: () => game.toggleLevelSelect() }, [
+					A({ class: 'bttn circle bttn-levels', href: '/home/levels' }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Levels')
