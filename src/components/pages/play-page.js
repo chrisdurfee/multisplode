@@ -1,4 +1,4 @@
-import { Article, Button, Canvas, Div, Section, Span } from "@base-framework/atoms";
+import { A, Article, Canvas, Div, Section, Span } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 /**
@@ -22,7 +22,7 @@ export const PlayPage = () => (
 					Article({ class: 'options-container' }, [
 						Div({ class: 'top-container' }, [
 							Section({ class: 'option-group' }, [
-								Button({ class: 'bttn circle bttn-pause', click: () => game.pause() }, [
+								A({ class: 'bttn circle bttn-pause', href: '/play/paused' }, [
 									Div({ class: 'content' }, [
 										Span(),
 										Span()

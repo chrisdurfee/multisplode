@@ -1,4 +1,4 @@
-import { Article, Div, Section } from "../atoms/atoms.js";
+import { Article, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 /**
