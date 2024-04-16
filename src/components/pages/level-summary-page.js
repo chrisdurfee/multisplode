@@ -1,4 +1,4 @@
-import { Article, Div, Section } from "@base-framework/atoms";
+import { A, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 /**
@@ -10,15 +10,15 @@ import { Page } from "./page.js";
  */
 export const LevelSummaryPage = () => (
 	new Page([
-		Section({ class: 'level-summary-container overlay-panel floatDownZ' }, [
+		Div({ class: 'level-summary-container overlay-panel floatDownZ' }, [
 			Div({ class: 'panel-top-button-container' }, [
-				Div({ class: 'play circle', click: () => game.showHomeMenu() }, [
+				A({ class: 'bttn circle bttn-home', href: '/home' }, [
 					Div({ class: 'content' })
 				]),
 			]),
-			Article({ class: 'summary-col-container' }, [
-				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container' }),
-			]),
+			// Article({ class: 'summary-col-container' }, [
+			// 	Section({ class: 'col marketing-container', id: 'summary-ad-banner-container' }),
+			// ]),
 			Section({ class: 'col data-container' }, [
 				Div({ class: 'level-summary' }, [
 					Div({ class: 'row' }, [
@@ -66,7 +66,7 @@ export const LevelSummaryPage = () => (
 						Div({ class: 'summary-buttons' }, [
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'play circle', click: () => game.previousLevel() }, [
+									Div({ class: 'bttn circle bttn-prev', click: () => game.previousLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Previous')
@@ -74,7 +74,7 @@ export const LevelSummaryPage = () => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'retry_level' }, [
-									Div({ class: 'play circle', click: () => game.retryLevel() }, [
+									Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Retry')
@@ -82,7 +82,7 @@ export const LevelSummaryPage = () => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'play circle', click: () => game.nextLevel() }, [
+									Div({ class: 'bttn circle bttn-next', click: () => game.nextLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Next')

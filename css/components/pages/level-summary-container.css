@@ -1,9 +1,11 @@
 .level-summary-container{
+	display: block;
 	top:0px;
 	bottom:0px;
 	right:0px;
 	margin:0px auto;
 	z-index:10;
+	backdrop-filter: blur(10px);
 	-webkit-transform:translateZ(0);
 	transform:translateZ(0);
 	-webkit-backface-visibility: hidden;
