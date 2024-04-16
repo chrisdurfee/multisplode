@@ -1,10 +1,9 @@
-"use strict";
 
-var Sounds =
+export const Sounds =
 {
 	activeSounds: [],
 
-	reset: function()
+	reset()
 	{
 		this.activeSounds = [];
 	},
@@ -14,14 +13,14 @@ var Sounds =
 		return this.activeSounds;
 	},
 
-	add: function(filePath, type)
+	add(filePath, type)
 	{
 		if(Settings.audio === true)
 		{
 			if(this.check(type) === false)
 			{
-				var audio = new Audio(filePath);
-				var sound =
+				let audio = new Audio(filePath);
+				let sound =
 				{
 					audio: audio,
 					type: type
@@ -37,17 +36,17 @@ var Sounds =
 		return false;
 	},
 
-	check: function(type)
+	check(type)
 	{
 		return false;
-		// var activeSounds = this.activeSounds,
+		// let activeSounds = this.activeSounds,
 		// length = activeSounds.length;
 		// if(length)
 		// {
-		// 	var count = 0;
-		// 	for(var i = 0; i < length; i++)
+		// 	let count = 0;
+		// 	for(let i = 0; i < length; i++)
 		// 	{
-		// 		var sound = activeSounds[i];
+		// 		let sound = activeSounds[i];
 		// 		if(sound.type === type)
 		// 		{
 		// 			count++;
@@ -61,9 +60,9 @@ var Sounds =
 		// return false;
 	},
 
-	remove: function(sound)
+	remove(sound)
 	{
-		var activeSounds = this.activeSounds,
+		let activeSounds = this.activeSounds,
 		index = activeSounds.indexOf(sound);
 		if(index > -1)
 		{

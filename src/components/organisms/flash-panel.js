@@ -45,7 +45,6 @@ export class FlashPanel
 		return element;
 	}
 
-	/* this will create the panel */
 	createPanel()
 	{
 		let self = this;
@@ -92,8 +91,6 @@ export class FlashPanel
 		this.stopTimer();
 	}
 
-	/* this will return true to the callback if
-	supplied and remove the panel*/
 	accept()
 	{
 		if(typeof this.callback === 'function')

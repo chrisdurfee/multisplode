@@ -1,10 +1,9 @@
-"use strict";
 
-var AdService = Class.extend(
+export class AdService
 {
-	constructor: function(iosId, iosIntl, andId, andIntl)
+	constructor(iosId, iosIntl, andId, andIntl)
 	{
-		var publisherIds =
+		let publisherIds =
 		{
 			ios:
 			{
@@ -20,13 +19,13 @@ var AdService = Class.extend(
 
 		this.publisher = (/(android)/i.test(navigator.userAgent)) ? publisherIds.android : publisherIds.ios;
 		this.adMob = null;
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		if(this.isSupported())
 		{
-			var publisher = this.publisher;
+			let publisher = this.publisher;
 			window.plugins.AdMob.setOptions({
 				publisherId: publisher.banner,
 				interstitialAdId: publisher.interstitial,
@@ -43,77 +42,77 @@ var AdService = Class.extend(
 			this.adMob = window.plugins.AdMob;
 			this.queueIntersitial();
 		}
-	},
+	}
 
-	setupEvents: function()
+	setupEvents()
 	{
-		var self = this;
-		document.addEventListener('onReceiveAd', function(){});
-        document.addEventListener('onFailedToReceiveAd', function(data){});
-        document.addEventListener('onPresentAd', function(){});
-        document.addEventListener('onDismissAd', function(){ });
-        document.addEventListener('onLeaveToAd', function(){ });
-        document.addEventListener('onReceiveInterstitialAd', function(){ });
-        document.addEventListener('onPresentInterstitialAd', function(){ });
-        document.addEventListener('onDismissInterstitialAd', function(){
+		let self = this;
+		document.addEventListener('onReceiveAd', () =>{});
+        document.addEventListener('onFailedToReceiveAd', (data) =>{});
+        document.addEventListener('onPresentAd', () =>{});
+        document.addEventListener('onDismissAd', () =>{ });
+        document.addEventListener('onLeaveToAd', () =>{ });
+        document.addEventListener('onReceiveInterstitialAd', () =>{ });
+        document.addEventListener('onPresentInterstitialAd', () =>{ });
+        document.addEventListener('onDismissInterstitialAd', () =>{
             //get the next one ready only after the current one is closed
 			self.queueIntersitial();
         });
-	},
+	}
 
-	isSupported: function()
+	isSupported()
 	{
 		return (window.plugins && window.plugins.AdMob);
-	},
+	}
 
-	showBanner: function()
+	showBanner()
 	{
 		if(this.adMob)
 		{
 			this.adMob.createBannerView();
 		}
-	},
+	}
 
-	queueIntersitial: function()
+	queueIntersitial()
 	{
 		this.adMob.createInterstitialView();
 		this.adMob.requestInterstitialAd();
-	},
+	}
 
-	showInterstitial: function()
+	showInterstitial()
 	{
-		if(this.adMob)
+		if (this.adMob)
 		{
 			this.adMob.showInterstitialAd();
 		}
 	}
-});
+}
 
 /* this will setup a defaul object that will
 hold functions incase we can setup by cordova */
-var ads =
+let ads =
 {
-	showBanner: function()
+	showBanner()
 	{
 
 	},
 
-	showInterstitial: function()
+	showInterstitial()
 	{
 
 	}
 };
 
-var setupAdService = function()
+const setupAdService = () =>
 {
-	var adMob = new AdService(
+	const adMob = new AdService(
 		'ca-app-pub-4701654588985905/1790249516',
 		'ca-app-pub-4701654588985905/7976383913',
 		'ca-app-pub-4701654588985905/3266982717',
 		'ca-app-pub-4701654588985905/3546184312'
 	);
 
-	if(adMob.isSupported())
+	if (adMob.isSupported())
 	{
 		adMob.setup();
 		ads = adMob;

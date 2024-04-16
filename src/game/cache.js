@@ -1,6 +1,18 @@
-
+/**
+ * Cache
+ *
+ * This will cache an image to a canvas element.
+ */
 export const Cache =
 {
+	/**
+	 * Thi will cache an image to a canvas element.
+	 *
+	 * @param {function} callBack
+	 * @param {number} width
+	 * @param {number} height
+	 * @returns {object}
+	 */
 	add(callBack, width, height)
 	{
 		const canvas = this.createCacheCanvas(width, height);
@@ -12,6 +24,13 @@ export const Cache =
 		return canvas;
 	},
 
+	/**
+	 * This will create a canvas element.
+	 *
+	 * @param {number} width
+	 * @param {number} height
+	 * @returns {object}
+	 */
 	createCacheCanvas(width, height)
 	{
 		const canvas = document.createElement("canvas");

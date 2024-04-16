@@ -1,4 +1,4 @@
-import { FlashPanel } from './flashPanel.js';
+import { FlashPanel } from '../components/organisms/flash-panel.js';
 
 export const Messages =
 {

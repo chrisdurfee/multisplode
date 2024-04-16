@@ -1,10 +1,9 @@
-"use strict";
 
-var requestFrame = null;
+let requestFrame = null;
 
-var Stage = Class.extend(
+export class Stage
 {
-	constructor: function(targetWidth, targetHeight, container)
+	constructor(targetWidth, targetHeight, container)
 	{
 		this.targetSize = { width: targetWidth, height: targetHeight };
 		this.size = { width: 0, height: 0 };
@@ -27,27 +26,27 @@ var Stage = Class.extend(
 		this.buffer = null;
 		this.fps = 60;
 		this.container = container;
-	},
+	}
 
-	setup: function()
+	setup()
 	{
 		this.drawBind = this.draw.bind(this);
 		this.setupCanvas();
 		this.setupAnimationFrame();
 		//this.setupBuffer();
 		this.setupEvents();
-	},
+	}
 
 	/* this will setup our canvas and context and
 	add them to our object */
-	setupCanvas: function()
+	setupCanvas()
 	{
-		var canvas = this.canvas = this.container;
+		let canvas = this.canvas = this.container;
 		this.context = canvas.getContext('2d');
-	},
+	}
 
 	/* this will setup the events for the game */
-	setupEvents: function()
+	setupEvents()
 	{
 		this.setupMouse();
 		this.resize();
@@ -57,26 +56,26 @@ var Stage = Class.extend(
 		and add it to our closure scoped add and remove
 		methods. this allows the events to be added and removed
 		during game play */
-		var callBack = this.mouseDown.bind(this);
-		var canvas = this.canvas;
+		let callBack = this.mouseDown.bind(this);
+		let canvas = this.canvas;
 
-		this.addEvent = function()
+		this.addEvent = () =>
 		{
 			canvas.addEventListener("mousedown", callBack, false);
 			canvas.addEventListener("touchstart", callBack, false);
 		};
 
-		this.removeEvent = function()
+		this.removeEvent = () =>
 		{
 			canvas.removeEventListener("mousedown", callBack, false);
 			canvas.removeEventListener("touchstart", callBack, false);
 		};
-	},
+	}
 
 	/* this will setup the mouse events */
-	setupMouse: function()
+	setupMouse()
 	{
-		var doc = document,
+		let doc = document,
 		canvas = this.canvas,
 		mousePosition = this.mousePosition.bind(this),
 		mouseStatus = this.mouseUp.bind(this);
@@ -86,24 +85,24 @@ var Stage = Class.extend(
 
 		canvas.addEventListener("touchmove", mousePosition);
 		doc.addEventListener("touchend", mouseStatus);
-	},
+	}
 
 	/* this will create a primary exlosion that will remove
 	a touch from the level touch count */
-	interact: function(mouseX, mouseY)
+	interact(mouseX, mouseY)
 	{
 		this.levelController.interact(mouseX, mouseY)
-	},
+	}
 
-	getInteractPositions: function(e)
+	getInteractPositions(e)
 	{
 		/* this will convert the mouse position to the scaled
 		canvas size by changing the actual canvas size to
 		scaled canvas size */
-		var scale = this.scaleRatio,
+		let scale = this.scaleRatio,
 		rect = this.canvasBoundBox;
 
-		var getScaledPosition = function(x, y)
+		const getScaledPosition = (x, y) =>
 		{
 			/* we also need to get the element offset and subtract
 			it from the mouse position */
@@ -113,31 +112,31 @@ var Stage = Class.extend(
 			};
 		};
 
-		var positions = [];
-		var touches = e.touches;
+		let positions = [];
+		let touches = e.touches;
 		if(touches && touches.length)
 		{
-			var touch = touches[touches.length - 1];
+			let touch = touches[touches.length - 1];
 			positions.push(getScaledPosition(touch.pageX, touch.pageY));
 		}
 		else
 		{
-			var eX, eY;
+			let eX, eY;
 			eX = e.x || e.clientX;
 			eY = e.y || e.clientY;
 			positions.push(getScaledPosition(eX, eY));
 		}
 		return positions;
-	},
+	}
 
-	getEventPosition: function(e)
+	getEventPosition(e)
 	{
-		var eX, eY;
+		let eX, eY;
 
-		var touches = e.touches;
+		let touches = e.touches;
 		if(touches && touches.length)
 		{
-			var touch = touches[0];
+			let touch = touches[0];
 			eX = touch.pageX;
 			eY = touch.pageY;
 		}
@@ -150,72 +149,72 @@ var Stage = Class.extend(
 		/* this will convert the mouse position to the scaled
 		canvas size by changing the actual canvas size to
 		scaled canvas size */
-		var scale = this.scaleRatio,
+		let scale = this.scaleRatio,
 		rect = this.canvasBoundBox;
 
 		/* we also need to get the element offset and subtract
 		it from the mouse position */
-	    var x = parseInt((eX - rect.left) * scale),
+	    let x = parseInt((eX - rect.left) * scale),
 		y = parseInt((eY - rect.top) * scale);
 
-		var mouse = this.mouse;
+		let mouse = this.mouse;
 		mouse.x = x;
 		mouse.y = y;
-	},
+	}
 
 	/* this will will get the current mouse position
 	and save it to the object.
 	@param (object) e = the event object */
-	mousePosition: function(e)
+	mousePosition(e)
 	{
 		this.getEventPosition(e);
-	},
+	}
 
 	/* this will update the mouse status to up */
-	mouseDown: function(e)
+	mouseDown(e)
 	{
 		e.preventDefault();
 		e.stopPropagation();
 
-		var positions = this.getInteractPositions(e);
-		for(var i = 0, length = positions.length; i < length; i++)
+		let positions = this.getInteractPositions(e);
+		for(let i = 0, length = positions.length; i < length; i++)
 		{
-			var position = positions[i];
+			let position = positions[i];
 			this.interact(position.x, position.y);
 		}
 
 		this.mouse.status = 'down';
-	},
+	}
 
 	/* this will update the mouse status to down */
-	mouseUp: function()
+	mouseUp()
 	{
 		this.mouse.status = 'up';
-	},
+	}
 
 	/* this will get the size of the game container.
 	@returns (object) the height and width of the container */
-	getContainerSize: function()
+	getContainerSize()
 	{
-		var size =
+		let size =
 		{
 			width: 0,
 			height: 0
 		};
 
-		var container = this.canvas.parentNode;
+		let container = this.canvas.parentNode;
 		if(container)
 		{
-			var style = container.style;
+			let style = container.style;
 			/* padding and border for left and right */
-			var bordersLR = (style.borderLeftWidth + style.borderRightWidth);
-			var paddingLR = (style.paddingLeft + style.paddingRight);
+			let bordersLR = (style.borderLeftWidth + style.borderRightWidth);
+			let paddingLR = (style.paddingLeft + style.paddingRight);
 
 			/* padding and border for top and bottom */
-			var bordersTB = (style.borderTopWidth + style.borderBottomWidth);
-			var paddingTB = (style.paddingTop + style.paddingBottom);
+			let bordersTB = (style.borderTopWidth + style.borderBottomWidth);
+			let paddingTB = (style.paddingTop + style.paddingBottom);
 
-			var boxSizing = style.boxSizing,
+			let boxSizing = style.boxSizing,
 			minSize = 0,
 			width = 0,
 			height = 0;
@@ -238,17 +237,17 @@ var Stage = Class.extend(
 		}
 
 		return size;
-	},
+	}
 
-	canvasBoundBox: null,
+	canvasBoundBox = null;
 
 	/* this will resize the canvas and buffer. */
-	resize: function()
+	resize()
 	{
-		var containerSize = this.getContainerSize();
+		let containerSize = this.getContainerSize();
 		if(containerSize.width > 0)
 		{
-			var canvas = this.canvas,
+			let canvas = this.canvas,
 			targetSize = this.targetSize;
 
 			/* this will set the size of the canvas as the target
@@ -267,29 +266,29 @@ var Stage = Class.extend(
 
 			//this.buffer.resize(this.size);
 		}
-	},
+	}
 
 	/* this is our canvas scale ration used in the
 	mouse position */
-	scaleRatio: 1,
+	scaleRatio = 1;
 
 	/* this will scale the canvas to the size of the
 	parent container using the css style property,
 	while keeping the aspect ratio as the main canvas
 	@param (object) containerSize = the size object
 	@param (object) canvas = the main canvas */
-	scale: function(containerSize, canvas)
+	scale(containerSize, canvas)
 	{
-		var height = canvas.height,
+		let height = canvas.height,
 		width = canvas.width;
 
-		var gameWidth = containerSize.width,
+		let gameWidth = containerSize.width,
 		gameHeight = containerSize.height,
 		scaleToFitX = gameWidth / width,
 		scaleToFitY = gameHeight / height;
 
-		//var currentScreenRatio = gameWidth / gameHeight;
-		var optimalRatio = Math.min(scaleToFitX, scaleToFitY);
+		//let currentScreenRatio = gameWidth / gameHeight;
+		let optimalRatio = Math.min(scaleToFitX, scaleToFitY);
 
 		canvas.style.width = width * optimalRatio + "px";
 		canvas.style.height = height * optimalRatio + "px";
@@ -298,23 +297,23 @@ var Stage = Class.extend(
 		in our mouse position to scale the mouse
 		position in our scaled canvas */
 		this.scaleRatio = this.size.width / parseInt(canvas.style.width);
-	},
+	}
 
 	/* this is th draw aniamtion loop. this will draw the
 	game objects on the game canvas and check to stop when
 	the level is compelete. */
-	draw: function()
+	draw()
 	{
 		/* we want to clear the buffer canvas */
-		//var backBuffer = this.buffer,
-		var ctx = this.context;
+		//let backBuffer = this.buffer,
+		let ctx = this.context;
 
 		/* we want to clear the canvas and reset
 		the settings */
-		var size = this.size;
+		let size = this.size;
 		ctx.clearRect(0, 0, size.width, size.height);
 
-		var stop = this.levelController.draw(ctx, this);
+		let stop = this.levelController.draw(ctx, this);
 		if(stop === true)
 		{
 			this.stopDraw();
@@ -326,19 +325,19 @@ var Stage = Class.extend(
 
 		/* this will draw the buffer canvas on the game canvas */
 		//this.renderFromBuffer(size.width, size.height, backBuffer);
-	},
+	}
 
-	renderFromBuffer: function(width, height, backBuffer)
+	renderFromBuffer(width, height, backBuffer)
 	{
 		/* this will draw the buffer canvas on the game canvas */
-		var mainCtx = this.context;
+		let mainCtx = this.context;
 		mainCtx.clearRect(0, 0, width, height);
 		mainCtx.drawImage(backBuffer.canvas, 0, 0);
-	},
+	}
 
 	/* this will setup the request animation frame to
 	allow backwards compat. */
-	setupAnimationFrame: function()
+	setupAnimationFrame()
 	{
 		/* setup request for prefix or setTimeout if
 		not supported */
@@ -365,26 +364,26 @@ var Stage = Class.extend(
 				window.clearTimeout(requestID);
 			}
 		);
-	},
+	}
 
-	startDraw: function()
+	startDraw()
 	{
 		if(typeof this.animationId !== 'undefined')
 		{
 			this.stopDraw();
 			this.draw();
 		}
-	},
+	}
 
-	stopDraw: function()
+	stopDraw()
 	{
 		window.cancelAnimationFrame(this.animationId);
 		this.animationId = null;
-	},
+	}
 
-	setupBuffer: function()
+	setupBuffer()
 	{
 		this.buffer = new Buffer();
 		this.buffer.setup();
 	}
-});
+}
