@@ -1,6 +1,7 @@
 import { Audio, Div, Main } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
 import { LevelPage } from '../pages/level-page.js';
+import { LevelSummaryPage } from '../pages/level-summary-page.js';
 import { PausePage } from '../pages/pause-page.js';
 import { SettingsPage } from '../pages/settings-page.js';
 import { Routes } from './routes.js';
@@ -58,6 +59,10 @@ export const AppShell = () => (
 			{
 				uri: '/play/paused',
 				component: PausePage()
+			},
+			{
+				uri: '/play/summary',
+				component: LevelSummaryPage()
 			}
 		] }),
 		Audio({ id: 'sound_fx', cache: 'soundFx', class: 'sound', src: 'sound/music/play-loop.mp3', loop: true })
