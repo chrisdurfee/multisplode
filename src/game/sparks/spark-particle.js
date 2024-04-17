@@ -4,18 +4,18 @@ export class SparkParticle
 	{
 		this.position = { x: x, y: y};
 		this.angle = angle;
-		this.size = math.randomFromTo(4, 10);
+		this.size = MathUtil.randomFromTo(4, 10);
 		this.maxSize = this.size;
 		this.fillColor = color;
 		this.stroke = color;
 		this.type = '';
-		this.speed = math.randomFromTo( 1, 5);
+		this.speed = MathUtil.randomFromTo( 1, 5);
 		this.cachePath();
 	}
 
 	updatePosition()
 	{
-		let position = math.getPositionByAngle(this.angle, this.speed);
+		let position = MathUtil.getPositionByAngle(this.angle, this.speed);
 		let currentPosition = this.position;
 		currentPosition.x += position.x;
 		currentPosition.y += position.y;

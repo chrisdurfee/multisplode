@@ -25,7 +25,7 @@ export class Device
      */
     constructor(tmpX, tmpY, color, multiplier)
     {
-        this.position = { x: math.round(tmpX), y: math.round(tmpY) };
+        this.position = { x: MathUtil.round(tmpX), y: MathUtil.round(tmpY) };
         this.size = 0;
         this.fillColor = color;
         this.audio = 'sound/collisions/collision-1a.mp3';

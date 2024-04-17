@@ -70,7 +70,7 @@ export class Spark
 	{
 		let radius = this.radius;
 		radius += this.radiusRate;
-		radius = math.round(radius);
+		radius = MathUtil.round(radius);
 	}
 
 	draw(ctx)

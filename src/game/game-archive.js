@@ -629,14 +629,14 @@ multisplode.game =
 	//creat random number from set number range
 	randomFromTo: function(from, to)
 	{
-	   return math.floor(Math.random() * (to - from + 1) + from);
+		return MathUtil.floor(Math.random() * (to - from + 1) + from);
 	},
 
 	//create random color (colors are set, intensity is dynamic)
 	newColor: function(limit)
 	{
 		limit = (typeof limit !== 'number')? 7 : limit;
-		var number = math.floor(Math.random() * 7);
+		var number = MathUtil.floor(Math.random() * 7);
 		var color = '';
 		switch(number)
 		{

@@ -57,8 +57,8 @@ export class Point
 
 	draw(ctx)
 	{
-		let x = math.round(this.position.x),
-		y = math.round(this.position.y);
+		let x = MathUtil.round(this.position.x),
+		y = MathUtil.round(this.position.y);
 
 		let opacity = 1 - this.distance / this.maxDistance;
 		ctx.save();

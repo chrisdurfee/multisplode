@@ -49,8 +49,8 @@ export class GravityField extends Device
         /* this will limit the oribit to stay a distance from the center */
         distance = distance > this.orbitLimit? distance : this.orbitLimit;
 
-        let angle = math.updateOrbitAngle(this.getOrbitAngle(particle), particle.speed / this.size);
-        position = math.getOrbitPosition(position.x, position.y, angle, distance);
+        let angle = MathUtil.updateOrbitAngle(this.getOrbitAngle(particle), particle.speed / this.size);
+        position = MathUtil.getOrbitPosition(position.x, position.y, angle, distance);
 
         particlePosition.x = position.x;
         particlePosition.y = position.y;

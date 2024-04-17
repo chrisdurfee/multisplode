@@ -87,7 +87,7 @@ export class LevelController
 	//creat random number from set number range
 	randomFromTo(from, to)
 	{
-	   return math.floor(Math.random() * (to - from + 1) + from);
+	   return MathUtil.floor(Math.random() * (to - from + 1) + from);
 	}
 
 	/* this will reset all game objects */
@@ -160,7 +160,7 @@ export class LevelController
 		{
 			type = 'awful';
 		}
-		else if(level.scoreNumber <= math.round(level.minimum * 0.25))
+		else if(level.scoreNumber <= MathUtil.round(level.minimum * 0.25))
 		{
 			type = 'bad';
 		}

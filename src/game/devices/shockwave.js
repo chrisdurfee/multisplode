@@ -15,7 +15,7 @@ export class ShockWave extends Device
             'collision-1c.mp3',
             'collision-1d.mp3'
         ];
-        let file = files[math.round(Math.random() * files.length - 1)];*/
+        let file = files[MathUtil.round(Math.random() * files.length - 1)];*/
         this.audio = 'sound/collisions/collision-1a.mp3';
 
         this.type = 'shockWave';

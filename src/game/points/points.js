@@ -44,7 +44,7 @@ export const Points =
 		for(let i = (gamePoints.length - 1); i >= 0; i--)
 		{
 			let pointText = gamePoints[i];
-			if(math.round(pointText.distance) >= pointText.maxDistance)
+			if(MathUtil.round(pointText.distance) >= pointText.maxDistance)
 			{
 				//remove object from points array
 				this.remove(pointText);

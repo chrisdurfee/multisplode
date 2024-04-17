@@ -18,7 +18,7 @@ export class Particle
 	getDefaultSettings()
 	{
 		let gameSize = game.stage.size;
-		let fromRandom = math.randomFromTo;
+		let fromRandom = MathUtil.randomFromTo;
 
 		let minSize = 0.005,
 		maxSize = 0.008,
@@ -73,7 +73,7 @@ export class Particle
 	getRandomColor(limit)
 	{
 		limit = (typeof limit !== 'number')? 7 : limit;
-		let number = math.floor(Math.random() * 7);
+		let number = MathUtil.floor(Math.random() * 7);
 		let color = '';
 		switch(number)
 		{
@@ -126,7 +126,7 @@ export class Particle
 
 	updateAngle()
 	{
-		let angle = math.updateOrbitAngle(this.angle, this.speed);
+		let angle = MathUtil.updateOrbitAngle(this.angle, this.speed);
 		this.angle = (angle);
 	}
 
@@ -148,8 +148,8 @@ export class Particle
 	{
 		let size = game.stage.size;
 
-		let position = math.getPositionByAngle(this.angle, this.speed);
-		let round = math.round;
+		let position = MathUtil.getPositionByAngle(this.angle, this.speed);
+		let round = MathUtil.round;
 		let curPos = this.position;
 		curPos.x = round(curPos.x + position.x);
 		curPos.y = round(curPos.y + position.y);

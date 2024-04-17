@@ -172,7 +172,7 @@ export const Messages =
 		if(messages)
 		{
 			let maxLength = messages.length;
-			let number = math.round(Math.random() * (maxLength - 1));
+			let number = MathUtil.round(Math.random() * (maxLength - 1));
 			let message = messages[number];
 			if(message)
 			{
