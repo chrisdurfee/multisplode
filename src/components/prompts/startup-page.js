@@ -2,13 +2,13 @@ import { Article, Div, H2, Header, Img, Section } from '@base-framework/atoms';
 import { Page } from '../pages/page.js';
 
 /**
- * StartupPage
+ * StartupPrompt
  *
- * This will create the startup page.
+ * This will create the startup prompt.
  *
  * @returns {object}
  */
-export const StartupPage = () => (
+export const StartupPrompt = () => (
 	new Page([
 		Div({ class: 'prompt-panel startup-panel' }, [
 			Article({ class: 'touch-slider step-container', id: 'startup-step-panel' }, [

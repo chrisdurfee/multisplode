@@ -1,8 +1,20 @@
-import { Dialog } from "@base-framework/atoms";
-import { Builder } from "@base-framework/base";
+import { Dialog, Div, Span } from "@base-framework/atoms";
+import { Builder, Component } from "@base-framework/base";
 
-export class Prompt
+/**
+ * Prompt
+ *
+ * This will create a prompt.
+ *
+ * @class
+ */
+export class Prompt extends Component
 {
+	/**
+	 * @member {string} className
+	 */
+	className = '';
+
 	/**
 	 * This will render the modal component.
 	 *
@@ -10,88 +22,32 @@ export class Prompt
 	 */
 	render()
 	{
-		return Dialog({ class: 'panel-top-button-container', click: (event) =>
+		const click = (event) =>
+		{
+			if (event.target === this.panel)
 			{
-				if (event.target === this.panel)
-				{
-					this.close();
-				}
-			}}, [
-			{
-				class: 'modal-content',
-				children:
-				[
-					Header({ class: 'modal-header' }, [
-						H2({ class: 'modal-title' }, 'Modal Title')
-					]),
-					Div({ class: 'modal-body' }, 'Modal Body'),
-					Footer({ class: 'modal-footer' }, 'Modal Footer')
-				]
+				this.close();
 			}
+		};
+
+		return Dialog({ class: `prompt-panel ${this.className}`, click }, [
+				Div({ class: 'panel-top-button-container' }, [
+					Div({ class: 'bttn circle close', click: this.display.bind(this) }, [
+						Div({ class: 'content' }, [
+							Span(),
+							Span()
+						])
+					])
+				]),
+				...this.children
 		]);
 	}
 
-	addHeader()
-	{
-		let container = this.container,
-		self = this;
-
-		let obj = document.createElement('div');
-		obj.className = 'panel-top-button-container';
-
-		let parent = container;
-		parent.insertBefore(obj, parent.firstChild);
-
-		let button = document.createElement('div');
-		button.className = 'bttn circle close';
-		button.innerHTML = '<div class="content"><span></span><span></span></div>';
-		button.onclick = this.display.bind(this);
-
-		obj.appendChild(button);
-	}
-
-	getContainer(container)
-	{
-		if(container && typeof container === 'object')
-		{
-			return container;
-		}
-		else
-		{
-			let element = document.querySelector('#' + container);
-			if(element)
-			{
-				return element;
-			}
-		}
-		return false;
-	}
-
-	timer = null;
-
-	display()
-	{
-		let container = this.container,
-		playContainer = document.getElementById('play-container');
-		this.toggleDisplay();
-
-		if(this.toggleMode === 'block')
-		{
-			playContainer.classList.add('blur');
-			window.clearTimeout(this.timer);
-			this.timer = window.setTimeout(function()
-			{
-				container.classList.add('active');
-			}, 1000);
-		}
-		else
-		{
-			window.clearTimeout(this.timer);
-			container.classList.remove('active');
-			playContainer.classList.remove('blur');
-		}
-	}
-
+	/**
+	 * This will open the prompt.
+	 *
+	 * @returns {void}
+	 */
 	open()
 	{
 		Builder.render(this, document.body);
@@ -101,8 +57,13 @@ export class Prompt
 		{
 			this.activateCallBack.call();
 		}
-}
+	}
 
+	/**
+	 * This will close the prompt.
+	 *
+	 * @returns {void}
+	 */
 	close()
 	{
 		this.panel.close();
@@ -111,37 +72,6 @@ export class Prompt
 		if (typeof this.deactivateCallBack === 'function')
 		{
 			this.deactivateCallBack.call();
-		}
-	}
-
-	toggleMode = null;
-
-	toggleDisplay()
-	{
-		let obj = this.container,
-		display = obj.style.display;
-
-		if(display === '' || display === 'none')
-		{
-			obj.style.display = 'block';
-			this.toggleMode = 'block';
-			this.createShadow();
-
-			if(typeof this.activateCallBack === 'function')
-			{
-				this.activateCallBack.call();
-			}
-		}
-		else
-		{
-			obj.style.display = 'none';
-			this.toggleMode = 'none';
-			this.removeShadow();
-
-			if(typeof this.deactivateCallBack === 'function')
-			{
-				this.deactivateCallBack.call();
-			}
 		}
 	}
 }
