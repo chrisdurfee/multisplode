@@ -1,4 +1,4 @@
-import { LevelController } from './level-controller.js';
+import { LevelController } from '../../level-controller.js';
 
 export class RandomLevelController extends LevelController
 {

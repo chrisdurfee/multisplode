@@ -1,6 +1,6 @@
 
-import { LevelPack } from './level-pack.js';
-import { Level } from './level.js';
+import { Level } from '../../level.js';
+import { LevelPack } from '../level-pack.js';
 
 export class RandomLevelPack extends LevelPack
 {
