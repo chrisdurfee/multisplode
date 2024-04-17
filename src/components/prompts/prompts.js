@@ -1,4 +1,3 @@
-import { Builder } from '@base-framework/base';
 import { AddFourPrompt } from './add-four-prompt.js';
 import { AddThreePrompt } from './add-three-prompt.js';
 import { AddTwoPrompt } from './add-two-prompt.js';
@@ -28,16 +27,14 @@ const createPrompt = (props) =>
 {
 	try {
 		const type = PromptTypes[props.type];
-		const prompt = new type(props);
-		Builder.render(prompt, document.body);
-		return prompt;
+		return new type(props);
 	}
 	catch (e)
 	{
 		console.log(e);
 	}
 	return null;
-}
+};
 
 /**
  * Prompts
@@ -47,9 +44,9 @@ const createPrompt = (props) =>
 export const Prompts =
 {
 	/**
-	 * @type {array} prompts
+	 * @type {object} prompts
 	 */
-	prompts: [],
+	prompts: {},
 
 	/**
 	 * This will setup the prompts.
@@ -101,35 +98,26 @@ export const Prompts =
 	/**
 	 * This will get the prompt.
 	 *
-	 * @param {string} id
+	 * @param {string} type
 	 * @returns {object|null}
 	 */
-	getPrompt(id)
+	getPrompt(type)
 	{
-		const prompts = this.prompts;
-		for (let i = 0, length = prompts.length; i < length; i++)
-		{
-			const prompt = prompts[i];
-			if (prompt.id === id)
-			{
-				return prompt;
-			}
-		}
-		return null;
+		return this.prompts[type] || null;
 	},
 
 	/**
 	 * This will show the prompt.
 	 *
-	 * @param {string} id
+	 * @param {string} type
 	 * @returns {void}
 	 */
-	showPrompt(id)
+	showPrompt(type)
 	{
-		const prompt = this.getPrompt(id);
+		const prompt = this.getPrompt(type);
 		if (prompt)
 		{
-			prompt.display();
+			prompt.open();
 		}
 	},
 
