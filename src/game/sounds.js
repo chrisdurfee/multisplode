@@ -1,29 +1,53 @@
-
+/**
+ * Sounds
+ *
+ * This will handle the game sounds.
+ */
 export const Sounds =
 {
+	/**
+	 * @type {array} activeSounds
+	 */
 	activeSounds: [],
 
+	/**
+	 * This will reset the sounds.
+	 *
+	 * @returns {void}
+	 */
 	reset()
 	{
 		this.activeSounds = [];
 	},
 
-	getAll:function()
+	/**
+	 * This will get all the sounds.
+	 *
+	 * @returns {array}
+	 */
+	getAll()
 	{
 		return this.activeSounds;
 	},
 
+	/**
+	 * This will add a sound.
+	 *
+	 * @param {string} filePath
+	 * @param {string} type
+	 * @returns {object}
+	 */
 	add(filePath, type)
 	{
-		if(Settings.audio === true)
+		if (Settings.audio === true)
 		{
-			if(this.check(type) === false)
+			if (this.check(type) === false)
 			{
-				let audio = new Audio(filePath);
-				let sound =
+				const audio = new Audio(filePath);
+				const sound =
 				{
-					audio: audio,
-					type: type
+					audio,
+					type
 				};
 
 				//audio.addEventListener("ended", this.remove.bind(this, sound));
@@ -62,9 +86,9 @@ export const Sounds =
 
 	remove(sound)
 	{
-		let activeSounds = this.activeSounds,
+		const activeSounds = this.activeSounds,
 		index = activeSounds.indexOf(sound);
-		if(index > -1)
+		if (index > -1)
 		{
 			activeSounds.splice(index, 1);
 		}
