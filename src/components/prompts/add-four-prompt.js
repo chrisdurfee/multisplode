@@ -2,13 +2,13 @@ import { Div, H2, Header } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
- * AddFourPage
+ * AddFourPrompt
  *
- * This will create the add four page.
+ * This will create the add four prompt.
  *
  * @returns {object}
  */
-export const AddFourPage = () => (
+export const AddFourPrompt = () => (
 	new Prompt({ class: 'startup-panel' }, [
 		Div({ class: 'content' }, [
 			Object({ data: 'images/four-more.svg', type: 'image/svg+xml' }),

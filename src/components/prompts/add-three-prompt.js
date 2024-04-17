@@ -2,13 +2,13 @@ import { Div, H2, Header } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
- * AddThreePage
+ * AddThreePrompt
  *
- * This will create the add three page.
+ * This will create the add three prompt.
  *
  * @returns {object}
  */
-export const AddThreePage = () => (
+export const AddThreePrompt = () => (
 	new Prompt({ class: 'startup-panel' }, [
 		Div({ class: 'content' }, [
 			Object({ data: 'images/three-more.svg', type: 'image/svg+xml' }),
