@@ -9,22 +9,44 @@ const ParticleTypes = {
 	PulseParticle
 };
 
+/**
+ * Particles
+ *
+ * This will handle the particles.
+ */
 export const Particles =
 {
 	particles: [],
 	removed: [],
 
+	/**
+	 * This will reset the particles.
+	 *
+	 * @returns {void}
+	 */
 	reset()
 	{
 		this.particles = [];
 		this.removed = [];
 	},
 
+	/**
+	 * This will get all the particles.
+	 *
+	 * @returns {array}
+	 */
 	getAll()
 	{
 		return this.particles;
 	},
 
+	/**
+	 * This will add a new particle.
+	 *
+	 * @param {string} type
+	 * @param {object} settings
+	 * @returns {object}
+	 */
 	add(type, settings)
 	{
 		type = type || 'Particle';
@@ -35,6 +57,11 @@ export const Particles =
 		return partical;
 	},
 
+	/**
+	 * This will remove the particle.
+	 *
+	 * @param {object} partical
+	 */
 	remove(partical)
 	{
 		const index = this.particles.indexOf(partical);

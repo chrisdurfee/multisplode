@@ -67,6 +67,7 @@ export class Stage
 	{
 		this.targetSize = Size(targetWidth, targetHeight);
 		this.size = Size(0, 0);
+		this.fps = FPS;
 
 		/* this will store all thedata about our game canvas
 		to make accessing it faster than selecting through dom */
