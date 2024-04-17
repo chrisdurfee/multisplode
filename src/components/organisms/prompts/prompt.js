@@ -1,18 +1,34 @@
+import { Dialog } from "@base-framework/atoms";
+import { Builder } from "@base-framework/base";
 
 export class Prompt
 {
-	constructor(id, container, activateCallBack, deactivateCallBack)
+	/**
+	 * This will render the modal component.
+	 *
+	 * @returns {object}
+	 */
+	render()
 	{
-		this.id = id;
-		this.activateCallBack = activateCallBack || false;
-		this.deactivateCallBack = deactivateCallBack || false;
-
-		this.container = this.getContainer(container);
-	}
-
-	setup()
-	{
-		this.addHeader();
+		return Dialog({ class: 'panel-top-button-container', click: (event) =>
+			{
+				if (event.target === this.panel)
+				{
+					this.close();
+				}
+			}}, [
+			{
+				class: 'modal-content',
+				children:
+				[
+					Header({ class: 'modal-header' }, [
+						H2({ class: 'modal-title' }, 'Modal Title')
+					]),
+					Div({ class: 'modal-body' }, 'Modal Body'),
+					Footer({ class: 'modal-footer' }, 'Modal Footer')
+				]
+			}
+		]);
 	}
 
 	addHeader()
@@ -76,6 +92,28 @@ export class Prompt
 		}
 	}
 
+	open()
+	{
+		Builder.render(this, document.body);
+		this.panel.showModal();
+
+		if (typeof this.activateCallBack === 'function')
+		{
+			this.activateCallBack.call();
+		}
+}
+
+	close()
+	{
+		this.panel.close();
+		this.destroy();
+
+		if (typeof this.deactivateCallBack === 'function')
+		{
+			this.deactivateCallBack.call();
+		}
+	}
+
 	toggleMode = null;
 
 	toggleDisplay()
@@ -105,27 +143,5 @@ export class Prompt
 				this.deactivateCallBack.call();
 			}
 		}
-	}
-
-	removeShadow()
-	{
-		let panel = this.shadow;
-		if(panel)
-		{
-			let parent = panel.parentNode;
-			parent.removeChild(panel);
-		}
-	}
-
-	shadow = null;
-
-	createShadow()
-	{
-		let self = this,
-		obj = this.shadow = document.createElement('div');
-
-		obj.className = 'prompt-shadow';
-		obj.onclick = () =>{self.display();};
-		this.container.parentNode.appendChild(obj);
 	}
 }
