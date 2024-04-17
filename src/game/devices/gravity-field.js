@@ -185,13 +185,10 @@ export class GravityField extends Device
      */
     draw(ctx)
     {
-        const x = this.position.x,
-        y = this.position.y;
-
-        const opacity = 1 - this.delta / this.time;
+       const opacity = 1 - this.delta / this.time;
 
         ctx.save();
-        ctx.translate(x, y);
+        ctx.translate(this.position.x, this.position.y);
         ctx.globalAlpha = opacity;
         ctx.drawImage(this.cache, -this.half, -this.half);
         ctx.restore();
