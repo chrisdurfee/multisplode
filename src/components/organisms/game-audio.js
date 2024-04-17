@@ -64,26 +64,42 @@ export class GameAudio extends Component
 	setupStates()
 	{
 		return {
-			music: {
-				state: Data.get('music') || false,
-				id: 'settigs',
-				callBack: (state) =>
+			remotes: [
 				{
-					if (!this.panel)
-					{
-						return;
-					}
+					id: 'settigs',
+					music: {
+						state: Data.get('music') || false,
+						callBack: (state) =>
+						{
+							if (!this.panel)
+							{
+								return;
+							}
 
-					if (state === true)
-					{
-						this.start();
-					}
-					else
-					{
-						this.stop();
+							if (state === true)
+							{
+								this.start();
+							}
+							else
+							{
+								this.stop();
+							}
+						}
+					},
+					song: {
+						state: null,
+						callBack: (state) =>
+						{
+							if (!this.panel)
+							{
+								return;
+							}
+
+							this.change(state);
+						}
 					}
 				}
-			}
+			]
 		};
 	}
 
