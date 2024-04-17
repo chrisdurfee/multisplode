@@ -2,13 +2,13 @@ import { Div, Img } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
- * GravityFieldPage
+ * GravityFieldPrompt
  *
- * This will create the gravity field page.
+ * This will create the gravity field prompt.
  *
  * @returns {object}
  */
-export const GravityFieldPage = () => (
+export const GravityFieldPrompt = () => (
 	new Prompt({ class: 'startup-panel' }, [
 		Div({ class: 'content' }, [
 			Img({ data: 'images/gravity-field.svg', type: 'image/svg+xml' }),
