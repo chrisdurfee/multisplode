@@ -1,9 +1,18 @@
 import { FlashPanel } from '../components/organisms/flash-panel.js';
+import { MathUtil } from './math-util.js';
 
+/**
+ * Messages
+ *
+ * This will show messages to the player.
+ */
 export const Messages =
 {
 	options: [],
 
+	/**
+	 * This will hold all the messages.
+	 */
 	messages: {
 		awful: [],
 		bad: [],
@@ -12,17 +21,27 @@ export const Messages =
 		great: []
 	},
 
+	/**
+	 * This will reset the messages.
+	 *
+	 * @returns {void}
+	 */
 	reset()
 	{
 		this.options = [];
 	},
 
+	/**
+	 * This will set up the messages.
+	 *
+	 * @returns {void}
+	 */
 	setupMessages()
 	{
-		let messages = this.messages;
+		const messages = this.messages;
 		const createMessage = (type, title, text) =>
 		{
-			let message = {
+			const message = {
 				title: title,
 				text: text
 			};
@@ -166,38 +185,59 @@ export const Messages =
 		);
 	},
 
+	/**
+	 * This will get a random message.
+	 *
+	 * @param {string} type
+	 * @returns {void}
+	 */
 	getRandomMessage(type)
 	{
-		let messages = this.messages[type];
-		if(messages)
+		const messages = this.messages[type];
+		if (!messages)
 		{
-			let maxLength = messages.length;
-			let number = MathUtil.round(Math.random() * (maxLength - 1));
-			let message = messages[number];
-			if(message)
-			{
-				this.add(type, message.title, message.text);
-			}
+			return;
+		}
+
+		const maxLength = messages.length;
+		const number = MathUtil.round(Math.random() * (maxLength - 1));
+		const message = messages[number];
+		if (message)
+		{
+			this.add(type, message.title, message.text);
 		}
 	},
 
-	getAll:function()
+	/**
+	 * This will get all the messages.
+	 *
+	 * @returns {object}
+	 */
+	getAll()
 	{
 		return this.options;
 	},
 
-	add(type, title, text)
+	/**
+	 * This will add a flash message.
+	 *
+	 * @param {string} type
+	 * @param {string} title
+	 * @param {string} description
+	 * @returns {object}
+	 */
+	add(type, title, description)
 	{
-		let self = this;
-		let flash = new FlashPanel(type, title, text, () =>
-		{
-			self.remove(flash);
-		});
-		flash.setup();
+		const flash = new FlashPanel({ type, title, description });
 		this.options.push(flash);
 		return flash;
 	},
 
+	/**
+	 * This will remove all the messages.
+	 *
+	 * @returns {void}
+	 */
 	removeAll()
 	{
 		let options = this.options;
@@ -212,11 +252,17 @@ export const Messages =
 		}
 	},
 
+	/**
+	 * This will remove a message.
+	 *
+	 * @param {object} option
+	 * @returns {void}
+	 */
 	remove(option)
 	{
-		let options = this.options,
+		const options = this.options,
 		index = options.indexOf(option);
-		if(index > -1)
+		if (index > -1)
 		{
 			option.remove();
 			options.splice(index, 1);
