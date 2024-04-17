@@ -30,7 +30,7 @@ export class FlashPanel extends Component
 	{
 		return Div({ class: `flash-panel dropInBounce ${this.type}` }, [
 			Footer({ class: 'button-container' }, [
-				Button({ class: 'bttn circle close', onclick: () => this.close() }, [
+				Button({ class: 'bttn circle close', onclick: () => this.destroy() }, [
 					Div({ class: 'content' }, [
 						Span(),
 						Span()
