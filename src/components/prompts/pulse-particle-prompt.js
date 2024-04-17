@@ -2,13 +2,13 @@ import { Div, H2, Header, Img } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
- * PulseParticlePage
+ * PulseParticlePrompt
  *
- * This will create the pulse particle page.
+ * This will create the pulse particle prompt.
  *
  * @returns {object}
  */
-export const PulseParticlePage = () => (
+export const PulseParticlePrompt = () => (
 	new Prompt({ class: 'startup-panel' }, [
 		Div({ class: 'content' }, [
 			Img({ data: 'images/complete-challenge.svg', type: 'image/svg+xml' }),

@@ -1,13 +1,21 @@
 import { Builder } from '@base-framework/base';
-import { Prompt } from '../organisms/prompts/prompt.js';
-import { PromptStartup } from './types/prompt-startup.js';
+import { AddFourPrompt } from './add-four-prompt.js';
+import { AddThreePrompt } from './add-three-prompt.js';
+import { AddTwoPrompt } from './add-two-prompt.js';
+import { GravityFieldPrompt } from './gravity-field-prompt.js';
+import { PulseParticlePrompt } from './pulse-particle-prompt.js';
+import { StartupPrompt } from './startup-prompt.js';
 
 /**
  * @type {object} PromptTypes
  */
 const PromptTypes = {
-	Prompt,
-	PromptStartup
+	StartupPrompt,
+	AddTwoPrompt,
+	AddThreePrompt,
+	AddFourPrompt,
+	PulseParticlePrompt,
+	GravityFieldPrompt
 };
 
 /**
@@ -54,43 +62,37 @@ export const Prompts =
 		startDeactivate = game.startDraw.bind(game);
 
 		this.add({
-			type: 'PromptStartup',
-			id: 'startup-panel',
+			type: 'StartupPrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
 
 		this.add({
-			type: 'Prompt',
-			id: 'add-two-panel',
+			type: 'AddTwoPrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
 
 		this.add({
-			type: 'Prompt',
-			id: 'add-three-panel',
+			type: 'AddThreePrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
 
 		this.add({
-			type: 'Prompt',
-			id: 'add-four-panel',
+			type: 'AddFourPrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
 
 		this.add({
-			type: 'Prompt',
-			id: 'add-five-panel',
+			type: 'PulseParticlePrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
 
 		this.add({
-			type: 'Prompt',
-			id: 'gravity-field-panel',
+			type: 'GravityFieldPrompt',
 			activateCallback: stopActivate,
 			deactivateCallback: startDeactivate
 		});
