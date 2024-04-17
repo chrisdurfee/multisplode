@@ -1,5 +1,6 @@
-import { Audio, Div, Main } from '@base-framework/atoms';
+import { Div, Main } from '@base-framework/atoms';
 import { Atom } from '@base-framework/base';
+import { GameAudio } from '../organisms/game-audio.js';
 import { LevelPage } from '../pages/level-page.js';
 import { LevelSummaryPage } from '../pages/level-summary-page.js';
 import { PausePage } from '../pages/pause-page.js';
@@ -65,6 +66,6 @@ export const AppShell = () => (
 				component: LevelSummaryPage()
 			}
 		] }),
-		Audio({ id: 'sound_fx', cache: 'soundFx', class: 'sound', src: 'sound/music/play-loop.mp3', loop: true })
+		GameAudio({ cache: 'soundFx', class: 'sound', fileName: 'play-loop.mp3' })
 	])
 );
