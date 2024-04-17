@@ -2,6 +2,66 @@ import { base, Builder } from "@base-framework/base";
 import { AppShell } from "./components/shell/app-shell.js";
 import { Configs } from "./configs.js";
 
+let fullscreen = false;
+
+/**
+ * This will show the fullscreen.
+ *
+ * @returns {void}
+ */
+const showFullscreen = () =>
+{
+	if (fullscreen !== false)
+	{
+		return;
+	}
+
+	fullscreen = true;
+
+	let element = document.body;
+	if(element.requestFullscreen)
+	{
+		element.requestFullscreen();
+	}
+	else if(element.mozRequestFullScreen)
+	{
+		element.mozRequestFullScreen();
+	}
+	else if(element.webkitRequestFullscreen)
+	{
+		element.webkitRequestFullscreen();
+	}
+	else if(element.msRequestFullscreen)
+	{
+		element.msRequestFullscreen();
+	}
+};
+
+/**
+ * This will lock the orientation.
+ *
+ * @returns {void}
+ */
+const lockOrientation = () =>
+{
+	if (!screen)
+	{
+		return;
+	}
+
+	const orientation = screen.orientation;
+	if (orientation && typeof orientation.lock === 'function')
+	{
+		try {
+			orientation.lock('landscape').then((result) => {}, (err) => {});
+		}
+		catch (e)
+		{
+			console.log(e);
+		}
+	}
+};
+
 /**
  * AppController
  *
@@ -28,6 +88,8 @@ export class AppController
 	{
 		this.setupRouter();
 		this.setupAppShell();
+		//showFullscreen();
+		//lockOrientation();
 	}
 
 	/**
