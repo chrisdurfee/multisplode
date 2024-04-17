@@ -2,6 +2,26 @@ import { Dialog, Div, Span } from "@base-framework/atoms";
 import { Builder, Component } from "@base-framework/base";
 
 /**
+ * This will create a prompt container.
+ *
+ * @param {object} props
+ * @returns {object}
+ */
+export const PromptContainer = ({className, click, children}) => (
+	Dialog({ class: `prompt-panel ${className}`, click }, [
+		Div({ class: 'panel-top-button-container' }, [
+			Div({ class: 'bttn circle close', click }, [
+				Div({ class: 'content' }, [
+					Span(),
+					Span()
+				])
+			])
+		]),
+		...children
+	])
+);
+
+/**
  * Prompt
  *
  * This will create a prompt.
@@ -11,9 +31,9 @@ import { Builder, Component } from "@base-framework/base";
 export class Prompt extends Component
 {
 	/**
-	 * @member {string} className
+	 * @member {string} class
 	 */
-	className = '';
+	class = '';
 
 	/**
 	 * This will render the modal component.
@@ -30,17 +50,12 @@ export class Prompt extends Component
 			}
 		};
 
-		return Dialog({ class: `prompt-panel ${this.className}`, click }, [
-				Div({ class: 'panel-top-button-container' }, [
-					Div({ class: 'bttn circle close', click: this.display.bind(this) }, [
-						Div({ class: 'content' }, [
-							Span(),
-							Span()
-						])
-					])
-				]),
-				...this.children
-		]);
+		return PromptContainer(
+		{
+			class: this.class,
+			click,
+			children: this.children
+		});
 	}
 
 	/**

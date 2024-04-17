@@ -1,6 +1,6 @@
 import { Builder } from '@base-framework/base';
-import { PromptStartup } from './prompt-startup.js';
-import { Prompt } from './prompt.js';
+import { Prompt } from '../organisms/prompts/prompt.js';
+import { PromptStartup } from './types/prompt-startup.js';
 
 /**
  * @type {object} PromptTypes
