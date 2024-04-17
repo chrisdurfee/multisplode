@@ -1,12 +1,72 @@
+import { Buffer } from './buffer.js';
 
-let requestFrame = null;
+const ONE_SECOND = 1000;
+const FPS = 60;
 
+/**
+ * This will set up the requestAnimationFrame and cancelAnimationFrame
+ * for the game loop.
+ */
+window.requestAnimationFrame = (
+	window.requestAnimationFrame ||
+	window.mozRequestAnimationFrame ||
+	window.webkitRequestAnimationFrame ||
+	window.msRequestAnimationFrame ||
+	function(callBack)
+	{
+		return window.setTimeout(callBack, ONE_SECOND / FPS);
+	}
+);
+const requestFrame = window.requestAnimationFrame;
+
+window.cancelAnimationFrame = (
+	window.cancelAnimationFrame ||
+	window.mozCancelAnimationFrame ||
+	function(requestID)
+	{
+		window.clearTimeout(requestID);
+	}
+);
+
+/**
+ * This will create a size object.
+ *
+ * @param {number} width
+ * @param {number} height
+ * @returns {object}
+ */
+const Size = (width, height) => ({ width, height });
+
+/**
+ * This will create a mouse object.
+ *
+ * @param {number} x
+ * @param {number} y
+ * @param {string} status
+ * @returns {object}
+ */
+const Mouse = (x, y, status) => ({ x, y, status });
+
+/**
+ * Stage
+ *
+ * This will handle the game stage.
+ *
+ * @class
+ */
 export class Stage
 {
+	/**
+	 * This will set up the game stage.
+	 *
+	 * @param {number} targetWidth
+	 * @param {number} targetHeight
+	 * @param {object} container
+	 */
 	constructor(targetWidth, targetHeight, container)
 	{
-		this.targetSize = { width: targetWidth, height: targetHeight };
-		this.size = { width: 0, height: 0 };
+		this.targetSize = Size(targetWidth, targetHeight);
+		this.size = Size(0, 0);
 
 		/* this will store all thedata about our game canvas
 		to make accessing it faster than selecting through dom */
@@ -16,7 +76,7 @@ export class Stage
 		this.levelController = null;
 
 		/* this will track the positions of mouse */
-		this.mouse = { x: 0, y: 0, status: 'up' };
+		this.mouse = Mouse(0, 0, 'up');
 
 		/* this will store the animation timer id */
 		this.animationId = false;
@@ -24,10 +84,14 @@ export class Stage
 		/* this is our buffer object that will be used
 		in the animation loop to increase performance */
 		this.buffer = null;
-		this.fps = 60;
 		this.container = container;
 	}
 
+	/**
+	 * This will set up the game stage.
+	 *
+	 * @reurns {void}
+	 */
 	setup()
 	{
 		this.drawBind = this.draw.bind(this);
@@ -37,15 +101,22 @@ export class Stage
 		this.setupEvents();
 	}
 
-	/* this will setup our canvas and context and
-	add them to our object */
+	/**
+	 * This will set up the canvas.
+	 *
+	 * @returns {void}
+	 */
 	setupCanvas()
 	{
-		let canvas = this.canvas = this.container;
+		const canvas = this.canvas = this.container;
 		this.context = canvas.getContext('2d');
 	}
 
-	/* this will setup the events for the game */
+	/**
+	 * This will set up the events for the game.
+	 *
+	 * @returns {void}
+	 */
 	setupEvents()
 	{
 		this.setupMouse();
@@ -56,8 +127,8 @@ export class Stage
 		and add it to our closure scoped add and remove
 		methods. this allows the events to be added and removed
 		during game play */
-		let callBack = this.mouseDown.bind(this);
-		let canvas = this.canvas;
+		const callBack = this.mouseDown.bind(this);
+		const canvas = this.canvas;
 
 		this.addEvent = () =>
 		{
@@ -72,10 +143,14 @@ export class Stage
 		};
 	}
 
-	/* this will setup the mouse events */
+	/**
+	 * This will set up the mouse events.
+	 *
+	 * @returns {void}
+	 */
 	setupMouse()
 	{
-		let doc = document,
+		const doc = document,
 		canvas = this.canvas,
 		mousePosition = this.mousePosition.bind(this),
 		mouseStatus = this.mouseUp.bind(this);
@@ -87,19 +162,30 @@ export class Stage
 		doc.addEventListener("touchend", mouseStatus);
 	}
 
-	/* this will create a primary exlosion that will remove
-	a touch from the level touch count */
+	/**
+	 * This will interact with the stage.
+	 *
+	 * @param {number} mouseX
+	 * @param {number} mouseY
+	 * @returns {void}
+	 */
 	interact(mouseX, mouseY)
 	{
 		this.levelController.interact(mouseX, mouseY)
 	}
 
+	/**
+	 * This will get the interaction position.
+	 *
+	 * @param {object} e
+	 * @returns {array}
+	 */
 	getInteractPositions(e)
 	{
 		/* this will convert the mouse position to the scaled
 		canvas size by changing the actual canvas size to
 		scaled canvas size */
-		let scale = this.scaleRatio,
+		const scale = this.scaleRatio,
 		rect = this.canvasBoundBox;
 
 		const getScaledPosition = (x, y) =>
@@ -112,11 +198,11 @@ export class Stage
 			};
 		};
 
-		let positions = [];
-		let touches = e.touches;
-		if(touches && touches.length)
+		const positions = [];
+		const touches = e.touches;
+		if (touches && touches.length)
 		{
-			let touch = touches[touches.length - 1];
+			const touch = touches[touches.length - 1];
 			positions.push(getScaledPosition(touch.pageX, touch.pageY));
 		}
 		else
@@ -129,14 +215,19 @@ export class Stage
 		return positions;
 	}
 
+	/**
+	 * This will get the event position.
+	 *
+	 * @param {object} e
+	 */
 	getEventPosition(e)
 	{
 		let eX, eY;
 
-		let touches = e.touches;
-		if(touches && touches.length)
+		const touches = e.touches;
+		if (touches && touches.length)
 		{
-			let touch = touches[0];
+			const touch = touches[0];
 			eX = touch.pageX;
 			eY = touch.pageY;
 		}
@@ -149,12 +240,12 @@ export class Stage
 		/* this will convert the mouse position to the scaled
 		canvas size by changing the actual canvas size to
 		scaled canvas size */
-		let scale = this.scaleRatio,
+		const scale = this.scaleRatio,
 		rect = this.canvasBoundBox;
 
 		/* we also need to get the element offset and subtract
 		it from the mouse position */
-	    let x = parseInt((eX - rect.left) * scale),
+		let x = parseInt((eX - rect.left) * scale),
 		y = parseInt((eY - rect.top) * scale);
 
 		let mouse = this.mouse;
@@ -162,22 +253,28 @@ export class Stage
 		mouse.y = y;
 	}
 
-	/* this will will get the current mouse position
-	and save it to the object.
-	@param (object) e = the event object */
+	/**
+	 * This will get the mouse position.
+	 *
+	 * @param {object} e
+	 */
 	mousePosition(e)
 	{
 		this.getEventPosition(e);
 	}
 
-	/* this will update the mouse status to up */
+	/**
+	 * This will handle the mouse down event.
+	 *
+	 * @param {object} e
+	 */
 	mouseDown(e)
 	{
 		e.preventDefault();
 		e.stopPropagation();
 
-		let positions = this.getInteractPositions(e);
-		for(let i = 0, length = positions.length; i < length; i++)
+		const positions = this.getInteractPositions(e);
+		for (let i = 0, length = positions.length; i < length; i++)
 		{
 			let position = positions[i];
 			this.interact(position.x, position.y);
@@ -186,33 +283,40 @@ export class Stage
 		this.mouse.status = 'down';
 	}
 
-	/* this will update the mouse status to down */
+	/**
+	 * This will handle the mouse up event.
+	 *
+	 * @returns {void}
+	 */
 	mouseUp()
 	{
 		this.mouse.status = 'up';
 	}
 
-	/* this will get the size of the game container.
-	@returns (object) the height and width of the container */
+	/**
+	 * This will get the container size.
+	 *
+	 * @returns {object}
+	 */
 	getContainerSize()
 	{
-		let size =
+		const size =
 		{
 			width: 0,
 			height: 0
 		};
 
-		let container = this.canvas.parentNode;
-		if(container)
+		const container = this.canvas.parentNode;
+		if (container)
 		{
-			let style = container.style;
+			const style = container.style;
 			/* padding and border for left and right */
-			let bordersLR = (style.borderLeftWidth + style.borderRightWidth);
-			let paddingLR = (style.paddingLeft + style.paddingRight);
+			const bordersLR = (style.borderLeftWidth + style.borderRightWidth);
+			const paddingLR = (style.paddingLeft + style.paddingRight);
 
 			/* padding and border for top and bottom */
-			let bordersTB = (style.borderTopWidth + style.borderBottomWidth);
-			let paddingTB = (style.paddingTop + style.paddingBottom);
+			const bordersTB = (style.borderTopWidth + style.borderBottomWidth);
+			const paddingTB = (style.paddingTop + style.paddingBottom);
 
 			let boxSizing = style.boxSizing,
 			minSize = 0,
@@ -220,7 +324,7 @@ export class Stage
 			height = 0;
 
 			/* we need to check to remove padding and border by box sizing */
-			if(boxSizing !== 'border-box')
+			if (boxSizing !== 'border-box')
 			{
 				/* we want to get the panel size and subtract any border or padding */
 				width = container.clientWidth - (bordersLR + paddingLR);
@@ -241,13 +345,17 @@ export class Stage
 
 	canvasBoundBox = null;
 
-	/* this will resize the canvas and buffer. */
+	/**
+	 * This will resize the canvas.
+	 *
+	 * @returns {void}
+	 */
 	resize()
 	{
-		let containerSize = this.getContainerSize();
-		if(containerSize.width > 0)
+		const containerSize = this.getContainerSize();
+		if (containerSize.width > 0)
 		{
-			let canvas = this.canvas,
+			const canvas = this.canvas,
 			targetSize = this.targetSize;
 
 			/* this will set the size of the canvas as the target
@@ -272,23 +380,25 @@ export class Stage
 	mouse position */
 	scaleRatio = 1;
 
-	/* this will scale the canvas to the size of the
-	parent container using the css style property,
-	while keeping the aspect ratio as the main canvas
-	@param (object) containerSize = the size object
-	@param (object) canvas = the main canvas */
+	/**
+	 * This will scale the canvas.
+	 *
+	 * @param {object} containerSize
+	 * @param {object} canvas
+	 * @returns {void}
+	 */
 	scale(containerSize, canvas)
 	{
-		let height = canvas.height,
+		const height = canvas.height,
 		width = canvas.width;
 
-		let gameWidth = containerSize.width,
+		const gameWidth = containerSize.width,
 		gameHeight = containerSize.height,
 		scaleToFitX = gameWidth / width,
 		scaleToFitY = gameHeight / height;
 
 		//let currentScreenRatio = gameWidth / gameHeight;
-		let optimalRatio = Math.min(scaleToFitX, scaleToFitY);
+		const optimalRatio = Math.min(scaleToFitX, scaleToFitY);
 
 		canvas.style.width = width * optimalRatio + "px";
 		canvas.style.height = height * optimalRatio + "px";
@@ -299,22 +409,24 @@ export class Stage
 		this.scaleRatio = this.size.width / parseInt(canvas.style.width);
 	}
 
-	/* this is th draw aniamtion loop. this will draw the
-	game objects on the game canvas and check to stop when
-	the level is compelete. */
+	/**
+	 * This will draw the game.
+	 *
+	 * @returns {void}
+	 */
 	draw()
 	{
 		/* we want to clear the buffer canvas */
 		//let backBuffer = this.buffer,
-		let ctx = this.context;
+		const ctx = this.context;
 
 		/* we want to clear the canvas and reset
 		the settings */
-		let size = this.size;
+		const size = this.size;
 		ctx.clearRect(0, 0, size.width, size.height);
 
-		let stop = this.levelController.draw(ctx, this);
-		if(stop === true)
+		const stop = this.levelController.draw(ctx, this);
+		if (stop === true)
 		{
 			this.stopDraw();
 		}
@@ -327,60 +439,52 @@ export class Stage
 		//this.renderFromBuffer(size.width, size.height, backBuffer);
 	}
 
+	/**
+	 * This will render from the buffer.
+	 *
+	 * @param {number} width
+	 * @param {number} height
+	 * @param {object} backBuffer
+	 * @returns {void}
+	 */
 	renderFromBuffer(width, height, backBuffer)
 	{
 		/* this will draw the buffer canvas on the game canvas */
-		let mainCtx = this.context;
+		const mainCtx = this.context;
 		mainCtx.clearRect(0, 0, width, height);
 		mainCtx.drawImage(backBuffer.canvas, 0, 0);
 	}
 
-	/* this will setup the request animation frame to
-	allow backwards compat. */
-	setupAnimationFrame()
-	{
-		/* setup request for prefix or setTimeout if
-		not supported */
-		window.requestAnimationFrame = (
-			window.requestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(callBack)
-			{
-				return window.setTimeout(callBack, 1000 / this.fps);
-			}
-		);
-		requestFrame = window.requestAnimationFrame;
-
-		/* setup cancel for prefix or setTimeout if
-		not supported */
-
-		window.cancelAnimationFrame = (
-			window.cancelAnimationFrame ||
-			window.mozCancelAnimationFrame ||
-			function(requestID)
-			{
-				window.clearTimeout(requestID);
-			}
-		);
-	}
-
+	/**
+	 * This will start drawing.
+	 *
+	 * @returns {void}
+	 */
 	startDraw()
 	{
-		if(typeof this.animationId !== 'undefined')
+		if (typeof this.animationId !== 'undefined')
 		{
 			this.stopDraw();
 			this.draw();
 		}
 	}
 
+	/**
+	 * This will stop drawing.
+	 *
+	 * @returns {void}
+	 */
 	stopDraw()
 	{
 		window.cancelAnimationFrame(this.animationId);
 		this.animationId = null;
 	}
 
+	/**
+	 * This will set up the buffer.
+	 *
+	 * @returns {void}
+	 */
 	setupBuffer()
 	{
 		this.buffer = new Buffer();

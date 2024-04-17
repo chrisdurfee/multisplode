@@ -1,20 +1,45 @@
-import { SparkParticle } from './sparkParticle.js';
+import { MathUtil } from '../math-util.js';
+import { SparkParticle } from './spark-particle.js';
 
+/**
+ * This will get the spark count.
+ *
+ * @returns {number}
+ */
+const getSparkCount = () =>
+{
+	let count = 20;
+	switch (Settings.graphics)
+	{
+		case 'low':
+			count = 12;
+			break;
+		case 'high':
+			count = 30;
+			break;
+	}
+	return count;
+};
+
+/**
+ * Spark
+ *
+ * This class will create a new instance of the spark.
+ *
+ * @class
+ */
 export class Spark
 {
+	/**
+	 * This will create a new instance of the spark.
+	 *
+	 * @param {number} x
+	 * @param {number} y
+	 * @param {string} color
+	 */
 	constructor(x, y, color)
 	{
-		let count = 20;
-		switch(Settings.graphics)
-		{
-			case 'low':
-				count = 12;
-				break;
-			case 'high':
-				count = 30;
-				break;
-		}
-		this.particleNumber = count;
+		this.particleNumber = getSparkCount();
 
 		this.x = x;
 		this.y = y;
@@ -29,12 +54,17 @@ export class Spark
 		this.setupParticles();
 	}
 
+	/**
+	 * This will setup the particles.
+	 *
+	 * @returns {void}
+	 */
 	setupParticles()
 	{
-		let particleNumber = this.particleNumber,
+		const particleNumber = this.particleNumber,
 		distance = (360 / particleNumber);
 
-		for(let i = 0; i <= particleNumber; i++)
+		for (let i = 0; i <= particleNumber; i++)
 		{
 			/* this will add equal distance between particles */
 			let particleAngle = (distance * i);
@@ -49,21 +79,20 @@ export class Spark
 
 	radiusRate = null;
 
+	/**
+	 * This will add a particle.
+	 *
+	 * @param {number} angle
+	 */
 	addParticle(angle)
 	{
-		let particleObj = new SparkParticle(this.x, this.y, angle, this.color, this.maxRadius, this.speed);
-		let particles = this.particles;
-		particles[particles.length] = particleObj;
+		const particle = new SparkParticle(this.x, this.y, angle, this.color, this.maxRadius, this.speed);
+		this.particles.push(particle);
 	}
 
 	checkToRemove()
 	{
-		let remove = false;
-		if(this.radius >= this.maxRadius)
-		{
-			remove = true;
-		}
-		return remove;
+		return (this.radius >= this.maxRadius);
 	}
 
 	updateRadius()
@@ -76,11 +105,12 @@ export class Spark
 	draw(ctx)
 	{
 		this.updateRadius();
-		let particleArray = this.particles;
-		for(let i = particleArray.length - 1; i >= 0; i--)
+
+		const particleArray = this.particles;
+		for (let i = particleArray.length - 1; i >= 0; i--)
 		{
 			let part = particleArray[i];
-			if(part.draw(ctx) === false)
+			if (part.draw(ctx) === false)
 			{
 				particleArray.splice(i, 1);
 				let removed = this.removed;
