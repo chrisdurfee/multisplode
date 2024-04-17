@@ -1,7 +1,18 @@
+import { MathUtil } from "../math-util.js";
+
 /**
  * @type {number} ARC
  */
-export const ARC = (Math.PI * 2);
+export const ARC = MathUtil.arc;
+
+/**
+ * This will create a position object.
+ *
+ * @param {number} x
+ * @param {number} y
+ * @returns {object}
+ */
+const Position = (x, y) => ({ x: MathUtil.round(x), y: MathUtil.round(y) });
 
 /**
  * Device
@@ -25,7 +36,7 @@ export class Device
      */
     constructor(tmpX, tmpY, color, multiplier)
     {
-        this.position = { x: MathUtil.round(tmpX), y: MathUtil.round(tmpY) };
+        this.position = Position(tmpX, tmpY);
         this.size = 0;
         this.fillColor = color;
         this.audio = 'sound/collisions/collision-1a.mp3';
@@ -37,11 +48,21 @@ export class Device
         this.cachePath();
     }
 
+    /**
+     * This will check to remove the device.
+     *
+     * @returns {boolean}
+     */
     checkToRemove()
     {
         return false;
     }
 
+    /**
+     * This will cache device.
+     *
+     * @returns {void}
+     */
     cachePath()
     {
         const maxSize = this.maxSize,
@@ -49,6 +70,12 @@ export class Device
         const size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
         this.half = this.totalSize / 2;
 
+        /**
+         * This will draw the device to be cached.
+         *
+         * @param {object} ctx
+         * @returns {void}
+         */
         const callBack = (ctx) =>
         {
             const position = size / 2;

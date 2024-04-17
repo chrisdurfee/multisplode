@@ -1,12 +1,27 @@
+import { MathUtil } from '../math-util.js';
 import { ARC, Device } from './device.js';
 
+/**
+ * GravityField
+ *
+ * This will create a gravity field.
+ *
+ * @class
+ */
 export class GravityField extends Device
 {
+    /**
+     * This will create a gravity field.
+     *
+     * @param {number} tmpX
+     * @param {number} tmpY
+     * @param {string} color
+     * @param {boolean} multiplier
+     */
     constructor(tmpX, tmpY, color, multiplier)
     {
         super(tmpX, tmpY, color, multiplier);
 
-        this.size = 0;
         this.audio = 'sound/collisions/collision-1a.mp3';
 
         this.gravity = (1 * this.multiplier);
@@ -14,8 +29,11 @@ export class GravityField extends Device
         this.time = 8000;
         this.delta = 0;
 
+        this.maxSize = 0;
+        this.totalSize = 0;
+        this.lineSize = 0;
+
         this.type = 'gravityField';
-        this.explosive = false;
 
         /* this will get the size and cache
         the rate */
@@ -23,19 +41,35 @@ export class GravityField extends Device
         this.cachePath();
     }
 
+    /**
+     * This will check to remove the gravity field.
+     *
+     * @return {boolean}
+     */
     checkToRemove()
     {
-        let startTimer = this.getStartTime();
+        const startTimer = this.getStartTime();
         this.delta = new Date() - startTimer;
-        return (this.delta >= this.time)? true : false;
+        return (this.delta >= this.time);
     }
 
+    /**
+     * This will get the start time.
+     *
+     * @returns {object}
+     */
     getStartTime()
     {
         this.startTime = this.startTime || new Date();
         return this.startTime;
     }
 
+    /**
+     * This will update the particle position.
+     *
+     * @param {object} particle
+     * @returns {void}
+     */
     updateParticlePosition(particle)
     {
         /* this will get the  current angle the particle
@@ -43,46 +77,54 @@ export class GravityField extends Device
         and apply the gravity to the distance */
         let position = this.position;
         let particlePosition = particle.position;
-        let orbitDistance = this.distance(particlePosition, position) - this.gravity;
+        const orbitDistance = MathUtil.distance(particlePosition, position) - this.gravity;
         let distance = orbitDistance - this.gravity;
 
         /* this will limit the oribit to stay a distance from the center */
         distance = distance > this.orbitLimit? distance : this.orbitLimit;
 
-        let angle = MathUtil.updateOrbitAngle(this.getOrbitAngle(particle), particle.speed / this.size);
+        const angle = MathUtil.updateOrbitAngle(this.getOrbitAngle(particle), particle.speed / this.size);
         position = MathUtil.getOrbitPosition(position.x, position.y, angle, distance);
 
         particlePosition.x = position.x;
         particlePosition.y = position.y;
     }
 
+    /**
+     * This will get the orbit angle.
+     *
+     * @param {object} particle
+     * @returns {number}
+     */
     getOrbitAngle(particle)
     {
-        let position = this.position;
-        let particlePosition = particle.position;
-        let diffX = particlePosition.x - position.x;
-        let diffY = particlePosition.y - position.y;
+        const position = this.position;
+        const particlePosition = particle.position;
+        const diffX = particlePosition.x - position.x;
+        const diffY = particlePosition.y - position.y;
         return Math.atan2(diffY, diffX);
     }
 
-    distance(p1, p2)
-    {
-        return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
-    }
-
+    /**
+     * This will orbit the particle.
+     *
+     * @param {object} particle
+     * @returns {void}
+     */
     orbitParticle(particle)
     {
         this.updateParticlePosition(particle);
     }
 
-    maxSize = 0;
-    totalSize = 0;
-    lineSize = 0;
-
+    /**
+     * This will get the max size.
+     *
+     * @returns {void}
+     */
     getMaxSize()
     {
-        let currentLevel = Levels.currentLevel;
-        if(currentLevel)
+        const currentLevel = Levels.currentLevel;
+        if (currentLevel)
         {
             this.maxSize = currentLevel.waveMaxSize * this.multiplier;
             this.size = this.maxSize;
@@ -91,23 +133,33 @@ export class GravityField extends Device
         }
     }
 
+    /**
+     * This will cache device.
+     *
+     * @returns {void}
+     */
     cachePath()
     {
-        let self = this,
-        maxSize = this.maxSize,
+        const maxSize = this.maxSize,
         lineWidth = this.lineSize = 2;
-        let size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
+        const size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
         this.half = this.totalSize / 2;
 
-        function callBack(ctx)
+        /**
+         * This will draw the device to be cached.
+         *
+         * @param {object} ctx
+         * @returns {void}
+         */
+        const callBack = (ctx) =>
         {
-            let position = size / 2;
+            const position = size / 2;
 
             ctx.beginPath();
             ctx.arc(position, position, maxSize, 0, ARC, true);
 
             ctx.globalAlpha = 0.3;
-            ctx.fillStyle = self.fillColor;
+            ctx.fillStyle = this.fillColor;
             ctx.fill();
 
             ctx.lineWidth = 2;
@@ -117,20 +169,26 @@ export class GravityField extends Device
             ctx.globalAlpha = 0.7;
             ctx.beginPath();
             ctx.arc(position, position, maxSize * 0.2, 0, ARC, true);
-            ctx.fillStyle = self.fillColor;
+            ctx.fillStyle = this.fillColor;
             ctx.fill();
 
             ctx.globalAlpha = 1;
-        }
+        };
         this.cache = Cache.add(callBack, size, size);
     }
 
+    /**
+     * This will draw the device.
+     *
+     * @param {object} ctx
+     * @returns {void}
+     */
     draw(ctx)
     {
-        let x = this.position.x,
+        const x = this.position.x,
         y = this.position.y;
 
-        let opacity = 1 - this.delta / this.time;
+        const opacity = 1 - this.delta / this.time;
 
         ctx.save();
         ctx.translate(x, y);

@@ -88,8 +88,7 @@ export const Devices =
 		}
 
 		//sounds.add(device.audio, type);
-		const devices = this.devices;
-		devices[devices.length] = (device);
+		this.devices.push(device);
 		return device;
 	},
 
@@ -101,15 +100,14 @@ export const Devices =
 	 */
 	remove(device)
 	{
-		let devices = this.devices,
+		const devices = this.devices,
 		index = devices.indexOf(device);
 		if (index > -1)
 		{
 			devices.splice(index, 1);
 			/* we need to add to the removed array to
 			delay the gc durring gameplay */
-			let removed = this.removed;
-			removed[removed.length] = device;
+			this.removed.push(device);
 		}
 	},
 
