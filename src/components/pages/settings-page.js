@@ -1,5 +1,5 @@
 import { A, Article, Div, Header, Label, Section, Span } from "@base-framework/atoms";
-import { Data } from "../data.js";
+import { Settings } from "../../game/settings.js";
 import { NavSlider } from "../organisms/nav-slider/nav-slider.js";
 import { OptionValue } from "../organisms/option-value.js";
 import { Toggle } from "../organisms/toggle.js";
@@ -34,9 +34,6 @@ function selectByLink(index)
 	}
 }
 
-const audio = Data.get('audio') || false;
-const music = Data.get('music') || false;
-
 /**
  * SettingsPage
  *
@@ -68,10 +65,11 @@ export const SettingsPage = () => (
 									Label({ class: 'title' }, 'Music'),
 									Div({ class: 'value-container' }, [
 										new Toggle({
-											checked: music,
+											checked: Settings.music,
 											callBack: (checked) =>
 											{
-												Data.set('music', checked);
+												Settings.music = checked;
+												Settings.store();
 											}
 										})
 									])
@@ -80,10 +78,11 @@ export const SettingsPage = () => (
 									Label({ class: 'title' }, 'Sound fx'),
 									Div({ class: 'value-container' }, [
 										new Toggle({
-											checked: audio,
+											checked: Settings.audio,
 											callBack: (checked) =>
 											{
-												Data.set('audio', checked);
+												Settings.audio = checked;
+												Settings.store();
 											}
 										})
 									])
@@ -93,7 +92,7 @@ export const SettingsPage = () => (
 								Header({ class: 'title-text' }, 'Video'),
 								Div({ class: 'row' }, [
 									Label({ class: 'title' }, 'Graphics'),
-									new OptionValue({ dataProp: 'graphics', options: ['low', 'medium', 'high'] })
+									new OptionValue({ data: Settings, dataProp: 'graphics', options: ['low', 'medium', 'high'] })
 								])
 							]),
 							Div({ class: 'content settings-sub-panel about-container' }, [

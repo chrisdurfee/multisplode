@@ -1,4 +1,5 @@
 import { MathUtil } from '../math-util.js';
+import { Settings } from '../settings.js';
 import { SparkParticle } from './spark-particle.js';
 
 /**

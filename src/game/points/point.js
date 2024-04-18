@@ -109,10 +109,10 @@ export class Point
 	 */
 	draw(ctx)
 	{
-		let x = MathUtil.round(this.position.x),
+		const x = MathUtil.round(this.position.x),
 		y = MathUtil.round(this.position.y);
 
-		let opacity = 1 - this.distance / this.maxDistance;
+		const opacity = 1 - this.distance / this.maxDistance;
 		ctx.save();
 		ctx.globalAlpha = opacity;
 		ctx.drawImage(this.cache, x, y);

@@ -79,7 +79,7 @@ export class SparkParticle
 		 */
 		const callBack = (ctx) =>
 		{
-			let position = size / 2;
+			const position = size / 2;
 			ctx.globalAlpha = 0.7;
 			ctx.beginPath();
 			ctx.arc(position, position, size, 0, ARC, true);
