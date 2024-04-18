@@ -1,6 +1,5 @@
 import { Button, Div } from "@base-framework/atoms";
-import { Component, Data } from "@base-framework/base";
-import { Data as Storage } from "../data.js";
+import { Component } from "@base-framework/base";
 import { Iterator } from "./iterator.js";
 
 /**
@@ -20,6 +19,7 @@ export class OptionValue extends Component
     onCreated()
     {
         this.iterator = new Iterator(this.options, this.change.bind(this));
+        this.iterator.selectOption(this.data[this.dataProp]);
     }
 
     /**
@@ -31,7 +31,7 @@ export class OptionValue extends Component
     {
         return Div({ class: 'value-container' }, [
             Button({ class: 'value-button arrow prev', click: this.previous.bind(this) }),
-            Button({ class: 'value-button', click: this.next.bind(this) }, '[[option]]'),
+            Button({ class: 'value-button', click: this.next.bind(this) }, '[[' + this.dataProp + ']]'),
             Button({ class: 'value-button arrow next', click: this.next.bind(this)})
         ]);
     }
@@ -44,20 +44,8 @@ export class OptionValue extends Component
      */
     change(option)
     {
-        this.data.option = option;
-        Storage.set(this.dataProp, option);
-    }
-
-    /**
-     * This will set the data.
-     *
-     * @returns {object}
-     */
-    setData()
-    {
-        return new Data({
-            option: Storage.get(this.dataProp)
-        });
+        this.data.set(this.dataProp, option);
+        this.data.store();
     }
 
     /**
