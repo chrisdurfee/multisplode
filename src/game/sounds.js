@@ -1,3 +1,5 @@
+import { Settings } from "./settings.js";
+
 /**
  * Sounds
  *

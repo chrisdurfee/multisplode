@@ -18,7 +18,7 @@ const showFullscreen = () =>
 
 	fullscreen = true;
 
-	let element = document.body;
+	const element = document.body;
 	if(element.requestFullscreen)
 	{
 		element.requestFullscreen();

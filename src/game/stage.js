@@ -91,7 +91,7 @@ export class Stage
 	/**
 	 * This will set up the game stage.
 	 *
-	 * @reurns {void}
+	 * @returns {void}
 	 */
 	setup()
 	{
