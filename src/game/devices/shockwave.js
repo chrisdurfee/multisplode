@@ -1,7 +1,22 @@
 import { ARC, Device } from './device.js';
 
+/**
+ * ShockWave
+ *
+ * This will create a shock wave device.
+ *
+ * @extends Device
+ */
 export class ShockWave extends Device
 {
+    /**
+     * This will create a shock wave device.
+     *
+     * @param {number} tmpX
+     * @param {number} tmpY
+     * @param {string} color
+     * @param {boolean} multiplier
+     */
     constructor(tmpX, tmpY, color, multiplier)
     {
         super(tmpX, tmpY, color, multiplier);
@@ -27,12 +42,21 @@ export class ShockWave extends Device
         this.cachePath();
     }
 
-    /*increase shock wave size*/
+    /**
+     * This will update the size of the shock wave.
+     *
+     * @returns {void}
+     */
     updateSize()
     {
         this.size += this.waveScale;
     }
 
+    /**
+     * This will check if the shock wave is ready to be removed.
+     *
+     * @returns {boolean}
+     */
     checkToRemove()
     {
         return (this.size >= this.maxSize);
@@ -43,6 +67,11 @@ export class ShockWave extends Device
     totalSize = 0;
     lineSize = 0;
 
+    /**
+     * This will get the wave scale and max size from the current level.
+     *
+     * @returns {void}
+     */
     getWaveScale()
     {
         let currentLevel = Levels.currentLevel;
@@ -53,15 +82,19 @@ export class ShockWave extends Device
         }
     }
 
+    /**
+     * This will cache the path of the shock wave.
+     *
+     * @returns {void}
+     */
     cachePath()
     {
-        let self = this,
-        maxSize = this.maxSize,
+        let maxSize = this.maxSize,
         lineWidth = this.lineSize = maxSize / 10;
         let size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
         this.half = this.totalSize / 2;
 
-        function callBack(ctx)
+        const callBack = (ctx) =>
         {
             let position = size / 2;
 
@@ -69,20 +102,20 @@ export class ShockWave extends Device
             ctx.arc(position, position, maxSize, 0, ARC, true);
 
             ctx.globalAlpha = 0.3;
-            ctx.fillStyle = self.fillColor;
+            ctx.fillStyle = this.fillColor;
             ctx.fill();
 
             ctx.globalAlpha = 0.5;
 
             ctx.beginPath();
             ctx.arc(position, position, maxSize * .3, 0, ARC, true);
-            ctx.fillStyle = self.fillColor;
+            ctx.fillStyle = this.fillColor;
             ctx.fill();
 
             ctx.globalAlpha = 0.7;
             ctx.beginPath();
             ctx.arc(position, position, maxSize * .6, 0, ARC, true);
-            ctx.fillStyle = self.fillColor;
+            ctx.fillStyle = this.fillColor;
             ctx.fill();
 
             ctx.globalAlpha = 1;
@@ -90,6 +123,11 @@ export class ShockWave extends Device
         this.cache = Cache.add(callBack, size, size);
     }
 
+    /**
+     * This will draw the shock wave.
+     *
+     * @param {object} ctx
+     */
     draw(ctx)
     {
         let x = this.position.x,
