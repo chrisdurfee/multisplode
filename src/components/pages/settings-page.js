@@ -68,7 +68,7 @@ export const SettingsPage = () => (
 											checked: Settings.music,
 											callBack: (checked) =>
 											{
-												Settings.music = checked;
+												Settings.music = Boolean(checked);
 												Settings.store();
 											}
 										})
@@ -81,7 +81,7 @@ export const SettingsPage = () => (
 											checked: Settings.audio,
 											callBack: (checked) =>
 											{
-												Settings.audio = checked;
+												Settings.audio = Boolean(checked);
 												Settings.store();
 											}
 										})

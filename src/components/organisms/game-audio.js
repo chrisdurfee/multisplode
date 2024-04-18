@@ -1,6 +1,6 @@
 import { Audio } from "@base-framework/atoms";
 import { Component } from "@base-framework/base";
-import { Data } from '../data.js';
+import { Settings } from "../../game/settings.js";
 
 /**
  * GameAudio
@@ -57,6 +57,19 @@ export class GameAudio extends Component
 	}
 
 	/**
+	 * This will check to start the music.
+	 *
+	 * @returns {void}
+	 */
+	afterSetup()
+	{
+		if (Settings.music === true)
+		{
+			this.start();
+		}
+	}
+
+	/**
 	 * This will setup the states.
 	 *
 	 * @returns {object}
@@ -66,9 +79,8 @@ export class GameAudio extends Component
 		return {
 			remotes: [
 				{
-					id: 'settigs',
+					id: 'settings',
 					music: {
-						state: Data.get('music') || false,
 						callBack: (state) =>
 						{
 							if (!this.panel)
@@ -87,7 +99,6 @@ export class GameAudio extends Component
 						}
 					},
 					song: {
-						state: null,
 						callBack: (state) =>
 						{
 							if (!this.panel)
