@@ -5,6 +5,7 @@ import { Prompts } from '../../components/prompts/prompts.js';
 import { Devices } from '../devices/devices.js';
 import { MathUtil } from "../math-util.js";
 import { Particles } from '../particles/particles.js';
+import { Points } from '../points/points.js';
 import { Sounds } from '../sounds/sounds.js';
 import { Sparks } from '../sparks/sparks.js';
 import { Messages } from '../ui/messages.js';
