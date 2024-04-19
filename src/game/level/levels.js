@@ -1,8 +1,14 @@
+import { Data } from '../../components/data.js';
 
+/**
+ * Levels
+ *
+ * This will manage the levels.
+ *
+ * @type {object} Levels
+ */
 export const Levels =
 {
-	/* this will store the current level and the
-	levels options */
 	currentLevel: null,
 	activeLevels: [],
 	controller: null,
@@ -10,6 +16,11 @@ export const Levels =
 	packs: [],
 	activePack: null,
 
+	/**
+	 * This will setup the active pack.
+	 *
+	 * @returns {void}
+	 */
 	setupActivePack()
 	{
 		if (this.packs.length > 0)
@@ -19,52 +30,73 @@ export const Levels =
 		}
 	},
 
+	/**
+	 * This will add a level pack.
+	 *
+	 * @param {object} pack
+	 * @returns {void}
+	 */
 	addLevelPack(pack)
 	{
 		this.packs.push(pack);
 	},
 
-	/* this will setup each of the levels */
+	/**
+	 * This will setup the level packs.
+	 *
+	 * @returns {void}
+	 */
 	setup()
 	{
 		this.setupActivePack();
 	},
 
-	/* this will select the last played level
-	or first unlocked level */
+	/**
+	 * This will select the primary level.
+	 *
+	 * @returns {void}
+	 */
 	selectPrimaryLevel()
 	{
-		let level = this.getPrimaryLevel();
+		const level = this.getPrimaryLevel();
 		this.selectLevel(level);
 	},
 
+	/**
+	 * This will get the primary level.
+	 *
+	 * @returns {object}
+	 */
 	getPrimaryLevel()
 	{
-		let lastPlayed = Data.get('lastLevel');
-		if(lastPlayed)
+		const lastPlayed = Data.get('lastLevel');
+		if (lastPlayed)
 		{
 			return this.activeLevels[lastPlayed.number - 1];
 		}
 		return this.getFirstUnlockedLevels();
 	},
 
-	/* this will get the first unlocked level
-	@returns (object) the level */
+	/**
+	 * This will get the first unlocked levels.
+	 *
+	 * @returns {object}
+	 */
 	getFirstUnlockedLevels()
 	{
-		let activeLevels = this.activeLevels,
-		previousLevel = false;
-		for(let i = 0, count = activeLevels.length; i < count; i++)
+		const activeLevels = this.activeLevels;
+		let previousLevel = false;
+		for (let i = 0, count = activeLevels.length; i < count; i++)
 		{
 			let tmpLevel = activeLevels[i];
-			if(tmpLevel.locked === true)
+			if (tmpLevel.locked === true)
 			{
-				if(previousLevel)
+				if (previousLevel)
 				{
 					return previousLevel;
 				}
 			}
-			else if(i === (count - 1))
+			else if (i === (count - 1))
 			{
 				return tmpLevel;
 			}
@@ -73,13 +105,19 @@ export const Levels =
 		return activeLevels[0];
 	},
 
+	/**
+	 * This will get the level by number.
+	 *
+	 * @param {number} levelNumber
+	 * @returns {object|boolean}
+	 */
 	getLevelByNumber(levelNumber)
 	{
-		let activeLevels = this.activeLevels;
-		for(let i = 0, count = activeLevels.length; i < count; i++)
+		const activeLevels = this.activeLevels;
+		for (let i = 0, count = activeLevels.length; i < count; i++)
 		{
 			let tmpLevel = activeLevels[i];
-			if(levelNumber === tmpLevel.level)
+			if (levelNumber === tmpLevel.level)
 			{
 				return tmpLevel;
 			}
@@ -87,25 +125,36 @@ export const Levels =
 		return false;
 	},
 
+	/**
+	 * This will select the level.
+	 *
+	 * @param {object} level
+	 * @param {boolean} cancelPrompts
+	 * @returns {void}
+	 */
 	selectLevel(level, cancelPrompts)
 	{
-		if(level)
+		if (!level)
 		{
-			this.setupPreviousLevel();
-
-			let activePack = this.activePack;
-
-			game.setStageLevelController(activePack.controller);
-
-			/* we want to select the level and reset the
-			level object to setup the scoring */
-			this.currentLevel = level;
-			activePack.setupLevel(level, cancelPrompts);
-			game.play();
+			return;
 		}
+
+		this.setPreviousLevel();
+
+		const activePack = this.activePack;
+		game.setStageLevelController(activePack.controller);
+
+		/* we want to select the level and reset the
+		level object to setup the scoring */
+		this.currentLevel = level;
+		activePack.setupLevel(level, cancelPrompts);
+		game.play();
 	},
 
-	setupPreviousLevel()
+	/**
+	 * This will setup the previous level.
+	 */
+	setPreviousLevel()
 	{
 		if(this.currentLevel && this.lastSelectedLevel !== this.currentLevel)
 		{
@@ -113,25 +162,36 @@ export const Levels =
 		}
 	},
 
+	/**
+	 * This will unlock the next level.
+	 */
 	unlockNextLevel()
 	{
-		let nextLevel = this.getNextLevel();
-		if(nextLevel)
+		const nextLevel = this.getNextLevel();
+		if (nextLevel)
 		{
 			nextLevel.unlock();
 		}
 	},
 
+	/**
+	 * This will check if the next level is locked.
+	 *
+	 * @returns {boolean}
+	 */
 	isNextLevelLocked()
 	{
-		let nextLevel = this.getNextLevel();
-		if(nextLevel)
+		const nextLevel = this.getNextLevel();
+		if (nextLevel)
 		{
 			return nextLevel.locked;
 		}
 		return true;
 	},
 
+	/**
+	 * This will retry the level.
+	 */
 	retryLevel()
 	{
 		if(this.currentLevel)
@@ -140,39 +200,62 @@ export const Levels =
 		}
 	},
 
+	/**
+	 * This will get the next level.
+	 *
+	 * @returns {object}
+	 */
 	getNextLevel()
 	{
-		let activeLevels = this.activeLevels,
-		index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
-		let nextLevelIndex = (index < activeLevels.length - 1)? ++index : 0;
+		const activeLevels = this.activeLevels;
+		let index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
+		const nextLevelIndex = (index < activeLevels.length - 1)? ++index : 0;
 		return activeLevels[nextLevelIndex];
 	},
 
+	/**
+	 * This will select the next level.
+	 */
 	selectNextLevel()
 	{
-		let nextLevel = this.getNextLevel();
-		if(nextLevel)
+		const nextLevel = this.getNextLevel();
+		if (nextLevel)
 		{
 			this.selectLevel(nextLevel);
 		}
 	},
 
+	/**
+	 * This will get the previous level.
+	 *
+	 * @returns {object}
+	 */
 	levelSummary()
 	{
 		this.activePack.levelSummary();
 	},
 
+	/**
+	 * This will get the previous level.
+	 *
+	 * @returns {object}
+	 */
 	getPreviousLevel()
 	{
-		let activeLevels = this.activeLevels,
-		index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
-		let previousLevelIndex = (index > 0)? --index : activeLevels.length - 1;
+		const activeLevels = this.activeLevels;
+		let index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
+		const previousLevelIndex = (index > 0)? --index : activeLevels.length - 1;
 		return activeLevels[previousLevelIndex];
 	},
 
+	/**
+	 * This will select the previous level.
+	 *
+	 * @returns {void}
+	 */
 	selectPreviousLevel()
 	{
-		let previousLevel = this.getPreviousLevel();
+		const previousLevel = this.getPreviousLevel();
 		if(previousLevel)
 		{
 			this.selectLevel(previousLevel);

@@ -1,13 +1,33 @@
+import { Data, Objects } from "@base-framework/base";
 
+/**
+ * Level
+ *
+ * This will create a level.
+ *
+ * @class
+ */
 export class Level
 {
-	constructor(tmpLevel, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
+	/**
+	 *
+	 * @param {number} number
+	 * @param {*} devices
+	 * @param {number} minimumNumber
+	 * @param {number} afterTouchNumber
+	 * @param {number} quantity
+	 * @param {number} waveScale
+	 * @param {number} waveMaxSize
+	 * @param {string} promptId
+	 * @param {string} levelClass
+	 */
+	constructor(number, devices, minimumNumber, afterTouchNumber, quantity, waveScale, waveMaxSize, promptId, levelClass)
 	{
-		this.number = tmpLevel;
+		this.number = number;
 		this.touch = 0;
+		this.touchLimit = 0;
 
 		this.devices = [];
-		this.touchLimit = 0;
 		this.setupDevices(devices);
 		this.minimum = minimumNumber;
 
@@ -33,66 +53,83 @@ export class Level
 		this.locked = true;
 	}
 
+	/**
+	 * Thi swill setup the level.
+	 */
 	setup()
 	{
 		this.updateFromData();
 		this.reset();
-		if(this.number === 1)
+
+		if (this.number === 1)
 		{
 			this.unlock();
 		}
 	}
 
+	/**
+	 * This will setup the devices.
+	 *
+	 * @param {*} devices
+	 */
 	setupDevices(devices)
 	{
-		if(typeof devices !== 'object')
+		if (typeof devices !== 'object')
 		{
 			this.devices = {'ShockWave': devices };
 			this.touchLimit = devices;
+			return;
 		}
-		else
+
+		this.touchLimit = 0;
+		for (let i = 0, count = devices.length; i < count; i++)
 		{
-			this.touchLimit = 0;
-			for(let i = 0, count = devices.length; i < count; i++)
+			let device = devices[i];
+			let type = 'ShockWave';
+			switch (i)
 			{
-				let device = devices[i];
-				let type = 'ShockWave';
-				switch(i)
-				{
-					case 0:
-						type = 'ShockWave';
-						break;
-					case 1:
-						type = 'GravityField';
-						break;
-				}
-				this.touchLimit += device;
-				this.devices[type] = device;
+				case 0:
+					type = 'ShockWave';
+					break;
+				case 1:
+					type = 'GravityField';
+					break;
 			}
+			this.touchLimit += device;
+			this.devices[type] = device;
 		}
 	}
 
+	/**
+	 * This will setup the particle count.
+	 *
+	 * @param {number} quantity
+	 */
 	setupParticleCount(quantity)
 	{
-		if(typeof quantity === 'object')
-		{
-			this.particles = quantity;
-			let totalCount = 0;
-			for(let type in quantity)
-			{
-				if(quantity.hasOwnProperty(type))
-				{
-					totalCount += quantity[type];
-				}
-			}
-			this.quantity = totalCount;
-		}
-		else
+		if (typeof quantity !== 'object')
 		{
 			this.quantity = quantity;
+			return;
 		}
+
+		this.particles = quantity;
+		let totalCount = 0;
+		for (let type in quantity)
+		{
+			if (Objects.hasOwnProp(quantity, type))
+			{
+				totalCount += quantity[type];
+			}
+		}
+		this.quantity = totalCount;
 	}
 
+	/**
+	 * This will reset the level.
+	 *
+	 * @returns {void}
+	 */
 	reset()
 	{
 		this.touch = 0;
@@ -108,6 +145,11 @@ export class Level
 		this.delay = this.originalDelay;
 	}
 
+	/**
+	 * This will update the touch.
+	 *
+	 * @returns {void}
+	 */
 	updateTouch()
 	{
 		this.touch++;
@@ -116,16 +158,30 @@ export class Level
 		return option;
 	}
 
+	/**
+	 * @memeber {boolean} blowEm
+	 */
 	isAtLimit = false;
 
+	/**
+	 * This will check if the touch is at the limit.
+	 *
+	 * @return {void}
+	 */
 	isAtTouchLimit()
 	{
-		if(this.touch === this.touchLimit)
+		if (this.touch === this.touchLimit)
 		{
 			this.isAtLimit = true;
 		}
 	}
 
+	/**
+	 * This will update the high score.
+	 *
+	 * @param {number} number
+	 * @param {number} points
+	 */
 	updateHighScore(number, points)
 	{
 		if(number > this.highScoreNumber)
@@ -140,6 +196,12 @@ export class Level
 		this.saveToData();
 	}
 
+	/**
+	 * This will update the score.
+	 *
+	 * @param {number} number
+	 * @param {number} points
+	 */
 	updateScore(number, points)
 	{
 		this.updatePoints(points);
