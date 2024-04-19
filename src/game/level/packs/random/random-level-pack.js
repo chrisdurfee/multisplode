@@ -2,14 +2,15 @@
 import { Level } from '../../level.js';
 import { LevelPack } from '../level-pack.js';
 
+/**
+ * RandomLevelPack
+ *
+ * This will create a random level pack.
+ *
+ * @class
+ */
 export class RandomLevelPack extends LevelPack
 {
-	constructor()
-	{
-		super();
-		this.label = '';
-	}
-
 	levels = [
 		/*the order of the settings are:
 
@@ -23,7 +24,7 @@ export class RandomLevelPack extends LevelPack
 		*/
 
 		//level 1
-		[1,28,40,40,1,65, 'startup-panel', 'first'],
+		[1,28,40,40,1,65, 'StartupPrompt', 'first'],
 
 		//level 2
 		[1,40,50,50,1,62,false],
@@ -35,13 +36,13 @@ export class RandomLevelPack extends LevelPack
 		[1,53,57,57,1,60,false],
 
 		//level 5
-		[1,45,50,{ Particle: 49, PulseParticle: 1 },1,61,'pulse-particle-panel'],
+		[1,45,50,{ Particle: 49, PulseParticle: 1 },1,61,'PulseParticlePrompt'],
 
 		//level 6
 		[1,32,40,{ Particle: 39, PulseParticle: 1 },1,60, false],
 
 		//level 7
-		[[1,1],29,35,{ Particle: 34, PulseParticle: 1 },1,62, 'gravity-field-panel'],
+		[[1,1],29,35,{ Particle: 34, PulseParticle: 1 },1,62, 'GravityFieldPrompt'],
 
 		//level 8
 		[[1,1],32,39,{ Particle: 38, PulseParticle: 1 },1,61,false],
@@ -53,7 +54,7 @@ export class RandomLevelPack extends LevelPack
 		[[1,1],55,60,{ Particle: 59, PulseParticle: 1 },1,56,false],
 
 		//level 11
-		[[2,1],72,80,{ Particle: 79, PulseParticle: 1 },1,56, 'add-two-panel', 'second'],
+		[[2,1],72,80,{ Particle: 79, PulseParticle: 1 },1,56, 'AddTwoPrompt', 'second'],
 
 		//level 12
 		[[2,1],63,70,{ Particle: 69, PulseParticle: 1 },1,56,false],
@@ -83,7 +84,7 @@ export class RandomLevelPack extends LevelPack
 		[[2,1],30,48,{ Particle: 45, PulseParticle: 3 },1,48,false],
 
 		//level 21
-		[[3,1],40,50,{ Particle: 48, PulseParticle: 2 },1,50, 'add-three-panel', 'third'],
+		[[3,1],40,50,{ Particle: 48, PulseParticle: 2 },1,50, 'AddThreePromptl', 'third'],
 
 		//level 22
 		[[2,2],40,55,{ Particle: 53, PulseParticle: 2 },1,49,false],
@@ -110,7 +111,7 @@ export class RandomLevelPack extends LevelPack
 		[[3,1],50,55,{ Particle: 53, PulseParticle: 2 },1,45,false],
 
 		//level 30
-		[[4,1],52,60,{ Particle: 58, PulseParticle: 2 },1,45, 'add-four-panel'],
+		[[4,1],52,60,{ Particle: 58, PulseParticle: 2 },1,45, 'AddFourPrompt'],
 
 		//level 31
 		[[3,2],52,65,{ Particle: 63, PulseParticle: 2 },1,42,false],
@@ -143,9 +144,17 @@ export class RandomLevelPack extends LevelPack
 		[[4,1],44,48,{ Particle: 46, PulseParticle: 2 },1,40,false]
 	];
 
+	/**
+	 * This will setup the levels.
+	 *
+	 * @param {number} number
+	 * @param {array} settings
+	 * @param {string} levelPanelClass
+	 * @returns {object}
+	 */
 	createLevel(number, settings, levelPanelClass)
 	{
-		let gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
+		const gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
 		gameLevel.setup();
 		return gameLevel;
 	}

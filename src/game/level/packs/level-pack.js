@@ -1,7 +1,19 @@
 import { Level } from '../level.js';
 
+/**
+ * LevelPack
+ *
+ * This will create a level pack.
+ *
+ * @class
+ */
 export class LevelPack
 {
+	/**
+	 * This will create a level pack.
+	 *
+	 * @param {object} controller
+	 */
 	constructor(controller)
 	{
 		this.label = '';
@@ -24,14 +36,19 @@ export class LevelPack
 		[1,28,40,40,1,65, 'startup-panel', 'first']
 	];
 
+	/**
+	 * This will setup the levels.
+	 *
+	 * @returns {array}
+	 */
 	setupLevels()
 	{
 		let lastLevelPanelClass = '';
 
-		let gameLevels = [];
-		let levels = this.levels;
+		const gameLevels = [];
+		const levels = this.levels;
 
-		for(let i = 0, count = levels.length; i < count; i++)
+		for (let i = 0, count = levels.length; i < count; i++)
 		{
 			let settings = levels[i],
 			levelPanelClass = (typeof settings[7] !== 'undefined')? settings[7] : lastLevelPanelClass;
@@ -46,24 +63,46 @@ export class LevelPack
 		return gameLevels;
 	}
 
+	/**
+	 * This will create a level.
+	 *
+	 * @param {number} number
+	 * @param {array} settings
+	 * @param {string} levelPanelClass
+	 * @returns {object}
+	 */
 	createLevel(number, settings, levelPanelClass)
 	{
-		let gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
+		const gameLevel = new Level(number, settings[0], settings[1], settings[2], settings[3], settings[4], settings[5], settings[6], levelPanelClass);
 		gameLevel.setup();
 		return gameLevel;
 	}
 
+	/**
+	 * This will change the level.
+	 *
+	 * @param {object} level
+	 */
 	changeLevel(level)
 	{
 		this.controller.changeLevel(level);
 	}
 
+	/**
+	 * This will setup the level.
+	 *
+	 * @param {number} level
+	 * @param {boolean} cancelPrompts
+	 */
 	setupLevel(level, cancelPrompts)
 	{
 		this.changeLevel(level);
 		this.controller.setupLevel(cancelPrompts);
 	}
 
+	/**
+	 * This will get the summary.
+	 */
 	levelSummary()
 	{
 		this.controller.getSummary();
