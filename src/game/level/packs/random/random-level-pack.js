@@ -84,7 +84,7 @@ export class RandomLevelPack extends LevelPack
 		[[2,1],30,48,{ Particle: 45, PulseParticle: 3 },1,48,false],
 
 		//level 21
-		[[3,1],40,50,{ Particle: 48, PulseParticle: 2 },1,50, 'AddThreePromptl', 'third'],
+		[[3,1],40,50,{ Particle: 48, PulseParticle: 2 },1,50, 'AddThreePrompt', 'third'],
 
 		//level 22
 		[[2,2],40,55,{ Particle: 53, PulseParticle: 2 },1,49,false],
