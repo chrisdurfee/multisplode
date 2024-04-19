@@ -1,12 +1,24 @@
+import { Devices } from '../../../devices/devices.js';
+import { Particles } from '../../../particles/particles.js';
+import { Sparks } from '../../../sparks/sparks.js';
 import { LevelController } from '../../level-controller.js';
 
+/**
+ * RandomLevelController
+ *
+ * This will create a random level controller.
+ *
+ * @class
+ */
 export class RandomLevelController extends LevelController
 {
-	constructor(level)
-	{
-		super(level);
-	}
-
+	/**
+	 * This will draw the level.
+	 *
+	 * @param {object} ctx
+	 * @param {object} stage
+	 * @returns {boolean}
+	 */
 	draw(ctx, stage)
 	{
 		let currentLevel = this.level;
@@ -17,30 +29,31 @@ export class RandomLevelController extends LevelController
 		Sparks.draw(ctx);
 
 		//particles
-		let particleArray = Particles.getAll();
+		const particleArray = Particles.getAll();
 		let particleCount = particleArray.length;
-		let particleIndex = particleCount - 1;
-		if(particleCount > 0)
+		if (particleCount > 0)
 		{
-			let activeDevices = Devices.getAll();
-			let activeDeviceLength = activeDevices.length;
-			let activeDeviceIndex = activeDeviceLength - 1;
+			let particleIndex = particleCount - 1;
+			const activeDevices = Devices.getAll();
+			const activeDeviceLength = activeDevices.length;
+			const activeDeviceIndex = activeDeviceLength - 1;
 			do
 			{
 				let particle = particleArray[particleIndex];
 				let collided = false;
 				let deviceIndex = activeDeviceIndex;
-				if(activeDeviceLength > 0)
+				if (activeDeviceLength > 0)
 				{
 					/* this will check each particle to see
 					ifithas collided with a device */
 					do
 					{
 						let device = activeDevices[deviceIndex];
-						if(particle.hasCollided(device) === true)
+						if (particle.hasCollided(device) === true)
 						{
+							let pos;
 							collided = true;
-							switch(device.type)
+							switch (device.type)
 							{
 								case 'gravityField':
 									device.orbitParticle(particle);
@@ -56,7 +69,7 @@ export class RandomLevelController extends LevelController
 										currentLevel.afterTouchReady = 'yes';
 									}*/
 
-									let pos = particle.position;
+									pos = particle.position;
 									/* this will add a new device for the particle
 									that has been destroyed, including sparks from the
 									explosion, and the newpoints from the destruction */
@@ -86,7 +99,7 @@ export class RandomLevelController extends LevelController
 		}*/
 
 		//end the level
-		let stop = this.isComplete(particleCount);
+		const stop = this.isComplete(particleCount);
 		if(stop === true)
 		{
 			/* this will stop drawing and go to the summary panel */
