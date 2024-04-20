@@ -99,12 +99,6 @@ export class RandomLevelController extends LevelController
 		}*/
 
 		//end the level
-		const stop = this.isComplete(particleCount);
-		if(stop === true)
-		{
-			/* this will stop drawing and go to the summary panel */
-			game.levelSummary();
-		}
-		return stop;
+		return this.isComplete(particleCount);
 	}
 }
