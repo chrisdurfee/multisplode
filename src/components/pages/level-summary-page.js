@@ -3,28 +3,16 @@ import { Page } from "./page.js";
 
 function afterSetup()
 {
-	if (level.scoreNumber >= level.minimum)
+	const level = game.activeLevel;
+	if (level.number < Levels.activeLevels.length)
 	{
-		this.state.passed = true;
-		levelStatus.textContent = 'Congrats, You Passed';
-		destroyedClassList.add('pass');
-		destroyedClassList.remove('fail');
-
-		/* we want to unlock the next level */
-		levels.unlockNextLevel();
-	}
-	else
-	{
-		this.state.passed = false;
-		levelStatus.textContent = 'Sorry, Try Again';
-		destroyedClassList.remove('pass');
-		destroyedClassList.add('fail');
+		this.state.nextLevel = level.passed;
 	}
 }
 
 function setupStates()
 {
-	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints } = game.activeLevel;
+	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = game.activeLevel;
 	return {
 		number,
 		passed,
@@ -32,7 +20,11 @@ function setupStates()
 		highScoreNumber,
 		particles,
 		scoreNumber,
-		scorePoints
+		scorePoints,
+		minimum,
+		quantity,
+		nextLevel: false,
+		previousLevel: number > 1,
 	};
 }
 
@@ -58,16 +50,16 @@ export const LevelSummaryPage = () => (
 				Div({ class: 'level-summary' }, [
 					Div({ class: 'row' }, [
 						Div({ class: 'level-number-container pullDown' }, [
-							Div({ id: 'summaryLevelNumber', class: 'level-number title-text', onSet: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
+							Div({ class: 'level-number title-text' }, '[[number]]'),
 							Div({ class: 'level-label title-text' }, 'Level')
 						]),
-						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance' }),
-						Div({ class: 'destroyed-summary' }, [
+						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance', onState: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
+						Div({ class: 'destroyed-summary', onState: ['passed', { pass: true, fail: false }] }, [
 							Div({ class: 'destroyed' }, [
 								Div({ class: 'label title-text' }, 'Particle Total'),
-								Div({ id: 'summaryLevelParticles', class: 'value' }, '0'),
+								Div({ class: 'value' }, '[[quantity]]'),
 								Div({ class: 'label title-text' }, 'Destroyed'),
-								Div({ id: 'summaryLevelDestroyed', class: 'value' }, '0'),
+								Div({ class: 'value' }, '[[scoreNumber]]'),
 							])
 						])
 					]),
@@ -76,21 +68,21 @@ export const LevelSummaryPage = () => (
 							Div({ class: 'score-panel' }, [
 								Div({ class: 'col' }, [
 									Div({ class: 'data underline' }, [
-										Div({ id: 'summaryLevelMinium', class: 'value title-text' }),
+										Div({ class: 'value title-text' }, '[[minimum]]'),
 										Div({ class: 'label title-enhance' }, 'Minimum'),
 									])
 								]),
 								Div({ class: 'col' }, [
 									Div({ class: 'data circle level-score' }, [
 										Div({ class: 'content' }, [
-											Div({ id: 'summaryLevelPoints', class: 'value title-text' }),
+											Div({ class: 'value title-text' }, '[[scorePoints]]'),
 											Div({ class: 'label title-enhance' }, 'Level Score'),
 										])
 									])
 								]),
 								Div({ class: 'col' }, [
 									Div({ class: 'data high-score underline' }, [
-										Div({ id: 'summaryHighScorePoints', class: 'value title-text' }),
+										Div({ class: 'value title-text' }, '[[highScorePoints]]'),
 										Div({ class: 'label title-enhance' }, 'Highest Score'),
 									])
 								])
@@ -101,7 +93,7 @@ export const LevelSummaryPage = () => (
 						Div({ class: 'summary-buttons' }, [
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'bttn circle bttn-prev', click: () => game.previousLevel() }, [
+									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Previous')
@@ -117,7 +109,7 @@ export const LevelSummaryPage = () => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'bttn circle bttn-next', click: () => game.nextLevel() }, [
+									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Next')
