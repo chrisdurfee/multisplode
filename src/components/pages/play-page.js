@@ -1,9 +1,12 @@
 import { A, Article, Canvas, Div, Section, Span } from "@base-framework/atoms";
+import { Progress } from "../organisms/progress.js";
+import { Touches } from "../organisms/touches.js";
 import { Page } from "./page.js";
 
 function afterSetup()
 {
-	this.progressBar = document.getElementById('level-progress-image');
+	const progressBar = document.getElementById('progress-line');
+	this.progress = new Progress(progressBar);
 }
 
 /**
@@ -15,7 +18,7 @@ function afterSetup()
  */
 export const PlayPage = () => (
 	new Page( { afterSetup }, [
-		Section({ class: 'play-container first' }, [
+		Section({ class: 'play-container first [[levelClass]]' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
@@ -44,7 +47,7 @@ export const PlayPage = () => (
 						Div({ class: 'lower-container' }, [
 							Section({ class: 'option-group level-progress' }, [
 								Div({ id: 'levelProgress', class: 'value progress title-text' }, [
-									Div({ id: 'levelMinimum', class: 'progress-number value title-text' }, '[[minimum]]'),
+									Div({ id: 'levelMinimum', class: 'progress-number value title-text' }, '[[remaining]]'),
 									Div({ class: 'progress-bar', html: `<svg id="level-progress-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.2 83.6" width="83px" height="83px">
 									<style>
 									  .progress-bg{opacity:0.2;fill:#FFFFFF;stroke-width:0px;enable-background:new ;} .progress{fill:none;stroke:#FF4881;stroke-width:4;stroke-miterlimit:10;}
@@ -60,14 +63,10 @@ export const PlayPage = () => (
 								]),
 								Div({ class: 'label title-text' }, 'Progress')
 							]),
-							Section({ class: 'option-group level-touches' }, [
-								Div({ id: 'levelTouches', class: 'value touch-container title-text' }, [
-									Div({ class: 'touch-icon inactive circle' }),
-									Div({ class: 'touch-icon circle' }),
-									Div({ class: 'touch-icon circle' })
-								]),
-								Div({ class: 'label title-text' }, 'Touches')
-							])
+							new Touches({
+								cache: 'touches',
+								//deveice: game.activeLevel.deveices
+							})
 						])
 					])
 				]),
