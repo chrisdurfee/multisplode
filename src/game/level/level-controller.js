@@ -2,26 +2,28 @@ import { Objects } from "@base-framework/base";
 import { Data } from "../../components/data.js";
 import { Timer } from "../../components/organisms/timer.js";
 import { Prompts } from '../../components/prompts/prompts.js';
+import { Sounds } from '../../game/sounds.js';
 import { Devices } from '../devices/devices.js';
 import { MathUtil } from "../math-util.js";
 import { Particles } from '../particles/particles.js';
 import { Points } from '../points/points.js';
-import { Sounds } from '../sounds/sounds.js';
 import { Sparks } from '../sparks/sparks.js';
 import { Messages } from '../ui/messages.js';
 import { Utilities } from '../utilities.js';
 
+/**
+ * LevelController
+ *
+ * This will manage the level.
+ *
+ * @class LevelController
+ */
 export class LevelController
 {
 	/**
-	 * This will create a level controller.
-	 *
-	 * @param {object} level
+	 * @member {object|null} level
 	 */
-	constructor(level)
-	{
-		this.level = level;
-	}
+	level = null;
 
 	/**
 	 * This will setup the level.
@@ -29,7 +31,7 @@ export class LevelController
 	 * @param {boolean} cancelPrompts
 	 * @returns {void}
 	 */
-	setupLevel(cancelPrompts)
+	setLevel(cancelPrompts)
 	{
 		this.reset();
 		this.setupParticles();
@@ -167,7 +169,6 @@ export class LevelController
 	{
 		const level = this.level;
 		level.reset();
-		UI.resetLevelUi(level);
 
 		Sounds.reset();
 		Particles.reset();
@@ -286,11 +287,9 @@ export class LevelController
 	{
 		this.getSummaryMessage();
 
-		let level = this.level;
+		const level = this.level;
 		/* this will check to update thelevel high score */
 		level.updateHighScore(level.scoreNumber, level.scorePoints);
-
-		UI.updateSummary(level);
 	}
 
 	blowEmDelay = 200;
@@ -311,7 +310,7 @@ export class LevelController
 			this.destroyAllParticles();
 			this.delay += this.blowEmExtend;
 
-			if(this.playContainer === null)
+			if (this.playContainer === null)
 			{
 				this.playContainer = document.getElementById('play-container');
 			}

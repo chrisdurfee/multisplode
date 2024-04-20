@@ -23,14 +23,12 @@ export const MathUtil =
 	randomFromTo(start, end, roundNumber)
 	{
 		roundNumber = (typeof roundNumber !== 'undefined')? true : roundNumber;
-		if(roundNumber)
+		if (roundNumber)
 		{
 			return Math.floor(Math.random() * (end - start + 1) + start);
 		}
-		else
-		{
-			return Math.random() * (end - start + 1) + start;
-		}
+
+		return Math.random() * (end - start + 1) + start;
 	},
 
 	/**
@@ -58,7 +56,15 @@ export const MathUtil =
 		return (distance <= (aRadius + bRadius) * (aRadius + bRadius));
 	},
 
-	/* this will get the next position of an orbiting object */
+	/**
+	 * This will get the orbit position.
+	 *
+	 * @param {number} centerX
+	 * @param {number} centerY
+	 * @param {number} angle
+	 * @param {number} radius
+	 * @returns {object}
+	 */
 	getOrbitPosition(centerX, centerY, angle, radius)
 	{
 		let mth = Math;
@@ -68,17 +74,23 @@ export const MathUtil =
 		};
 	},
 
+	/**
+	 * This will update the orbit angle.
+	 *
+	 * @param {number} angle
+	 * @param {number} speed
+	 * @param {boolean} clockWize
+	 * @returns {number}
+	 */
 	updateOrbitAngle(angle, speed, clockWize)
 	{
 		clockWize = (typeof clockWize === 'undefined')? true : clockWize;
-		if(clockWize)
+		if (clockWize)
 		{
 			return angle + speed;
 		}
-		else
-		{
-			return angle - speed;
-		}
+
+		return angle - speed;
 	},
 
 	getBezierCurve(p0, p1, p2, p3, time)
@@ -180,11 +192,10 @@ export const MathUtil =
 	 */
 	getPositionByAngle(angle, magnitude)
 	{
-		let mth = Math;
-		let radians = this.getRadians(angle);
+		const radians = this.getRadians(angle);
 		return {
-			x: mth.cos(radians) * magnitude,
-			y: mth.sin(radians) * magnitude
+			x: Math.cos(radians) * magnitude,
+			y: Math.sin(radians) * magnitude
 		};
 	},
 
@@ -217,8 +228,8 @@ export const MathUtil =
 	 */
 	getNextPosition(aX, aY, bX, bY, speed)
 	{
-		let distance = this.getDistance(aX, aY, bX, bY);
-		let moves = this.getMovementBySpeed(distance, speed);
+		const distance = this.getDistance(aX, aY, bX, bY);
+		const moves = this.getMovementBySpeed(distance, speed);
 
 		return {
 			x: (bX - aX) / moves,

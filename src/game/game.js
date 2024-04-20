@@ -16,6 +16,8 @@ export class Game
 	{
 		this.stage = new Stage(width, height);
 		this.app = app;
+
+		Levels.setGame(this);
 	}
 
 	/**

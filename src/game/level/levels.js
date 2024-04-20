@@ -17,6 +17,21 @@ export const Levels =
 	activePack: null,
 
 	/**
+	 * @member {object|null} game
+	 */
+	game: null,
+
+	/**
+	 * This will set the game.
+	 *
+	 * @param {object} game
+	 */
+	setGame(game)
+	{
+		this.game = game;
+	},
+
+	/**
 	 * This will setup the active pack.
 	 *
 	 * @returns {void}
@@ -142,13 +157,13 @@ export const Levels =
 		this.setPreviousLevel();
 
 		const activePack = this.activePack;
-		game.setStageLevelController(activePack.controller);
+		this.game.setStageLevelController(activePack.controller);
 
 		/* we want to select the level and reset the
 		level object to setup the scoring */
 		this.currentLevel = level;
-		activePack.setupLevel(level, cancelPrompts);
-		game.play();
+		activePack.setLevel(level, cancelPrompts);
+		this.game.play();
 	},
 
 	/**
