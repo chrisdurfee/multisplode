@@ -20,6 +20,14 @@ export const RADIANS_PI = Math.PI / 180;
  */
 export const MathUtil =
 {
+	/**
+	 * This will get a random number from a range.
+	 *
+	 * @param {number} start
+	 * @param {number} end
+	 * @param {boolean} roundNumber
+	 * @returns {number}
+	 */
 	randomFromTo(start, end, roundNumber)
 	{
 		roundNumber = (typeof roundNumber !== 'undefined')? true : roundNumber;
