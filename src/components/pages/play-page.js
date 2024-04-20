@@ -18,7 +18,7 @@ function afterSetup()
  */
 export const PlayPage = () => (
 	new Page( { afterSetup }, [
-		Section({ class: 'play-container first [[levelClass]]' }, [
+		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
