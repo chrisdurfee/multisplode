@@ -1,6 +1,41 @@
 import { A, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
+function afterSetup()
+{
+	if (level.scoreNumber >= level.minimum)
+	{
+		this.state.passed = true;
+		levelStatus.textContent = 'Congrats, You Passed';
+		destroyedClassList.add('pass');
+		destroyedClassList.remove('fail');
+
+		/* we want to unlock the next level */
+		levels.unlockNextLevel();
+	}
+	else
+	{
+		this.state.passed = false;
+		levelStatus.textContent = 'Sorry, Try Again';
+		destroyedClassList.remove('pass');
+		destroyedClassList.add('fail');
+	}
+}
+
+function setupStates()
+{
+	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints } = game.activeLevel;
+	return {
+		number,
+		passed,
+		highScorePoints,
+		highScoreNumber,
+		particles,
+		scoreNumber,
+		scorePoints
+	};
+}
+
 /**
  * LevelSummaryPage
  *
@@ -9,7 +44,7 @@ import { Page } from "./page.js";
  * @returns {object}
  */
 export const LevelSummaryPage = () => (
-	new Page([
+	new Page({ afterSetup, setupStates }, [
 		Div({ class: 'level-summary-container overlay-panel floatDownZ' }, [
 			Div({ class: 'panel-top-button-container' }, [
 				A({ class: 'bttn circle bttn-home', href: '/home' }, [
@@ -23,7 +58,7 @@ export const LevelSummaryPage = () => (
 				Div({ class: 'level-summary' }, [
 					Div({ class: 'row' }, [
 						Div({ class: 'level-number-container pullDown' }, [
-							Div({ id: 'summaryLevelNumber', class: 'level-number title-text' }),
+							Div({ id: 'summaryLevelNumber', class: 'level-number title-text', onSet: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
 							Div({ class: 'level-label title-text' }, 'Level')
 						]),
 						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance' }),
