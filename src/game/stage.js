@@ -17,6 +17,7 @@ window.requestAnimationFrame = (
 		return window.setTimeout(callBack, ONE_SECOND / FPS);
 	}
 );
+
 const requestFrame = window.requestAnimationFrame;
 
 window.cancelAnimationFrame = (
@@ -61,9 +62,8 @@ export class Stage
 	 *
 	 * @param {number} targetWidth
 	 * @param {number} targetHeight
-	 * @param {object} container
 	 */
-	constructor(targetWidth, targetHeight, container)
+	constructor(targetWidth, targetHeight)
 	{
 		this.targetSize = Size(targetWidth, targetHeight);
 		this.size = Size(0, 0);
@@ -85,7 +85,6 @@ export class Stage
 		/* this is our buffer object that will be used
 		in the animation loop to increase performance */
 		this.buffer = null;
-		this.container = container;
 	}
 
 	/**
@@ -96,8 +95,6 @@ export class Stage
 	setup()
 	{
 		this.drawBind = this.draw.bind(this);
-		this.setupCanvas();
-		this.setupAnimationFrame();
 		//this.setupBuffer();
 		this.setupEvents();
 	}
@@ -105,11 +102,12 @@ export class Stage
 	/**
 	 * This will set up the canvas.
 	 *
+	 * @param {object} canvas
 	 * @returns {void}
 	 */
-	setupCanvas()
+	setCanvas(canvas)
 	{
-		const canvas = this.canvas = this.container;
+		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 	}
 

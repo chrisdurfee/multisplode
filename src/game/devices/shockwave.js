@@ -1,3 +1,4 @@
+import { Levels } from '../level/levels.js';
 import { ARC, Device } from './device.js';
 
 /**
@@ -119,7 +120,7 @@ export class ShockWave extends Device
             ctx.fill();
 
             ctx.globalAlpha = 1;
-        }
+        };
         this.cache = Cache.add(callBack, size, size);
     }
 
@@ -130,14 +131,11 @@ export class ShockWave extends Device
      */
     draw(ctx)
     {
-        let x = this.position.x,
-        y = this.position.y;
-
         this.updateSize();
+        const scale = this.size / this.maxSize;
 
-        let scale = this.size / this.maxSize;
         ctx.save();
-        ctx.translate(x, y);
+        ctx.translate(this.position.x, this.position.y);
         ctx.scale(scale, scale);
         ctx.drawImage(this.cache, -this.half, -this.half);
         ctx.restore();

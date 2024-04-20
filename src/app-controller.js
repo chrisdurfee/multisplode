@@ -1,6 +1,7 @@
 import { base, Builder } from "@base-framework/base";
 import { AppShell } from "./components/shell/app-shell.js";
 import { Configs } from "./configs.js";
+import { Game } from "./game/game.js";
 
 let fullscreen = false;
 
@@ -119,6 +120,17 @@ export class AppController
 	}
 
 	/**
+	 * This will setup the game.
+	 *
+	 * @protected
+	 */
+	setupGame()
+	{
+		const size = Configs.size;
+		return new Game(size.width, size.height, this);
+	}
+
+	/**
 	 * This will setup the app shell.
 	 *
 	 * @protected
@@ -126,7 +138,9 @@ export class AppController
 	 */
 	setupAppShell()
 	{
-		const main = AppShell();
+		const main = AppShell({
+			game: this.setupGame()
+		});
 		Builder.render(main, document.body);
 	}
 }

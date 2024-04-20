@@ -40,30 +40,31 @@ const ActivePanelContainer = Atom((props, children) =>
  *
  * This will create the app shell.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const AppShell = () => (
+export const AppShell = (props) => (
 	AppContainer([
 		ActivePanelContainer({
 			cache: 'mainBody',
-			switch: Routes()
+			switch: Routes(props)
 		}),
 		Div({ class: 'overlay-container', route: [
 			{
 				uri: '/home/settings',
-				component: SettingsPage()
+				component: SettingsPage(props)
 			},
 			{
 				uri: '/home/levels',
-				component: LevelPage()
+				component: LevelPage(props)
 			},
 			{
 				uri: '/play/paused',
-				component: PausePage()
+				component: PausePage(props)
 			},
 			{
 				uri: '/play/summary',
-				component: LevelSummaryPage()
+				component: LevelSummaryPage(props)
 			}
 		] }),
 		new GameAudio({ cache: 'soundFx', class: 'sound', fileName: 'play-loop.mp3' })

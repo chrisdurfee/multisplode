@@ -12,11 +12,13 @@ export class LevelPack
 	/**
 	 * This will create a level pack.
 	 *
+	 * @param {object} game
 	 * @param {object} controller
 	 */
-	constructor(controller)
+	constructor(game, controller)
 	{
 		this.label = '';
+		this.game = game;
 		this.controller = controller;
 	}
 

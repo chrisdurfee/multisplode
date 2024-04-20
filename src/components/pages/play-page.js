@@ -14,14 +14,20 @@ function afterSetup()
  *
  * This will create the play page.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const PlayPage = () => (
+export const PlayPage = (props) => (
 	new Page( { afterSetup }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
-					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas' })
+					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas', onCreated(ele)
+						{
+							props.game.setCanvas(ele);
+							props.game.setup();
+						}
+					})
 				])
 			]),
 

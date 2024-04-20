@@ -6,9 +6,10 @@ import { Page } from "./page.js";
  *
  * This will create the pause panel.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const PausePage = () => (
+export const PausePage = (props) => (
 	new Page([
 		Div({ class: 'control-sub-panel pause-container overlay-panel' }, [
 			Div({ class: 'pause-panel floatDownZ' }, [
@@ -30,7 +31,7 @@ export const PausePage = () => (
 					Div({ class: 'label title-text' }, 'Levels')
 				]),
 				Section({ class: 'option-group' }, [
-					Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
+					Div({ class: 'bttn circle bttn-retry', click: () => props.game.retryLevel() }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Retry')

@@ -22,10 +22,11 @@ const Route = (uri, component, title) =>
 /**
  * This will get the routes.
  *
+ * @param {object} props
  * @returns {array}
  */
-export const Routes = () => [
-	Route('/home/:overlay?', HomePage(), 'Home'),
-	Route('/play/:state?', PlayPage(), 'Play'),
-	Route('/level-summary', LevelSummaryPage(), 'Level Summary')
+export const Routes = (props) => [
+	Route('/home/:overlay?', HomePage(props), 'Home'),
+	Route('/play/:state?', PlayPage(props), 'Play'),
+	Route('/level-summary', LevelSummaryPage(props), 'Level Summary')
 ];

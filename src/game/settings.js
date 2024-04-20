@@ -20,6 +20,7 @@ const defaultSettings =
 {
 	audio: false,
 	music: false,
-	graphics: 'medium'
+	graphics: 'medium',
+	song: 'play-loop.mp3'
 };
 Settings.resume(defaultSettings);
