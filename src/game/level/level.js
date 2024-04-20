@@ -31,9 +31,6 @@ export class Level
 		this.setupDevices(devices);
 		this.minimum = minimumNumber;
 
-		this.scorePoints = 0;
-		this.scoreNumber = 0;
-
 		this.afterTouch = afterTouchNumber;
 		this.afterTouchReady = 'no';
 
@@ -51,6 +48,24 @@ export class Level
 		this.bestTime = '';
 
 		this.locked = true;
+		this.setData();
+	}
+
+	/**
+	 * This will set the data.
+	 */
+	setData()
+	{
+		this.data = new Data();
+		this.data.setKey('level-' + this.number);
+
+		const DEFAULT = {
+			locked: this.locked,
+			highScorePoints: this.highScorePoints,
+			highScoreNumber: this.highScoreNumber,
+			bestTime: this.bestTime
+		};
+		this.data.resume(DEFAULT);
 	}
 
 	/**
@@ -184,12 +199,12 @@ export class Level
 	 */
 	updateHighScore(number, points)
 	{
-		if(number > this.highScoreNumber)
+		if (number > this.highScoreNumber)
 		{
 			this.highScoreNumber = number;
 		}
 
-		if(points > this.highScorePoints)
+		if (points > this.highScorePoints)
 		{
 			this.highScorePoints = points;
 		}
@@ -215,36 +230,48 @@ export class Level
 
 	updateUiByTimer()
 	{
-		if(this.timerUi === null)
+		if (this.timerUi === null)
 		{
-			let self = this;
-			this.timerUi = window.setTimeout(function()
+			this.timerUi = window.setTimeout(() =>
 			{
-				self.updateMinimumUi();
-				self.updatePlayUi();
-				self.timerUi = null;
+				this.updateRemaining();
+				this.updatePlayUi();
+				this.timerUi = null;
 			}, this.timerUiDelay);
 		}
 	}
 
 	currentNumber = 0;
 
-	updateMinimumUi()
+	/**
+	 * This will update the remaining.
+	 */
+	updateRemaining()
 	{
 		let remaining = (this.minimum - this.scoreNumber);
-		if(remaining !== this.currentNumber)
+		if (remaining !== this.currentNumber)
 		{
 			this.currentNumber = remaining;
 			remaining = (remaining > 0)? remaining : 0;
-			UI.updateLevelMin(remaining);
+			this.data.set('remaining', remaining);
 		}
 	}
 
+	/**
+	 * This will update the points.
+	 *
+	 * @param {number} points
+	 */
 	updatePoints(points)
 	{
 		this.scorePoints += points;
 	}
 
+	/**
+	 * This will update the number.
+	 *
+	 * @param {number} number
+	 */
 	updateNumber(number)
 	{
 		this.scoreNumber += number;
@@ -255,41 +282,54 @@ export class Level
 		UI.updatePlayUi(this);
 	}
 
+	/**
+	 * This will update the best time.
+	 *
+	 * @param {string} time
+	 */
 	updateBestTime(time)
 	{
 		this.bestTime = time;
-		this.saveToData();
+		this.data.bestTime = time;
+		this.data.store();
 	}
 
-	dataLabel = 'level-';
-
+	/**
+	 * This will update from the data.
+	 */
 	updateFromData()
 	{
-		let levelData = Data.get(this.dataLabel + this.number);
-		if(levelData)
+		const levelData = this.data;
+		if (levelData)
 		{
 			this.locked = levelData.locked;
 			this.highScorePoints = levelData.highScorePoints;
 			this.highScoreNumber = levelData.highScoreNumber;
-
 			this.bestTime = levelData.bestTime;
 		}
 	}
 
+	/**
+	 * This will save the data to local storage.
+	 */
 	saveToData()
 	{
-		let levelData =
+		const levelData =
 		{
 			locked: this.locked,
 			highScorePoints: this.highScorePoints,
 			highScoreNumber: this.highScoreNumber
 		};
-		Data.set(this.dataLabel + this.number, levelData);
+		this.data.set(levelData);
+		this.data.store();
 	}
 
+	/**
+	 * This will unlock the level.
+	 */
 	unlock()
 	{
-		if(this.locked === true)
+		if (this.locked === true)
 		{
 			this.locked = false;
 			this.saveToData();
