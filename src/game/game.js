@@ -14,7 +14,7 @@ export class Game
 	 */
 	constructor(width, height, app)
 	{
-		this.stage = new Stage(width, height);
+		this.stage = new Stage(width, height, this);
 		this.app = app;
 
 		Levels.setGame(this);
@@ -189,7 +189,7 @@ export class Game
 	 */
 	startStage()
 	{
-		let stage = this.stage;
+		const stage = this.stage;
 		stage.addEvent();
 		stage.startDraw();
 	}
@@ -201,7 +201,7 @@ export class Game
 	 */
 	stopStage()
 	{
-		let stage = this.stage;
+		const stage = this.stage;
 		stage.removeEvent();
 		stage.stopDraw();
 	}

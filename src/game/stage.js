@@ -62,9 +62,11 @@ export class Stage
 	 *
 	 * @param {number} targetWidth
 	 * @param {number} targetHeight
+	 * @param {object} game
 	 */
-	constructor(targetWidth, targetHeight)
+	constructor(targetWidth, targetHeight, game)
 	{
+		this.game = game;
 		this.targetSize = Size(targetWidth, targetHeight);
 		this.size = Size(0, 0);
 		this.fps = FPS;
@@ -428,6 +430,7 @@ export class Stage
 		if (stop === true)
 		{
 			this.stopDraw();
+			this.game.levelSummary();
 		}
 		else
 		{
