@@ -163,7 +163,6 @@ export const Levels =
 		level object to setup the scoring */
 		this.currentLevel = level;
 		activePack.setLevel(level, cancelPrompts);
-		this.game.play();
 	},
 
 	/**

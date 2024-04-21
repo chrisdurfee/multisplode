@@ -96,6 +96,7 @@ export class Game
 	startGame()
 	{
 		Levels.selectPrimaryLevel();
+		this.app.navigate('/play');
 	}
 
 	/**
@@ -105,7 +106,6 @@ export class Game
 	 */
 	play()
 	{
-		this.app.navigate('/play');
 		this.startStage();
 		Settings.song = 'play-loop.mp3';
 	}

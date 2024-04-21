@@ -27,7 +27,6 @@ export const PlayPage = (props) => (
 							props.game.setCanvas(ele);
 							window.setTimeout(() => {
 								props.game.setupStage();
-								props.game.startGame();
 								props.game.startStage();
 							}, 1);
 						}
