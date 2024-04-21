@@ -1,6 +1,11 @@
 import { A, Article, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
+function afterSetup()
+{
+	this.game.stopStage();
+}
+
 /**
  * PausePage
  *
@@ -10,7 +15,7 @@ import { Page } from "./page.js";
  * @returns {object}
  */
 export const PausePage = (props) => (
-	new Page([
+	new Page({ game: props.game, afterSetup }, [
 		Div({ class: 'control-sub-panel pause-container overlay-panel' }, [
 			Div({ class: 'pause-panel floatDownZ' }, [
 				A({ class: 'play circle', href: '/play' }, [

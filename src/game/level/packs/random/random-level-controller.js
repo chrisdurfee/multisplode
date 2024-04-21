@@ -93,6 +93,8 @@ export class RandomLevelController extends LevelController
 			} while(particleIndex--);
 		}
 
+		console.log('particleCount', particleCount);
+
 		/*if(settings.graphics === 'high')
 		{
 			points.draw(ctx);

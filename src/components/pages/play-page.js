@@ -9,6 +9,11 @@ function afterSetup()
 	this.progress = new Progress(progressBar);
 }
 
+function beforeDestroy()
+{
+	this.game.stopStage();
+}
+
 /**
  * PlayPage
  *
@@ -18,7 +23,7 @@ function afterSetup()
  * @returns {object}
  */
 export const PlayPage = (props) => (
-	new Page({ game: props.game, afterSetup }, [
+	new Page({ game: props.game, afterSetup, beforeDestroy }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
