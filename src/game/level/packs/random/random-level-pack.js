@@ -1,6 +1,7 @@
 
 import { Level } from '../../level.js';
 import { LevelPack } from '../level-pack.js';
+import { RandomLevelController } from './random-level-controller.js';
 
 /**
  * RandomLevelPack
@@ -11,6 +12,11 @@ import { LevelPack } from '../level-pack.js';
  */
 export class RandomLevelPack extends LevelPack
 {
+	/**
+	 * @type {object|null} controller
+	 */
+	controller = new RandomLevelController();
+
 	levels = [
 		/*the order of the settings are:
 

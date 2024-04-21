@@ -1,3 +1,5 @@
+import { Configs } from "../../configs.js";
+import { Cache } from "../cache.js";
 import { ARC, MathUtil } from "../math-util.js";
 
 /**
@@ -54,7 +56,15 @@ const getRandomColor = (limit) =>
  */
 let lastParticleNumber = 0;
 
+/**
+ * @type {function} fromRandom
+ */
 const fromRandom = MathUtil.randomFromTo;
+
+/**
+ * @type {number} DEFAULT_SPEED
+ */
+const DEFAULT_SPEED = (1000 / 60);
 
 /**
  * Particle
@@ -97,16 +107,16 @@ export class Particle
 	 */
 	getDefaultSettings()
 	{
-		const gameSize = game.stage.size;
+		const gameSize = Configs.size;
 
 		const minSize = 0.005,
 		maxSize = 0.008,
-		speed = (gameSize.width  * 0.12 / (1000 / game.stage.fps)),
+		speed = (gameSize.width  * 0.12 / DEFAULT_SPEED),
 		size = fromRandom(gameSize.width * minSize, gameSize.width * maxSize),
 		fullSize = size * 2;
 
 		return {
-			size: size,
+			size,
 
 			position:
 			{
@@ -214,7 +224,7 @@ export class Particle
 	 */
 	updatePosition()
 	{
-		const size = game.stage.size;
+		const size = Configs.size;
 
 		const position = MathUtil.getPositionByAngle(this.angle, this.speed);
 		const round = MathUtil.round;

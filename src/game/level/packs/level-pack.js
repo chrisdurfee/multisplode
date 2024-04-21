@@ -10,16 +10,20 @@ import { Level } from '../level.js';
 export class LevelPack
 {
 	/**
+	 * @type {object|null} controller
+	 */
+	controller = null;
+
+	/**
 	 * This will create a level pack.
 	 *
 	 * @param {object} game
 	 * @param {object} controller
 	 */
-	constructor(game, controller)
+	constructor(game)
 	{
 		this.label = '';
 		this.game = game;
-		this.controller = controller;
 	}
 
 	levels = [
@@ -96,10 +100,10 @@ export class LevelPack
 	 * @param {number} level
 	 * @param {boolean} cancelPrompts
 	 */
-	setupLevel(level, cancelPrompts)
+	setLevel(level, cancelPrompts)
 	{
 		this.changeLevel(level);
-		this.controller.setupLevel(cancelPrompts);
+		this.controller.setLevel(cancelPrompts);
 	}
 
 	/**
