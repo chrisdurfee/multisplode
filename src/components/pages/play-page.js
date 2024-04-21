@@ -18,14 +18,17 @@ function afterSetup()
  * @returns {object}
  */
 export const PlayPage = (props) => (
-	new Page( { afterSetup }, [
+	new Page({afterSetup }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas', onCreated(ele)
 						{
 							props.game.setCanvas(ele);
-							window.setTimeout(() => props.game.setupStage(), 1);
+							window.setTimeout(() => {
+								props.game.setupStage();
+								props.game.startStage();
+							}, 1);
 						}
 					})
 				])
