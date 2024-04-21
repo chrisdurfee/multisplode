@@ -11,7 +11,7 @@ export const Configs =
 	appName: 'Multisplode',
 
 	size: {
-		widt: 774,
+		width: 774,
 		height: 493
 	},
 
