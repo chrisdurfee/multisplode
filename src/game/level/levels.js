@@ -171,7 +171,7 @@ export const Levels =
 	 */
 	setPreviousLevel()
 	{
-		if(this.currentLevel && this.lastSelectedLevel !== this.currentLevel)
+		if (this.currentLevel && this.lastSelectedLevel !== this.currentLevel)
 		{
 			this.lastSelectedLevel = this.currentLevel;
 		}

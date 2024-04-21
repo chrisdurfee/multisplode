@@ -38,11 +38,19 @@ export class Game
 	 */
 	setup()
 	{
-		this.stage.setup();
-
 		/* we want to setup the levels and select primary
 		level and show our splash screen */
 		this.setupLevels();
+	}
+
+	/**
+	 * This will set up the stage.
+	 *
+	 * @returns {void}
+	 */
+	setupStage()
+	{
+		this.stage.setup();
 	}
 
 	/**

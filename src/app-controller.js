@@ -127,7 +127,9 @@ export class AppController
 	setupGame()
 	{
 		const size = Configs.size;
-		return new Game(size.width, size.height, this);
+		const game = new Game(size.width, size.height, this);
+		game.setup();
+		return game;
 	}
 
 	/**

@@ -25,7 +25,7 @@ export const PlayPage = (props) => (
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas', onCreated(ele)
 						{
 							props.game.setCanvas(ele);
-							window.setTimeout(() => props.game.setup(), 1);
+							window.setTimeout(() => props.game.setupStage(), 1);
 						}
 					})
 				])

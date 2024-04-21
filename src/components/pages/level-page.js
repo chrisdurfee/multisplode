@@ -1,4 +1,5 @@
 import { A, Article, Button, Div, Section, Span } from "@base-framework/atoms";
+import { Levels } from "../../game/level/levels.js";
 import { NavSlider } from "../organisms/nav-slider/nav-slider.js";
 import { TouchSlider } from "../organisms/touch-slider/touch-slider.js";
 import { Page } from "./page.js";
@@ -31,18 +32,28 @@ function selectByLink(index)
 	}
 }
 
-let currentLevel = null;
-
+/**
+ * This will get the level class.
+ *
+ * @param {object} level
+ * @returns {string}
+ */
 const getLevelClass = (level) =>
 {
 	let classList = (level.locked === false)? ' unlocked' : '';
-	if (level === currentLevel)
+	if (level === Levels.currentLevel)
 	{
 		classList += ' selected';
 	}
 	return 'bttn option circle fadeIn' + classList;
 }
 
+/**
+ * This will create the level button.
+ *
+ * @param {object} props
+ * @returns {object}
+ */
 const LevelButton = (props) =>
 {
 	const className = getLevelClass(props);
@@ -76,9 +87,7 @@ export const LevelPage = () => (
 						cache: 'touch',
 						callBackFn: selectByStep,
 						items: [
-							Div({ class: 'content' }, [
-
-							])
+							Div({ class: 'content', map: [Levels.activeLevels, LevelButton] })
 						]
 					})
 				])
