@@ -58,7 +58,7 @@ const LevelButton = (props) =>
 {
 	const className = getLevelClass(props);
 	return Button({ class: className, click: (e, parent) => !props.locked && parent.selectLevel(props) }, [
-		Div({ class: 'content' }, props.number)
+		Div({ class: 'content' }, String(props.number))
 	]);
 };
 
