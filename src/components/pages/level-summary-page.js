@@ -1,9 +1,10 @@
 import { A, Div, Section } from "@base-framework/atoms";
+import { Levels } from "../../game/level/levels.js";
 import { Page } from "./page.js";
 
 function afterSetup()
 {
-	const level = game.activeLevel;
+	const level = Levels.currentLevel;
 	if (level.number < Levels.activeLevels.length)
 	{
 		this.state.nextLevel = level.passed;
@@ -12,7 +13,7 @@ function afterSetup()
 
 function setupStates()
 {
-	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = game.activeLevel;
+	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = Levels.currentLevel;
 	return {
 		number,
 		passed,
@@ -33,9 +34,10 @@ function setupStates()
  *
  * This will create the level summary panel.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const LevelSummaryPage = () => (
+export const LevelSummaryPage = (props) => (
 	new Page({ afterSetup, setupStates }, [
 		Div({ class: 'level-summary-container overlay-panel floatDownZ' }, [
 			Div({ class: 'panel-top-button-container' }, [
@@ -93,7 +95,7 @@ export const LevelSummaryPage = () => (
 						Div({ class: 'summary-buttons' }, [
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
+									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => props.game.previousLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Previous')
@@ -101,7 +103,7 @@ export const LevelSummaryPage = () => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'retry_level' }, [
-									Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
+									Div({ class: 'bttn circle bttn-retry', click: () => props.game.retryLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Retry')
@@ -109,7 +111,7 @@ export const LevelSummaryPage = () => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
+									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => props.game.nextLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Next')

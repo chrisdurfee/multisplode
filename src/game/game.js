@@ -97,6 +97,7 @@ export class Game
 	 */
 	play()
 	{
+		this.app.navigate('/play');
 		this.startStage();
 		Settings.song = 'play-loop.mp3';
 	}
@@ -119,6 +120,7 @@ export class Game
 	retryLevel()
 	{
 		Levels.retryLevel();
+		this.app.navigate('/play');
 	}
 
 	/**
@@ -159,7 +161,7 @@ export class Game
 		this.stopStage();
 		Settings.song = 'summary-slow-loop.mp3';
 
-		this.app.naviagte('/play/level-summary');
+		this.app.navigate('/play/level-summary');
 	}
 
 	/**
