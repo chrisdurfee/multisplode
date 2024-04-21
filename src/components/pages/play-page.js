@@ -18,7 +18,7 @@ function afterSetup()
  * @returns {object}
  */
 export const PlayPage = (props) => (
-	new Page({afterSetup }, [
+	new Page({ afterSetup }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
