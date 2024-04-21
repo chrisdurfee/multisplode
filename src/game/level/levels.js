@@ -156,7 +156,6 @@ export const Levels =
 
 		this.setPreviousLevel();
 
-		console.log(activePack.controller)
 		const activePack = this.activePack;
 		this.game.setStageLevelController(activePack.controller);
 

@@ -18,7 +18,7 @@ function afterSetup()
  * @returns {object}
  */
 export const PlayPage = (props) => (
-	new Page({ afterSetup }, [
+	new Page({ game: props.game, afterSetup }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
@@ -27,6 +27,7 @@ export const PlayPage = (props) => (
 							props.game.setCanvas(ele);
 							window.setTimeout(() => {
 								props.game.setupStage();
+								props.game.startGame();
 								props.game.startStage();
 							}, 1);
 						}
