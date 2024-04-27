@@ -65,7 +65,7 @@ export const Particles =
 	remove(partical)
 	{
 		const index = this.particles.indexOf(partical);
-		if (index < 1)
+		if (index < 0)
 		{
 			return;
 		}

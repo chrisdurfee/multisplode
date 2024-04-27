@@ -10,6 +10,7 @@ import { Data, Objects } from "@base-framework/base";
 export class Level
 {
 	/**
+	 * This will create a level.
 	 *
 	 * @param {number} number
 	 * @param {*} devices
@@ -229,11 +230,13 @@ export class Level
 		if (number > this.highScoreNumber)
 		{
 			this.highScoreNumber = number;
+			this.data.highScoreNumber = number;
 		}
 
 		if (points > this.highScorePoints)
 		{
 			this.highScorePoints = points;
+			this.data.highScorePoints = points;
 		}
 		this.saveToData();
 	}
@@ -263,6 +266,7 @@ export class Level
 			{
 				this.updateRemaining();
 				this.updatePlayUi();
+				this.updateHighScore();
 				this.timerUi = null;
 			}, this.timerUiDelay);
 		}
