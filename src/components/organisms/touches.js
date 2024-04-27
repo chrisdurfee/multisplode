@@ -1,6 +1,5 @@
 import { Div, Section } from "@base-framework/atoms";
 import { Component, Data } from "@base-framework/base";
-import { Levels } from "../../game/level/levels";
 
 /**
  * This will create a touch icon.
@@ -35,7 +34,8 @@ export class Touches extends Component
      */
     beforeSetup()
     {
-        this.level = Levels.currentLevel;
+        const currentLevel = this.game.getCurrentLevel();
+        this.level = currentLevel;
         this.level.setUpdateTouchCallBack(() => this.select());
 
         this.data = new Data();

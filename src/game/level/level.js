@@ -40,6 +40,7 @@ export class Level
 		this.waveMaxSize = waveMaxSize;
 
 		this.remaining = minimumNumber;
+		this.passed = false;
 		this.currentNumber = 0;
 		this.scoreNumber = 0;
 		this.scorePoints = 0;
@@ -277,7 +278,13 @@ export class Level
 		{
 			this.currentNumber = remaining;
 			remaining = (remaining > 0)? remaining : 0;
-			this.data.set('remaining', remaining);
+			this.data.remaining = remaining;
+
+			if (remaining === 0)
+			{
+				this.passed = true;
+				this.data.passed = true;
+			}
 		}
 	}
 

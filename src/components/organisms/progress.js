@@ -1,6 +1,5 @@
 import { Div } from "@base-framework/atoms";
 import { Component } from "@base-framework/base";
-import { Levels } from "../../game/level/levels.js";
 
 /**
  * Progress
@@ -17,7 +16,8 @@ export class Progress extends Component
 	 */
 	beforeSetup()
 	{
-		this.data = Levels.currentLevel.data;
+		const currentLevel = this.game.getCurrentLevel();
+		this.data = currentLevel.data;
 
 		this.length = 0;
 		this.progress = 0;

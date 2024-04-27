@@ -63,7 +63,7 @@ export const AppShell = (props) => (
 				component: PausePage(props)
 			},
 			{
-				uri: '/play/summary',
+				uri: '/play/level-summary',
 				component: LevelSummaryPage(props)
 			}
 		] }),

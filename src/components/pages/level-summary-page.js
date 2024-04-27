@@ -2,9 +2,15 @@ import { A, Div, Section } from "@base-framework/atoms";
 import { Levels } from "../../game/level/levels.js";
 import { Page } from "./page.js";
 
+function beforeSetup()
+{
+	const level = this.game.getCurrentLevel();
+	this.data = level.data;
+}
+
 function afterSetup()
 {
-	const level = Levels.currentLevel;
+	const level = this.game.getCurrentLevel();
 	if (level.number < Levels.activeLevels.length)
 	{
 		this.state.nextLevel = level.passed;
@@ -37,8 +43,8 @@ function setupStates()
  * @param {object} props
  * @returns {object}
  */
-export const LevelSummaryPage = (props) => (
-	new Page({ afterSetup, setupStates }, [
+export const LevelSummaryPage = ({ game }) => (
+	new Page({ game, beforeSetup, afterSetup, setupStates }, [
 		Div({ class: 'level-summary-container overlay-panel floatDownZ' }, [
 			Div({ class: 'panel-top-button-container' }, [
 				A({ class: 'bttn circle bttn-home', href: '/home' }, [
@@ -95,7 +101,7 @@ export const LevelSummaryPage = (props) => (
 						Div({ class: 'summary-buttons' }, [
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => props.game.previousLevel() }, [
+									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Previous')
@@ -103,7 +109,7 @@ export const LevelSummaryPage = (props) => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'retry_level' }, [
-									Div({ class: 'bttn circle bttn-retry', click: () => props.game.retryLevel() }, [
+									Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Retry')
@@ -111,7 +117,7 @@ export const LevelSummaryPage = (props) => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => props.game.nextLevel() }, [
+									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Next')

@@ -23,6 +23,16 @@ export class Game
 	}
 
 	/**
+	 * This will get the current level.
+	 *
+	 * @returns {object|null}
+	 */
+	getCurrentLevel()
+	{
+		return Levels.currentLevel;
+	}
+
+	/**
 	 * This will set up the canvas.
 	 *
 	 * @param {object} canvas
@@ -30,7 +40,6 @@ export class Game
 	setCanvas(canvas)
 	{
 		this.stage.setCanvas(canvas);
-		this.setup();
 	}
 
 	/**
