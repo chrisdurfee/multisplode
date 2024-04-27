@@ -39,7 +39,7 @@ export class RandomLevelController extends LevelController
 			const activeDeviceIndex = activeDeviceLength - 1;
 			do
 			{
-				let particle = particleArray[particleIndex];
+				const particle = particleArray[particleIndex];
 				let collided = false;
 				let deviceIndex = activeDeviceIndex;
 				if (activeDeviceLength > 0)
@@ -48,7 +48,7 @@ export class RandomLevelController extends LevelController
 					ifithas collided with a device */
 					do
 					{
-						let device = activeDevices[deviceIndex];
+						const device = activeDevices[deviceIndex];
 						if (particle.hasCollided(device) === true)
 						{
 							let pos;
@@ -83,7 +83,7 @@ export class RandomLevelController extends LevelController
 
 				/* we dont want to move the particle if the particle
 				is interacting with a device */
-				if(collided === false)
+				if (collided === false)
 				{
 					particle.move();
 				}
@@ -92,8 +92,6 @@ export class RandomLevelController extends LevelController
 
 			} while(particleIndex--);
 		}
-
-		console.log('particleCount', particleCount);
 
 		/*if(settings.graphics === 'high')
 		{

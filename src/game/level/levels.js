@@ -74,7 +74,7 @@ export const Levels =
 	selectPrimaryLevel()
 	{
 		const level = this.getPrimaryLevel();
-		this.selectLevel(level);
+		this.setLevel(level);
 	},
 
 	/**
@@ -156,6 +156,16 @@ export const Levels =
 
 		this.setPreviousLevel();
 
+		this.setLevel(level, cancelPrompts);
+	},
+
+	/**
+	 * This will set the level.
+	 *
+	 * @param {object} level
+	 */
+	setLevel(level, cancelPrompts)
+	{
 		const activePack = this.activePack;
 		this.game.setStageLevelController(activePack.controller);
 

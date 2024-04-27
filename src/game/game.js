@@ -1,3 +1,4 @@
+import { Prompts } from '../components/prompts/prompts.js';
 import { Levels } from './level/levels.js';
 import { RandomLevelPack } from './level/packs/random/random-level-pack.js';
 import { Settings } from './settings.js';
@@ -18,6 +19,7 @@ export class Game
 		this.app = app;
 
 		Levels.setGame(this);
+		Prompts.setGame(this);
 	}
 
 	/**
@@ -41,6 +43,7 @@ export class Game
 		/* we want to setup the levels and select primary
 		level and show our splash screen */
 		this.setupLevels();
+		Levels.selectPrimaryLevel();
 	}
 
 	/**
@@ -95,7 +98,6 @@ export class Game
 	 */
 	startGame()
 	{
-		Levels.selectPrimaryLevel();
 		this.app.navigate('/play');
 	}
 

@@ -319,13 +319,12 @@ export class Stage
 			const bordersTB = (style.borderTopWidth + style.borderBottomWidth);
 			const paddingTB = (style.paddingTop + style.paddingBottom);
 
-			let boxSizing = style.boxSizing,
-			minSize = 0,
+			let minSize = 0,
 			width = 0,
 			height = 0;
 
 			/* we need to check to remove padding and border by box sizing */
-			if (boxSizing !== 'border-box')
+			if (style.boxSizing !== 'border-box')
 			{
 				/* we want to get the panel size and subtract any border or padding */
 				width = container.clientWidth - (bordersLR + paddingLR);

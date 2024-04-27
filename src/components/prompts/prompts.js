@@ -49,6 +49,22 @@ export const Prompts =
 	prompts: {},
 
 	/**
+	 * @type {object} game
+	 */
+	game: null,
+
+	/**
+	 * This will set the game.
+	 *
+	 * @param {object} game
+	 * @returns {void}
+	 */
+	setGame(game)
+	{
+		this.game = game;
+	},
+
+	/**
 	 * This will setup the prompts.
 	 *
 	 * @returns {void}

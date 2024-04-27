@@ -246,7 +246,7 @@ export class Particle
 		const callBack = (ctx) =>
 		{
 			ctx.beginPath();
-			ctx.arc(size / 2, size / 2, self.size, 0, ARC, true);
+			ctx.arc(size / 2, size / 2, this.size, 0, ARC, true);
 			ctx.fillStyle = this.fillColor;
 			ctx.fill();
 		};
