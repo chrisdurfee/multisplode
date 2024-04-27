@@ -1,4 +1,4 @@
-import { A, Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
+import { A, Article, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
 import { Page } from './page.js';
 
 /**
@@ -31,7 +31,7 @@ export const HomePage = (props) => (
 								Nav([
 									Ul({ class: 'clear' }, [
 										Li([
-											Button({ class: 'bttn main-play title-text', click: () => props.game.startGame() }, 'Play')
+											A({ type: 'button', class: 'bttn main-play title-text', href: '/play' }, 'Play')
 										])
 									])
 								])

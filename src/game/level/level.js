@@ -59,7 +59,6 @@ export class Level
 		this.bestTime = '';
 
 		this.locked = true;
-		this.setData();
 	}
 
 	/**
@@ -73,6 +72,7 @@ export class Level
 			minimum: this.minimum,
 			remaining: this.remaining,
 			scoreNumber: this.scoreNumber,
+			quantity: this.quantity,
 			scorePoints: this.scorePoints,
 			highScorePoints: this.highScorePoints,
 			highScoreNumber: this.highScoreNumber,
@@ -89,6 +89,7 @@ export class Level
 	 */
 	setup()
 	{
+		this.setData();
 		this.updateFromData();
 		this.reset();
 
@@ -221,22 +222,19 @@ export class Level
 
 	/**
 	 * This will update the high score.
-	 *
-	 * @param {number} number
-	 * @param {number} points
 	 */
-	updateHighScore(number, points)
+	updateHighScore()
 	{
-		if (number > this.highScoreNumber)
+		if (this.scoreNumber > this.highScoreNumber)
 		{
-			this.highScoreNumber = number;
-			this.data.highScoreNumber = number;
+			this.highScoreNumber = this.scoreNumber;
+			this.data.highScoreNumber = this.scoreNumber;
 		}
 
-		if (points > this.highScorePoints)
+		if (this.scorePoints > this.highScorePoints)
 		{
-			this.highScorePoints = points;
-			this.data.highScorePoints = points;
+			this.highScorePoints = this.scorePoints;
+			this.data.highScorePoints = this.scorePoints;
 		}
 		this.saveToData();
 	}
