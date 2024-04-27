@@ -1,6 +1,6 @@
 import { Div, Section } from "@base-framework/atoms";
 import { Component, Data } from "@base-framework/base";
-import { Levels } from "../../game/level/levels.js";
+import { Levels } from "../../game/level/levels";
 
 /**
  * This will create a touch icon.
@@ -15,7 +15,7 @@ const Touch = (item, index, data) =>
     const type = item.type || 'Shockwave';
     return Div({
         class: 'touch-icon circle ' + type.toLowerCase(),
-        onSet: [data, 'selected', { inactive: true }]
+        onSet: [data, 'selected', { inactive: true}]
     });
 };
 
@@ -33,19 +33,12 @@ export class Touches extends Component
      *
      * @returns {object}
      */
-    setData()
-    {
-        return new Data({
-            touches: this.setupTouches()
-        });
-    }
-
-    /**
-     * This will set up the touches.
-     */
     beforeSetup()
     {
-        Levels.currentLevel.setUpdateTouchCallBack(() => this.select());
+        this.level = Levels.currentLevel;
+        this.level.setUpdateTouchCallBack(() => this.select());
+
+        this.data = new Data();
         this.reset();
     }
 
@@ -76,6 +69,7 @@ export class Touches extends Component
             const count = devices[prop];
             for (let i = 0; i < count; i++)
             {
+                this.limit++;
                 touches.push({
                     type: prop,
                     selected: false
@@ -100,6 +94,7 @@ export class Touches extends Component
             const option = options[this.current];
             if (option.selected === false)
             {
+
                 selected = option;
                 option.selected = true;
                 this.current--;
@@ -115,6 +110,7 @@ export class Touches extends Component
      */
     reset()
     {
+        this.limit = 0;
         this.data.set('touches', this.setupTouches());
         this.current = this.limit - 1;
     }

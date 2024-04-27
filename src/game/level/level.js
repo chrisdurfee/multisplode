@@ -68,6 +68,7 @@ export class Level
 		this.data = new Data({
 			number: this.number,
 			locked: this.locked,
+			minimum: this.minimum,
 			remaining: this.remaining,
 			scoreNumber: this.scoreNumber,
 			scorePoints: this.scorePoints,
