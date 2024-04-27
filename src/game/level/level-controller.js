@@ -236,8 +236,8 @@ export class LevelController
 	 */
 	getSummaryMessage()
 	{
-		let type,
-		level = this.level;
+		let type;
+		const level = this.level;
 		if (level.scorePoints > level.highScorePoints && level.scoreNumber >= level.minimum)
 		{
 			type = 'great';
@@ -344,7 +344,7 @@ export class LevelController
 	{
 		if ((this.level.isAtLimit === true && Devices.getExplosivesCount() < 1) || particleCount < 1)
 		{
-			let startTimer = this.setupCompleteDelay();
+			const startTimer = this.setupCompleteDelay();
 			const timePassed = new Date() - startTimer;
 			if (this.blowEm === false && timePassed >= this.blowEmDelay)
 			{
@@ -383,15 +383,14 @@ export class LevelController
 		{
 			for (let i = particleCount - 1; i >= 0; i--)
 			{
-				let particle = particleArray[i];
+				const particle = particleArray[i];
 				//remove destroyed particles
 				Particles.remove(particle);
 
-				let pos = particle.position;
 				/* this will add a new device for the particle
 				that has been destroyed, including sparks from the
 				explosion, and the newpoints from the destruction */
-				this.createDevice(pos.x, pos.y, particle.fillColor);
+				this.createDevice(particle.position.x, particle.position.y, particle.fillColor);
 			}
 		}
 	}

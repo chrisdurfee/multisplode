@@ -1,7 +1,17 @@
 import { A, Article, Canvas, Div, Section, Span } from "@base-framework/atoms";
+import { Levels } from "../../game/level/levels.js";
 import { Progress } from "../organisms/progress.js";
 import { Touches } from "../organisms/touches.js";
 import { Page } from "./page.js";
+
+/**
+ *
+ * @returns
+ */
+function setData()
+{
+	return Levels.currentLevel.data;
+}
 
 function afterSetup()
 {
@@ -22,18 +32,24 @@ function beforeDestroy()
  * @param {object} props
  * @returns {object}
  */
-export const PlayPage = (props) => (
-	new Page({ game: props.game, afterSetup, beforeDestroy }, [
+export const PlayPage = ({ game }) => (
+	new Page({ game, setData, afterSetup, beforeDestroy }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas', onCreated(ele)
 						{
-							props.game.setCanvas(ele);
-							window.setTimeout(() => {
-								props.game.setupStage();
-								props.game.startStage();
-							}, 1);
+							game.setCanvas(ele);
+
+							/**
+							 * This will resize the canvas when it's visible.
+							 */
+							const DELAY = 1;
+							window.setTimeout(() =>
+							{
+								game.setupStage();
+								game.startStage();
+							}, DELAY);
 						}
 					})
 				])
@@ -79,7 +95,7 @@ export const PlayPage = (props) => (
 							]),
 							new Touches({
 								cache: 'touches',
-								//deveice: game.activeLevel.deveices
+								level: Levels.currentLevel
 							})
 						])
 					])

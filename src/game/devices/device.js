@@ -1,3 +1,4 @@
+import { Cache } from '../cache.js';
 import { MathUtil } from "../math-util.js";
 
 /**

@@ -1,5 +1,6 @@
 import { Div, Section } from "@base-framework/atoms";
 import { Component, Data } from "@base-framework/base";
+import { Levels } from "../../game/level/levels.js";
 
 /**
  * This will create a touch icon.
@@ -35,7 +36,7 @@ export class Touches extends Component
     setData()
     {
         return new Data({
-            touches: []
+            touches: this.setupTouches()
         });
     }
 
@@ -44,6 +45,7 @@ export class Touches extends Component
      */
     beforeSetup()
     {
+        Levels.currentLevel.setUpdateTouchCallBack(() => this.select());
         this.reset();
     }
 
@@ -57,7 +59,7 @@ export class Touches extends Component
         return Section({ class: 'option-group level-touches' }, [
             Div({ id: 'levelTouches', cache: 'levelTouces', class: 'value touch-container title-text', for: ['touches', Touch] }),
             Div({ class: 'label title-text' }, 'Touches')
-        ])
+        ]);
     }
 
     /**
@@ -67,11 +69,11 @@ export class Touches extends Component
      */
     setupTouches()
     {
-        const devices = this.devices;
+        const devices = this.level.devices;
         const touches = [];
         for (let prop in devices)
         {
-            let count = devices[prop];
+            const count = devices[prop];
             for (let i = 0; i < count; i++)
             {
                 touches.push({

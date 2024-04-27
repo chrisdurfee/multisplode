@@ -27,7 +27,7 @@ export class Level
 		this.touch = 0;
 		this.touchLimit = 0;
 
-		this.devices = [];
+		this.devices = {};
 		this.setupDevices(devices);
 		this.minimum = minimumNumber;
 
@@ -39,8 +39,17 @@ export class Level
 		this.waveScale = waveScale;
 		this.waveMaxSize = waveMaxSize;
 
+		this.remaining = minimumNumber;
+		this.currentNumber = 0;
+		this.scoreNumber = 0;
+		this.scorePoints = 0;
 		this.highScorePoints = 0;
 		this.highScoreNumber = 0;
+
+		/**
+		 * @type {function} updateTouchCallBack
+		 */
+		this.updateTouchCallBack = null;
 
 		this.promptId = promptId;
 		this.levelClass = levelClass;
@@ -56,16 +65,20 @@ export class Level
 	 */
 	setData()
 	{
-		this.data = new Data();
-		this.data.setKey('level-' + this.number);
-
-		const DEFAULT = {
+		this.data = new Data({
+			number: this.number,
 			locked: this.locked,
+			remaining: this.remaining,
+			scoreNumber: this.scoreNumber,
+			scorePoints: this.scorePoints,
 			highScorePoints: this.highScorePoints,
 			highScoreNumber: this.highScoreNumber,
-			bestTime: this.bestTime
-		};
-		this.data.resume(DEFAULT);
+			bestTime: this.bestTime,
+			devices: this.devices
+		});
+		this.data.setKey('level-' + this.number);
+
+		this.data.resume();
 	}
 
 	/**
@@ -91,7 +104,7 @@ export class Level
 	{
 		if (typeof devices !== 'object')
 		{
-			this.devices = {'ShockWave': devices };
+			this.devices = { 'ShockWave': devices };
 			this.touchLimit = devices;
 			return;
 		}
@@ -168,9 +181,21 @@ export class Level
 	updateTouch()
 	{
 		this.touch++;
-		let option = UI.updateTouchUi();
+
+		const option = this.updateTouchCallBack();
 		this.isAtTouchLimit();
 		return option;
+	}
+
+	/**
+	 * This will set the update touch callback.
+	 *
+	 * @param {function} callback
+	 * @returns {void}
+	 */
+	setUpdateTouchCallBack(callback)
+	{
+		this.updateTouchCallBack = callback;
 	}
 
 	/**
@@ -241,8 +266,6 @@ export class Level
 		}
 	}
 
-	currentNumber = 0;
-
 	/**
 	 * This will update the remaining.
 	 */
@@ -279,7 +302,10 @@ export class Level
 
 	updatePlayUi()
 	{
-		UI.updatePlayUi(this);
+		this.data.set({
+			scoreNumber: this.scoreNumber,
+			scorePoints: this.scorePoints
+		});
 	}
 
 	/**
