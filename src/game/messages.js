@@ -189,7 +189,7 @@ export const Messages =
 	 * This will get a random message.
 	 *
 	 * @param {string} type
-	 * @returns {void}
+	 * @returns {object}
 	 */
 	getRandomMessage(type)
 	{
@@ -201,11 +201,7 @@ export const Messages =
 
 		const maxLength = messages.length;
 		const number = MathUtil.round(Math.random() * (maxLength - 1));
-		const message = messages[number];
-		if (message)
-		{
-			this.add(type, message.title, message.text);
-		}
+		return messages[number];
 	},
 
 	/**

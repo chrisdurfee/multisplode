@@ -279,20 +279,6 @@ export class LevelController
 		timer.start();
 	}
 
-	/**
-	 * This will get the summary.
-	 *
-	 * @returns {void}
-	 */
-	getSummary()
-	{
-		this.getSummaryMessage();
-
-		const level = this.level;
-		/* this will check to update thelevel high score */
-		level.updateHighScore(level.scoreNumber, level.scorePoints);
-	}
-
 	blowEmDelay = 200;
 	blowEm = false;
 	blowEmExtend = 380;
