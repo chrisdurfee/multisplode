@@ -2,21 +2,39 @@ import { A, Div, Section } from "@base-framework/atoms";
 import { Levels } from "../../game/level/levels.js";
 import { Page } from "./page.js";
 
+/**
+ * This will set up the data.
+ */
 function beforeSetup()
 {
 	const level = this.game.getCurrentLevel();
 	this.data = level.data;
 }
 
+/**
+ * This will setup the states.
+ *
+ * @returns {object}
+ */
 function afterSetup()
 {
 	const level = this.game.getCurrentLevel();
 	if (level.number < Levels.activeLevels.length)
 	{
-		this.state.nextLevel = level.passed;
+		if (level.passed)
+		{
+			Levels.unlockNextLevel();
+		}
+
+		this.state.nextLevel = level.passed || Levels.isNextLevelLocked();
 	}
 }
 
+/**
+ * This will setup the states.
+ *
+ * @returns {object}
+ */
 function setupStates()
 {
 	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = Levels.currentLevel;

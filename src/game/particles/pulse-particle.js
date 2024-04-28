@@ -1,3 +1,4 @@
+import { Cache } from '../cache.js';
 import { ARC } from '../math-util.js';
 import { Particle } from './particle.js';
 

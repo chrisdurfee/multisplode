@@ -368,6 +368,7 @@ export class Level
 		if (this.locked === true)
 		{
 			this.locked = false;
+			this.data.locked = false;
 			this.saveToData();
 		}
 	}
