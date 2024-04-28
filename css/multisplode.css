@@ -105,7 +105,7 @@ svg {
 	left: 0px;
 	right: 0px;
 	margin: auto;
-	background: url(../images/play-icon.svg) no-repeat 25px;
+	background: url(/images/play-icon.svg) no-repeat 25px;
 	background-size: 39%;
 }
 

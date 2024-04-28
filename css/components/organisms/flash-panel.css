@@ -42,23 +42,23 @@
 }
 
 .flash-panel.awful .icon-container {
-	background-image: url(../../../images/awful.svg);
+	background-image: url(/images/awful.svg);
 }
 
 .flash-panel.bad .icon-container {
-	background-image: url(../../../images/bad.svg);
+	background-image: url(/images/bad.svg);
 }
 
 .flash-panel.close .icon-container {
-	background-image: url(../../../images/close.svg);
+	background-image: url(/images/close.svg);
 }
 
 .flash-panel.good .icon-container {
-	background-image: url(../../../images/good.svg);
+	background-image: url(/images/good.svg);
 }
 
 .flash-panel.great .icon-container {
-	background-image: url(../../../images/great.svg);
+	background-image: url(/images/great.svg);
 }
 
 .flash-panel .title-container {
