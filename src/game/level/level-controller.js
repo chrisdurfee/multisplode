@@ -8,6 +8,7 @@ import { MathUtil } from "../math-util.js";
 import { Messages } from '../messages.js';
 import { Particles } from '../particles/particles.js';
 import { Points } from '../points/points.js';
+import { Settings } from '../settings.js';
 import { Sparks } from '../sparks/sparks.js';
 import { Utilities } from '../utilities.js';
 
@@ -140,10 +141,10 @@ export class LevelController
 		const currentLevel = this.level;
 		if (currentLevel)
 		{
-			/*if(settings.graphics === 'high')
+			if (Settings.graphics === 'high')
 			{
-				points.add(x, y, value);
-			}*/
+				Points.add(x, y, value);
+			}
 
 			//update destoyed number and points
 			currentLevel.updateScore(1, value);

@@ -1,7 +1,7 @@
 import { Devices } from '../../../devices/devices.js';
 import { Particles } from '../../../particles/particles.js';
-// import { Points } from '../../../points/points.js';
-// import { Settings } from '../../../settings.js';
+import { Points } from '../../../points/points.js';
+import { Settings } from '../../../settings.js';
 import { Sparks } from '../../../sparks/sparks.js';
 import { LevelController } from '../../level-controller.js';
 
@@ -94,10 +94,10 @@ export class RandomLevelController extends LevelController
 			} while(particleIndex--);
 		}
 
-		// if (Settings.graphics === 'high')
-		// {
-		// 	Points.draw(ctx);
-		// }
+		if (Settings.graphics === 'high')
+		{
+			Points.draw(ctx);
+		}
 
 		//end the level
 		return this.isComplete(particleCount);
