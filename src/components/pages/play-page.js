@@ -15,6 +15,15 @@ function beforeSetup()
 }
 
 /**
+ * This will set up the level class name.
+ */
+function afterSetup()
+{
+	const currentLevel = this.game.getCurrentLevel();
+	this.panel.classList.add(currentLevel.levelClass);
+}
+
+/**
  * This will destroy the play page.
  *
  * @returns {void}
@@ -33,7 +42,7 @@ function beforeDestroy()
  * @returns {object}
  */
 export const PlayPage = ({ game }) => (
-	new Page({ game, beforeSetup, beforeDestroy }, [
+	new Page({ game, beforeSetup, afterSetup, beforeDestroy }, [
 		Section({ class: 'play-container first' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [

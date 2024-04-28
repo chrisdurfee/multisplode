@@ -5,7 +5,6 @@ import { Prompts } from '../../components/prompts/prompts.js';
 import { Sounds } from '../../game/sounds.js';
 import { Devices } from '../devices/devices.js';
 import { MathUtil } from "../math-util.js";
-import { Messages } from '../messages.js';
 import { Particles } from '../particles/particles.js';
 import { Points } from '../points/points.js';
 import { Settings } from '../settings.js';
@@ -228,55 +227,6 @@ export class LevelController
 				Particles.add();
 			}
 		}
-	}
-
-	/**
-	 * This will get the summary message.
-	 *
-	 * @returns {void}
-	 */
-	getSummaryMessage()
-	{
-		let type;
-		const level = this.level;
-		if (level.scorePoints > level.highScorePoints && level.scoreNumber >= level.minimum)
-		{
-			type = 'great';
-		}
-		else if (level.scoreNumber >= level.minimum)
-		{
-			type = 'good';
-		}
-		else if (level.scoreNumber >= level.minimum - 4 && level.scoreNumber <= level.minimum - 1)
-		{
-			type = 'close';
-		}
-		else if (level.scoreNumber == 0)
-		{
-			type = 'awful';
-		}
-		else if (level.scoreNumber <= MathUtil.round(level.minimum * 0.25))
-		{
-			type = 'bad';
-		}
-
-		if (type)
-		{
-			this.showMessage(type);
-		}
-	}
-
-	/**
-	 * This will show a message.
-	 *
-	 * @param {string} type
-	 * @returns {void}
-	 */
-	showMessage(type)
-	{
-		const DURATION = 500;
-		const timer = new Timer(DURATION, () => Messages.getRandomMessage(type));
-		timer.start();
 	}
 
 	blowEmDelay = 200;

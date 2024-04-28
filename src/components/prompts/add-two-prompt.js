@@ -12,11 +12,11 @@ import { Prompt } from './types/prompt.js';
 export const AddTwoPrompt = (props) => (
 	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
-			Img({ src: 'images/gravity-field.svg', type: 'image/svg+xml' }),
+			Img({ src: 'images/double-trouble.svg', type: 'image/svg+xml' }),
 			Header({ class: 'title-enhance' }, [
-				H2('Gravity Field')
+				H2('Double The Trouble')
 			]),
-			P('You can now use a gravity field to manipulate the direction of the explosions.')
+			P('You can now use two explosions at anytime to maximize the destruction.')
 		])
 	])
 );
