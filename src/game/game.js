@@ -20,6 +20,7 @@ export class Game
 
 		Levels.setGame(this);
 		Prompts.setGame(this);
+		Prompts.setup();
 	}
 
 	/**

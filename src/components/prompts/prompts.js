@@ -27,7 +27,7 @@ const createPrompt = (props) =>
 {
 	try {
 		const type = PromptTypes[props.type];
-		return new type(props);
+		return type(props);
 	}
 	catch (e)
 	{
@@ -71,8 +71,8 @@ export const Prompts =
 	 */
 	setup()
 	{
-		let stopActivate = game.stopDraw.bind(game),
-		startDeactivate = game.startDraw.bind(game);
+		const stopActivate = () => this.game.stopDraw(),
+		startDeactivate = () => this.game.startDraw()
 
 		this.add({
 			type: 'StartupPrompt',
@@ -168,7 +168,7 @@ export const Prompts =
 		const prompt = createPrompt(props);
 		if (prompt)
 		{
-			this.prompts.push(prompt);
+			this.prompts[props.type] = prompt;
 			return prompt;
 		}
 		return false;
