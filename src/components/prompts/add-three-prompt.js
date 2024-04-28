@@ -1,4 +1,4 @@
-import { Div, H2, Header } from '@base-framework/atoms';
+import { Div, H2, Header, Img } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
@@ -6,12 +6,13 @@ import { Prompt } from './types/prompt.js';
  *
  * This will create the add three prompt.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const AddThreePrompt = () => (
-	new Prompt({ class: 'startup-panel' }, [
+export const AddThreePrompt = (props) => (
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
-			Object({ data: 'images/three-more.svg', type: 'image/svg+xml' }),
+			Img({ src: 'images/three-more.svg', type: 'image/svg+xml' }),
 			Header({ class: 'title-enhance' }, [
 				H2('Three Is More Fun')
 			]),

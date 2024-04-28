@@ -6,12 +6,13 @@ import { Prompt } from './types/prompt.js';
  *
  * This will create the gravity field prompt.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const GravityFieldPrompt = () => (
-	new Prompt({ class: 'startup-panel' }, [
+export const GravityFieldPrompt = (props) => (
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
-			Img({ data: 'images/gravity-field.svg', type: 'image/svg+xml' }),
+			Img({ src: 'images/gravity-field.svg', type: 'image/svg+xml' }),
 			Div({ class: 'title-enhance' }, 'Gravity Doesn\'t Suck'),
 			Div('You can now use gravity to your advantage. Gravity fields attract particles and lock them into orbit until the gravity field becomes too weak and the particles are released.')
 		])

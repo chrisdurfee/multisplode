@@ -1,4 +1,4 @@
-import { Div, H2, Header } from '@base-framework/atoms';
+import { Div, H2, Header, Img } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
@@ -6,13 +6,14 @@ import { Prompt } from './types/prompt.js';
  *
  * This will create the add two prompt.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const AddTwoPrompt = () => (
-	new Prompt({ class: 'startup-panel' }, [
+export const AddTwoPrompt = (props) => (
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'prompt-panel startup-panel' }, [
 			Div({ class: 'content' }, [
-				Object({ data: 'images/gravity-field.svg', type: 'image/svg+xml' }),
+				Img({ src: 'images/gravity-field.svg', type: 'image/svg+xml' }),
 				Header({ class: 'title-enhance' }, [
 					H2('Gravity Field')
 				]),

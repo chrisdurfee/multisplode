@@ -76,38 +76,38 @@ export const Prompts =
 
 		this.add({
 			type: 'StartupPrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 
 		this.add({
 			type: 'AddTwoPrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 
 		this.add({
 			type: 'AddThreePrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 
 		this.add({
 			type: 'AddFourPrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 
 		this.add({
 			type: 'PulseParticlePrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 
 		this.add({
 			type: 'GravityFieldPrompt',
-			activateCallback: stopActivate,
-			deactivateCallback: startDeactivate
+			activateCallBack: stopActivate,
+			deactivateCallBack: startDeactivate
 		});
 	},
 

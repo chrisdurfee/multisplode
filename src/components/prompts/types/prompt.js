@@ -10,7 +10,7 @@ import { Builder, Component } from "@base-framework/base";
 export const PromptContainer = ({className, click, children}) => (
 	Dialog({ class: `prompt-panel ${className}`, click }, [
 		Div({ class: 'panel-top-button-container' }, [
-			Div({ class: 'bttn circle close', click }, [
+			Div({ class: 'bttn circle close', click: (e, parent) => parent.close() }, [
 				Div({ class: 'content' }, [
 					Span(),
 					Span()
@@ -70,7 +70,7 @@ export class Prompt extends Component
 
 		if (typeof this.activateCallBack === 'function')
 		{
-			this.activateCallBack.call();
+			this.activateCallBack();
 		}
 	}
 
@@ -86,7 +86,7 @@ export class Prompt extends Component
 
 		if (typeof this.deactivateCallBack === 'function')
 		{
-			this.deactivateCallBack.call();
+			this.deactivateCallBack();
 		}
 	}
 }

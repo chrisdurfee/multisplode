@@ -6,12 +6,13 @@ import { Prompt } from './types/prompt.js';
  *
  * This will create the pulse particle prompt.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const PulseParticlePrompt = () => (
-	new Prompt({ class: 'startup-panel' }, [
+export const PulseParticlePrompt = (props) => (
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
-			Img({ data: 'images/complete-challenge.svg', type: 'image/svg+xml' }),
+			Img({ src: 'images/complete-challenge.svg', type: 'image/svg+xml' }),
 			Header({ class: 'title-enhance' }, [
 				H2('Pulse Particles')
 			]),

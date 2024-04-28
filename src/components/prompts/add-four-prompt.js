@@ -6,10 +6,11 @@ import { Prompt } from './types/prompt.js';
  *
  * This will create the add four prompt.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const AddFourPrompt = () => (
-	new Prompt({ class: 'startup-panel' }, [
+export const AddFourPrompt = (props) => (
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
 			Object({ data: 'images/four-more.svg', type: 'image/svg+xml' }),
 			Header({ class: 'title-enhance' }, [
