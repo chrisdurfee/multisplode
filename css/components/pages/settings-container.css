@@ -7,6 +7,7 @@
 	transform: translateZ(0);
 	backdrop-filter: blur(10px);
 }
+
 .settings-container .main-step-container {
 	position: absolute;
 	top: 110px;
@@ -18,38 +19,47 @@
 	overflow: visible;
 	z-index: 1;
 }
+
 .settings-container .step-container .step {
 	display: table-cell;
 	min-height: 0px;
 	width: 31%;
 	height: 100%;
 }
+
 .settings-container .settings-sub-panel {
 	position: relative;
-    max-width: 70%;
-    padding: 0px 10%;
+	max-width: 70%;
+	padding: 0px 10%;
 	margin: 0 auto;
 }
-.settings-container .settings-sub-panel header, .settings-container .settings-sub-panel .row {
+
+.settings-container .settings-sub-panel header,
+.settings-container .settings-sub-panel .row {
 	border-radius: 2px;
 	min-height: 50px;
 	margin: 12px 0;
 	color: #FFF;
 }
+
 .settings-container .settings-sub-panel header {
-	background: rgba(211,211,211,.2);
+	background: rgba(211, 211, 211, .2);
 	font-size: 20px;
 	line-height: 50px;
 	padding: 0px 40px;
 }
+
 .settings-container .settings-sub-panel .row {
 	position: relative;
-	background: rgba(211,211,211,.3);
+	background: rgba(211, 211, 211, .3);
 	overflow: hidden;
 }
-.settings-container .settings-sub-panel .row label.title, .settings-container .settings-sub-panel .row .value-container {
+
+.settings-container .settings-sub-panel .row label.title,
+.settings-container .settings-sub-panel .row .value-container {
 	font-size: 16px;
 }
+
 .settings-container .settings-sub-panel .row label.title {
 	display: block;
 	width: 100%;
@@ -60,15 +70,18 @@
 	padding-right: 20px;
 	float: left;
 }
+
 .settings-container .settings-sub-panel .row .value-container {
 	width: 250px;
 	height: 50px;
 	line-height: 50px;
 	float: left;
 }
+
 .settings-container .about-container .row .value-container {
 	opacity: .7;
 }
+
 .settings-container .settings-sub-panel .row button.value-button {
 	display: block;
 	width: 100%;
@@ -87,36 +100,46 @@
 	transition: all .3s ease-out;
 	outline: none;
 }
+
 .settings-container .settings-sub-panel .row button.value-button:hover {
 	background: #FF4881;
 }
+
 .settings-container .settings-sub-panel .row button.value-button:active {
 	background: #040D24;
 }
+
 .settings-container .settings-sub-panel .row button.value-button.arrow {
 	max-width: 40px;
 	background: no-repeat center;
 	background-size: 42%;
 }
+
 .settings-container .settings-sub-panel .row button.value-button.arrow:hover {
 	background-color: #FF4881;
 }
+
 .settings-container .settings-sub-panel .row button.value-button.arrow.prev {
 	background-image: url(../../../images/prev-icon.svg);
 }
+
 .settings-container .settings-sub-panel .row button.value-button.arrow.next {
 	background-image: url(../../../images/next-icon.svg);
 }
+
 .settings-container .settings-sub-panel.audio-container .row {
 	min-height: 60px;
 }
+
 .settings-container .settings-sub-panel.audio-container .row label.title {
 	height: 60px;
 	line-height: 60px;
 }
+
 .settings-container .number-crumb-container {
 	display: none;
 }
+
 .settings-container .touch-slider .step {
 	display: table-cell;
 	-webkit-animation: fadeIn 1s;
@@ -132,34 +155,43 @@
 		line-height: 35px;
 		padding: 0px 40px;
 	}
+
 	.settings-container .title-container {
 		min-height: 48px;
 		margin-top: 30px;
 	}
+
 	.settings-container .main-step-container {
 		top: 85px;
 	}
+
 	.settings-container .settings-step-container {
 		top: 84px;
 	}
+
 	.settings-container .settings-sub-panel .row {
 		height: 40px;
 		min-height: 40px;
 		line-height: 40px;
 	}
-	.settings-container .settings-sub-panel .row label.title,  .settings-container .settings-sub-panel .row .value-container {
+
+	.settings-container .settings-sub-panel .row label.title,
+	.settings-container .settings-sub-panel .row .value-container {
 		font-size: 14px;
 		min-height: 40px;
 		height: 40px;
 		line-height: 40px;
 	}
+
 	.settings-container .settings-sub-panel.audio-container .row {
 		min-height: 45px;
 	}
+
 	.settings-container .settings-sub-panel.audio-container .row label.title {
 		height: 45px;
 		line-height: 45px;
 	}
+
 	.settings-container .settings-sub-panel .row button.value-button {
 		max-width: 120px;
 		height: 35px;
@@ -167,6 +199,7 @@
 		font-size: 14px;
 		margin: 5px auto;
 	}
+
 	.settings-container .settings-sub-panel .data-toggle-panel {
 		margin: 13px auto;
 	}

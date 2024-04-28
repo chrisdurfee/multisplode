@@ -2,55 +2,61 @@
     font-family: 'titillium';
     src: url('fonts/titillium/titillium-regular-webfont.eot');
     src: url('fonts/titillium/titillium-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/titillium/titillium-regular-webfont.woff2') format('woff2'),
-         url('fonts/titillium/titillium-regular-webfont.woff') format('woff'),
-         url('fonts/titillium/titillium-regular-webfont.ttf') format('truetype'),
-         url('fonts/titillium/titillium-regular-webfont.svg#titilliumregular') format('svg');
+        url('fonts/titillium/titillium-regular-webfont.woff2') format('woff2'),
+        url('fonts/titillium/titillium-regular-webfont.woff') format('woff'),
+        url('fonts/titillium/titillium-regular-webfont.ttf') format('truetype'),
+        url('fonts/titillium/titillium-regular-webfont.svg#titilliumregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
-    font-family:'BebasNeueRegular';
+    font-family: 'BebasNeueRegular';
     src: url('fonts/bebasneue/bebasneue-webfont.eot');
     src: url('fonts/bebasneue/bebasneue-webfont.eot?#iefix') format('eot'),
-         url('fonts/bebasneue/bebasneue-webfont.woff') format('woff'),
-         url('fonts/bebasneue/bebasneue-webfont.ttf') format('truetype'),
-         url('fonts/bebasneue/bebasneue-webfont.svg#webfontX0YNjQNl') format('svg');
+        url('fonts/bebasneue/bebasneue-webfont.woff') format('woff'),
+        url('fonts/bebasneue/bebasneue-webfont.ttf') format('truetype'),
+        url('fonts/bebasneue/bebasneue-webfont.svg#webfontX0YNjQNl') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
-    font-family:'prota-basic';
+    font-family: 'prota-basic';
     src: url('fonts/prota/protabasic-webfont.eot');
     src: url('fonts/prota/protabasic-webfont.eot?#iefix') format('eot'),
-         url('fonts/prota/protabasic-webfont.woff') format('woff'),
-         url('fonts/prota/protabasic-webfont.ttf') format('truetype'),
-         url('fonts/prota/protabasic-webfont.svg#prota_basicregular') format('svg');
+        url('fonts/prota/protabasic-webfont.woff') format('woff'),
+        url('fonts/prota/protabasic-webfont.ttf') format('truetype'),
+        url('fonts/prota/protabasic-webfont.svg#prota_basicregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
-    font-family:'roboto-light';
+    font-family: 'roboto-light';
     src: url('fonts/roboto/roboto-light-webfont.eot');
     src: url('fonts/roboto/roboto-light-webfont.eot?#iefix') format('eot'),
-         url('fonts/roboto/roboto-light-webfont.woff') format('woff'),
-         url('fonts/roboto/roboto-light-webfont.ttf') format('truetype'),
-         url('fonts/roboto/roboto-light-webfont.svg#robotolight') format('svg');
+        url('fonts/roboto/roboto-light-webfont.woff') format('woff'),
+        url('fonts/roboto/roboto-light-webfont.ttf') format('truetype'),
+        url('fonts/roboto/roboto-light-webfont.svg#robotolight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 * {
-	font-family:'roboto-light';
-	font-size:18px;
-	-webkit-overflow-scrolling: touch;
+    font-family: 'roboto-light';
+    font-size: 18px;
+    -webkit-overflow-scrolling: touch;
 }
+
 .title-enhance {
-	font-family: 'prota-basic';
-	font-size:18px;
-	letter-spacing:4px;
+    font-family: 'prota-basic';
+    font-size: 18px;
+    letter-spacing: 4px;
 }
+
 .title-text {
-	font-family: 'BebasNeueRegular';
-	font-size:18px;
-	letter-spacing:6px;
+    font-family: 'BebasNeueRegular';
+    font-size: 18px;
+    letter-spacing: 6px;
 }

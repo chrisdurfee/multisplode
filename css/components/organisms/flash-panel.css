@@ -1,110 +1,125 @@
-/* flash panel */
-.flash-panel{
-	position:absolute;
-	width:80%;
-	height:auto;
+.flash-panel {
+	position: absolute;
+	width: 80%;
+	height: auto;
 	top: 0px;
 	left: 0px;
-	right:0px;
-	margin:0 auto;
-	background:rgba(134, 48, 119, 0.9);
-	box-shadow:10px 7px 1px -1px rgba(0,0,0,.1);
-	overflow:hidden;
-	padding:0px;
-	z-index:110;
+	right: calc(0px + env(safe-area-inset-right));
+	margin: 0 auto;
+	background: rgba(134, 48, 119, 0.9);
+	box-shadow: 10px 7px 1px -1px rgba(0, 0, 0, .1);
+	overflow: hidden;
+	padding: 0px;
+	z-index: 110;
 }
-.flash-panel.closed{
+
+.flash-panel.closed {
 	-webkit-animation: pullUpOut .8s ease-in-out;
 	-webkit-animation-fill-mode: forwards;
 	animation: pullUpOut .8s ease-in-out;
 	animation-fill-mode: forwards;
 }
-.flash-panel .icon-container{
+
+.flash-panel .icon-container {
 	position: relative;
-    float: left;
-    width: 93px;
-    height: 80px;
-    background: center no-repeat;
-    background-size: 48%;
-}
-.flash-panel .icon-container:after {
-    position: absolute;
-    content: '';
-    width: 1px;
-    top: 16px;
-    bottom: 16px;
-    right: 0px;
-    border-radius: 1px;
-    background: #FFF;
-    opacity: .5;
-}
-.flash-panel.awful .icon-container{
-	background-image:url(../../../images/awful.svg);
-}
-.flash-panel.bad .icon-container{
-	background-image:url(../../../images/bad.svg);
-}
-.flash-panel.close .icon-container{
-	background-image:url(../../../images/close.svg);
-}
-.flash-panel.good .icon-container{
-	background-image:url(../../../images/good.svg);
-}
-.flash-panel.great .icon-container{
-	background-image:url(../../../images/great.svg);
-}
-.flash-panel .title-container{
-	width:auto;
-	height:auto;
-	min-height:30px;
-	margin: -1px 76px 0px 0px;
-	float:left;
-}
-.flash-panel .title{
-	width:auto;
-	height:auto;
-	min-height:40px;
-	line-height:40px;
-	font-size: 16px;
-	margin:10px 0px 0px 27px;
-	color:#FFF;
-}
-.flash-panel .description{
-	width:96%;
-	line-height:20px;
-	font-size:15px;
-	color:#FFF;
-	padding:0px 27px 10px;
-	opacity:.6;
-	margin:-6px 0px 0px;
-}
-.flash-panel .button-container{
-	width: 75px;
-	height:auto;
-	margin:5px 0px 0px;
-	float:right;
-}
-.flash-panel .button-container .bttn .content{
-	position:relative;
+	float: left;
+	width: 93px;
+	height: 80px;
+	background: center no-repeat;
+	background-size: 48%;
 }
 
-@media all and (max-width:740px)
-{
+.flash-panel .icon-container:after {
+	position: absolute;
+	content: '';
+	width: 1px;
+	top: 16px;
+	bottom: 16px;
+	right: 0px;
+	border-radius: 1px;
+	background: #FFF;
+	opacity: .5;
+}
+
+.flash-panel.awful .icon-container {
+	background-image: url(../../../images/awful.svg);
+}
+
+.flash-panel.bad .icon-container {
+	background-image: url(../../../images/bad.svg);
+}
+
+.flash-panel.close .icon-container {
+	background-image: url(../../../images/close.svg);
+}
+
+.flash-panel.good .icon-container {
+	background-image: url(../../../images/good.svg);
+}
+
+.flash-panel.great .icon-container {
+	background-image: url(../../../images/great.svg);
+}
+
+.flash-panel .title-container {
+	width: auto;
+	height: auto;
+	min-height: 30px;
+	margin: -1px 76px 0px 0px;
+	float: left;
+}
+
+.flash-panel .title {
+	width: auto;
+	height: auto;
+	min-height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	margin: 10px 0px 0px 27px;
+	color: #FFF;
+}
+
+.flash-panel .description {
+	width: 96%;
+	line-height: 20px;
+	font-size: 15px;
+	color: #FFF;
+	padding: 0px 27px 10px;
+	opacity: .6;
+	margin: -6px 0px 0px;
+}
+
+.flash-panel .button-container {
+	width: 75px;
+	height: auto;
+	margin: 5px 0px 0px;
+	float: right;
+}
+
+.flash-panel .button-container .bttn .content {
+	position: relative;
+}
+
+@media all and (max-width:740px) {
 	.flash-panel .icon-container {
 		width: 79px;
 		height: 73px;
 		background-size: 48%;
 	}
+
 	.flash-panel .title-container {
 		margin: -1px 0px 0px 0px;
 	}
-	.flash-panel .title{
-		font-size:15px;
-	    margin: 5px 0px 0px 27px;
+
+	.flash-panel .title {
+		font-size: 15px;
+		margin: 5px 0px 0px 27px;
 	}
-	.flash-panel .description{
-		font-size:14px;
+
+	.flash-panel .description {
+		font-size: 14px;
 	}
+
 	.flash-panel .bttn.circle {
 		margin: 14px;
 	}

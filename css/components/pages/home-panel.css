@@ -18,6 +18,7 @@
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	will-change: opacity, transform;
+	padding-right: env(safe-area-inset-right);
 }
 
 .main-home-panel:after,

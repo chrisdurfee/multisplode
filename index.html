@@ -24,13 +24,20 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="Multisplode">
-	<link rel="apple-touch-icon" href="/icons/icon-152.png">
-	<link rel="icon" sizes="192x192" href="/icons/icon-192.png">
+	<link rel="apple-touch-icon" href="/images/icons/icon-152.png">
+	<link rel="icon" sizes="192x192" href="/images/icons/icon-192.png">
+
+	<!-- more pwa settings -->
+	<meta name="msapplication-TileImage" content="/images/icons/icon-192.png">
+	<meta name="msapplication-TileColor" content="#111D5D">
 
 	<base href="./">
 </head>
 
 <body>
+	<!-- alert js error -->
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+
 	<script type="module">
 		import { AppController } from './src/app-controller.js';
 

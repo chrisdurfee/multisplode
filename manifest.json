@@ -1,7 +1,6 @@
 {
 	"short_name": "Multisplode",
 	"name": "Multisplode",
-
 	"icons": [
 		{
 			"src": "images/icons/icon-192.png",
@@ -14,12 +13,13 @@
 			"type": "image/png"
 		}
 	],
-
+	"categories": ["games", "action"],
+	"lang": "en-US",
+	"dir": "ltr",
 	"scope": "/",
 	"start_url": "./",
 	"display": "standalone",
 	"orientation": "landscape",
-
 	"theme_color": "#111D5D",
 	"background_color": "#111D5D"
 }

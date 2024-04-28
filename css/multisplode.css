@@ -197,7 +197,7 @@ svg {
 .panel-top-button-container {
 	position: absolute;
 	top: 12px;
-	right: 15px;
+	right: calc(15px + env(safe-area-inset-right));
 	z-index: 10;
 }
 
@@ -242,6 +242,7 @@ svg {
 	-webkit-animation: maskInTop 1s forwards;
 	-moz-animation: maskInTop 1s forwards;
 	animation: maskInTop 1s forwards;
+	padding-right: env(safe-area-inset-right);
 }
 
 .control-sub-panel.close {
