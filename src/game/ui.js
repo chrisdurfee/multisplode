@@ -230,9 +230,9 @@ const UI =
 	updatePlayContainerClass(level)
 	{
 		let defaultClass = 'play-container';
-		if (this.playContainerElement === null)
+		if(this.playContainerElement === null)
 		{
-			this.playContainerElement = document.querySelector('.play-container');
+			this.playContainerElement = document.getElementById('play-container');
 		}
 		this.playContainerElement.className = defaultClass + ' ' + level.levelClass;
 	},
