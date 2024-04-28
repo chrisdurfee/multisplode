@@ -313,7 +313,7 @@ export class LevelController
 
 			if (this.playContainer === null)
 			{
-				this.playContainer = document.getElementById('play-container');
+				this.playContainer = document.querySelector('.play-container');
 			}
 			Utilities.addAnimation(this.playContainer, 'shakePanel', 600);
 		}
