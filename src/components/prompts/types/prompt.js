@@ -1,4 +1,4 @@
-import { Dialog, Div, Span } from "@base-framework/atoms";
+import { Dialog, Div, Section, Span } from "@base-framework/atoms";
 import { Builder, Component } from "@base-framework/base";
 
 /**
@@ -54,7 +54,13 @@ export class Prompt extends Component
 		{
 			class: this.class,
 			click,
-			children: this.children
+			children: [
+				Div({ class: 'touch-slider'}, [
+					Div({ class: 'step'}, [
+						Section(this.children)
+					])
+				])
+			]
 		});
 	}
 
