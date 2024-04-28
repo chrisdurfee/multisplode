@@ -1,5 +1,5 @@
 import { Div, H2, Header, Img, P } from '@base-framework/atoms';
-import { PromptStartUp } from './types/prompt-startup.js';
+import { Prompt } from './types/prompt.js';
 
 /**
  * PulseParticlePrompt
@@ -10,7 +10,7 @@ import { PromptStartUp } from './types/prompt-startup.js';
  * @returns {object}
  */
 export const PulseParticlePrompt = (props) => (
-	new PromptStartUp({ class: 'startup-panel', ...props }, [
+	new Prompt({ class: 'startup-panel', ...props }, [
 		Div({ class: 'content' }, [
 			Img({ src: 'images/complete-challenge.svg', type: 'image/svg+xml' }),
 			Header({ class: 'title-enhance' }, [
