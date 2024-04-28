@@ -1,5 +1,5 @@
 import { Button, Div, Footer, Header, Span } from "@base-framework/atoms";
-import { Component } from "@base-framework/base";
+import { Builder, Component } from "@base-framework/base";
 
 /**
  * FlashPanel
@@ -50,6 +50,14 @@ export class FlashPanel extends Component
 	 */
 	afterSetup()
 	{
-		this.timer = setTimeout(() => this.destroy(), this.duration);
+		//this.timer = setTimeout(() => this.destroy(), this.duration);
+	}
+
+	/**
+	 * This will create the flash panel.
+	 */
+	start()
+	{
+		Builder.render(this, document.body);
 	}
 }

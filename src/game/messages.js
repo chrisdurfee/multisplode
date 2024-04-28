@@ -1,4 +1,3 @@
-import { FlashPanel } from '../components/organisms/flash-panel.js';
 import { MathUtil } from './math-util.js';
 
 /**
@@ -36,7 +35,7 @@ export const Messages =
 	 *
 	 * @returns {void}
 	 */
-	setupMessages()
+	setup()
 	{
 		const messages = this.messages;
 		const createMessage = (type, title, text) =>
@@ -201,7 +200,9 @@ export const Messages =
 
 		const maxLength = messages.length;
 		const number = MathUtil.round(Math.random() * (maxLength - 1));
-		return messages[number];
+		const message = messages[number];
+		message.type = type;
+		return message;
 	},
 
 	/**
@@ -212,21 +213,6 @@ export const Messages =
 	getAll()
 	{
 		return this.options;
-	},
-
-	/**
-	 * This will add a flash message.
-	 *
-	 * @param {string} type
-	 * @param {string} title
-	 * @param {string} description
-	 * @returns {object}
-	 */
-	add(type, title, description)
-	{
-		const flash = new FlashPanel({ type, title, description });
-		this.options.push(flash);
-		return flash;
 	},
 
 	/**

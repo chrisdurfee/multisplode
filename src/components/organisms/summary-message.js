@@ -1,6 +1,8 @@
 import { MathUtil } from "../../game/math-util.js";
 import { Messages } from "../../game/messages.js";
 
+Messages.setup();
+
 /**
  * This will get the summary message.
  *

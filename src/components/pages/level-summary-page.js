@@ -1,5 +1,8 @@
 import { A, Div, Section } from "@base-framework/atoms";
 import { Levels } from "../../game/level/levels.js";
+import { FlashPanel } from "../organisms/flash-panel.js";
+import { getSummaryMessage } from "../organisms/summary-message.js";
+import { Timer } from "../organisms/timer.js";
 import { Page } from "./page.js";
 
 /**
@@ -30,6 +33,21 @@ function afterSetup()
 		}
 
 		this.state.nextLevel = (level.passed || Levels.isNextLevelLocked());
+	}
+
+	const message = getSummaryMessage(level);
+	if (message)
+	{
+		const DURATION = 500;
+		const timer = new Timer(DURATION, () =>
+		{
+			new FlashPanel({
+				type: message.type,
+				title: message.title,
+				description: message.text
+			}).start();
+		});
+		timer.start();
 	}
 }
 
