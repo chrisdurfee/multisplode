@@ -1,0 +1,206 @@
+.settings-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	backdrop-filter: blur(10px);
+}
+
+.settings-container .main-step-container {
+	position: absolute;
+	top: 110px;
+	bottom: 55px;
+	left: 0px;
+	right: 0px;
+	padding: 0px;
+	display: block;
+	overflow: visible;
+	z-index: 1;
+}
+
+.settings-container .step-container .step {
+	display: table-cell;
+	min-height: 0px;
+	width: 31%;
+	height: 100%;
+}
+
+.settings-container .settings-sub-panel {
+	position: relative;
+	max-width: 70%;
+	padding: 0px 10%;
+	margin: 0 auto;
+}
+
+.settings-container .settings-sub-panel header,
+.settings-container .settings-sub-panel .row {
+	border-radius: 2px;
+	min-height: 50px;
+	margin: 12px 0;
+	color: #FFF;
+}
+
+.settings-container .settings-sub-panel header {
+	background: rgba(211, 211, 211, .2);
+	font-size: 20px;
+	line-height: 50px;
+	padding: 0px 40px;
+}
+
+.settings-container .settings-sub-panel .row {
+	position: relative;
+	background: rgba(211, 211, 211, .3);
+	overflow: hidden;
+}
+
+.settings-container .settings-sub-panel .row label.title,
+.settings-container .settings-sub-panel .row .value-container {
+	font-size: 16px;
+}
+
+.settings-container .settings-sub-panel .row label.title {
+	display: block;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	max-width: 160px;
+	text-align: right;
+	padding-right: 20px;
+	float: left;
+}
+
+.settings-container .settings-sub-panel .row .value-container {
+	width: 250px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+}
+
+.settings-container .about-container .row .value-container {
+	opacity: .7;
+}
+
+.settings-container .settings-sub-panel .row button.value-button {
+	display: block;
+	width: 100%;
+	max-width: 120px;
+	height: 45px;
+	line-height: 45px;
+	background: none;
+	color: #FFF;
+	border-radius: 4px;
+	text-align: center;
+	border: none;
+	float: left;
+	margin: 7px auto;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	outline: none;
+}
+
+.settings-container .settings-sub-panel .row button.value-button:hover {
+	background: #FF4881;
+}
+
+.settings-container .settings-sub-panel .row button.value-button:active {
+	background: #040D24;
+}
+
+.settings-container .settings-sub-panel .row button.value-button.arrow {
+	max-width: 40px;
+	background: no-repeat center;
+	background-size: 42%;
+}
+
+.settings-container .settings-sub-panel .row button.value-button.arrow:hover {
+	background-color: #FF4881;
+}
+
+.settings-container .settings-sub-panel .row button.value-button.arrow.prev {
+	background-image: url(../../../images/prev-icon.svg);
+}
+
+.settings-container .settings-sub-panel .row button.value-button.arrow.next {
+	background-image: url(../../../images/next-icon.svg);
+}
+
+.settings-container .settings-sub-panel.audio-container .row {
+	min-height: 60px;
+}
+
+.settings-container .settings-sub-panel.audio-container .row label.title {
+	height: 60px;
+	line-height: 60px;
+}
+
+.settings-container .number-crumb-container {
+	display: none;
+}
+
+.settings-container .touch-slider .step {
+	display: table-cell;
+	-webkit-animation: fadeIn 1s;
+	-moz-animation: fadeIn 1s;
+	animation: fadeIn 1s;
+	will-change: opacity;
+}
+
+@media screen and (max-width:880px) {
+	.settings-container .settings-sub-panel header {
+		font-size: 16px;
+		min-height: 35px;
+		line-height: 35px;
+		padding: 0px 40px;
+	}
+
+	.settings-container .title-container {
+		min-height: 48px;
+		margin-top: 30px;
+	}
+
+	.settings-container .main-step-container {
+		top: 85px;
+	}
+
+	.settings-container .settings-step-container {
+		top: 84px;
+	}
+
+	.settings-container .settings-sub-panel .row {
+		height: 40px;
+		min-height: 40px;
+		line-height: 40px;
+	}
+
+	.settings-container .settings-sub-panel .row label.title,
+	.settings-container .settings-sub-panel .row .value-container {
+		font-size: 14px;
+		min-height: 40px;
+		height: 40px;
+		line-height: 40px;
+	}
+
+	.settings-container .settings-sub-panel.audio-container .row {
+		min-height: 45px;
+	}
+
+	.settings-container .settings-sub-panel.audio-container .row label.title {
+		height: 45px;
+		line-height: 45px;
+	}
+
+	.settings-container .settings-sub-panel .row button.value-button {
+		max-width: 120px;
+		height: 35px;
+		line-height: 35px;
+		font-size: 14px;
+		margin: 5px auto;
+	}
+
+	.settings-container .settings-sub-panel .data-toggle-panel {
+		margin: 13px auto;
+	}
+}

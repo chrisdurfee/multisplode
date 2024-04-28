@@ -1,0 +1,121 @@
+.level-select-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 100%;
+	backdrop-filter: blur(10px);
+}
+
+.level-select-container .step-container {
+	width: 100%;
+}
+
+.level-select-container .main-step-container {
+	top: 115px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-radius: 20px;
+	background: rgba(211, 211, 211, .1);
+}
+
+.level-select-container .touch-slider .step-slider-container {
+	width: 100%;
+}
+
+.level-select-container .step-container .step {
+	display: table-cell;
+	min-height: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.level-select-container .step .content {
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+
+.level-select-container .step .option {
+	position: relative;
+	background: none;
+	width: 10.26%;
+	margin: 3% 3%;
+	height: 0px;
+	padding: 0px;
+	padding-bottom: 10.66%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: #FFF;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.level-select-container .step .option .content {
+	background: url(../../../images/lock-icon.svg) no-repeat center;
+	background-size: 38%;
+	color: transparent;
+}
+
+.level-select-container .step .option.unlocked:hover {
+	background: #FF4881;
+}
+
+.level-select-container .step .option.unlocked .content {
+	background: none;
+	color: #FFF;
+}
+
+.level-select-container .step .option.unlocked:active {
+	background: rgba(255, 255, 255, .3);
+}
+
+.level-select-container .step .option.unlocked {
+	background: none;
+	border: 1px solid #FFF;
+}
+
+.level-select-container .step .option.selected {
+	background: #FF4881;
+	color: #FFF;
+}
+
+.level-select-container .step .option.selected:after {
+	content: '';
+	position: absolute;
+	top: -7px;
+	bottom: -7px;
+	left: -7px;
+	right: -7px;
+	border: 7px solid #FF4881;
+	border-radius: 34%;
+}
+
+.level-select-container .crumb-container {
+	display: none;
+}
+
+@media screen and (max-width:880px) {
+	.level-select-container .title-container {
+		min-height: 45px;
+	}
+
+	.level-select-container .title-container .title {
+		min-height: 45px;
+	}
+
+	.level-select-container .title-container .title h2 {
+		font-size: 18px;
+		padding: 0px;
+		margin: 10px 0px;
+	}
+
+	.level-select-container .title-container {
+		margin-top: 30px;
+	}
+
+	.control-sub-panel .main-step-container {
+		top: 87px;
+	}
+}

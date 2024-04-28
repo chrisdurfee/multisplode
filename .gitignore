@@ -11,4 +11,3 @@ dist/
 *.code-workspace
 Dockerfile
 docker-compose.yml
-public/videos/life-trailer-2-original.mp4
