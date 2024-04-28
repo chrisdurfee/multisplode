@@ -43,7 +43,7 @@ function beforeDestroy()
  */
 export const PlayPage = ({ game }) => (
 	new Page({ game, beforeSetup, afterSetup, beforeDestroy }, [
-		Section({ class: 'play-container first' }, [
+		Section({ class: 'play-container' }, [
 			Div({ class: 'play-panel' }, [
 				Div({ class: 'fade-layer' }, [
 					Canvas({ id: 'portal', cache: 'portal', class: 'main-canvas', onCreated(ele)

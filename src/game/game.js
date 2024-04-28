@@ -4,6 +4,13 @@ import { RandomLevelPack } from './level/packs/random/random-level-pack.js';
 import { Settings } from './settings.js';
 import { Stage } from './stage.js';
 
+/**
+ * Game
+ *
+ * This will manage the game.
+ *
+ * @class Game
+ */
 export class Game
 {
 	/**
@@ -123,6 +130,14 @@ export class Game
 	 */
 	play()
 	{
+		/**
+		 * This will reset the page to help with next, previous, and retry.
+		 */
+		this.app.navigate('/');
+
+		/**
+		 * This will select the music start the game.
+		 */
 		this.app.navigate('/play');
 		Settings.song = 'play-loop.mp3';
 		this.startStage();

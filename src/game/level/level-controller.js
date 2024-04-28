@@ -82,6 +82,7 @@ export class LevelController
 	 *
 	 * @param {number} mouseX
 	 * @param {number} mouseY
+	 *
 	 */
 	interact(mouseX, mouseY)
 	{
@@ -164,6 +165,8 @@ export class LevelController
 
 	/**
 	 * This will reset the level.
+	 *
+	 * @returns {void}
 	 */
 	reset()
 	{

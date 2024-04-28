@@ -19,7 +19,7 @@ function afterSetup()
  *
  * @returns {object}
  */
-export const HomePage = (props) => (
+export const HomePage = ({ game}) => (
 	new Page({ afterSetup }, [
 		Section({ class: 'main-home-panel overlay-panel loading' }, [
 			Div({ class: 'background background-stars' }),
@@ -42,7 +42,7 @@ export const HomePage = (props) => (
 								Nav([
 									Ul({ class: 'clear' }, [
 										Li([
-											Button({ class: 'bttn main-play title-text', click: () => props.game.startGame() }, 'Play')
+											Button({ class: 'bttn main-play title-text', click: () => game.startGame() }, 'Play')
 										])
 									])
 								])
