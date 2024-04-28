@@ -1,4 +1,3 @@
-
 import { Level } from '../../level.js';
 import { LevelPack } from '../level-pack.js';
 import { RandomLevelController } from './random-level-controller.js';
