@@ -89,8 +89,33 @@ export class AppController
 	{
 		this.setupRouter();
 		this.setupAppShell();
+		this.setupService();
 		//showFullscreen();
 		//lockOrientation();
+	}
+
+	/**
+	 * This will setup the service worker.
+	 *
+	 * @protected
+	 * @returns {void}
+	 */
+	setupService()
+	{
+		// service workers can only work on secure connections
+		const protocol = window.location.protocol.replace(':', '');
+		if (!('serviceWorker' in navigator) || protocol === 'http')
+		{
+			return false;
+		}
+
+		const sw = navigator.serviceWorker;
+		sw.register('/sw.js', {
+			scope: '/'
+		}).then((serviceWorker) =>
+		{
+
+		});
 	}
 
 	/**
