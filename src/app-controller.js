@@ -12,30 +12,29 @@ let fullscreen = false;
  */
 const showFullscreen = () =>
 {
-	if (fullscreen !== false)
+	if (fullscreen)
 	{
-		return;
-	}
+        return;
+    }
 
-	fullscreen = true;
+    fullscreen = true;
+    const element = document.body;
 
-	const element = document.body;
-	if(element.requestFullscreen)
+    const fullscreenMethods = [
+        'requestFullscreen',
+        'mozRequestFullScreen',
+        'webkitRequestFullscreen',
+        'msRequestFullscreen'
+    ];
+
+    for (const method of fullscreenMethods)
 	{
-		element.requestFullscreen();
-	}
-	else if(element.mozRequestFullScreen)
-	{
-		element.mozRequestFullScreen();
-	}
-	else if(element.webkitRequestFullscreen)
-	{
-		element.webkitRequestFullscreen();
-	}
-	else if(element.msRequestFullscreen)
-	{
-		element.msRequestFullscreen();
-	}
+        if (element[method])
+		{
+            element[method]().catch(e => console.error(`Failed to enable fullscreen mode: ${e.message}`));
+            break;
+        }
+    }
 };
 
 /**
@@ -45,22 +44,19 @@ const showFullscreen = () =>
  */
 const lockOrientation = () =>
 {
-	if (!screen)
+	if (!screen || !screen.orientation || typeof screen.orientation.lock !== 'function')
 	{
-		return;
-	}
+        return;
+    }
 
-	const orientation = screen.orientation;
-	if (orientation && typeof orientation.lock === 'function')
+    screen.orientation.lock('landscape').then(() =>
 	{
-		try {
-			orientation.lock('landscape').then((result) => {}, (err) => {});
-		}
-		catch (e)
-		{
-			console.log(e);
-		}
-	}
+        console.log('Orientation locked successfully.');
+    })
+	.catch(e =>
+	{
+        console.error(`Failed to lock orientation: ${e.message}`);
+    });
 };
 
 /**
@@ -87,11 +83,16 @@ export class AppController
 	 */
 	constructor()
 	{
+		/**
+		 * We want to show the fullscreen and lock the orientation
+		 * when the game starts.
+		 */
+		showFullscreen();
+		lockOrientation();
+
 		this.setupRouter();
 		this.setupAppShell();
 		this.setupService();
-		//showFullscreen();
-		//lockOrientation();
 	}
 
 	/**
