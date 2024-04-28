@@ -23,7 +23,7 @@ const Step = (props, index) => Section({class: STEP_CLASS_NAME }, [ props ]);
  * @param {number} index
  * @returns {object}
  */
-const Crumb = (props, index) => Div({ ...props, class: 'option', cick: (e, parent) => parent.moveToSelectedIndex(index) });
+const Crumb = (props, index) => Div({ ...props, class: 'option', onState: ['index', { selected: index }], cick: (e, parent) => parent.moveToSelectedIndex(index) });
 
 /**
  * This will create the crumb container.
@@ -78,6 +78,18 @@ export class TouchSlider extends Component
     }
 
 	/**
+	 * This will setup the states.
+	 *
+	 * @returns {object}
+	 */
+	setupStates()
+	{
+		return {
+			index: this.index
+		};
+	}
+
+	/**
 	 * This will get the events.
 	 *
 	 * @returns {object}
@@ -101,6 +113,11 @@ export class TouchSlider extends Component
 		};
 	}
 
+	/**
+	 * This will setup the events.
+	 *
+	 * @returns {array}
+	 */
 	setupEvents()
 	{
 		const resize = this.getStepWidth.bind(this);
@@ -189,6 +206,7 @@ export class TouchSlider extends Component
 		/* we want to override the index to show the
 		current selected step */
 		this.index = step.index;
+		this.state.index = step.index;
 		this.selectStep(step);
 	}
 
@@ -216,6 +234,7 @@ export class TouchSlider extends Component
 		/* we want to override the index to show the
 		current selected step */
 		this.index = step.index;
+		this.state.index = step.index;
 		this.selectStep(step, true);
 	}
 
@@ -508,6 +527,7 @@ export class TouchSlider extends Component
 			this.moveContainer('-' + (this.index * this.stepWidth));
 		}
 
+		this.state.index = this.index;
 		this.canMove = null;
 		this.preventTouch = false;
 	}
