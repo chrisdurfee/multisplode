@@ -11,7 +11,7 @@ import { Page } from "./page.js";
 function beforeSetup()
 {
 	const currentLevel = this.game.getCurrentLevel();
-	this.data =  currentLevel.data;
+	this.data = currentLevel.data;
 }
 
 /**

@@ -1,8 +1,10 @@
-import { A, Article, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
+import { A, Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
 import { Page } from './page.js';
 
 /**
  * This will remove the loading class from the panel.
+ *
+ * @returns {void}
  */
 function afterSetup()
 {
@@ -40,7 +42,7 @@ export const HomePage = (props) => (
 								Nav([
 									Ul({ class: 'clear' }, [
 										Li([
-											A({ type: 'button', class: 'bttn main-play title-text', href: '/play' }, 'Play')
+											Button({ class: 'bttn main-play title-text', click: () => props.game.startGame() }, 'Play')
 										])
 									])
 								])

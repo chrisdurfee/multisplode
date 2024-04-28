@@ -53,7 +53,6 @@ export class Game
 		/* we want to setup the levels and select primary
 		level and show our splash screen */
 		this.setupLevels();
-		Levels.selectPrimaryLevel();
 	}
 
 	/**
@@ -68,6 +67,8 @@ export class Game
 
 	/**
 	 * This will set up the level packs.
+	 *
+	 * @returns {void}
 	 */
 	setupLevelPacks()
 	{
@@ -84,6 +85,7 @@ export class Game
 	 * This will change the stage level controller.
 	 *
 	 * @param {object} controller
+	 * @returns {void}
 	 */
 	setStageLevelController(controller)
 	{
@@ -92,6 +94,8 @@ export class Game
 
 	/**
 	 * This will setup the levels.
+	 *
+	 * @returns {void}
 	 */
 	setupLevels()
 	{
@@ -108,6 +112,7 @@ export class Game
 	 */
 	startGame()
 	{
+		Levels.selectPrimaryLevel();
 		this.app.navigate('/play');
 	}
 
@@ -118,9 +123,9 @@ export class Game
 	 */
 	play()
 	{
-		Levels.retryLevel();
-		this.startStage();
+		this.app.navigate('/play');
 		Settings.song = 'play-loop.mp3';
+		this.startStage();
 	}
 
 	/**
@@ -130,7 +135,7 @@ export class Game
 	 */
 	resume()
 	{
-		this.startGame();
+		this.app.navigate('/play');
 		this.startStage();
 	}
 
@@ -152,8 +157,19 @@ export class Game
 	retryLevel()
 	{
 		Levels.retryLevel();
-		this.app.navigate('/play');
-		this.startStage();
+		this.play();
+	}
+
+	/**
+	 * This will select the level.
+	 *
+	 * @param {object} level
+	 * @returns {void}
+	 */
+	selectLevel(level)
+	{
+		Levels.selectLevel(level);
+		this.play();
 	}
 
 	/**
@@ -164,6 +180,7 @@ export class Game
 	nextLevel()
 	{
 		Levels.selectNextLevel();
+		this.play();
 	}
 
 	/**
@@ -174,6 +191,7 @@ export class Game
 	previousLevel()
 	{
 		Levels.selectPreviousLevel();
+		this.play();
 	}
 
 	/**
@@ -183,11 +201,13 @@ export class Game
 	 */
 	resetCurrentLevel()
 	{
-		Levels.retryLevel();
+		this.retryLevel();
 	}
 
 	/**
 	 * This will navigate to the level summary.
+	 *
+	 * @returns {void}
 	 */
 	levelSummary()
 	{

@@ -64,10 +64,28 @@ export class Level
 
 	/**
 	 * This will set the data.
+	 *
+	 * @returns {void}
 	 */
 	setData()
 	{
-		this.data = new Data({
+		this.data = new Data();
+		this.setDataValues();
+		this.data.setKey('level-' + this.number);
+
+		this.data.resume();
+		this.data.passed = false;
+		this.data.remaining = this.minimum;
+	}
+
+	/**
+	 * This will set the data values.
+	 *
+	 * @returns {void}
+	 */
+	setDataValues()
+	{
+		this.data.set({
 			number: this.number,
 			locked: this.locked,
 			minimum: this.minimum,
@@ -80,15 +98,12 @@ export class Level
 			bestTime: this.bestTime,
 			devices: this.devices
 		});
-		this.data.setKey('level-' + this.number);
-
-		this.data.resume();
-		this.data.passed = false;
-		this.data.remaining = this.minimum;
 	}
 
 	/**
 	 * Thi swill setup the level.
+	 *
+	 * @returns {void}
 	 */
 	setup()
 	{
@@ -171,6 +186,11 @@ export class Level
 		this.scorePoints = 0;
 		this.currentNumber = 0;
 		this.afterTouchReady = 'no';
+		this.remaining = this.minimum;
+		this.passed = false;
+		this.isAtLimit = false;
+
+		this.setDataValues();
 
 		this.blowEm = false;
 		this.startDelay = null;

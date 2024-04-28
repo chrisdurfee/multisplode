@@ -57,7 +57,7 @@ const getLevelClass = (level) =>
 const LevelButton = (props) =>
 {
 	const className = getLevelClass(props);
-	return Button({ class: className, click: (e) => !props.locked && Levels.selectLevel(props) }, [
+	return Button({ class: className, click: (e, { parent }) => !props.locked && parent.game.selectLevel(props) }, [
 		Div({ class: 'content' }, String(props.number))
 	]);
 };
@@ -67,10 +67,11 @@ const LevelButton = (props) =>
  *
  * This will create the level panel.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const LevelPage = () => (
-	new Page([
+export const LevelPage = ({ game }) => (
+	new Page({ game }, [
 		Article({ class: 'control-sub-panel level-select-container overlay-panel' }, [
 			Section({ class: 'home-sub-panel level-select-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [

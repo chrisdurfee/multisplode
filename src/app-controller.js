@@ -104,6 +104,11 @@ export class AppController
 		const { baseUrl, title } = Configs.router;
 		const router = this.router = base.router;
 		router.setup(baseUrl, title);
+
+		/**
+		 * This will set up the game to always route to home when starting.
+		 */
+		router.navigate('/home');
 	}
 
 	/**
