@@ -118,8 +118,20 @@ export class Game
 	 */
 	play()
 	{
+		Levels.retryLevel();
 		this.startStage();
 		Settings.song = 'play-loop.mp3';
+	}
+
+	/**
+	 * This will resume the game.
+	 *
+	 * @returns {void}
+	 */
+	resume()
+	{
+		this.startGame();
+		this.startStage();
 	}
 
 	/**
@@ -141,6 +153,7 @@ export class Game
 	{
 		Levels.retryLevel();
 		this.app.navigate('/play');
+		this.startStage();
 	}
 
 	/**

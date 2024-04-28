@@ -220,6 +220,7 @@ export const Levels =
 	{
 		if(this.currentLevel)
 		{
+			this.currentLevel.reset();
 			this.selectLevel(this.currentLevel, true);
 		}
 	},

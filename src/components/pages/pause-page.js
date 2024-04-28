@@ -1,4 +1,4 @@
-import { A, Article, Div, Section } from "@base-framework/atoms";
+import { A, Article, Button, Div, Section } from "@base-framework/atoms";
 import { Page } from "./page.js";
 
 function afterSetup()
@@ -14,11 +14,11 @@ function afterSetup()
  * @param {object} props
  * @returns {object}
  */
-export const PausePage = (props) => (
-	new Page({ game: props.game, afterSetup }, [
+export const PausePage = ({ game }) => (
+	new Page({ game, afterSetup }, [
 		Div({ class: 'control-sub-panel pause-container overlay-panel' }, [
 			Div({ class: 'pause-panel floatDownZ' }, [
-				A({ class: 'play circle', href: '/play' }, [
+				Button({ class: 'play circle', click: () => game.resume() }, [
 					Div({ class: 'content' })
 				]),
 			]),
@@ -36,7 +36,7 @@ export const PausePage = (props) => (
 					Div({ class: 'label title-text' }, 'Levels')
 				]),
 				Section({ class: 'option-group' }, [
-					Div({ class: 'bttn circle bttn-retry', click: () => props.game.retryLevel() }, [
+					Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Retry')
