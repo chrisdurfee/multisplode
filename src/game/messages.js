@@ -4,13 +4,22 @@ import { MathUtil } from './math-util.js';
  * Messages
  *
  * This will show messages to the player.
+ *
+ * @type {object} Messages
  */
 export const Messages =
 {
+	/**
+	 * This will hold all the options.
+	 *
+	 * @type {array} options
+	 */
 	options: [],
 
 	/**
 	 * This will hold all the messages.
+	 *
+	 * @type {object} messages
 	 */
 	messages: {
 		awful: [],

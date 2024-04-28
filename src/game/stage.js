@@ -220,6 +220,7 @@ export class Stage
 	 * This will get the event position.
 	 *
 	 * @param {object} e
+	 * @returns {void}
 	 */
 	getEventPosition(e)
 	{
@@ -246,7 +247,7 @@ export class Stage
 
 		/* we also need to get the element offset and subtract
 		it from the mouse position */
-		let x = parseInt((eX - rect.left) * scale),
+		const x = parseInt((eX - rect.left) * scale),
 		y = parseInt((eY - rect.top) * scale);
 
 		let mouse = this.mouse;
@@ -258,6 +259,7 @@ export class Stage
 	 * This will get the mouse position.
 	 *
 	 * @param {object} e
+	 * @returns {void}
 	 */
 	mousePosition(e)
 	{
@@ -268,6 +270,7 @@ export class Stage
 	 * This will handle the mouse down event.
 	 *
 	 * @param {object} e
+	 * @returns {void}
 	 */
 	mouseDown(e)
 	{

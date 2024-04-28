@@ -17,6 +17,8 @@ export const RADIANS_PI = Math.PI / 180;
  * MathUtil
  *
  * This will add helper functions for MathUtil.
+ *
+ * @type {object} MathUtil
  */
 export const MathUtil =
 {
