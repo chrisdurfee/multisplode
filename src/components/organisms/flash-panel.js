@@ -50,14 +50,14 @@ export class FlashPanel extends Component
 	 */
 	afterSetup()
 	{
-		//this.timer = setTimeout(() => this.destroy(), this.duration);
+		this.timer = setTimeout(() => this.destroy(), this.duration);
 	}
 
 	/**
 	 * This will create the flash panel.
 	 */
-	start()
+	start(containr)
 	{
-		Builder.render(this, document.body);
+		Builder.render(this, containr);
 	}
 }

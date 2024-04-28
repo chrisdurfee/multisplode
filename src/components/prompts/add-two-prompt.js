@@ -1,4 +1,4 @@
-import { Div, H2, Header, Img } from '@base-framework/atoms';
+import { Div, H2, Header, Img, P } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
@@ -17,7 +17,7 @@ export const AddTwoPrompt = (props) => (
 				Header({ class: 'title-enhance' }, [
 					H2('Gravity Field')
 				]),
-				Div('You can now use a gravity field to manipulate the direction of the explosions.')
+				P('You can now use a gravity field to manipulate the direction of the explosions.')
 			])
 		])
 	])

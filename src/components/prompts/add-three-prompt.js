@@ -1,4 +1,4 @@
-import { Div, H2, Header, Img } from '@base-framework/atoms';
+import { Div, H2, Header, Img, P } from '@base-framework/atoms';
 import { Prompt } from './types/prompt.js';
 
 /**
@@ -16,7 +16,7 @@ export const AddThreePrompt = (props) => (
 			Header({ class: 'title-enhance' }, [
 				H2('Three Is More Fun')
 			]),
-			Div('You can now use three explosions at anytime to maximize the destruction.')
+			P('You can now use three explosions at anytime to maximize the destruction.')
 		])
 	])
 );

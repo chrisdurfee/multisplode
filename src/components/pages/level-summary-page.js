@@ -45,7 +45,7 @@ function afterSetup()
 				type: message.type,
 				title: message.title,
 				description: message.text
-			}).start();
+			}).start(this.panel);
 		});
 		timer.start();
 	}
