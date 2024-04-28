@@ -59,6 +59,7 @@ export class Level
 		this.bestTime = '';
 
 		this.locked = true;
+		this.setData();
 	}
 
 	/**
@@ -82,6 +83,7 @@ export class Level
 		this.data.setKey('level-' + this.number);
 
 		this.data.resume();
+		this.data.passed = false;
 	}
 
 	/**
@@ -89,7 +91,6 @@ export class Level
 	 */
 	setup()
 	{
-		this.setData();
 		this.updateFromData();
 		this.reset();
 
@@ -365,11 +366,8 @@ export class Level
 	 */
 	unlock()
 	{
-		if (this.locked === true)
-		{
-			this.locked = false;
-			this.data.locked = false;
-			this.saveToData();
-		}
+		this.locked = false;
+		this.data.locked = false;
+		this.saveToData();
 	}
 }

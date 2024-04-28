@@ -9,6 +9,9 @@ function beforeSetup()
 {
 	const level = this.game.getCurrentLevel();
 	this.data = level.data;
+
+	this.data.nextLevel = (level.passed || (!Levels.isNextLevelLocked()));
+	this.data.previousLevel = level.number > 1;
 }
 
 /**
@@ -26,7 +29,7 @@ function afterSetup()
 			Levels.unlockNextLevel();
 		}
 
-		this.state.nextLevel = level.passed || Levels.isNextLevelLocked();
+		this.state.nextLevel = (level.passed || Levels.isNextLevelLocked());
 	}
 }
 
@@ -37,7 +40,9 @@ function afterSetup()
  */
 function setupStates()
 {
-	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = Levels.currentLevel;
+	const level = this.game.getCurrentLevel();
+	const { number, passed, highScorePoints, highScoreNumber, particles, scoreNumber, scorePoints, minimum, quantity } = level;
+
 	return {
 		number,
 		passed,
@@ -79,8 +84,8 @@ export const LevelSummaryPage = ({ game }) => (
 							Div({ class: 'level-number title-text' }, '[[number]]'),
 							Div({ class: 'level-label title-text' }, 'Level')
 						]),
-						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance', onState: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
-						Div({ class: 'destroyed-summary', onState: ['passed', { pass: true, fail: false }] }, [
+						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance', onSet: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
+						Div({ class: 'destroyed-summary', onSet: ['passed', { pass: true, fail: false }] }, [
 							Div({ class: 'destroyed' }, [
 								Div({ class: 'label title-text' }, 'Particle Total'),
 								Div({ class: 'value' }, '[[quantity]]'),
@@ -119,7 +124,7 @@ export const LevelSummaryPage = ({ game }) => (
 						Div({ class: 'summary-buttons' }, [
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'bttn circle bttn-prev', onState: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
+									Div({ class: 'bttn circle bttn-prev', onSet: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Previous')
@@ -135,7 +140,7 @@ export const LevelSummaryPage = ({ game }) => (
 							]),
 							Div({ class: 'col' }, [
 								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'bttn circle bttn-next', onState: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
+									Div({ class: 'bttn circle bttn-next', onSet: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
 										Div({ class: 'content' })
 									]),
 									Div({ class: 'label title-text' }, 'Next')
