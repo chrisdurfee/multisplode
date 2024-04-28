@@ -22,6 +22,7 @@
 	backface-visibility: hidden;
 	will-change: transform, opacity;
 }
+
 .prompt-panel::backdrop {
 	backdrop-filter: blur(10px);
 }
