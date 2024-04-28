@@ -295,7 +295,7 @@ export class LevelController
 
 	blowEmDelay = 200;
 	blowEm = false;
-	blowEmExtend = 500;
+	blowEmExtend = 380;
 	playContainer = null;
 
 	/**
