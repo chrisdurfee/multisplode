@@ -2,6 +2,15 @@ import { A, Article, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atom
 import { Page } from './page.js';
 
 /**
+ * This will remove the loading class from the panel.
+ */
+function afterSetup()
+{
+	const DURATION = 300;
+	window.setTimeout(() => { this.panel.classList.remove('loading'); }, DURATION);
+}
+
+/**
  * HomePage
  *
  * This will create the home page.
@@ -9,8 +18,8 @@ import { Page } from './page.js';
  * @returns {object}
  */
 export const HomePage = (props) => (
-	new Page([
-		Section({ class: 'main-home-panel overlay-panel' }, [
+	new Page({ afterSetup }, [
+		Section({ class: 'main-home-panel overlay-panel loading' }, [
 			Div({ class: 'background background-stars' }),
 			Div({ class: 'panel-top-button-container'}, [
 				A({ class: 'bttn circle settings', href: '/home/settings' }, [
