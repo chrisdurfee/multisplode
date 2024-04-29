@@ -1,15 +1,15 @@
 @import url('fonts.css');
 
 @import url('multisplode.css');
-@import url('./components/atoms/buttons.css');
-@import url('./components/organisms/flash-panel.css');
+@import url('components/atoms/buttons.css');
+@import url('components/organisms/flash-panel.css');
 
-@import url('./components/pages/home-panel.css');
-@import url('./components/pages/level-select-container.css');
-@import url('./components/pages/settings-container.css');
-@import url('./components/pages/play-container.css');
-@import url('./components/pages/pause-container.css');
-@import url('./components/pages/prompt-panel.css');
-@import url('./components/pages/level-summary-container.css');
+@import url('components/pages/home-panel.css');
+@import url('components/pages/level-select-container.css');
+@import url('components/pages/settings-container.css');
+@import url('components/pages/play-container.css');
+@import url('components/pages/pause-container.css');
+@import url('components/pages/prompt-panel.css');
+@import url('components/pages/level-summary-container.css');
 
 @import url('animation.css');
