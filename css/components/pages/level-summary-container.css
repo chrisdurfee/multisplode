@@ -5,12 +5,14 @@
 	right: 0px;
 	margin: 0px auto;
 	z-index: 10;
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	padding-right: env(safe-area-inset-right);
+	padding-left: env(safe-area-inset-left);
 }
 
 .summary-col-container {

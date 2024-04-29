@@ -141,6 +141,8 @@ export class Game
 		this.app.navigate('/play');
 		Settings.song = 'play-loop.mp3';
 		this.startStage();
+
+		document.body.requestFullscreen();
 	}
 
 	/**

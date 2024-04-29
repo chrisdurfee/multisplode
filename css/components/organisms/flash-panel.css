@@ -3,7 +3,7 @@
 	width: 80%;
 	height: auto;
 	top: 0px;
-	left: 0px;
+	left: calc(0px + env(safe-area-inset-left));
 	right: calc(0px + env(safe-area-inset-right));
 	margin: 0 auto;
 	background: rgba(134, 48, 119, 0.9);

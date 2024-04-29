@@ -5,6 +5,7 @@
 	width: 100%;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 }
 

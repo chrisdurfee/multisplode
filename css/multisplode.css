@@ -9,10 +9,6 @@ body {
 
 body {
 	background: #111D5D;
-	padding-top: constant(safe-area-inset-top);
-	/* iOS 11.0 */
-	padding-top: env(safe-area-inset-top);
-	/* iOS 11.2 */
 }
 
 a {
@@ -243,6 +239,7 @@ svg {
 	-moz-animation: maskInTop 1s forwards;
 	animation: maskInTop 1s forwards;
 	padding-right: env(safe-area-inset-right);
+	padding-left: env(safe-area-inset-left);
 }
 
 .control-sub-panel.close {
