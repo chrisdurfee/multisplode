@@ -119,6 +119,8 @@ export class Game
 	 */
 	startGame()
 	{
+		document.body.requestFullscreen();
+
 		Levels.selectPrimaryLevel();
 		this.app.navigate('/play');
 	}
@@ -141,8 +143,6 @@ export class Game
 		this.app.navigate('/play');
 		Settings.song = 'play-loop.mp3';
 		this.startStage();
-
-		document.body.requestFullscreen();
 	}
 
 	/**
