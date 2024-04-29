@@ -1,5 +1,6 @@
 .main-home-panel {
 	width: 100%;
+	position: relative;
 	z-index: 10;
 	margin: 0px;
 	top: 0px;
