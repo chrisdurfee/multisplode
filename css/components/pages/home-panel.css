@@ -19,6 +19,7 @@
 	backface-visibility: hidden;
 	will-change: opacity, transform;
 	padding-right: env(safe-area-inset-right);
+	padding-left: env(safe-area-inset-left);
 }
 
 .main-home-panel:after,
