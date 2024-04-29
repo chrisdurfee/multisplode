@@ -2,7 +2,7 @@
 	position: relative;
 	top: 0px;
 	right: 0px;
-	width: 100%;
+	width: auto;
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	padding-right: env(safe-area-inset-right);

@@ -2,7 +2,7 @@
 	position: relative;
 	top: 0px;
 	right: 0px;
-	width: 100%;
+	width: auto;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-backdrop-filter: blur(10px);
