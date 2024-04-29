@@ -4,6 +4,62 @@ import { RandomLevelPack } from './level/packs/random/random-level-pack.js';
 import { Settings } from './settings.js';
 import { Stage } from './stage.js';
 
+let fullscreen = false;
+
+/**
+ * This will show the fullscreen.
+ *
+ * @returns {void}
+ */
+const showFullscreen = () =>
+{
+	if (fullscreen)
+	{
+        return;
+    }
+
+    fullscreen = true;
+    const element = document.body;
+
+    const fullscreenMethods = [
+        'requestFullscreen',
+        'mozRequestFullScreen',
+        'webkitRequestFullscreen',
+        'msRequestFullscreen'
+    ];
+
+    for (const method of fullscreenMethods)
+	{
+        if (element[method])
+		{
+            element[method]().catch(e => console.error(`Failed to enable fullscreen mode: ${e.message}`));
+            break;
+        }
+    }
+};
+
+/**
+ * This will lock the orientation.
+ *
+ * @returns {void}
+ */
+const lockOrientation = () =>
+{
+	if (!screen || !screen.orientation || typeof screen.orientation.lock !== 'function')
+	{
+        return;
+    }
+
+    screen.orientation.lock('landscape').then(() =>
+	{
+        console.log('Orientation locked successfully.');
+    })
+	.catch(e =>
+	{
+        console.error(`Failed to lock orientation: ${e.message}`);
+    });
+};
+
 /**
  * Game
  *
@@ -119,7 +175,12 @@ export class Game
 	 */
 	startGame()
 	{
-		document.body.requestFullscreen();
+		/**
+		 * We want to show the fullscreen and lock the orientation
+		 * when the game starts.
+		 */
+		showFullscreen();
+		lockOrientation();
 
 		Levels.selectPrimaryLevel();
 		this.app.navigate('/play');
