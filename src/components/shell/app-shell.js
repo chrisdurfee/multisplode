@@ -51,11 +51,11 @@ export const AppShell = (props) => (
 		}),
 		Div({ class: 'overlay-container', route: [
 			{
-				uri: '/home/settings',
+				uri: '/settings',
 				component: SettingsPage(props)
 			},
 			{
-				uri: '/home/levels',
+				uri: '/levels',
 				component: LevelPage(props)
 			},
 			{

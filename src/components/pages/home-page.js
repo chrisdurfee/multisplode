@@ -24,7 +24,7 @@ export const HomePage = ({ game}) => (
 		Section({ class: 'main-home-panel overlay-panel loading' }, [
 			Div({ class: 'background background-stars' }),
 			Div({ class: 'panel-top-button-container'}, [
-				A({ class: 'bttn circle settings', href: '/home/settings' }, [
+				A({ class: 'bttn circle settings', href: '/settings' }, [
 					Div({ class: 'content' })
 				])
 			]),

@@ -75,7 +75,7 @@ export const LevelPage = ({ game }) => (
 		Article({ class: 'control-sub-panel level-select-container overlay-panel' }, [
 			Section({ class: 'home-sub-panel level-select-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [
-					A({ class: 'bttn circle close', href: '/home' }, [
+					A({ class: 'bttn circle close', href: '/' }, [
 						Div({ class: 'content' }, [
 							Span(),
 							Span()

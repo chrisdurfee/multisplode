@@ -26,7 +26,7 @@ const Route = (uri, component, title) =>
  * @returns {array}
  */
 export const Routes = (props) => [
-	Route('/home/:overlay?', HomePage(props), 'Home'),
 	Route('/play/:state?', PlayPage(props), 'Play'),
-	Route('/level-summary', LevelSummaryPage(props), 'Level Summary')
+	Route('/level-summary', LevelSummaryPage(props), 'Level Summary'),
+	Route('/:overlay?', HomePage(props), 'Home'),
 ];

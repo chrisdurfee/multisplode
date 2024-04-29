@@ -71,7 +71,7 @@ export class AppController
 		/**
 		 * This will set up the game to always route to home when starting.
 		 */
-		router.navigate('/home');
+		router.navigate('/');
 	}
 
 	/**

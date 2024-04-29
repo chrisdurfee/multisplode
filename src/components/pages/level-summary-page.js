@@ -88,7 +88,7 @@ export const LevelSummaryPage = ({ game }) => (
 	new Page({ game, beforeSetup, afterSetup, setupStates }, [
 		Div({ class: 'level-summary-container overlay-panel floatDownZ' }, [
 			Div({ class: 'panel-top-button-container' }, [
-				A({ class: 'bttn circle bttn-home', href: '/home' }, [
+				A({ class: 'bttn circle bttn-home', href: '/' }, [
 					Div({ class: 'content' })
 				]),
 			]),

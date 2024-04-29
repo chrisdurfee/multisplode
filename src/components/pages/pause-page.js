@@ -24,13 +24,13 @@ export const PausePage = ({ game }) => (
 			]),
 			Article({ class: 'options-container fadeIn' }, [
 				Section({ class: 'option-group' }, [
-					A({ class: 'bttn circle bttn-home', href: '/home' }, [
+					A({ class: 'bttn circle bttn-home', href: '/' }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Home')
 				]),
 				Section({ class: 'option-group' }, [
-					A({ class: 'bttn circle bttn-levels', href: '/home/levels' }, [
+					A({ class: 'bttn circle bttn-levels', href: '/levels' }, [
 						Div({ class: 'content' })
 					]),
 					Div({ class: 'label title-text' }, 'Levels')
