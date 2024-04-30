@@ -68,20 +68,9 @@
 	max-width: 80px;
 	align-items: flex-start;
 	display: flex;
+	border-left: 1px solid rgba(255, 255, 255, .15);
 	padding-right: env(safe-area-inset-right);
-}
-
-.play-container .play-level-container:after {
-	position: absolute;
-	content: '';
-	top: 0px;
-	bottom: 0px;
-	width: 15px;
-	left: -15px;
-	background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
-	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
-	background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
-	pointer-events: none;
+	background: rgba(255, 255, 255, .1);
 }
 
 .play-container .level-guide {
@@ -260,16 +249,16 @@
 
 .play-container .play-panel {
 	width: auto;
+	background: rgba(255, 255, 255, .1);
+	mix-blend-mode: screen;
 }
 
 .play-container .fade-layer {
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	mix-blend-mode: screen;
-	background: rgba(255, 255, 255, .1);
+	position: relative;
+	display: flex;
+	flex: 1;
+	height: 97.0%;
+	margin: 10px 0;
 }
 
 .play-container.first {

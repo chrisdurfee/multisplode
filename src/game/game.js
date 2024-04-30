@@ -179,7 +179,7 @@ export class Game
 		 * We want to show the fullscreen and lock the orientation
 		 * when the game starts.
 		 */
-		showFullscreen();
+		//showFullscreen();
 		lockOrientation();
 
 		Levels.selectPrimaryLevel();

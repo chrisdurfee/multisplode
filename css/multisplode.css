@@ -169,14 +169,16 @@ svg {
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
-	/*left:0px;*/
+	left: 0px;
 	right: 0px;
 	margin: auto;
 	border: 1px solid rgba(255, 255, 255, .05);
 	border-width: 1px 0px;
+	border-radius: 8px;
 	background: #000000;
 	flex-grow: 1;
 	image-rendering: optimizeSpeed;
+	box-shadow: 0 0 2px rgba(255, 255, 255, 0.15);
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-backface-visibility: hidden;
