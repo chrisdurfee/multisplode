@@ -125,20 +125,21 @@ export class AppController
 	setupOrientationPrompt()
 	{
 		const prompt = OrientationPrompt();
-
-		function toggleVisibility()
+		if (window.matchMedia("(orientation: portrait)").matches)
 		{
-			if (window.matchMedia("(orientation: landscape)").matches)
-			{
-				prompt.close();
-				return;
-			}
-
 			prompt.open();
 		}
 
-		window.addEventListener('resize', toggleVisibility);
+		window.matchMedia("(orientation: portrait)").addEventListener("change", (e) =>
+		{
+			const portrait = e.matches;
+			if (portrait)
+			{
+				prompt.open();
+				return;
+			}
 
-		toggleVisibility();
+			prompt.close();
+		});
 	}
 }
