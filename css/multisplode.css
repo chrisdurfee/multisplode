@@ -192,6 +192,22 @@ svg {
 	}
 }
 
+@media screen and (min-width:400px) {
+	.orientation-panel.prompt-panel {
+		width: 85%;
+	}
+	.orientation-panel.prompt-panel img, .prompt-panel object {
+		display: block;
+		width: 95%;
+		max-width: 100%;
+		height: auto;
+		margin: 20px auto;
+	}
+	.orientation-panel.prompt-panel section .content {
+		padding: 20px 5%;
+	}
+}
+
 .panel-top-button-container {
 	position: absolute;
 	top: 12px;

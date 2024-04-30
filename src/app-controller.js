@@ -1,4 +1,5 @@
 import { base, Builder } from "@base-framework/base";
+import { OrientationPrompt } from "./components/prompts/orientation-prompt.js";
 import { AppShell } from "./components/shell/app-shell.js";
 import { Configs } from "./configs.js";
 import { Game } from "./game/game.js";
@@ -27,6 +28,7 @@ export class AppController
 	 */
 	constructor()
 	{
+		this.setupOrientationPrompt();
 		this.setupRouter();
 		this.setupAppShell();
 		this.setupService();
@@ -112,5 +114,31 @@ export class AppController
 			game: this.setupGame()
 		});
 		Builder.render(main, document.body);
+	}
+
+	/**
+	 * This will setup the orientation prompt.
+	 *
+	 * @protected
+	 * @returns {void}
+	 */
+	setupOrientationPrompt()
+	{
+		const prompt = OrientationPrompt();
+
+		function toggleVisibility()
+		{
+			if (window.matchMedia("(orientation: landscape)").matches)
+			{
+				prompt.close();
+				return;
+			}
+
+			prompt.open();
+		}
+
+		window.addEventListener('resize', toggleVisibility);
+
+		toggleVisibility();
 	}
 }

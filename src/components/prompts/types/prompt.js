@@ -7,7 +7,7 @@ import { Builder, Component } from "@base-framework/base";
  * @param {object} props
  * @returns {object}
  */
-export const PromptContainer = ({className, click, children}) => (
+export const PromptContainer = ({ class: className, click, children }) => (
 	Dialog({ class: `prompt-panel ${className}`, click }, [
 		Div({ class: 'panel-top-button-container' }, [
 			Div({ class: 'bttn circle close', click: (e, parent) => parent.close() }, [
@@ -30,11 +30,6 @@ export const PromptContainer = ({className, click, children}) => (
  */
 export class Prompt extends Component
 {
-	/**
-	 * @member {string} class
-	 */
-	class = '';
-
 	/**
 	 * This will render the modal component.
 	 *
@@ -87,6 +82,11 @@ export class Prompt extends Component
 	 */
 	close()
 	{
+		if (!this.panel)
+		{
+			return;
+		}
+
 		this.panel.close();
 		this.destroy();
 
