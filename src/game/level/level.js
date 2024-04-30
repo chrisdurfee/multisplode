@@ -89,14 +89,15 @@ export class Level
 			number: this.number,
 			locked: this.locked,
 			minimum: this.minimum,
-			remaining: this.remaining,
+			remaining: this.minimum,
 			scoreNumber: this.scoreNumber,
 			quantity: this.quantity,
 			scorePoints: this.scorePoints,
 			highScorePoints: this.highScorePoints,
 			highScoreNumber: this.highScoreNumber,
 			bestTime: this.bestTime,
-			devices: this.devices
+			devices: this.devices,
+			passed: false
 		});
 	}
 
