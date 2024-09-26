@@ -29,9 +29,9 @@ export class AppController
 	constructor()
 	{
 		this.setupOrientationPrompt();
+		this.setupService();
 		this.setupRouter();
 		this.setupAppShell();
-		this.setupService();
 	}
 
 	/**
