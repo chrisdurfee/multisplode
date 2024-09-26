@@ -61,11 +61,6 @@ class Service extends CacheController
 				return false;
 			}
 
-			if (this.isDataRequest(e.request.url))
-			{
-				return false;
-			}
-
 			if (e.request.mode === 'navigate')
 			{
 				e.respondWith(caches.match('index.html'));
