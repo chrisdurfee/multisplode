@@ -1,7 +1,7 @@
 importScripts('./src/worker/cache-controller.js', './src/worker/service.js');
 
 const appName = 'multisplode',
-version = '0.0.10';
+version = '0.0.12';
 
 const files =
 [
