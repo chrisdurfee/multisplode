@@ -1,8 +1,38 @@
-# Base Example Website
+# Multisplode (Web App Game)
 
-## Framework Overview
+## Overview
 
-This is a simple javascript game using canvas.
+This is a game written in JavaScript using the Canvas API and the Base framework. The game is designed to be installed as a Progress Web App (PWA) on a mobile device.
+
+The game is created to be fun and addictive. The UI has been created tobe bright, vibrant, and chnages as you play.
+
+The game loop is simple. Destroy as many particles with the allowed number of devices given on a level. If you destroy the minimum number of particles, you will unlock on to the next level. There are 40 levels in total.
+
+Here is the link to play online: [Multisplode](https://chrisdurfee.github.io/multisplode/)
+
+## Features
+
+- 40 levels of increasing difficulty
+- Particle explosion effects
+- Particle collision effects
+- Different particle types
+- Different device types
+- High Score tracking
+- Post level notifications to encourage the player
+
+## Technologies
+
+- JavaScript
+- HTML
+- CSS
+- Canvas API
+- Base Framework
+- Vite
+
+## Screenshots
+
+![Multisplode](
+
 
 ## Getting Started
 
