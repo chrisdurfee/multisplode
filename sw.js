@@ -6,8 +6,7 @@ version = '0.0.12';
 const files =
 [
 	'./',
-	'./index.html',
-	'./css/import-file.css'
+	'./index.html'
 ];
 
 const appNameId = appName + '-v' + version;
