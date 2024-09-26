@@ -16,7 +16,7 @@
 	"categories": ["games", "action"],
 	"lang": "en-US",
 	"dir": "ltr",
-	"scope": "/",
+	"scope": "./",
 	"start_url": "./",
 	"display": "standalone",
 	"orientation": "landscape",

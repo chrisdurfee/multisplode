@@ -50,8 +50,8 @@ export class AppController
 		}
 
 		const sw = navigator.serviceWorker;
-		sw.register('/sw.js', {
-			scope: '/'
+		sw.register('./sw.js', {
+			scope: './'
 		}).then((serviceWorker) =>
 		{
 
