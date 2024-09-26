@@ -1,4 +1,4 @@
-importScripts('./src/worker/cache-controller.js', './src/worker/service.js');
+importScripts('./worker/cache-controller.js', './worker/service.js');
 
 const appName = 'multisplode',
 version = '0.0.12';
@@ -7,8 +7,7 @@ const files =
 [
 	'./',
 	'./index.html',
-	'./scripts/app.js',
-	'./css/base.css'
+	'./css/import-file.css'
 ];
 
 const appNameId = appName + '-v' + version;
