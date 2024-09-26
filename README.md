@@ -4,7 +4,7 @@
 
 This is a game written in JavaScript using the Canvas API and the Base framework. The game is designed to be installed as a Progress Web App (PWA) on a mobile device.
 
-The game is created to be fun and addictive. The UI has been created tobe bright, vibrant, and chnages as you play.
+The game is created to be fun and addictive. The UI has been created to be bright, vibrant, and changes as you play.
 
 The game loop is simple. Destroy as many particles with the allowed number of devices given on a level. If you destroy the minimum number of particles, you will unlock on to the next level. There are 40 levels in total.
 
