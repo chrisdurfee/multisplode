@@ -46,7 +46,7 @@ export class RandomLevelController extends LevelController
 				if (activeDeviceLength > 0)
 				{
 					/* this will check each particle to see
-					ifithas collided with a device */
+					if it has collided with a device */
 					do
 					{
 						const device = activeDevices[deviceIndex];
@@ -82,7 +82,7 @@ export class RandomLevelController extends LevelController
 					} while(deviceIndex--);
 				}
 
-				/* we dont want to move the particle if the particle
+				/* we don't want to move the particle if the particle
 				is interacting with a device */
 				if (collided === false)
 				{
@@ -91,7 +91,7 @@ export class RandomLevelController extends LevelController
 
 				particle.draw(ctx);
 
-			} while(particleIndex--);
+			} while (particleIndex--);
 		}
 
 		if (Settings.graphics === 'high')

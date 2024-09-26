@@ -27,6 +27,6 @@ const defaultSettings =
 	audio: false,
 	music: false,
 	graphics: 'medium',
-	song: 'play-loop.mp3'
+	song: 'title.mp3'
 };
 Settings.resume(defaultSettings);

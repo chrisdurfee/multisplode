@@ -67,6 +67,6 @@ export const AppShell = (props) => (
 				component: LevelSummaryPage(props)
 			}
 		] }),
-		new GameAudio({ cache: 'soundFx', class: 'sound', fileName: 'play-loop.mp3' })
+		new GameAudio({ cache: 'soundFx', class: 'sound', fileName: 'title.mp3' })
 	])
 );

@@ -1,3 +1,4 @@
+import { Sounds } from "../sounds.js";
 import { GravityField } from "./gravity-field.js";
 import { ShockWave } from "./shockwave.js";
 
@@ -87,7 +88,7 @@ export const Devices =
 			this.explosives++;
 		}
 
-		//sounds.add(device.audio, type);
+		Sounds.add(device.audio, type);
 		this.devices.push(device);
 		return device;
 	},

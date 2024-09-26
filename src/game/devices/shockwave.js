@@ -1,6 +1,34 @@
 import { Cache } from '../cache.js';
 import { Levels } from '../level/levels.js';
+import { MathUtil } from '../math-util.js';
 import { ARC, Device } from './device.js';
+
+/**
+ * @type {array} FILES
+ */
+const FILES =
+[
+    'collision-1a.mp3',
+    'collision-1b.mp3',
+    'collision-1c.mp3',
+    'collision-1d.mp3'
+];
+
+/**
+ * @type {number} FILE_LENGTH
+ */
+const FILE_LENGTH = FILES.length - 1;
+
+/**
+ * This will get a random sound.
+ *
+ * @returns {string}
+ */
+const getRandomSound = () =>
+{
+    const index = MathUtil.round(Math.random() * FILE_LENGTH);
+    return FILES[index];
+};
 
 /**
  * ShockWave
@@ -25,15 +53,11 @@ export class ShockWave extends Device
 
         this.size = 0;
 
-        /*let files =
-        [
-            'collision-1a.mp3',
-            'collision-1b.mp3',
-            'collision-1c.mp3',
-            'collision-1d.mp3'
-        ];
-        let file = files[MathUtil.round(Math.random() * files.length - 1)];*/
-        this.audio = 'sound/collisions/collision-1a.mp3';
+        /**
+         * This will get a random sound file.
+         */
+        const file = getRandomSound();
+        this.audio = `sound/collisions/${file}`;
 
         this.type = 'shockWave';
         this.explosive = true;
@@ -76,8 +100,8 @@ export class ShockWave extends Device
      */
     getWaveScale()
     {
-        let currentLevel = Levels.currentLevel;
-        if(currentLevel)
+        const currentLevel = Levels.currentLevel;
+        if (currentLevel)
         {
             this.waveScale = currentLevel.waveScale;
             this.maxSize = currentLevel.waveMaxSize * this.multiplier;
@@ -91,9 +115,9 @@ export class ShockWave extends Device
      */
     cachePath()
     {
-        let maxSize = this.maxSize,
+        const maxSize = this.maxSize,
         lineWidth = this.lineSize = maxSize / 10;
-        let size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
+        const size = this.totalSize = (maxSize * 2) + (lineWidth * 2);
         this.half = this.totalSize / 2;
 
         const callBack = (ctx) =>

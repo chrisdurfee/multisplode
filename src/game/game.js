@@ -184,6 +184,8 @@ export class Game
 
 		Levels.selectPrimaryLevel();
 		this.app.navigate('/play');
+
+		Settings.song = 'play-loop.mp3';
 	}
 
 	/**
@@ -215,6 +217,8 @@ export class Game
 	{
 		this.app.navigate('/play');
 		this.startStage();
+
+		Settings.song = 'play-loop.mp3';
 	}
 
 	/**

@@ -1,4 +1,5 @@
 import { A, Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
+import { Settings } from '../../game/settings.js';
 import { Page } from './page.js';
 
 /**
@@ -8,6 +9,8 @@ import { Page } from './page.js';
  */
 function afterSetup()
 {
+	Settings.song = 'title.mp3';
+
 	const DURATION = 300;
 	window.setTimeout(() => { this.panel.classList.remove('loading'); }, DURATION);
 }

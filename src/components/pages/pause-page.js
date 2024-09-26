@@ -1,9 +1,12 @@
 import { A, Article, Button, Div, Section } from "@base-framework/atoms";
+import { Settings } from '../../game/settings.js';
 import { Page } from "./page.js";
 
 function afterSetup()
 {
 	this.game.stopStage();
+
+	Settings.song = 'summary-loop.mp3';
 }
 
 /**

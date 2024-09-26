@@ -211,7 +211,7 @@ export class Particle
 			this.angle = 180 - this.angle;
 		}
 
-		if(position.y + this.size >= size.height || position.y <= this.size)
+		if (position.y + this.size >= size.height || position.y <= this.size)
 		{
 			this.angle = 360 - this.angle;
 		}

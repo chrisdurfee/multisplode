@@ -1,6 +1,29 @@
 import { Settings } from "./settings.js";
 
 /**
+ * This will create the audio.
+ *
+ * @param {string} filePath
+ * @param {string} type
+ * @param {function} callBack
+ * @returns {object}
+ */
+const createAudio = (filePath, type, callBack) =>
+{
+	const audio = new Audio(filePath);
+	const sound =
+	{
+		audio,
+		type
+	};
+
+	audio.addEventListener("ended", () => callBack(sound));
+	audio.volume = 0.6;
+	audio.play();
+	return sound;
+};
+
+/**
  * Sounds
  *
  * This will handle the game sounds.
@@ -10,9 +33,9 @@ import { Settings } from "./settings.js";
 export const Sounds =
 {
 	/**
-	 * @type {array} activeSounds
+	 * @type {Map} activeSounds
 	 */
-	activeSounds: [],
+	activeSounds: new Map(),
 
 	/**
 	 * This will reset the sounds.
@@ -21,7 +44,7 @@ export const Sounds =
 	 */
 	reset()
 	{
-		this.activeSounds = [];
+		this.activeSounds = new Map();
 	},
 
 	/**
@@ -31,7 +54,7 @@ export const Sounds =
 	 */
 	getAll()
 	{
-		return this.activeSounds;
+		return this.activeSounds.getAll();
 	},
 
 	/**
@@ -43,58 +66,47 @@ export const Sounds =
 	 */
 	add(filePath, type)
 	{
-		if (Settings.audio === true)
+		if (Settings.audio !== true)
 		{
-			if (this.check(type) === false)
-			{
-				const audio = new Audio(filePath);
-				const sound =
-				{
-					audio,
-					type
-				};
-
-				//audio.addEventListener("ended", this.remove.bind(this, sound));
-				audio.volume = 0.4;
-				audio.play();
-				this.activeSounds.push(sound);
-				return sound;
-			}
+			return false;
 		}
-		return false;
+
+		// if (this.check(type) !== false)
+		// {
+		// 	return false;
+		// }
+
+		const callBack = this.remove.bind(this);
+		const sound = createAudio(filePath, type, callBack);
+		this.activeSounds.set(type, sound);
+		return sound;
 	},
 
+	/**
+	 * This will check if the sound is already playing.
+	 *
+	 * @param {string} type
+	 * @returns {boolean}
+	 */
 	check(type)
 	{
-		return false;
-		// let activeSounds = this.activeSounds,
-		// length = activeSounds.length;
-		// if(length)
-		// {
-		// 	let count = 0;
-		// 	for(let i = 0; i < length; i++)
-		// 	{
-		// 		let sound = activeSounds[i];
-		// 		if(sound.type === type)
-		// 		{
-		// 			count++;
-		// 			if(count >= 2)
-		// 			{
-		// 				return true;
-		// 			}
-		// 		}
-		// 	}
-		// }
-		// return false;
+		const activeSounds = this.activeSounds;
+		if (activeSounds.count < 1)
+		{
+			return false;
+		}
+
+		return activeSounds.get(type) || false;
 	},
 
+	/**
+	 * This will remove the sound.
+	 *
+	 * @param {object} sound
+	 * @returns {void}
+	 */
 	remove(sound)
 	{
-		const activeSounds = this.activeSounds,
-		index = activeSounds.indexOf(sound);
-		if (index > -1)
-		{
-			activeSounds.splice(index, 1);
-		}
+		this.activeSounds.delete(sound.type);
 	}
 };

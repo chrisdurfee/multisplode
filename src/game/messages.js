@@ -231,11 +231,11 @@ export const Messages =
 	 */
 	removeAll()
 	{
-		let options = this.options;
-		let maxLength = options.length;
-		if(maxLength)
+		const options = this.options;
+		const maxLength = options.length;
+		if (maxLength)
 		{
-			for(let i = 0; i < maxLength; i++)
+			for (let i = 0; i < maxLength; i++)
 			{
 				let option = options[i];
 				this.remove(option);

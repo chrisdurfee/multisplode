@@ -42,7 +42,7 @@ export class Point
 		this.id = this.number;
 
 		this.position = Position(tmpX, tmpY);
-		this.size = 20;
+		this.size = 16;
 
 		this.fillColor = '#FFFFFF';
 		this.opacity = 1;
@@ -95,7 +95,7 @@ export class Point
 
 		const callBack = (ctx) =>
 		{
-			ctx.font = this.size + "px titillium";
+			ctx.font = this.size + "px Helvetica";
 			ctx.fillStyle = this.fillColor;
 			ctx.fillText(this.text, width / 2, height / 2);
 		};

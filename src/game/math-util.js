@@ -35,7 +35,7 @@ export const MathUtil =
 		roundNumber = (typeof roundNumber !== 'undefined')? true : roundNumber;
 		if (roundNumber)
 		{
-			return Math.floor(Math.random() * (end - start + 1) + start);
+			return this.floor(Math.random() * (end - start + 1) + start);
 		}
 
 		return Math.random() * (end - start + 1) + start;
@@ -77,10 +77,9 @@ export const MathUtil =
 	 */
 	getOrbitPosition(centerX, centerY, angle, radius)
 	{
-		let mth = Math;
 		return {
-			x: centerX + mth.cos(angle) * radius,
-			y: centerY + mth.sin(angle) * radius
+			x: centerX + Math.cos(angle) * radius,
+			y: centerY + Math.sin(angle) * radius
 		};
 	},
 
@@ -136,7 +135,7 @@ export const MathUtil =
 	 */
 	getDegrees(radians)
 	{
-		return radians * this.degreesPI;
+		return radians * DEGREES_PI;
 	},
 
 	/**
@@ -152,7 +151,7 @@ export const MathUtil =
 	 */
 	getRadians(degrees)
 	{
-		return degrees * this.radiansPI;
+		return degrees * RADIANS_PI;
 	},
 
 	/**
@@ -166,7 +165,7 @@ export const MathUtil =
 	 */
 	getSlope(aX, aY, bX, bY)
 	{
-		let x = aX - bX,
+		const x = aX - bX,
 		y = aY - bY;
 
 		return y / x;
@@ -247,21 +246,47 @@ export const MathUtil =
 		};
 	},
 
+	/**
+	 * This will get the distance.
+	 *
+	 * @param {object} p1
+	 * @param {object} p2
+	 * @returns {number}
+	 */
 	distance(p1, p2)
     {
         return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
     },
 
+	/**
+	 * This will get the movement by speed.
+	 *
+	 * @param {number} distance
+	 * @param {number} speed
+	 * @returns {number}
+	 */
 	getMovementBySpeed(distance, speed)
 	{
 		return distance / speed;
 	},
 
+	/**
+	 * This will round a number.
+	 *
+	 * @param {number} number
+	 * @returns {number}
+	 */
 	round(number)
 	{
 		return ~~ (0.5 + number);
 	},
 
+	/**
+	 * This will floor a numnber.
+	 *
+	 * @param {number} number
+	 * @returns {number}
+	 */
 	floor(number)
 	{
 		return ~~number;
