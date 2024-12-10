@@ -1,13 +1,13 @@
 import { Timer } from "./timer";
 
 /**
- * INtervalTimer
+ * IntervalTimer
  *
  * This class will handle the timer.
  *
  * @class
  */
-export class INtervalTimer extends Timer
+export class IntervalTimer extends Timer
 {
 	/**
 	 * This will set up the timer.

@@ -2,8 +2,9 @@
 	position: absolute;
 	background: rgba(255, 255, 255, .15);
 	width: 70%;
+	max-width: 650px;
 	height: 80vh;
-    max-height: 340px;
+	max-height: 340px;
 	top: 6%;
 	bottom: 6%;
 	left: 0px;
