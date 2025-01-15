@@ -228,13 +228,13 @@ export const Levels =
 	/**
 	 * This will get the next level.
 	 *
-	 * @returns {object}
+	 * @returns {object|null}
 	 */
 	getNextLevel()
 	{
 		const activeLevels = this.activeLevels;
 		let index = (this.currentLevel)? activeLevels.indexOf(this.currentLevel) : 0;
-		const nextLevelIndex = (index < activeLevels.length - 1)? ++index : 0;
+		const nextLevelIndex = (index < activeLevels.length - 1)? ++index : null;
 		return activeLevels[nextLevelIndex];
 	},
 
