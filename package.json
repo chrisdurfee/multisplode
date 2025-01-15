@@ -34,7 +34,7 @@
 		"vite": "^3.1.0"
 	},
 	"files": [
-		"pacakge.json",
+		"package.json",
 		"readme.md"
 	],
 	"homepage": "https://github.com/chrisdurfee/multisplode/"
