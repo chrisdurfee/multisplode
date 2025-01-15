@@ -89,7 +89,12 @@ class CacheController
 		});
 	}
 
-
+	/**
+	 * This will add files to the cache.
+	 *
+	 * @param {array} files
+	 * @returns {Promise}
+	 */
 	addFiles(files)
 	{
 		return this.open(this.cacheName, (cache) =>
@@ -98,6 +103,11 @@ class CacheController
 		});
 	}
 
+	/**
+	 * This will delete files from the cache.
+	 *
+	 * @returns {void}
+	 */
 	deleteFiles()
 	{
 		caches.delete(this.cacheName).then((success) =>
@@ -106,6 +116,12 @@ class CacheController
 		});
 	}
 
+	/**
+	 * This will get files from the cache.
+	 *
+	 * @param {object} e
+	 * @returns {Promise}
+	 */
 	fetchFile(e)
 	{
 		const request = e.request;
