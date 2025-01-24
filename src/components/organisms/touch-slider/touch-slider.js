@@ -448,7 +448,7 @@ export class TouchSlider extends Component
 	 * This will move the panel.
 	 *
 	 * @param {object} e
-	 * @returns {boolean}
+	 * @returns {boolean|void}
 	 */
 	move(e)
 	{
@@ -484,7 +484,6 @@ export class TouchSlider extends Component
         of the touch */
         this.moveX = (this.moveX * -1);
         this.moveContainer(this.moveX);
-		return true;
 	}
 
 	/**
