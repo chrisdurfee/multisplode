@@ -131,9 +131,9 @@ export class TouchSlider extends Component {
      * This will move the panel.
      *
      * @param {object} e
-     * @returns {boolean}
+     * @returns {boolean|void}
      */
-    move(e: object): boolean;
+    move(e: object): boolean | void;
     /**
      * This will move the container.
      *
