@@ -17,6 +17,7 @@ export class FlashPanel extends Component
 	 */
 	onCreated()
 	{
+		// @ts-ignore
 		this.duration ??= 4000;
 		this.timer = null;
 	}
@@ -28,6 +29,7 @@ export class FlashPanel extends Component
 	 */
 	render()
 	{
+		// @ts-ignore
 		return Div({ class: `flash-panel dropInBounce ${this.type}` }, [
 			Footer({ class: 'button-container' }, [
 				Button({ class: 'bttn circle close', onclick: () => this.destroy() }, [
@@ -39,7 +41,9 @@ export class FlashPanel extends Component
 			]),
 			Div({ class: 'icon-container' }),
 			Header({ class: 'title-container' }, [
+				// @ts-ignore
 				Div({ class: 'title left dark' }, this.title),
+				// @ts-ignore
 				Div({ class: 'description center dark' }, this.description)
 			])
 		]);
@@ -50,6 +54,7 @@ export class FlashPanel extends Component
 	 */
 	afterSetup()
 	{
+		// @ts-ignore
 		this.timer = setTimeout(() => this.destroy(), this.duration);
 	}
 

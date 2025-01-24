@@ -9,6 +9,9 @@ export class Timer
 {
 	/**
 	 * This will set up the duration.
+	 *
+	 * @param {number} duration - The duration of the timer.
+	 * @param {function} callBack - The callback function to call when the timer is done.
 	 */
 	constructor(duration, callBack)
 	{

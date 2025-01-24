@@ -39,6 +39,7 @@ export class NavSlider extends Component
     render()
     {
         return Header({ class: 'title-container' }, [
+			// @ts-ignore
 			Ul({ cache: 'navContainer', class: 'option-container', ...this.getEvents(), map: [this.items, Link] })
 		]);
     }
@@ -123,10 +124,11 @@ export class NavSlider extends Component
 	 */
     getOptions()
 	{
+		// @ts-ignore
 		let items = this.navContainer.querySelectorAll('.option');
 		if (!items)
 		{
-			return [];
+			return;
 		}
 
         /* this will convert the node list to an array
@@ -223,8 +225,10 @@ export class NavSlider extends Component
         option.selected = true;
         this.updateSelectOption(option);
 
+		// @ts-ignore
         if (typeof this.callBackFn === 'function' && cancelCallBack !== true)
         {
+			// @ts-ignore
             this.callBackFn(option.index);
         }
 	}
@@ -272,6 +276,7 @@ export class NavSlider extends Component
 
 	start(e)
 	{
+		// @ts-ignore
 		this.navContainer.classList.add('active');
 		this.getParentWidth();
 
@@ -303,6 +308,7 @@ export class NavSlider extends Component
 	moveContainer(number)
 	{
 		this.posX = number;
+		// @ts-ignore
 		this.navContainer.style.transform = 'translate3d(' + number + 'px,0,0)';
 	}
 
@@ -361,6 +367,7 @@ export class NavSlider extends Component
 		is not down */
 		if(this.contact === true)
 		{
+			// @ts-ignore
 			this.navContainer.classList.remove('active');
 			this.contact = false;
 

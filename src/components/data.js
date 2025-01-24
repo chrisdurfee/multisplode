@@ -28,7 +28,7 @@ export const Data =
 	/**
 	 * This will setup our data module.
 	 *
-	 * @returns {self}
+	 * @returns {object}
 	 */
 	setup()
 	{

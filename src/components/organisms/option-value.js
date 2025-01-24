@@ -18,7 +18,9 @@ export class OptionValue extends Component
      */
     onCreated()
     {
+        // @ts-ignore
         this.iterator = new Iterator(this.options, this.change.bind(this));
+        // @ts-ignore
         this.iterator.selectOption(this.data[this.dataProp]);
     }
 
@@ -31,6 +33,8 @@ export class OptionValue extends Component
     {
         return Div({ class: 'value-container' }, [
             Button({ class: 'value-button arrow prev', click: this.previous.bind(this) }),
+
+            // @ts-ignore
             Button({ class: 'value-button', click: this.next.bind(this) }, '[[' + this.dataProp + ']]'),
             Button({ class: 'value-button arrow next', click: this.next.bind(this)})
         ]);
@@ -44,6 +48,7 @@ export class OptionValue extends Component
      */
     change(option)
     {
+        // @ts-ignore
         this.data.set(this.dataProp, option);
         this.data.store();
     }
