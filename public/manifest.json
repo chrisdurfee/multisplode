@@ -1,6 +1,7 @@
 {
 	"short_name": "Multisplode",
 	"name": "Multisplode",
+	"description": "The game loop is simple. Destroy as many particles with the allowed number of devices given on a level. If you destroy the minimum number of particles, you will unlock on to the next level. There are 40 levels in total.",
 	"icons": [
 		{
 			"src": "./images/icons/icon-192.png",
@@ -13,7 +14,10 @@
 			"type": "image/png"
 		}
 	],
-	"categories": ["games", "action"],
+	"categories": [
+		"games",
+		"action"
+	],
 	"lang": "en-US",
 	"dir": "ltr",
 	"scope": "./",
