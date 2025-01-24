@@ -37,13 +37,44 @@ export class Device
      */
     constructor(tmpX, tmpY, color, multiplier)
     {
+        /**
+         * @type {object} position
+         */
         this.position = Position(tmpX, tmpY);
-        this.size = 0;
-        this.fillColor = color;
-        this.audio = 'sound/collisions/collision-1a.mp3';
-        this.multiplier = multiplier || 1;
 
+        /**
+         * @type {number} size
+         */
+        this.size = 0;
+
+        /**
+         * @type {string} fillColor
+         */
+        this.fillColor = color;
+
+        /**
+         * @type {string} audio
+         */
+        this.audio = 'sound/collisions/collision-1a.mp3';
+
+        /**
+         * @type {number} maxSize
+         */
+        this.maxSize = 0;
+
+        /**
+         * @type {boolean} multiplier
+         */
+        this.multiplier = multiplier || true;
+
+        /**
+         * @type {string} type
+         */
         this.type = 'device';
+
+        /**
+         * @type {boolean} explosive
+         */
         this.explosive = false;
 
         this.cachePath();

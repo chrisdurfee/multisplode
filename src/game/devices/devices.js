@@ -21,12 +21,12 @@ const DeviceMap = {
 export const Devices =
 {
 	/**
-	 * @type {array} devices
+	 * @type {Array<object>} devices
 	 */
 	devices: [],
 
 	/**
-	 * @type {array} removed
+	 * @type {Array<object>} removed
 	 */
 	removed: [],
 
@@ -76,7 +76,7 @@ export const Devices =
 	 * @param {number} tmpY
 	 * @param {string} color
 	 * @param {boolean} multiplier
-	 * @param {string} type
+	 * @param {string} [type]
 	 * @returns {object}
 	 */
 	add(tmpX, tmpY, color, multiplier, type = 'ShockWave')
