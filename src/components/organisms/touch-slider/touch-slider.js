@@ -54,6 +54,11 @@ export class TouchSlider extends Component
 		this.index = 0;
 		this.stepWidth = null;
 
+		/**
+		 * @member {object} slider
+		 */
+		this.slider = null;
+
 		this.minimum = 72;
 		this.moveX = 0;
 		this.startX = 0;
@@ -72,7 +77,9 @@ export class TouchSlider extends Component
     render()
     {
         return Article({ class: 'touch-slider step-container' }, [
+			// @ts-ignore
 			Div({ cache: 'slider', class: 'step-slider-container', ...this.getEvents(), map: [this.items, Step] }),
+			// @ts-ignore
 			CrumbContainer({ map: [this.items, Crumb] })
 		]);
     }
@@ -148,7 +155,7 @@ export class TouchSlider extends Component
 		let items = this.slider.querySelectorAll('.' + STEP_CLASS_NAME);
 		if (!items)
 		{
-			return [];
+			return;
 		}
 
         /* this will convert the node list to an array
@@ -207,6 +214,8 @@ export class TouchSlider extends Component
 		current selected step */
 		this.index = step.index;
 		this.state.index = step.index;
+
+
 		this.selectStep(step);
 	}
 
@@ -297,7 +306,7 @@ export class TouchSlider extends Component
 	 * This will select the step.
 	 *
 	 * @param {object} step
-	 * @param {boolean} cancelCallBack
+	 * @param {boolean} [cancelCallBack]
 	 * @returns {void}
 	 */
 	selectStep(step, cancelCallBack)
@@ -310,8 +319,10 @@ export class TouchSlider extends Component
 		step.ele.classList.add('active');
 		this.updateSelectStep(step);
 
+		// @ts-ignore
 		if (typeof this.callBackFn === 'function' && cancelCallBack !== true)
 		{
+			// @ts-ignore
 			this.callBackFn(step.index);
 		}
 	}
@@ -437,7 +448,7 @@ export class TouchSlider extends Component
 	 * This will move the panel.
 	 *
 	 * @param {object} e
-	 * @returns {void}
+	 * @returns {boolean}
 	 */
 	move(e)
 	{
@@ -473,12 +484,13 @@ export class TouchSlider extends Component
         of the touch */
         this.moveX = (this.moveX * -1);
         this.moveContainer(this.moveX);
+		return true;
 	}
 
 	/**
 	 * This will move the container.
 	 *
-	 * @param {number} number
+	 * @param {number|string} number
 	 * @returns {void}
 	 */
 	moveContainer(number)

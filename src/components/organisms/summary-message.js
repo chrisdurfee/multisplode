@@ -6,7 +6,7 @@ Messages.setup();
 /**
  * This will get the summary message.
  *
- * @returns {string}
+ * @returns {object|string}
  */
 export const getSummaryMessage = (level) =>
 {
@@ -42,7 +42,7 @@ export const getSummaryMessage = (level) =>
  * This will show a message.
  *
  * @param {string} type
- * @returns {string}
+ * @returns {object}
  */
 export const getMessage = (type) =>
 {

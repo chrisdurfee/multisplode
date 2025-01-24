@@ -34,6 +34,7 @@ export class Touches extends Component
      */
     beforeSetup()
     {
+        // @ts-ignore
         const currentLevel = this.game.getCurrentLevel();
         this.level = currentLevel;
         this.level.setUpdateTouchCallBack(() => this.select());

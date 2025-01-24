@@ -30,6 +30,7 @@ export class Progress extends Component
 	 */
 	beforeSetup()
 	{
+		// @ts-ignore
 		const currentLevel = this.game.getCurrentLevel();
 		this.data = currentLevel.data;
 
@@ -59,6 +60,7 @@ export class Progress extends Component
 		{
 			const element = this.element = document.getElementById('progress-line');
 
+			// @ts-ignore
 			const length = this.length = element.getTotalLength();
 			element.style.strokeDasharray = length + ' ' + length;
 			this.changeStrokeOffset(length);
@@ -94,6 +96,8 @@ export class Progress extends Component
 		/* this will get the progress and convert
 		 it to be a decimal */
 		let progress = ((number / total * 100) / 100);
+
+		// @ts-ignore
 		progress = (progress < 1)? progress.toFixed(2) : 1;
 		if ((progress === 1 && this.progress !== progress) || progress !== this.progress)
 		{
@@ -119,7 +123,7 @@ export class Progress extends Component
 			return;
 		}
 
-		this.element.style.strokeDashoffset = number;
+		this.element.style.strokeDashoffset = String(number);
 	}
 
 	/**

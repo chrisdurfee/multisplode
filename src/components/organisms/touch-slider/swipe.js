@@ -45,7 +45,9 @@ export class Swipe
 	 */
     static calculateAngle()
 	{
+		// @ts-ignore
 		const positionX = this.startX - this.moveX,
+		// @ts-ignore
 		positionY = this.moveY - this.startY;
 
 		/* we need to get the distance */
