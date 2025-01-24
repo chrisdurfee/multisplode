@@ -18,7 +18,6 @@ export class LevelPack
 	 * This will create a level pack.
 	 *
 	 * @param {object} game
-	 * @param {object} controller
 	 */
 	constructor(game)
 	{
@@ -26,6 +25,9 @@ export class LevelPack
 		this.game = game;
 	}
 
+	/**
+	 * @type {array} levels
+	 */
 	levels = [
 		/*the order of the settings are:
 
@@ -59,7 +61,7 @@ export class LevelPack
 			let settings = levels[i],
 			levelPanelClass = (typeof settings[7] !== 'undefined')? settings[7] : lastLevelPanelClass;
 
-			if(levelPanelClass !== lastLevelPanelClass)
+			if (levelPanelClass !== lastLevelPanelClass)
 			{
 				lastLevelPanelClass = levelPanelClass;
 			}
@@ -88,6 +90,7 @@ export class LevelPack
 	 * This will change the level.
 	 *
 	 * @param {object} level
+	 * @returns {void}
 	 */
 	changeLevel(level)
 	{
@@ -99,6 +102,7 @@ export class LevelPack
 	 *
 	 * @param {number} level
 	 * @param {boolean} cancelPrompts
+	 * @returns {void}
 	 */
 	setLevel(level, cancelPrompts)
 	{
@@ -108,6 +112,8 @@ export class LevelPack
 
 	/**
 	 * This will get the summary.
+	 *
+	 * @returns {void}
 	 */
 	levelSummary()
 	{

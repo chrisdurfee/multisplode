@@ -7,9 +7,12 @@ import { Page } from "./page.js";
 
 /**
  * This will set up the data.
+ *
+ * @returns {object}
  */
 function beforeSetup()
 {
+	// @ts-ignore
 	const level = this.game.getCurrentLevel();
 	this.data = level.data;
 

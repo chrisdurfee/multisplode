@@ -32,7 +32,7 @@ export class Device
      * @param {number} tmpX
      * @param {number} tmpY
      * @param {string} color
-     * @param {boolean} [multiplier]
+     * @param {number} [multiplier]
      * @constructor
      */
     constructor(tmpX, tmpY, color, multiplier)
@@ -63,9 +63,9 @@ export class Device
         this.maxSize = 0;
 
         /**
-         * @type {boolean} multiplier
+         * @type {number} multiplier
          */
-        this.multiplier = multiplier || true;
+        this.multiplier = multiplier || 1;
 
         /**
          * @type {string} type

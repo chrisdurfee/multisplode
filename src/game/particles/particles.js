@@ -43,8 +43,8 @@ export const Particles =
 	/**
 	 * This will add a new particle.
 	 *
-	 * @param {string} type
-	 * @param {object} settings
+	 * @param {string} [type]
+	 * @param {object} [settings]
 	 * @returns {object}
 	 */
 	add(type, settings)

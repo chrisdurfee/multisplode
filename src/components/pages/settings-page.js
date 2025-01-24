@@ -39,9 +39,10 @@ function selectByLink(index)
  *
  * This will create the settings panel.
  *
+ * @param {object} props
  * @returns {object}
  */
-export const SettingsPage = () => (
+export const SettingsPage = (props) => (
 	new ControlPage([
 		Article({ class: 'control-sub-panel settings-container overlay-panel open' }, [
 			Section({ class: 'home-sub-panel settings-panel' }, [

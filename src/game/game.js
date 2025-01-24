@@ -45,11 +45,13 @@ const showFullscreen = () =>
  */
 const lockOrientation = () =>
 {
+	// @ts-ignore
 	if (!screen || !screen.orientation || typeof screen.orientation.lock !== 'function')
 	{
         return;
     }
 
+	// @ts-ignore
     screen.orientation.lock('landscape').then(() =>
 	{
         console.log('Orientation locked successfully.');

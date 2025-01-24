@@ -16,6 +16,9 @@ export class RandomLevelPack extends LevelPack
 	 */
 	controller = new RandomLevelController();
 
+	/**
+	 * @type {array} levels
+	 */
 	levels = [
 		/*the order of the settings are:
 

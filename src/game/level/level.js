@@ -47,6 +47,7 @@ export class Level
 		this.scorePoints = 0;
 		this.highScorePoints = 0;
 		this.highScoreNumber = 0;
+		this.originalDelay = null;
 
 		/**
 		 * @type {function} updateTouchCallBack
@@ -74,7 +75,10 @@ export class Level
 		this.data.setKey('level-' + this.number);
 
 		this.data.resume();
+
+		// @ts-ignore
 		this.data.passed = false;
+		// @ts-ignore
 		this.data.remaining = this.minimum;
 	}
 
@@ -169,7 +173,7 @@ export class Level
 		{
 			if (Objects.hasOwnProp(quantity, type))
 			{
-				totalCount += quantity[type];
+				totalCount += (quantity) ? quantity[type] : 0;
 			}
 		}
 		this.quantity = totalCount;
@@ -251,12 +255,14 @@ export class Level
 		if (this.scoreNumber > this.highScoreNumber)
 		{
 			this.highScoreNumber = this.scoreNumber;
+			// @ts-ignore
 			this.data.highScoreNumber = this.scoreNumber;
 		}
 
 		if (this.scorePoints > this.highScorePoints)
 		{
 			this.highScorePoints = this.scorePoints;
+			// @ts-ignore
 			this.data.highScorePoints = this.scorePoints;
 		}
 		this.saveToData();
@@ -303,11 +309,14 @@ export class Level
 		{
 			this.currentNumber = remaining;
 			remaining = (remaining > 0)? remaining : 0;
+
+			// @ts-ignore
 			this.data.remaining = remaining;
 
 			if (remaining === 0)
 			{
 				this.passed = true;
+				// @ts-ignore
 				this.data.passed = true;
 			}
 		}
@@ -349,6 +358,7 @@ export class Level
 	updateBestTime(time)
 	{
 		this.bestTime = time;
+		// @ts-ignore
 		this.data.bestTime = time;
 		this.data.store();
 	}
@@ -361,9 +371,13 @@ export class Level
 		const levelData = this.data;
 		if (levelData)
 		{
+			// @ts-ignore
 			this.locked = levelData.locked;
+			// @ts-ignore
 			this.highScorePoints = levelData.highScorePoints;
+			// @ts-ignore
 			this.highScoreNumber = levelData.highScoreNumber;
+			// @ts-ignore
 			this.bestTime = levelData.bestTime;
 		}
 	}
@@ -389,6 +403,7 @@ export class Level
 	unlock()
 	{
 		this.locked = false;
+		// @ts-ignore
 		this.data.locked = false;
 		this.saveToData();
 	}

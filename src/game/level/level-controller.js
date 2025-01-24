@@ -82,7 +82,7 @@ export class LevelController
 	 *
 	 * @param {number} mouseX
 	 * @param {number} mouseY
-	 *
+	 * @returns {void}
 	 */
 	interact(mouseX, mouseY)
 	{
@@ -106,10 +106,10 @@ export class LevelController
 	 * @param {number} x
 	 * @param {number} y
 	 * @param {string} color
-	 * @param {number} multiplier
+	 * @param {boolean} [multiplier]
 	 * @returns {void}
 	 */
-	createDevice(x, y, color, multiplier)
+	createDevice(x, y, color, multiplier = false)
 	{
 		Devices.add(x, y, color, multiplier);
 		this.createSparks(x, y, color);
@@ -285,7 +285,7 @@ export class LevelController
 		if ((this.level.isAtLimit === true && Devices.getExplosivesCount() < 1) || particleCount < 1)
 		{
 			const startTimer = this.setupCompleteDelay();
-			const timePassed = new Date() - startTimer;
+			const timePassed = Number(new Date()) - Number(startTimer);
 			if (this.blowEm === false && timePassed >= this.blowEmDelay)
 			{
 				this.checkToBlowEm();

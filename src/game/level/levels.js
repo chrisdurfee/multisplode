@@ -25,6 +25,7 @@ export const Levels =
 	 * This will set the game.
 	 *
 	 * @param {object} game
+	 * @return {void}
 	 */
 	setGame(game)
 	{
@@ -163,6 +164,8 @@ export const Levels =
 	 * This will set the level.
 	 *
 	 * @param {object} level
+	 * @param {boolean} cancelPrompts
+	 * @returns {void}
 	 */
 	setLevel(level, cancelPrompts)
 	{
@@ -177,6 +180,8 @@ export const Levels =
 
 	/**
 	 * This will setup the previous level.
+	 *
+	 * @returns {void}
 	 */
 	setPreviousLevel()
 	{
@@ -188,6 +193,8 @@ export const Levels =
 
 	/**
 	 * This will unlock the next level.
+	 *
+	 * @returns {void}
 	 */
 	unlockNextLevel()
 	{
@@ -215,6 +222,8 @@ export const Levels =
 
 	/**
 	 * This will retry the level.
+	 *
+	 * @returns {void}
 	 */
 	retryLevel()
 	{
@@ -240,6 +249,8 @@ export const Levels =
 
 	/**
 	 * This will select the next level.
+	 *
+	 * @returns {void}
 	 */
 	selectNextLevel()
 	{

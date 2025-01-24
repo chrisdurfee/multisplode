@@ -102,21 +102,6 @@ export const MathUtil =
 		return angle - speed;
 	},
 
-	getBezierCurve(p0, p1, p2, p3, time)
-	{
-		let t = time;
-
-		let cx = 3 (p1.x - p0.x),
-		bx = 3 (p2.x - p1.x) - cx,
-		ax = p3.x - p0.x - cx - bx,
-		cy = 3 (p1.y - p0.y),
-		by = 3 (p2.y - p1.y),
-		ay = p3.y - p0.y - cy - by;
-
-		let xt = ax * (t * t * t) + bx * (t * t) + cx * t + p0.x;
-		let yt = ay * (t * t * t) + by * (t * t) + cy * t + p0.y;
-	},
-
 	spiral(radius, speed)
 	{
 		return radius + speed;

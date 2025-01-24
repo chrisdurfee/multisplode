@@ -45,7 +45,7 @@ export class ShockWave extends Device
      * @param {number} tmpX
      * @param {number} tmpY
      * @param {string} color
-     * @param {boolean} multiplier
+     * @param {number} multiplier
      */
     constructor(tmpX, tmpY, color, multiplier)
     {

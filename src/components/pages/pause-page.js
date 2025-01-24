@@ -4,6 +4,7 @@ import { Page } from "./page.js";
 
 function afterSetup()
 {
+	// @ts-ignore
 	this.game.stopStage();
 
 	Settings.song = 'summary-loop.mp3';

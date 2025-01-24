@@ -27,6 +27,7 @@ export class PromptStartUp extends Prompt
 
 		return PromptContainer(
 		{
+			// @ts-ignore
 			class: this.class,
 			click,
 			children: [

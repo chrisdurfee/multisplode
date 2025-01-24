@@ -47,6 +47,7 @@ export class Prompt extends Component
 
 		return PromptContainer(
 		{
+			// @ts-ignore
 			class: this.class,
 			click,
 			children: [
@@ -69,8 +70,10 @@ export class Prompt extends Component
 		Builder.render(this, document.body);
 		this.panel.showModal();
 
+		// @ts-ignore
 		if (typeof this.activateCallBack === 'function')
 		{
+			// @ts-ignore
 			this.activateCallBack();
 		}
 	}
@@ -90,8 +93,10 @@ export class Prompt extends Component
 		this.panel.close();
 		this.destroy();
 
+		// @ts-ignore
 		if (typeof this.deactivateCallBack === 'function')
 		{
+			// @ts-ignore
 			this.deactivateCallBack();
 		}
 	}

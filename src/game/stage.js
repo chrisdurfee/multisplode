@@ -9,8 +9,11 @@ const FPS = 60;
  */
 window.requestAnimationFrame = (
 	window.requestAnimationFrame ||
+	// @ts-ignore
 	window.mozRequestAnimationFrame ||
+	// @ts-ignore
 	window.webkitRequestAnimationFrame ||
+	// @ts-ignore
 	window.msRequestAnimationFrame ||
 	function(callBack)
 	{
@@ -22,6 +25,7 @@ const requestFrame = window.requestAnimationFrame;
 
 window.cancelAnimationFrame = (
 	window.cancelAnimationFrame ||
+	// @ts-ignore
 	window.mozCancelAnimationFrame ||
 	function(requestID)
 	{
@@ -81,8 +85,10 @@ export class Stage
 		/* this will track the positions of mouse */
 		this.mouse = Mouse(0, 0, 'up');
 
-		/* this will store the animation timer id */
-		this.animationId = false;
+		/**
+		 * @type {number|null} animationId
+		 */
+		this.animationId = null;
 
 		/* this is our buffer object that will be used
 		in the animation loop to increase performance */
@@ -194,8 +200,8 @@ export class Stage
 			/* we also need to get the element offset and subtract
 			it from the mouse position */
 			return {
-				x: parseInt((x - rect.left) * scale),
-				y: parseInt((y - rect.top) * scale)
+				x: parseInt(String((x - rect.left) * scale)),
+				y: parseInt(String((y - rect.top) * scale))
 			};
 		};
 
@@ -247,8 +253,8 @@ export class Stage
 
 		/* we also need to get the element offset and subtract
 		it from the mouse position */
-		const x = parseInt((eX - rect.left) * scale),
-		y = parseInt((eY - rect.top) * scale);
+		const x = parseInt(String((eX - rect.left) * scale)),
+		y = parseInt(String((eY - rect.top) * scale));
 
 		let mouse = this.mouse;
 		mouse.x = x;

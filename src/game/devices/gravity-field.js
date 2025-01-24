@@ -18,7 +18,7 @@ export class GravityField extends Device
      * @param {number} tmpX
      * @param {number} tmpY
      * @param {string} color
-     * @param {boolean} multiplier
+     * @param {number} multiplier
      */
     constructor(tmpX, tmpY, color, multiplier)
     {
@@ -51,7 +51,7 @@ export class GravityField extends Device
     checkToRemove()
     {
         const startTimer = this.getStartTime();
-        this.delta = new Date() - startTimer;
+        this.delta = Number(new Date()) - startTimer;
         return (this.delta >= this.time);
     }
 

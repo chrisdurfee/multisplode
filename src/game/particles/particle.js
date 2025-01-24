@@ -5,7 +5,7 @@ import { ARC, MathUtil } from "../math-util.js";
 /**
  * This will get a random color.
  *
- * @param {number} limit
+ * @param {number} [limit]
  * @returns {string}
  */
 const getRandomColor = (limit) =>
@@ -136,7 +136,7 @@ export class Particle
 	 * This will setup the particle.
 	 *
 	 * @param {object} customSettings
-	 * @param {boolean} cache
+	 * @param {boolean} [cache]
 	 * @returns {void}
 	 */
 	setup(customSettings, cache)

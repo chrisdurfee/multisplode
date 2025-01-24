@@ -31,6 +31,7 @@ export class PromptBlock extends Prompt
 	{
 		return PromptContainer(
 		{
+			// @ts-ignore
 			class: this.class,
 			children: [
 				Div({ class: 'touch-slider'}, [

@@ -10,6 +10,7 @@ import { Page } from "./page.js";
  */
 function beforeSetup()
 {
+	// @ts-ignore
 	const currentLevel = this.game.getCurrentLevel();
 	this.data = currentLevel.data;
 }
