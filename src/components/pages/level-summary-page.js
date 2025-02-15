@@ -1,4 +1,5 @@
 import { A, Article, Div, Section } from "@base-framework/atoms";
+import "../../ads.d.ts";
 import { Levels } from "../../game/level/levels.js";
 import { FlashPanel } from "../organisms/flash-panel.js";
 import { getSummaryMessage } from "../organisms/summary-message.js";
@@ -53,18 +54,20 @@ function afterSetup()
         timer.start();
     }
 
-    // Initialize AdSense ad unit
-    const adContainer = document.getElementById('summary-ad-banner-container');
-    if (adContainer) {
-        adContainer.innerHTML = `
-            <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6195383735030855"
-     data-ad-slot="6511131121"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-        `;
-        (adsbygoogle = window.adsbygoogle || []).push({});
+    // Initialize AdSense ad unit only in production environment
+    if (window.location.hostname !== 'localhost') {
+        const adContainer = document.getElementById('summary-ad-banner-container');
+        if (adContainer) {
+            adContainer.innerHTML = `
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6195383735030855"
+                     data-ad-slot="6511131121"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            `;
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
     }
 }
 
