@@ -96,18 +96,17 @@ export const LevelSummaryPage = ({ game }) => (
 				]),
 			]),
 			Article({ class: 'summary-col-container' }, [
-				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container', html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6195383735030855"
-     crossorigin="anonymous"></script>
-<!-- multisplode -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6195383735030855"
-     data-ad-slot="6511131121"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>`}),
+				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container', html: `
+				<ins class="adsbygoogle"
+						style="display:block"
+						data-ad-client="ca-pub-3940256099942544"
+						data-ad-slot="6300978111"
+						data-ad-format="auto"
+						data-full-width-responsive="true"></ins>
+				<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				`}),
 				Section({ class: 'col data-container' }, [
 					Div({ class: 'level-summary' }, [
 						Div({ class: 'row' }, [
