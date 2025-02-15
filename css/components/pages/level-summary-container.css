@@ -40,6 +40,10 @@
 	align-items: center;
 	height: 100%;
 }
+.summary-col-container .marketing-container ins {
+	width: 100%;
+	height: 100%;
+}
 
 .level-summary {
 	display: table;
