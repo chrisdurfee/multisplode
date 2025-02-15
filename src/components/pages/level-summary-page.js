@@ -55,7 +55,7 @@ function afterSetup()
     }
 
     // Initialize AdSense ad unit only in production environment
-    if (window.location.hostname !== 'localhost') {
+    if (1 || window.location.hostname !== 'localhost') {
         const adContainer = document.getElementById('summary-ad-banner-container');
         if (adContainer) {
             adContainer.innerHTML = `

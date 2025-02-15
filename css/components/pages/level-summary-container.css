@@ -1,10 +1,8 @@
 .level-summary-container {
-	display: block;
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 auto;
 	position: relative;
-	width: auto;
-	top: 0px;
-	bottom: 0px;
-	right: 0px;
 	margin: 0px auto;
 	z-index: 10;
 	-webkit-backdrop-filter: blur(10px);
