@@ -96,8 +96,7 @@ export const LevelSummaryPage = ({ game }) => (
 				]),
 			]),
 			Article({ class: 'summary-col-container' }, [
-				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container' }, {
-					html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6195383735030855"
+				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container', html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6195383735030855"
      crossorigin="anonymous"></script>
 <!-- multisplode -->
 <ins class="adsbygoogle"
@@ -108,8 +107,7 @@ export const LevelSummaryPage = ({ game }) => (
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script>`
-				}),
+</script>`}),
 				Section({ class: 'col data-container' }, [
 					Div({ class: 'level-summary' }, [
 						Div({ class: 'row' }, [
