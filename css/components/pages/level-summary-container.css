@@ -18,21 +18,27 @@
 }
 
 .summary-col-container {
-	display: table;
+	display: flex;
+	flex-direction: row;
 	position: relative;
 	width: 100%;
 	height: 100%;
 }
 
 .summary-col-container .col {
-	display: table-cell;
+	display: flex;
+	flex: 1;
 }
 
 .summary-col-container .marketing-container {
-	display: none;
 	position: relative;
 	background: rgba(255, 255, 255, .2);
-	width: 20%;
+	max-width: 30%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 .level-summary {

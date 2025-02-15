@@ -1,4 +1,4 @@
-import { A, Div, Section } from "@base-framework/atoms";
+import { A, Article, Div, Section } from "@base-framework/atoms";
 import { Levels } from "../../game/level/levels.js";
 import { FlashPanel } from "../organisms/flash-panel.js";
 import { getSummaryMessage } from "../organisms/summary-message.js";
@@ -95,82 +95,95 @@ export const LevelSummaryPage = ({ game }) => (
 					Div({ class: 'content' })
 				]),
 			]),
-			// Article({ class: 'summary-col-container' }, [
-			// 	Section({ class: 'col marketing-container', id: 'summary-ad-banner-container' }),
-			// ]),
-			Section({ class: 'col data-container' }, [
-				Div({ class: 'level-summary' }, [
-					Div({ class: 'row' }, [
-						Div({ class: 'level-number-container pullDown' }, [
-							Div({ class: 'level-number title-text' }, '[[number]]'),
-							Div({ class: 'level-label title-text' }, 'Level')
-						]),
-						Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance', onSet: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
-						Div({ class: 'destroyed-summary', onSet: ['passed', { pass: true, fail: false }] }, [
-							Div({ class: 'destroyed' }, [
-								Div({ class: 'label title-text' }, 'Particle Total'),
-								Div({ class: 'value' }, '[[quantity]]'),
-								Div({ class: 'label title-text' }, 'Destroyed'),
-								Div({ class: 'value' }, '[[scoreNumber]]'),
+			Article({ class: 'summary-col-container' }, [
+				Section({ class: 'col marketing-container', id: 'summary-ad-banner-container' }, {
+					html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6195383735030855"
+     crossorigin="anonymous"></script>
+<!-- multisplode -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6195383735030855"
+     data-ad-slot="6511131121"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>`
+				}),
+				Section({ class: 'col data-container' }, [
+					Div({ class: 'level-summary' }, [
+						Div({ class: 'row' }, [
+							Div({ class: 'level-number-container pullDown' }, [
+								Div({ class: 'level-number title-text' }, '[[number]]'),
+								Div({ class: 'level-label title-text' }, 'Level')
+							]),
+							Div({ id: 'summaryLevelStatus', class: 'level-status title-enhance', onSet: ['passed', (val) => val? 'Congrats, You Passed' : 'Sorry, Try Again'] }),
+							Div({ class: 'destroyed-summary', onSet: ['passed', { pass: true, fail: false }] }, [
+								Div({ class: 'destroyed' }, [
+									Div({ class: 'label title-text' }, 'Particle Total'),
+									Div({ class: 'value' }, '[[quantity]]'),
+									Div({ class: 'label title-text' }, 'Destroyed'),
+									Div({ class: 'value' }, '[[scoreNumber]]'),
+								])
 							])
-						])
-					]),
-					Div({ class: 'row' }, [
-						Div({ class: 'score-container' }, [
-							Div({ class: 'score-panel' }, [
-								Div({ class: 'col' }, [
-									Div({ class: 'data underline' }, [
-										Div({ class: 'value title-text' }, '[[minimum]]'),
-										Div({ class: 'label title-enhance' }, 'Minimum'),
-									])
-								]),
-								Div({ class: 'col' }, [
-									Div({ class: 'data circle level-score' }, [
-										Div({ class: 'content' }, [
-											Div({ class: 'value title-text' }, '[[scorePoints]]'),
-											Div({ class: 'label title-enhance' }, 'Level Score'),
+						]),
+						Div({ class: 'row' }, [
+							Div({ class: 'score-container' }, [
+								Div({ class: 'score-panel' }, [
+									Div({ class: 'col' }, [
+										Div({ class: 'data underline' }, [
+											Div({ class: 'value title-text' }, '[[minimum]]'),
+											Div({ class: 'label title-enhance' }, 'Minimum'),
 										])
-									])
-								]),
-								Div({ class: 'col' }, [
-									Div({ class: 'data high-score underline' }, [
-										Div({ class: 'value title-text' }, '[[highScorePoints]]'),
-										Div({ class: 'label title-enhance' }, 'Highest Score'),
+									]),
+									Div({ class: 'col' }, [
+										Div({ class: 'data circle level-score' }, [
+											Div({ class: 'content' }, [
+												Div({ class: 'value title-text' }, '[[scorePoints]]'),
+												Div({ class: 'label title-enhance' }, 'Level Score'),
+											])
+										])
+									]),
+									Div({ class: 'col' }, [
+										Div({ class: 'data high-score underline' }, [
+											Div({ class: 'value title-text' }, '[[highScorePoints]]'),
+											Div({ class: 'label title-enhance' }, 'Highest Score'),
+										])
 									])
 								])
 							])
-						])
-					]),
-					Div({ class: 'row summary-button-container' }, [
-						Div({ class: 'summary-buttons' }, [
-							Div({ class: 'col' }, [
-								Section({ class: 'option-group', id: 'previous_level' }, [
-									Div({ class: 'bttn circle bttn-prev', onSet: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
-										Div({ class: 'content' })
+						]),
+						Div({ class: 'row summary-button-container' }, [
+							Div({ class: 'summary-buttons' }, [
+								Div({ class: 'col' }, [
+									Section({ class: 'option-group', id: 'previous_level' }, [
+										Div({ class: 'bttn circle bttn-prev', onSet: ['previousLevel', { hidden: false }], click: () => game.previousLevel() }, [
+											Div({ class: 'content' })
+										]),
+										Div({ class: 'label title-text' }, 'Previous')
 									]),
-									Div({ class: 'label title-text' }, 'Previous')
 								]),
-							]),
-							Div({ class: 'col' }, [
-								Section({ class: 'option-group', id: 'retry_level' }, [
-									Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
-										Div({ class: 'content' })
+								Div({ class: 'col' }, [
+									Section({ class: 'option-group', id: 'retry_level' }, [
+										Div({ class: 'bttn circle bttn-retry', click: () => game.retryLevel() }, [
+											Div({ class: 'content' })
+										]),
+										Div({ class: 'label title-text' }, 'Retry')
 									]),
-									Div({ class: 'label title-text' }, 'Retry')
 								]),
-							]),
-							Div({ class: 'col' }, [
-								Section({ class: 'option-group', id: 'next_level' }, [
-									Div({ class: 'bttn circle bttn-next', onSet: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
-										Div({ class: 'content' })
-									]),
-									Div({ class: 'label title-text' }, 'Next')
+								Div({ class: 'col' }, [
+									Section({ class: 'option-group', id: 'next_level' }, [
+										Div({ class: 'bttn circle bttn-next', onSet: ['nextLevel', { hidden: false }], click: () => game.nextLevel() }, [
+											Div({ class: 'content' })
+										]),
+										Div({ class: 'label title-text' }, 'Next')
+									])
 								])
 							])
 						])
 					])
 				])
-			])
+			]),
 		])
 	])
 );
