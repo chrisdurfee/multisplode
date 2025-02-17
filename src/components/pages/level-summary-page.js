@@ -54,21 +54,19 @@ function afterSetup()
         timer.start();
     }
 
-    // Initialize AdSense ad unit only in production environment
-    if (1 || window.location.hostname !== 'localhost') {
-        const adContainer = document.getElementById('summary-ad-banner-container');
-        if (adContainer) {
-            adContainer.innerHTML = `
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-6195383735030855"
-                     data-ad-slot="6511131121"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            `;
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        }
-    }
+    const adContainer = document.getElementById('summary-ad-banner-container');
+	if (adContainer)
+	{
+		adContainer.innerHTML = `
+			<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-6195383735030855"
+					data-ad-slot="6511131121"
+					data-ad-format="auto"
+					data-full-width-responsive="true"></ins>
+		`;
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	}
 }
 
 /**
