@@ -259,6 +259,7 @@
 	display: flex;
 	flex: 1;
 	height: 97.0%;
+	max-width: 900px;
 	margin: 10px 0;
 }
 
