@@ -48,7 +48,7 @@
 .level-summary {
 	display: table;
 	width: 100%;
-	max-width: 80%;
+	max-width: 600px;
 	height: 100%;
 	min-height: 100%;
 	margin: 0 auto;
@@ -236,7 +236,7 @@
 
 .level-summary .score-panel .data.underline .label {
 	padding-top: 8%;
-	font-size: .8vw;
+	font-size: 12px;
 	letter-spacing: 2px;
 }
 
@@ -311,11 +311,11 @@
 	}
 
 	.level-summary-container .level-number-container .level-label {
-		font-size: 1.6vw;
+		font-size: 18px;
 	}
 
 	.level-summary-container .level-status {
-		font-size: 2.3vw;
+		font-size: 24px;
 	}
 
 	.level-summary .destroyed-summary .destroyed {
@@ -332,7 +332,7 @@
 
 	.level-summary .score-panel .data .label,
 	.level-summary .score-panel .data.underline .label {
-		font-size: 1vw;
+		font-size: 16px;
 		letter-spacing: 2px;
 	}
 

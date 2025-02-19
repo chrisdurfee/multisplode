@@ -15,7 +15,7 @@ const APP_NAME = 'multisplode',
  * @const
  * @type {string} version
  */
-version = '0.0.25';
+version = '0.0.26';
 
 /**
  * This will add these files to cache. Add any files you want to
