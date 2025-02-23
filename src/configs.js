@@ -27,7 +27,7 @@ export const Configs =
 	 */
 	router:
 	{
-		baseUrl: '/multisplode/',
+		baseUrl: '/',
 		title: 'Multisplode'
 	}
 };
