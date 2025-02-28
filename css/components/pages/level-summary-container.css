@@ -93,7 +93,7 @@
 	line-height: 4vw;
 	padding: 0px;
 	margin: 3% 0px 0px;
-	font-size: 2.8vw;
+	font-size: 18px;
 }
 
 .level-summary-container .level-status {
@@ -109,6 +109,8 @@
 
 .level-summary .destroyed-summary {
 	border-radius: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .level-summary .destroyed-summary .destroyed {
@@ -208,7 +210,7 @@
 
 .level-summary .score-panel .data .value {
 	position: relative;
-	font-size: 4.6vw;
+	font-size: 30px;
 	letter-spacing: 3px;
 }
 
@@ -311,7 +313,7 @@
 	}
 
 	.level-summary-container .level-number-container .level-label {
-		font-size: 18px;
+		font-size: 12px;
 	}
 
 	.level-summary-container .level-status {
@@ -350,5 +352,16 @@
 
 	.level-summary .destroyed-summary .label.title-text {
 		width: 27%;
+	}
+}
+@media screen and (max-width:850px) {
+	.level-summary-container .level-status {
+		font-size: 18px;
+	}
+
+	.level-summary .score-panel .data .label,
+	.level-summary .score-panel .data.underline .label {
+		font-size: 14px;
+		letter-spacing: 1.5px;
 	}
 }
