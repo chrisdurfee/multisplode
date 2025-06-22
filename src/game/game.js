@@ -187,6 +187,8 @@ export class Game
 			return;
 		}
 
+		this.hasSetup = true;
+
 		/**
 		 * We want to show the fullscreen and lock the orientation
 		 * when the game starts.
