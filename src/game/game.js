@@ -83,11 +83,6 @@ export class Game
 		this.stage = new Stage(width, height, this);
 		this.app = app;
 
-		/**
-		 * @type {boolean}
-		 */
-		this.hasSetup = false;
-
 		Levels.setGame(this);
 		Prompts.setGame(this);
 		Prompts.setup();
@@ -182,13 +177,6 @@ export class Game
 	 */
 	startGame()
 	{
-		if (this.hasSetup)
-		{
-			return;
-		}
-
-		this.hasSetup = true;
-
 		/**
 		 * We want to show the fullscreen and lock the orientation
 		 * when the game starts.
@@ -197,6 +185,9 @@ export class Game
 		lockOrientation();
 
 		Levels.selectPrimaryLevel();
+		this.app.navigate('/play');
+
+		Settings.song = 'play-loop.mp3';
 	}
 
 	/**
