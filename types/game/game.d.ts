@@ -17,10 +17,6 @@ export class Game {
     stage: Stage;
     app: any;
     /**
-     * @type {boolean}
-     */
-    hasSetup: boolean;
-    /**
      * This will get the current level.
      *
      * @returns {object|null}
