@@ -1543,14 +1543,14 @@
     100% {
         -webkit-clip-path: circle(0px at 95% 10%);
         -moz-clip-path: circle(0px at 95% 10%);
-        clip-path: circle(0px at 95% 10%);
+        clip-path: circle(0px at 97% 6%);
     }
 }
 
 .maskOutTop {
-    -webkit-animation: maskOutTop 1s;
-    -moz-animation: maskOutTop 1s;
-    animation: maskOutTop 1s;
+    -webkit-animation: maskOutTop .5s;
+    -moz-animation: maskOutTop .5s;
+    animation: maskOutTop .5s;
 }
 
 /* rotate circle */
