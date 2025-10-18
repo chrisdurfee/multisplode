@@ -44,7 +44,7 @@ function selectByLink(index)
  */
 export const SettingsPage = (props) => (
 	new ControlPage([
-		Article({ class: 'control-sub-panel settings-container overlay-panel open' }, [
+		Article({ class: 'control-sub-panel settings-container overlay-panel', animateIn: 'maskInTop', animateOut: 'maskOutTop' }, [
 			Section({ class: 'home-sub-panel settings-panel' }, [
 				Div({ class: 'panel-top-button-container floatUpZBounce'}, [
 					A({ class: 'bttn circle close', href: '/' }, [

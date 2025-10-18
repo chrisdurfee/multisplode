@@ -1508,9 +1508,9 @@
 }
 
 .maskInTop {
-    -webkit-animation: maskInTop 1s;
-    -moz-animation: maskInTop 1s;
-    animation: maskInTop 1s;
+    -webkit-animation: maskInTop .5s;
+    -moz-animation: maskInTop .5s;
+    animation: maskInTop .5s;
 }
 
 @-webkit-keyframes maskOutTop {
