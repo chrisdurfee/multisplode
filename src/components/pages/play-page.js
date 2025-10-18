@@ -1,4 +1,6 @@
 import { A, Article, Canvas, Div, Section, Span } from "@base-framework/atoms";
+import { Levels } from "../../game/level/levels.js";
+import { Settings } from "../../game/settings.js";
 import { Progress } from "../organisms/progress.js";
 import { Touches } from "../organisms/touches.js";
 import { Page } from "./page.js";
@@ -11,7 +13,18 @@ import { Page } from "./page.js";
 function beforeSetup()
 {
 	// @ts-ignore
-	const currentLevel = this.game.getCurrentLevel();
+	let currentLevel = this.game.getCurrentLevel();
+
+	// Fallback: If no level is selected (e.g., direct navigation to /play),
+	// select the primary level. This helps with AdSense preview tools.
+	if (!currentLevel)
+	{
+		Levels.selectPrimaryLevel();
+		Settings.song = 'play-loop.mp3';
+		// @ts-ignore
+		currentLevel = this.game.getCurrentLevel();
+	}
+
 	this.data = currentLevel.data;
 }
 

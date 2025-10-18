@@ -1,4 +1,4 @@
-import { A, Article, Button, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
+import { A, Article, Div, Img, Li, Nav, Section, Ul } from '@base-framework/atoms';
 import { Settings } from '../../game/settings.js';
 import { Page } from './page.js';
 
@@ -45,7 +45,14 @@ export const HomePage = ({ game}) => (
 								Nav([
 									Ul({ class: 'clear' }, [
 										Li([
-											Button({ class: 'bttn main-play title-text', click: () => game.startGame() }, 'Play')
+											A({
+												class: 'bttn main-play title-text',
+												href: '/play',
+												click: (e) => {
+													e.preventDefault();
+													game.startGame();
+												}
+											}, 'Play')
 										])
 									])
 								])
