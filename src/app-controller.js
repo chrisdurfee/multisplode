@@ -122,6 +122,24 @@ export class AppController
 	}
 
 	/**
+	 * Check if running in an iframe (e.g., AdSense preview)
+	 *
+	 * @protected
+	 * @returns {boolean}
+	 */
+	isInIframe()
+	{
+		try
+		{
+			return window.self !== window.top;
+		}
+		catch (e)
+		{
+			return true;
+		}
+	}
+
+	/**
 	 * This will setup the orientation prompt.
 	 *
 	 * @protected
@@ -129,6 +147,13 @@ export class AppController
 	 */
 	setupOrientationPrompt()
 	{
+		// Skip orientation prompt in iframes (e.g., AdSense preview)
+		// This allows preview tools to see the full game interface
+		if (this.isInIframe())
+		{
+			return;
+		}
+
 		const prompt = OrientationPrompt();
 		if (window.matchMedia("(orientation: portrait)").matches)
 		{

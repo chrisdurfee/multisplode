@@ -32,8 +32,19 @@
 	<link rel="shortcut icon" href="./favicon.ico">
 
 	<!-- content -->
-	<meta name="description" content="Enjoy explosive action in Multisplode! Play directly in your browser!">
-	<meta name="keywords" content="multisplode, game, multiplayer, online, browser, action, fun, explosive">
+	<meta name="description" content="Multisplode - A free browser-based particle explosion game with 40 challenging levels. Destroy particles using strategic device placement. Play now without downloads!">
+	<meta name="keywords" content="multisplode, game, puzzle, strategy, browser game, free game, particle physics, explosion game, casual game, web game, HTML5 game">
+
+	<!-- Open Graph / Social Media -->
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Multisplode - Free Particle Explosion Puzzle Game">
+	<meta property="og:description" content="Challenge yourself with 40 levels of explosive particle physics puzzles. Free to play in your browser!">
+	<meta property="og:image" content="./images/icons/icon-512.png">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Multisplode - Free Particle Explosion Puzzle Game">
+	<meta name="twitter:description" content="Challenge yourself with 40 levels of explosive particle physics puzzles. Free to play in your browser!">
 
 	<!-- pwa settings -->
 	<link rel="manifest" href="./manifest.json">
@@ -58,7 +69,42 @@
 
 <body>
 	<!-- alert js error -->
-	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<noscript>
+		<div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+			<h1>Multisplode - Particle Explosion Puzzle Game</h1>
+			<p>You need to enable JavaScript to run this app.</p>
+			<p>Multisplode is a free browser-based physics puzzle game featuring 40 challenging levels where you strategically place explosive devices to destroy colorful particles.</p>
+		</div>
+	</noscript>
+
+	<!-- SEO Content for crawlers -->
+	<div id="app-content" style="position: absolute; left: -9999px;" aria-hidden="true">
+		<h1>Multisplode - Free Particle Explosion Game</h1>
+		<h2>About Multisplode</h2>
+		<p>Multisplode is an engaging browser-based particle physics puzzle game that challenges players to think strategically. With 40 progressively challenging levels, players must use limited explosive devices to destroy all particles on the screen.</p>
+
+		<h2>Game Features</h2>
+		<ul>
+			<li>40 unique levels with increasing difficulty</li>
+			<li>Physics-based particle interactions and explosions</li>
+			<li>Multiple device types including shockwaves and gravity fields</li>
+			<li>Colorful particle effects and smooth animations</li>
+			<li>Progressive unlocking system</li>
+			<li>Optimized for both desktop and mobile browsers</li>
+			<li>No downloads or installations required</li>
+			<li>Free to play</li>
+		</ul>
+
+		<h2>How to Play</h2>
+		<p>In Multisplode, your objective is to eliminate all particles from the playing field using a limited number of explosive devices. Each level presents a unique challenge with different particle configurations and device constraints.</p>
+		<p>Click or tap on the screen to place your devices strategically. Timing and positioning are crucial as chain reactions can help you complete levels more efficiently. Some particles pulse and expand, while devices create different types of explosions including shockwaves and gravity fields.</p>
+
+		<h2>Game Mechanics</h2>
+		<p>The game features realistic particle physics with collision detection, momentum, and gravity. Particles bounce off walls and each other, creating dynamic gameplay scenarios. Master the physics to create spectacular chain reactions!</p>
+
+		<h2>Start Playing</h2>
+		<p>Click the Play button to begin your explosive puzzle adventure. Progress through levels, unlock new challenges, and test your strategic thinking skills. The game runs entirely in your web browser with no downloads needed.</p>
+	</div>
 
 	<script type="module">
 		import { AppController } from './src/app-controller.js';

@@ -7,13 +7,27 @@ import { Stage } from './stage.js';
 let fullscreen = false;
 
 /**
+ * Check if running in an iframe (e.g., AdSense preview)
+ *
+ * @returns {boolean}
+ */
+const isInIframe = () =>
+{
+	try {
+		return window.self !== window.top;
+	} catch (e) {
+		return true;
+	}
+};
+
+/**
  * This will show the fullscreen.
  *
  * @returns {void}
  */
 const showFullscreen = () =>
 {
-	if (fullscreen)
+	if (fullscreen || isInIframe())
 	{
         return;
     }
@@ -28,14 +42,18 @@ const showFullscreen = () =>
         'msRequestFullscreen'
     ];
 
-    for (const method of fullscreenMethods)
-	{
-        if (element[method])
+	try {
+		for (const method of fullscreenMethods)
 		{
-            element[method]().catch(e => console.error(`Failed to enable fullscreen mode: ${e.message}`));
-            break;
-        }
-    }
+			if (element[method])
+			{
+				element[method]().catch(e => console.log(`Fullscreen not available: ${e.message}`));
+				break;
+			}
+		}
+	} catch (e) {
+		console.log('Fullscreen not supported in this context');
+	}
 };
 
 /**
@@ -45,21 +63,31 @@ const showFullscreen = () =>
  */
 const lockOrientation = () =>
 {
+	// Skip orientation lock in iframes (e.g., AdSense preview)
+	if (isInIframe())
+	{
+		return;
+	}
+
 	// @ts-ignore
 	if (!screen || !screen.orientation || typeof screen.orientation.lock !== 'function')
 	{
         return;
     }
 
-	// @ts-ignore
-    screen.orientation.lock('landscape').then(() =>
-	{
-        console.log('Orientation locked successfully.');
-    })
-	.catch(e =>
-	{
-        console.error(`Failed to lock orientation: ${e.message}`);
-    });
+	try {
+		// @ts-ignore
+		screen.orientation.lock('landscape').then(() =>
+		{
+			console.log('Orientation locked successfully.');
+		})
+		.catch(e =>
+		{
+			console.log(`Orientation lock not available: ${e.message}`);
+		});
+	} catch (e) {
+		console.log('Orientation lock not supported in this context');
+	}
 };
 
 /**
@@ -179,9 +207,10 @@ export class Game
 	{
 		/**
 		 * We want to show the fullscreen and lock the orientation
-		 * when the game starts.
+		 * when the game starts. These are optional features that
+		 * will fail gracefully in preview/iframe contexts.
 		 */
-		//showFullscreen();
+		// showFullscreen(); // Uncomment if you want fullscreen
 		lockOrientation();
 
 		Levels.selectPrimaryLevel();
