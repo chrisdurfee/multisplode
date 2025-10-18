@@ -51,6 +51,13 @@ export class AppController {
      */
     protected setupAppShell(): void;
     /**
+     * Check if running in an iframe (e.g., AdSense preview)
+     *
+     * @protected
+     * @returns {boolean}
+     */
+    protected isInIframe(): boolean;
+    /**
      * This will setup the orientation prompt.
      *
      * @protected
