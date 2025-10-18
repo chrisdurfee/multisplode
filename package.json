@@ -26,7 +26,7 @@
 		"url": "https://github.com/chrisdurfee/multisplode/issues"
 	},
 	"devDependencies": {
-		"esbuild": "^0.15.7"
+		"esbuild": "^0.25.11"
 	},
 	"dependencies": {
 		"@base-framework/atoms": "^1.0.1",
