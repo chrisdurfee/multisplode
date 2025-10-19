@@ -76,9 +76,21 @@ export class AppController
 		router.setup(baseUrl, title);
 
 		/**
-		 * This will set up the game to always route to home when starting.
+		 * For GitHub Pages SPA routing, we need to check if we're being
+		 * redirected from a 404 page. The 404.html adds a query parameter
+		 * with the original path that we decode in index.html.
+		 * We should let that redirect complete before navigating.
 		 */
-		router.navigate('/');
+		const hasRedirect = window.location.search && window.location.search.indexOf('?/') === 0;
+
+		if (!hasRedirect)
+		{
+			/**
+			 * This will set up the game to always route to home when starting
+			 * from the root URL.
+			 */
+			router.navigate('/');
+		}
 	}
 
 	/**
