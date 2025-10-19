@@ -12,6 +12,7 @@ import { Page } from "./page.js";
  */
 function beforeSetup()
 {
+	console.log('PlayPage: beforeSetup called');
 	// @ts-ignore
 	let currentLevel = this.game.getCurrentLevel();
 
@@ -19,6 +20,7 @@ function beforeSetup()
 	// select the primary level. This helps with AdSense preview tools.
 	if (!currentLevel)
 	{
+		console.log('PlayPage: No current level, selecting primary level');
 		Levels.selectPrimaryLevel();
 		Settings.song = 'play-loop.mp3';
 		// @ts-ignore
@@ -26,6 +28,7 @@ function beforeSetup()
 	}
 
 	this.data = currentLevel.data;
+	console.log('PlayPage: Setup complete, level:', currentLevel?.level);
 }
 
 /**

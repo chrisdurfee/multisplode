@@ -76,21 +76,22 @@ export class AppController
 		router.setup(baseUrl, title);
 
 		/**
-		 * For GitHub Pages SPA routing, we need to check if we're being
-		 * redirected from a 404 page. The 404.html adds a query parameter
-		 * with the original path that we decode in index.html.
-		 * We should let that redirect complete before navigating.
+		 * Only navigate to home if we're at the root path.
+		 * If we're at any other path (like /play from a direct link or 404 redirect),
+		 * let the router handle it naturally by not calling navigate().
+		 * The Base Framework router will automatically route to the current URL.
 		 */
-		const hasRedirect = window.location.search && window.location.search.indexOf('?/') === 0;
+		const currentPath = window.location.pathname;
+		const isRootPath = currentPath === '/' || currentPath === baseUrl || currentPath === '';
 
-		if (!hasRedirect)
+		// Log for debugging (can be removed after testing)
+		console.log('Router setup - Current path:', currentPath, 'Is root:', isRootPath);
+
+		if (isRootPath)
 		{
-			/**
-			 * This will set up the game to always route to home when starting
-			 * from the root URL.
-			 */
 			router.navigate('/');
 		}
+		// If not root, the router will automatically handle the current path
 	}
 
 	/**
