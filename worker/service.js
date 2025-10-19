@@ -37,7 +37,7 @@ class Service
 	{
 		self.addEventListener('install', (e) =>
 		{
-			self.skipWaiting();
+			//self.skipWaiting();
 
 			e.waitUntil(
 				this.cache.addFiles(this.files)
@@ -47,7 +47,16 @@ class Service
 		self.addEventListener('activate', (e) =>
 		{
 			e.waitUntil(
-				this.cache.refresh()
+				this.cache.refresh().then(() =>
+				{
+					// return self.clients.matchAll({ includeUncontrolled: true }).then((clients) =>
+					// {
+					// 	clients.forEach((client) =>
+					// 	{
+					// 		client.postMessage({ action: 'reload' });
+					// 	});
+					// });
+				})
 			);
 
 			return self.clients.claim();
@@ -68,19 +77,31 @@ class Service
 				return false;
 			}
 
+			/**
+			 * Prevent the service worker from handling the navigation requests.
+			 */
 			if (e.request.mode === 'navigate')
 			{
-				e.respondWith(caches.match('index.html'));
+				fetch(e.request).catch(() => {
+					return caches.match('index.html');
+				});
 				return false;
 			}
-			else if (e.request.mode === 'cors')
+
+			/**
+			 * Prevent the service worker from handling the CORS requests.
+			 */
+			if (e.request.mode === 'cors')
 			{
 				return false;
 			}
 
+			/**
+			 * Prevent the service worker from handling the extension requests.
+			 */
 			if (e.request.url.startsWith('chrome-extension://'))
 			{
-				return false;
+				return;
 			}
 
 			const response = this.cache.fetchFile(e);
